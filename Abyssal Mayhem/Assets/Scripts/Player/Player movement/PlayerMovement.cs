@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float jumpHeight = 2f;
 
     Vector3 velocity;
-
+    Vector3 move;
     bool isGrounded;
     // Update is called once per frame
     void Update()
@@ -20,12 +20,14 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
-
-        controller.Move(move * speed * Time.deltaTime);
-
-        
-
+        move = transform.right * x + transform.forward * z; //move locally
+        move *= speed;
+        VerticalMovement();
+        controller.Move(move * Time.deltaTime);
+    }
+    //Movement vertically with gravity and jumping
+    private void VerticalMovement()
+    {
         if (isGrounded)
         {
             velocity.y = -2f;
@@ -39,6 +41,6 @@ public class PlayerMovement : MonoBehaviour
             velocity.y += gravity * Time.deltaTime;
         }
 
-        controller.Move(velocity * Time.deltaTime);
+        move += velocity;
     }
 }

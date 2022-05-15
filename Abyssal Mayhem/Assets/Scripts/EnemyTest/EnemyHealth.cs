@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
     public Slider slider; //Slider controlling UI healthbar
-    public Gradient gradient;
+    public Gradient gradient; //color gradient of healthbar
+    public Canvas canvas; //canvas housing healthbar in worldspace
     [SerializeField] Image fill; //image of frontfill of healthbar
     // Start is called before the first frame update
     void Start()
@@ -17,12 +18,14 @@ public class PlayerHealth : MonoBehaviour
         SetMaxHealth(100);
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        canvas.transform.LookAt(canvas.transform.position + Camera.main.transform.forward);
+        //Testing take damage function
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             TakeDamage(20);
-        }
+        }*/
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {

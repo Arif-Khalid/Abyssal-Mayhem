@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     public float speed = 20f; //Speed of bullet
     public float snapDistance = 2f; //Distance till bullet snaps to target
     public int bulletDamage = 10;
+    private float timeAlive = 0f;
+    [SerializeField] float lifeTime;
     [SerializeField] LayerMask layerMask;
     Rigidbody rigidBody;
     // Start is called before the first frame update
@@ -28,6 +30,10 @@ public class Bullet : MonoBehaviour
         {
             transform.position = hit.point;
             
+        }
+        timeAlive += Time.deltaTime;
+        if (timeAlive >= lifeTime){
+            Destroy(this.gameObject);
         }
     }
     private void OnTriggerEnter(Collider other) //When colliding with something

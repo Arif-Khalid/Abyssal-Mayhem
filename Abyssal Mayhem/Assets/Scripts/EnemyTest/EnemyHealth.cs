@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public Gradient gradient; //color gradient of healthbar
     public Canvas canvas; //canvas housing healthbar in worldspace
     [SerializeField] Image fill; //image of frontfill of healthbar
+    public Transform cameraTransform;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +21,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void LateUpdate()
     {
-        canvas.transform.LookAt(canvas.transform.position + Camera.main.transform.forward);
+        if (cameraTransform)
+        {
+            canvas.transform.LookAt(canvas.transform.position + cameraTransform.forward);
+        }
         //Testing take damage function
         /*if (Input.GetKeyDown(KeyCode.Space))
         {

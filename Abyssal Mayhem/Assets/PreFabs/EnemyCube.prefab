@@ -391,6 +391,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   canvas: {fileID: 1765942776920392030}
   fill: {fileID: 1765942775766090505}
+  cameraTransform: {fileID: 0}
 --- !u!114 &1765942776488734411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,14 +456,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 55
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
   timeBetweenAttacks: 2
-  attackRange: 5
+  attackRange: 10
   playerInAttackRange: 0
 --- !u!1 &1765942776920392018
 GameObject:

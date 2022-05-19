@@ -7,18 +7,19 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] GameObject monster;
     [SerializeField] float timeBetweenSpawn;
-    [SerializeField] Transform player;
-    Transform cameraTransform;
+    public Transform player;
+    public Transform cameraTransform;
     private bool alreadySpawned;
 
     private void Start()
     {
-        cameraTransform = player.GetComponentInChildren<Camera>().transform;
+        //player = FindObjectOfType<PlayerMovement>().transform;
+        //cameraTransform = player.GetComponentInChildren<Camera>().transform;
     }
     // Update is called once per frame
     void Update()
     {
-        if (!alreadySpawned)
+        if (!alreadySpawned && player && cameraTransform)
         {
             SpawnMonster();
             alreadySpawned = true;

@@ -4,8 +4,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [HideInInspector]
     public NavMeshAgent agent;
 
+    [HideInInspector]
     public Transform player;
 
     public LayerMask whatIsPlayer;
@@ -27,11 +29,19 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        //Check for attack range
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (player)
+        {
+            //Check for attack range
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange) AttackPlayer();
+            if (!playerInAttackRange) ChasePlayer();
+            if (playerInAttackRange) AttackPlayer();
+        }
+        else
+        {
+            GetComponent<EnemyHealth>().Death();
+        }
+        
     }
 
     private void AttackPlayer()
@@ -56,10 +66,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     private void ChasePlayer()
-    {
-        if (player)
-        {
-            agent.SetDestination(player.position);
-        }       
+    { 
+        agent.SetDestination(player.position);   
     }
 }

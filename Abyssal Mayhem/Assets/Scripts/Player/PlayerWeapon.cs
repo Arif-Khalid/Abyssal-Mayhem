@@ -49,4 +49,5 @@ public class PlayerWeapon : MonoBehaviour
             weapon.Fire();
         }
     }
+
 }

@@ -43,7 +43,6 @@ public class Bullet : MonoBehaviour
 
     private void HitSomething(Collider other)
     {
-        Debug.Log("Hit something");
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script
         if (enemyHealth)
         {

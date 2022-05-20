@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EnemySpawner : MonoBehaviour
     {
         //player = FindObjectOfType<PlayerMovement>().transform;
         //cameraTransform = player.GetComponentInChildren<Camera>().transform;
+        
     }
     // Update is called once per frame
     void Update()
@@ -26,15 +28,22 @@ public class EnemySpawner : MonoBehaviour
             Invoke(nameof(ResetSpawner), timeBetweenSpawn);
         }
     }
-
+    public void SpawnMonsterAtPoint(Vector3 position)
+    {
+        GameObject spawnedMonster = Instantiate<GameObject>(monster, position, Quaternion.LookRotation(player.position - transform.position)); //Spawn monster facing the player
+        spawnedMonster.GetComponent<EnemyAI>().player = player; //Set target for monster
+        EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+        enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+    }
     private void SpawnMonster()
     {
         int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
         GameObject spawnedMonster = Instantiate<GameObject>(monster, spawnPoints[spawnID].position, Quaternion.LookRotation(player.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = player; //Set target for monster
-        spawnedMonster.GetComponent<EnemyHealth>().cameraTransform = cameraTransform; //Set camera for healthbar to face
+        EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+        enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
     }
-    private void ResetSpawner()
+        private void ResetSpawner()
     {
         alreadySpawned = false;
     }

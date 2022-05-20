@@ -12,11 +12,13 @@ public class EnemyHealth : MonoBehaviour
     public Canvas canvas; //canvas housing healthbar in worldspace
     [SerializeField] Image fill; //image of frontfill of healthbar
     public Transform cameraTransform;
+    PlayerSetup playerSetup; //Reference to player setup script
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
         SetMaxHealth(100);
+        playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
     }
 
     private void LateUpdate()
@@ -44,5 +46,20 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        if(currentHealth <= 0)
+        {
+            DeathByPlayer();
+        }
+    }
+
+    public void DeathByPlayer() //called when enemy dies
+    {
+        playerSetup.killedAnEnemy(transform.position);
+        Destroy(this.gameObject);
+    }
+
+    public void Death()
+    {
+        Destroy(this.gameObject);
     }
 }

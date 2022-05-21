@@ -4650,9 +4650,16 @@ MonoBehaviour:
   - {fileID: 754325469}
   - {fileID: 340105485}
   monster: {fileID: 1765942776488734401, guid: 85b767660b31df147ac0753853e97768, type: 3}
-  timeBetweenSpawn: 10
-  player: {fileID: 0}
+  timeBetweenSpawn: 5
+  timeBetweenRounds: 3
+  localPlayer: {fileID: 0}
+  localPlayerReady: 0
   cameraTransform: {fileID: 0}
+  awayPlayer: {fileID: 0}
+  awayPlayerReady: 0
+  awayUI: {fileID: 0}
+  localUI: {fileID: 0}
+  Quotas: 00000000020000000200000002000000
 --- !u!4 &1522267963
 Transform:
   m_ObjectHideFlags: 0
@@ -4674,7 +4681,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29560
+  m_Name: pb_Mesh48794
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -4838,7 +4845,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh29712
+  m_Name: pb_Mesh48852
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

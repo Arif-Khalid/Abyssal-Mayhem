@@ -11,7 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public Gradient gradient; //color gradient of healthbar
     public Canvas canvas; //canvas housing healthbar in worldspace
     [SerializeField] Image fill; //image of frontfill of healthbar
-    public Transform cameraTransform;
+    public Transform cameraTransform; //Reference to player camera
     PlayerSetup playerSetup; //Reference to player setup script
     // Start is called before the first frame update
     void Start()
@@ -23,15 +23,11 @@ public class EnemyHealth : MonoBehaviour
 
     private void LateUpdate()
     {
+        //Make health bar canvas face player camera
         if (cameraTransform)
         {
-            canvas.transform.LookAt(canvas.transform.position + cameraTransform.forward);
+            canvas.transform.LookAt(canvas.transform.position + cameraTransform.forward); 
         }
-        //Testing take damage function
-        /*if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(20);
-        }*/
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
@@ -52,13 +48,13 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void DeathByPlayer() //called when enemy dies
+    public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position);
         Destroy(this.gameObject);
     }
 
-    public void Death()
+    public void Death() //called when an enemy dies
     {
         Destroy(this.gameObject);
     }

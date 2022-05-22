@@ -27,9 +27,20 @@ public class PlayerUI : MonoBehaviour
         waitingText.enabled = false;
     }
 
+    public void BothPlayersNotReady()
+    {
+        waitingText.enabled = true;
+    }
+
     public void UpdateRoundText(int newRound, int newQuota)
     {
         roundText.text = "Round: " + newRound.ToString();
         quotaText.text = "Quota: " + newQuota.ToString();
+    }
+
+    public void ResetRounds()
+    {
+        roundText.text = null;
+        quotaText.text = null;
     }
 }

@@ -65,11 +65,11 @@
     <Compile Include="Assets\Scripts\EnemyTest\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\HealingCube.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerUI.cs" />
     <Compile Include="Assets\Scripts\Player\Weapon.cs" />
     <Compile Include="Assets\Scripts\Player\Player movement\PlayerMovement.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemyAI.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

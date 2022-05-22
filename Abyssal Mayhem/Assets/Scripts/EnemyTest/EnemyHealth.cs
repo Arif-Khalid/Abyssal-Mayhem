@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] Image fill; //image of frontfill of healthbar
     public Transform cameraTransform; //Reference to player camera
     PlayerSetup playerSetup; //Reference to player setup script
+    public EnemySpawner enemySpawner; //Reference to enemy spawner
     // Start is called before the first frame update
     void Start()
     {
@@ -51,11 +52,12 @@ public class EnemyHealth : MonoBehaviour
     public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position);
-        Destroy(this.gameObject);
+        Death();
     }
 
     public void Death() //called when an enemy dies
     {
+        enemySpawner.RemoveFromList(this.gameObject);
         Destroy(this.gameObject);
     }
 }

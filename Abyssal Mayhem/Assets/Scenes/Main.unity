@@ -4655,11 +4655,11 @@ MonoBehaviour:
   localPlayer: {fileID: 0}
   localPlayerReady: 0
   cameraTransform: {fileID: 0}
+  localUI: {fileID: 0}
   awayPlayer: {fileID: 0}
   awayPlayerReady: 0
   awayUI: {fileID: 0}
-  localUI: {fileID: 0}
-  Quotas: 00000000020000000200000002000000
+  Quotas: 64000000020000000200000002000000
 --- !u!4 &1522267963
 Transform:
   m_ObjectHideFlags: 0

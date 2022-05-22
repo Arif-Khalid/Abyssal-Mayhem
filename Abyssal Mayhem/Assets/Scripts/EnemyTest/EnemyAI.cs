@@ -37,11 +37,6 @@ public class EnemyAI : MonoBehaviour
             if (!playerInAttackRange) ChasePlayer();
             if (playerInAttackRange) AttackPlayer();
         }
-        else
-        {
-            GetComponent<EnemyHealth>().Death();
-        }
-        
     }
 
     private void AttackPlayer()

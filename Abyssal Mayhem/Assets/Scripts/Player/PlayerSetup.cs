@@ -62,6 +62,16 @@ public class PlayerSetup : NetworkBehaviour
         {
             sceneCamera.gameObject.SetActive(true);
         }
+        if (isLocalPlayer)
+        {
+            enemySpawner.localPlayerReady = false;
+        }
+        else
+        {
+            enemySpawner.UpdateAwayScore(0);
+            enemySpawner.awayPlayerReady = false;
+            enemySpawner.RestartGame();
+        }
     }
     
     [Command]

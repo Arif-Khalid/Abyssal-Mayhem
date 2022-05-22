@@ -29,6 +29,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int[] Quotas;
     private int round = 0;
 
+    List<GameObject> spawnedMonsters = new List<GameObject>();
+
     void Update()
     {
         //Spawns monster at regular intervals if both players ready and quota not met
@@ -40,23 +42,28 @@ public class EnemySpawner : MonoBehaviour
         }
     }
     
-    //Spawns a mob at a specific vector3 position
+    //Spawns a mob at a specific vector3 position with the color blue
     public void SpawnMonsterAtPoint(Vector3 position)
     {
         GameObject spawnedMonster = Instantiate<GameObject>(monster, position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
+        spawnedMonster.GetComponent<Renderer>().material.color = Color.blue;
         EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
         enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+        enemyHealth.enemySpawner = this;
+        spawnedMonsters.Add(spawnedMonster);
     }
 
     //Spawns a mob at one of the predefined spawn locations(chosen randomly)
     private void SpawnMonster()
     {
         int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
-        GameObject spawnedMonster = Instantiate<GameObject>(monster, spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+        GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(monster, spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
         EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
         enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+        enemyHealth.enemySpawner = this;
+        spawnedMonsters.Add(spawnedMonster);
     }
         private void ResetSpawner()
     {
@@ -83,6 +90,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    //Starts the next round
     void StartNextRound()
     {
         Debug.Log("next round started");
@@ -150,4 +158,32 @@ public class EnemySpawner : MonoBehaviour
             }            
         }
     }
+
+    //Restarts the game for the local player if opponent disconnects
+    public void RestartGame()
+    {
+        round = 0;
+        if (localPlayer != null)
+        {
+            KillAll();
+            localUI.BothPlayersNotReady();
+            localUI.ResetRounds();
+        }
+    }
+
+    public void RemoveFromList(GameObject spawnedMonster)
+    {
+        spawnedMonsters.Remove(spawnedMonster);
+    }
+
+    //Kills all spawned monsters
+    private void KillAll()
+    {
+        foreach(var spawnedMonster in spawnedMonsters)
+        {
+            Destroy(spawnedMonster);
+        }
+        spawnedMonsters.Clear();
+    }
+
 }

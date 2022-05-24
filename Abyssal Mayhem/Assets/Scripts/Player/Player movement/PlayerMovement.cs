@@ -16,14 +16,20 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        HorizontalMovement();
+        VerticalMovement();
+        controller.Move(move * Time.deltaTime);
+    }
+
+    //Movement horizontally locally
+    private void HorizontalMovement()
+    {
         isGrounded = controller.isGrounded;
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         move = transform.right * x + transform.forward * z; //move locally
         move *= speed;
-        VerticalMovement();
-        controller.Move(move * Time.deltaTime);
     }
     //Movement vertically with gravity and jumping
     private void VerticalMovement()

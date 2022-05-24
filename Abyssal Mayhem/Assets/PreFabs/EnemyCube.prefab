@@ -78,7 +78,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1765942775766090551}
   m_HandleRect: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - component: {fileID: 1765942776488734411}
   - component: {fileID: 1765942776488734408}
   - component: {fileID: 1765942776488734409}
-  - component: {fileID: 1765942776488734454}
+  - component: {fileID: 4399035638725047908}
   m_Layer: 7
   m_Name: EnemyCube
   m_TagString: Untagged
@@ -392,6 +392,7 @@ MonoBehaviour:
   canvas: {fileID: 1765942776920392030}
   fill: {fileID: 1765942775766090505}
   cameraTransform: {fileID: 0}
+  enemySpawner: {fileID: 0}
 --- !u!114 &1765942776488734411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -442,7 +443,7 @@ NavMeshAgent:
   m_BaseOffset: 1.74
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1765942776488734454
+--- !u!114 &4399035638725047908
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -451,7 +452,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1765942776488734401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47ae913a6e0f93a41a22a397966006c9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0fa0bdc63223353468dc93328586361c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 0}

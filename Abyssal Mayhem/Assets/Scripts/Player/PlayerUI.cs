@@ -6,12 +6,14 @@ using TMPro;
 
 public class PlayerUI : MonoBehaviour
 {
+    //References to text UI
     [SerializeField] TextMeshProUGUI localScoreText;
     [SerializeField] TextMeshProUGUI awayScoreText;
     [SerializeField] TextMeshProUGUI waitingText;
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] TextMeshProUGUI quotaText;
 
+    /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
     {
         localScoreText.text = "Your Score: " + newLocalScore.ToString();
@@ -22,6 +24,7 @@ public class PlayerUI : MonoBehaviour
         awayScoreText.text = "Enemy Score: " + newAwayScore.ToString();
     }
 
+    /*UI display for waiting for players*/
     public void BothPlayersReady()
     {
         waitingText.enabled = false;
@@ -31,6 +34,8 @@ public class PlayerUI : MonoBehaviour
     {
         waitingText.enabled = true;
     }
+
+    /*UI Display for rounds and quotas*/
 
     public void UpdateRoundText(int newRound, int newQuota)
     {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
 public class EnemySpawner : MonoBehaviour
 {
     //Variables for spawning monsters
@@ -70,7 +69,7 @@ public class EnemySpawner : MonoBehaviour
         alreadySpawned = false;
     }
 
-    //Ready local player amd start round if both players ready
+    //Ready local player and start round if both players ready
     public void localPlayerReadyUp()
     {
         localPlayerReady = true;
@@ -106,6 +105,8 @@ public class EnemySpawner : MonoBehaviour
         localPlayer.GetComponent<PlayerSetup>().ResetScore(); //Resets scores
         newRoundStarted = false; //allows new round to be started
     }
+
+    /*Code for score updates*/
 
     //Checks if local score >= Quota and starts new round if quota for both players have been reached
     public void UpdateLocalScore(int newScore)
@@ -159,6 +160,9 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+
+    /*Code that manipulates the list of spawned monsters*/
+
     //Restarts the game for the local player if opponent disconnects
     public void RestartGame()
     {
@@ -171,6 +175,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    
     public void RemoveFromList(GameObject spawnedMonster)
     {
         spawnedMonsters.Remove(spawnedMonster);

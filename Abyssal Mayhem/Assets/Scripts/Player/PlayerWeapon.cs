@@ -6,9 +6,11 @@ public class PlayerWeapon : MonoBehaviour
 {
     public Weapon weapon; //stores current active weapon
     [SerializeField] Transform weaponSlot; //Where weapons are equipped to
+    
+    //Aim variables
     [SerializeField] Transform cameraTransform; //Transform of the camera
-    [SerializeField] float distance = 50f;
-    [SerializeField] LayerMask layerMask;
+    [SerializeField] float distance = 50f; //Distance of raycast to move aim transform
+    [SerializeField] LayerMask layerMask; //What aim transform will move to when faced
     public Transform aimTransform; //Where bullets should head
     Transform bulletPoint; //Where bullets shoot from
 
@@ -20,7 +22,8 @@ public class PlayerWeapon : MonoBehaviour
         bulletPoint = weapon.bulletPoint;
     }
 
-    public void Equip(GameObject newWeapon) //Equip a new weapon
+    //Equip a new weapon
+    public void Equip(GameObject newWeapon) 
     {
         if (weapon != null)
         {
@@ -34,19 +37,26 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ShiftAimTransform();
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            weapon.Fire();
+        }
+    }
+
+    //Called in Update to shift the aim transform object to where player camera is facing
+    private void ShiftAimTransform()
+    {
         RaycastHit hit;
         //Find where player is aiming
-        if(Physics.Raycast(cameraTransform.position, cameraTransform.forward , out hit, distance, layerMask)){
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, distance, layerMask))
+        {
             aimTransform.position = hit.point;
         }
         else
         {
             //Default the aimTransform as right in front of the gun
-            aimTransform.position = bulletPoint.position + bulletPoint.forward; 
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            weapon.Fire();
+            aimTransform.position = bulletPoint.position + bulletPoint.forward;
         }
     }
 

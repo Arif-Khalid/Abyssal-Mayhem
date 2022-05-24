@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    PlayerWeapon playerWeapon;
-    public Transform bulletPoint;//Where the bullets come from
-    [SerializeField] GameObject bullet;
+    PlayerWeapon playerWeapon; //Reference to player weapon script
+    public Transform bulletPoint;//Where the bullets come from, set in inspector in prefab
+    [SerializeField] GameObject bullet; //Reference to bullet prefab
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     }
 
     //Fire a bullet
+    //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public void Fire()
     {
         Vector3 dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim

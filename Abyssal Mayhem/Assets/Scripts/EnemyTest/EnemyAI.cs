@@ -76,6 +76,7 @@ public class EnemyAI : MonoBehaviour
     //Only chases player when out of attack range
     public virtual void ChasePlayer()
     { 
-        agent.SetDestination(player.position);   
+        agent.SetDestination(player.position);
+        transform.LookAt(player);
     }
 }

@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class EnemyMeelee : MonoBehaviour
 {
+    public int meeleeDamage = 10;
     private void OnTriggerEnter(Collider other)
     {
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth)
         {
-            playerHealth.TakeDamage(10);
+            playerHealth.TakeDamage(meeleeDamage);
+            this.gameObject.SetActive(false);
         }
     }
 }

@@ -601,7 +601,7 @@ MonoBehaviour:
   distance: 50
   layerMask:
     serializedVersion: 2
-    m_Bits: 183
+    m_Bits: 147
   aimTransform: {fileID: 1698161259452351256}
 --- !u!114 &1698161260317292005
 MonoBehaviour:

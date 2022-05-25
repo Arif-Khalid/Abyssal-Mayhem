@@ -44,6 +44,10 @@ public class EnemySpawner : MonoBehaviour
     //Spawns a mob at a specific vector3 position with the color blue
     public void SpawnMonsterAtPoint(Vector3 position)
     {
+        if (!localPlayerReady)
+        {
+            return;
+        }
         GameObject spawnedMonster = Instantiate<GameObject>(monster, position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
         spawnedMonster.GetComponent<Renderer>().material.color = Color.blue;
@@ -75,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
         localPlayerReady = true;
         if (awayPlayerReady)
         {
+            localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
     }
@@ -85,6 +90,7 @@ public class EnemySpawner : MonoBehaviour
         awayPlayerReady = true;
         if (localPlayerReady)
         {
+            localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
     }
@@ -92,6 +98,7 @@ public class EnemySpawner : MonoBehaviour
     //Starts the next round
     void StartNextRound()
     {
+        alreadySpawned = false;
         Debug.Log("next round started");
         round += 1;
         if(round >= Quotas.Length)
@@ -163,7 +170,8 @@ public class EnemySpawner : MonoBehaviour
 
     /*Code that manipulates the list of spawned monsters*/
 
-    //Restarts the game for the local player if opponent disconnects
+    //Restarts the game but keeps scores for the local player
+    //used for if opponent disconnects
     public void RestartGame()
     {
         round = 0;
@@ -191,4 +199,31 @@ public class EnemySpawner : MonoBehaviour
         spawnedMonsters.Clear();
     }
 
+    /*Code that handles player's death*/
+    public void LocalDeath()
+    {
+        localUI.EnableDeathUI();
+        localPlayerReady = false;
+        awayPlayerReady = false;
+    }
+
+    public void LocalWin()
+    {
+        localUI.EnableWinUI();
+        localPlayerReady = false;
+        awayPlayerReady = false;
+        KillAll();
+    }
+
+    //Function that hard resets the game for local player
+    public void LocalPlayAgain()
+    {
+        localUI.DisableWinUI();
+        localUI.DisableDeathUI();
+        awayUI.UpdateAwayScore(0);
+        UpdateAwayScore(0);
+        UpdateLocalScore(0);
+        RestartGame();
+        localPlayerReadyUp();
+    }
 }

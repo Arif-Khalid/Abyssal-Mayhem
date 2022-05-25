@@ -10,11 +10,12 @@ public class PlayerHealth : MonoBehaviour
     public Slider slider; //Slider controlling UI healthbar
     public Gradient gradient; //color gradient of health bar
     [SerializeField] Image fill; //image of frontfill of healthbar
+    private bool dead = false;
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
-        SetMaxHealth(100);
+        SetMaxHealth(maxHealth);
     }
 
     private void Update()
@@ -23,17 +24,30 @@ public class PlayerHealth : MonoBehaviour
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
+        if (value == 0)
+        {
+            value = maxHealth;
+        }
         maxHealth = value;
         currentHealth = maxHealth;
         slider.maxValue = value;
         slider.value = value;
         fill.color = gradient.Evaluate(1f);
+        dead = false;
     }
     public void TakeDamage(int damage)
     {
+        if (dead)
+        {
+            return;
+        }
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        if(currentHealth <= 0)
+        {
+            Death();
+        }
     }
 
     public void RestoreHealth(int value)
@@ -41,5 +55,16 @@ public class PlayerHealth : MonoBehaviour
         currentHealth += value;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+    }
+
+    public void Death()
+    {
+        GetComponent<PlayerSetup>().LocalDeath();
+        dead = true;
+    }
+
+    private void OnEnable()
+    {
+        SetMaxHealth(maxHealth);
     }
 }

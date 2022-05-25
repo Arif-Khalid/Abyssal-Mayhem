@@ -12,6 +12,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI waitingText;
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] TextMeshProUGUI quotaText;
+    [SerializeField] GameObject deathUI;
+    [SerializeField] GameObject winUI;
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
@@ -47,5 +49,25 @@ public class PlayerUI : MonoBehaviour
     {
         roundText.text = null;
         quotaText.text = null;
+    }
+
+    public void EnableDeathUI()
+    {
+        deathUI.SetActive(true);
+    }
+
+    public void DisableDeathUI()
+    {
+        deathUI.SetActive(false);
+    }
+
+    public void EnableWinUI()
+    {
+        winUI.SetActive(true);
+    }
+
+    public void DisableWinUI()
+    {
+        winUI.SetActive(false);
     }
 }

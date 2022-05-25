@@ -8,7 +8,7 @@ public class EnemyMeelee : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-        if (playerHealth)
+        if (playerHealth != null)
         {
             playerHealth.TakeDamage(meeleeDamage);
             this.gameObject.SetActive(false);

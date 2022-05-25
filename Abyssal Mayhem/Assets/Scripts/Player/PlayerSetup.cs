@@ -109,7 +109,47 @@ public class PlayerSetup : NetworkBehaviour
         myScore = 0;
     }
 
+    [Command]
+    private void NetworkLocalDeath()
+    {
+        PlayerDied();
+    }
+
+    [Command]
+    //Function called by pressing play again button on death or win
+    public void PlayAgain()
+    {
+        RestartLocalGame();
+    }
     /*Code called on Server->Client*/
+
+    [ClientRpc]
+    //Function that restarts local game for local client and signals away player ready if not local player
+    private void RestartLocalGame()
+    {
+        if (isLocalPlayer)
+        {
+            for (int i = 0; i < componentsToDisable.Length; i++)
+            {
+                componentsToDisable[i].enabled = true;
+            }
+            ResetScore();
+            enemySpawner.LocalPlayAgain();
+        }
+        else
+        {
+            enemySpawner.awayPlayerReadyUp();
+        }
+    }
+
+    [ClientRpc]
+    private void PlayerDied()
+    {
+        if (!isLocalPlayer)
+        {
+            enemySpawner.LocalWin();
+        }
+    }
     [ClientRpc]
     //Spawns an enemy for the player that didn't kill it
     public void spawnEnemy(Vector3 position)
@@ -137,5 +177,17 @@ public class PlayerSetup : NetworkBehaviour
             playerUI.UpdateAwayScore(newScore);
             enemySpawner.UpdateAwayScore(newScore);
         }       
+    }
+
+    [Client]
+    //Function running on client when local client dies
+    public void LocalDeath()
+    {
+        enemySpawner.LocalDeath();
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = false;
+        }
+        NetworkLocalDeath();
     }
 }

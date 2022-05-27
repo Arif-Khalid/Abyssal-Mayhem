@@ -5,6 +5,7 @@ public class PlayerSetup : NetworkBehaviour
 {
     //References
     EnemySpawner enemySpawner;
+    MouseLook mouseLook;
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
@@ -37,7 +38,7 @@ public class PlayerSetup : NetworkBehaviour
     //Set local variables in enemySpawner
     private void LocalPlayerSpawned()
     {
-        
+        mouseLook = GetComponentInChildren<MouseLook>();
         sceneCamera = Camera.main;
         if (sceneCamera)
         {
@@ -81,6 +82,7 @@ public class PlayerSetup : NetworkBehaviour
         if (isLocalPlayer)
         {
             enemySpawner.localPlayerReady = false;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
@@ -121,6 +123,13 @@ public class PlayerSetup : NetworkBehaviour
     {
         RestartLocalGame();
     }
+
+    [Command]
+    //Function called on a player surviving all rounds
+    public void Survived()
+    {
+        PlayerSurvived();
+    }
     /*Code called on Server->Client*/
 
     [ClientRpc]
@@ -129,6 +138,8 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            mouseLook.LockMouse();
+            mouseLook.EnableRotation();
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = true;
@@ -163,7 +174,19 @@ public class PlayerSetup : NetworkBehaviour
             enemySpawner.SpawnMonsterAtPoint(position);
         }
     }
-
+    [ClientRpc]
+    //Function called on the player that survived and won
+    public void PlayerSurvived()
+    {
+        if (isLocalPlayer)
+        {
+            enemySpawner.LocalWin();
+        }
+        else
+        {
+            LocalLoss();
+        }
+    }
     //Code called on change of score on server to update local and away score for clients
     private void scoreChange(int oldScore, int newScore)
     {
@@ -178,7 +201,16 @@ public class PlayerSetup : NetworkBehaviour
             enemySpawner.UpdateAwayScore(newScore);
         }       
     }
-
+    [Client]
+    //Function called by away player when other player wins
+    public void LocalLoss()
+    {
+        enemySpawner.LocalLoss();
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = false;
+        }
+    }
     [Client]
     //Function running on client when local client dies
     public void LocalDeath()
@@ -188,6 +220,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             componentsToDisable[i].enabled = false;
         }
+        mouseLook.StopRotation();
         NetworkLocalDeath();
     }
 }

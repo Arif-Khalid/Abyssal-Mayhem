@@ -135,8 +135,10 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                Debug.Log("HAHA you are faster");
-                //put some sort of good job message
+                if(round == Quotas.Length - 1)
+                {
+                    localPlayer.GetComponent<PlayerSetup>().Survived();
+                }                
             }           
         }
     }
@@ -200,6 +202,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     /*Code that handles player's death*/
+    //Called when a player dies
     public void LocalDeath()
     {
         localUI.EnableDeathUI();
@@ -207,9 +210,19 @@ public class EnemySpawner : MonoBehaviour
         awayPlayerReady = false;
     }
 
+    //Called when a player wins
     public void LocalWin()
     {
         localUI.EnableWinUI();
+        localPlayerReady = false;
+        awayPlayerReady = false;
+        KillAll();
+    }
+
+    //Called when other player survives all rounds
+    public void LocalLoss()
+    {
+        localUI.EnableDeathUI(); //To be replaced with different UI for loss and not death
         localPlayerReady = false;
         awayPlayerReady = false;
         KillAll();

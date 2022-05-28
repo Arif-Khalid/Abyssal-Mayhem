@@ -1,21 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Weapon" Collapsed="true">
-    <Position X="2.75" Y="0.75" Width="1.5" />
+  <Class Name="Weapon">
+    <Position X="20" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAIAAAAAACgAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAA=</HashCode>
-      <FileName>Assets\Scripts\Player\Weapon.cs</FileName>
+      <FileName>Assets\Scripts\Weapons\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerWeapon">
-    <Position X="0.75" Y="0.5" Width="1.5" />
+    <Position X="17.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAECgAAAAAAIAAAAAACEAAAAAgAAAAAEAAEAA=</HashCode>
+      <HashCode>AAQAAAAAECgAAAAAAIAAAAAACEAAAAAgAQAAAEAAEAA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerWeapon.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="weapon" />
     </ShowAsAssociation>
+  </Class>
+  <Class Name="Bullet">
+    <Position X="22" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQIAACAAGAAQAAQAIAAAAAACAAAAYAAQAAAABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapons\Bullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyAI">
+    <Position X="4.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAABACAAAQAEBCABIAAAAKAAAAABAAAAABAAAAA=</HashCode>
+      <FileName>Assets\Scripts\EnemyTest\EnemyAI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyHealth">
+    <Position X="6.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAIACAAAAIAQIAAIAACAAAEAAAwAAgEgAAAAIA=</HashCode>
+      <FileName>Assets\Scripts\EnemyTest\EnemyHealth.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="enemySpawner" />
+      <Field Name="playerSetup" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="EnemyMeelee">
+    <Position X="8" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAQA=</HashCode>
+      <FileName>Assets\Scripts\EnemyTest\EnemyMeelee.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemySpawner">
+    <Position X="10" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQgAAIABAIBACAACJBDECAAiNCCAEAAAgGhAAIAoIA=</HashCode>
+      <FileName>Assets\Scripts\EnemyTest\EnemySpawner.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="awayPlayer" />
+      <Field Name="awayUI" />
+      <Field Name="localUI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="MouseLook">
+    <Position X="15.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAIAAAACAQAAABAIAAAIAAAAAQCAAAcAAAAAAAAAQ=</HashCode>
+      <FileName>Assets\Scripts\Player\Player movement\MouseLook.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PistolBullet" Collapsed="true">
+    <Position X="22" Y="6.5" Width="1.5" />
+    <InheritanceLine Type="Bullet" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="22.75" Y="5.742" />
+        <Point X="22.75" Y="6.5" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapons\PistolBullet.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PistolWeapon" Collapsed="true">
+    <Position X="20" Y="4.75" Width="1.5" />
+    <InheritanceLine Type="Weapon" FixedToPoint="true">
+      <Path>
+        <Point X="20.75" Y="4.011" />
+        <Point X="20.75" Y="4.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Weapons\PistolWeapon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerHealth">
+    <Position X="17.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAIACAAAAIAQAAAAAAAAAAEAAAoAAgEgAAACAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerHealth.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerMovement">
+    <Position X="20" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAgAAAAAAAGAAgAAIAAAAAAAAQAIAAQAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Player\Player movement\PlayerMovement.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerSetup">
+    <Position X="13" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAEACAARCAhAAEAAACBAAAgEgAAwAAIAAEARBAQAIA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerSetup.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="playerUI" />
+      <Field Name="mouseLook" />
+      <Field Name="enemySpawner" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="PlayerUI">
+    <Position X="15.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>wAAAAQAAAAAAAAAACAAIACQkAACAAAAgEQAAEAAIBAA=</HashCode>
+      <FileName>Assets\Scripts\Player\PlayerUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="WalkerAI">
+    <Position X="2.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAIAAAAACAAAAAAAAAAAAAAAIAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Assets\Scripts\EnemyTest\WalkerAI.cs</FileName>
+    </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

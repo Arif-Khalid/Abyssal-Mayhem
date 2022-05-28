@@ -203,7 +203,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1143082498682802341}
-  - component: {fileID: 4408014219949924503}
+  - component: {fileID: -2282373495785472687}
   m_Layer: 6
   m_Name: Pistol
   m_TagString: Untagged
@@ -230,7 +230,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4408014219949924503
+--- !u!114 &-2282373495785472687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1143082498682802342}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec5f5525dd2d3c4681d5ce28d4e05e3, type: 3}
+  m_Script: {fileID: 11500000, guid: ad3f7eaec4b23894a99ed62519366dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPoint: {fileID: 350767181374475366}

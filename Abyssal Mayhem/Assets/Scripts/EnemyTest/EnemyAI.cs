@@ -4,8 +4,10 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
+    [HideInInspector]
     public NavMeshAgent agent;
 
+    [HideInInspector]
     public Transform player;
 
     public LayerMask whatIsPlayer;
@@ -27,13 +29,35 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        //Check for attack range
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+        if (player)
+        {
+            //Check for attack range
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange) AttackPlayer();
+            if (!playerInAttackRange) ChasePlayer();
+            if (playerInAttackRange) AttackPlayer();
+        }
     }
 
+    /*Code for attacks*/
+    //Reset the ability to attack
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
+    //Attack implementation called in AttackPlayer state
+    public virtual void Attack()
+    {
+
+    }
+
+
+    /*Code for states*/
+
+    //Called in Late update
+    //Stops movement and looks at player
+    //Attack to be implemented in override
     private void AttackPlayer()
     {
         agent.SetDestination(transform.position);
@@ -42,24 +66,17 @@ public class EnemyAI : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            //Implement Attack here
-
-            //Stop Implement Attack here
+            Attack();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
 
-    private void ResetAttack()
-    {
-        alreadyAttacked = false;
-    }
-
-    private void ChasePlayer()
-    {
-        if (player)
-        {
-            agent.SetDestination(player.position);
-        }       
+    //Called in LateUpdate
+    //Only chases player when out of attack range
+    public virtual void ChasePlayer()
+    { 
+        agent.SetDestination(player.position);
+        transform.LookAt(player);
     }
 }

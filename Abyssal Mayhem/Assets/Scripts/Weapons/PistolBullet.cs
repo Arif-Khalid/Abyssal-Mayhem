@@ -12,7 +12,5 @@ public class PistolBullet : Bullet
     public override void HitSomething(Collider other)
     {
         base.HitSomething(other);
-        //Destroy bullet
-        Destroy(this.gameObject);
     }
 }

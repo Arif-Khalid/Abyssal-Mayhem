@@ -18,7 +18,15 @@ public class Weapon : MonoBehaviour
     public void Fire()
     {
         Vector3 dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
-        Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+        if(Vector3.Angle(bulletPoint.transform.forward, dir) >= 45)
+        {
+            //Later instead play some animation
+            Debug.Log("close to wall");
+            Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir));
+        }
+        else
+        {
+            Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+        }
     }
-
 }

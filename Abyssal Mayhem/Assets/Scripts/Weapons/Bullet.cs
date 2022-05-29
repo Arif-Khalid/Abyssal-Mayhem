@@ -76,5 +76,6 @@ public class Bullet : MonoBehaviour
         {
             enemyHealth.TakeDamage(bulletDamage);
         }
+        Destroy(this.gameObject);
     }
 }

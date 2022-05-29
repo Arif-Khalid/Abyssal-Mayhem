@@ -54,10 +54,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-    <Analyzer Include="D:\OrbitalGame\Abyssal-Mayhem.git\Abyssal Mayhem\Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />
-    <Analyzer Include="D:\OrbitalGame\Abyssal-Mayhem.git\Abyssal Mayhem\Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Mdb.dll" />
-    <Analyzer Include="D:\OrbitalGame\Abyssal-Mayhem.git\Abyssal Mayhem\Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll" />
-    <Analyzer Include="D:\OrbitalGame\Abyssal-Mayhem.git\Abyssal Mayhem\Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Materials\Mirror\Runtime\Transports\KCP\kcp2k\where-allocation\Scripts\Extensions.cs" />

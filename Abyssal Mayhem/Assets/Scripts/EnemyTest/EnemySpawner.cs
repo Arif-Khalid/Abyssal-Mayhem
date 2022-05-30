@@ -30,6 +30,11 @@ public class EnemySpawner : MonoBehaviour
 
     List<GameObject> spawnedMonsters = new List<GameObject>();
 
+    //Code for allowing monsters to spawn while waiting for player
+    public void AllowSpawns()
+    {
+        awayPlayerReady = true;
+    }
     void Update()
     {
         //Spawns monster at regular intervals if both players ready and quota not met
@@ -233,7 +238,11 @@ public class EnemySpawner : MonoBehaviour
     {
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
-        awayUI.UpdateAwayScore(0);
+        localUI.ResetWaitingPrompt();
+        if (awayUI)
+        {
+            awayUI.UpdateAwayScore(0);
+        }
         UpdateAwayScore(0);
         UpdateLocalScore(0);
         RestartGame();

@@ -31,6 +31,15 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    //This code is only for letting monsters spawn while waiting
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            enemySpawner.AllowSpawns();
+            playerUI.UpdateWaitingPrompt();
+        }
+    }
     /*Code for connection and disconnection of clients*/
 
 

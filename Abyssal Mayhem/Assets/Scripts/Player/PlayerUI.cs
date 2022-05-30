@@ -12,6 +12,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI waitingText;
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] TextMeshProUGUI quotaText;
+    [SerializeField] TextMeshProUGUI waitingPrompt;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
 
@@ -30,11 +31,13 @@ public class PlayerUI : MonoBehaviour
     public void BothPlayersReady()
     {
         waitingText.enabled = false;
+        waitingPrompt.enabled = false;
     }
 
     public void BothPlayersNotReady()
     {
         waitingText.enabled = true;
+        waitingPrompt.enabled = true;
     }
 
     /*UI Display for rounds and quotas*/
@@ -69,5 +72,15 @@ public class PlayerUI : MonoBehaviour
     public void DisableWinUI()
     {
         winUI.SetActive(false);
+    }
+
+    public void UpdateWaitingPrompt()
+    {
+        waitingPrompt.text = "monsters now spawning";
+    }
+
+    public void ResetWaitingPrompt()
+    {
+        waitingPrompt.text = "Press X to spawn monsters while you wait";
     }
 }

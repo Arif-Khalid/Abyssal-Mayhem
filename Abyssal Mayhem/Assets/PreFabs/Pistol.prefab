@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1143082497206574600}
   - component: {fileID: 1143082497206574605}
   - component: {fileID: 1143082497206574606}
-  - component: {fileID: 1143082497206574607}
   m_Layer: 8
   m_Name: PistolMag
   m_TagString: Untagged
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082497206574607
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082497206574601}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143082497855410581
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +94,6 @@ GameObject:
   - component: {fileID: 1143082497855410580}
   - component: {fileID: 1143082497855410537}
   - component: {fileID: 1143082497855410538}
-  - component: {fileID: 1143082497855410539}
   m_Layer: 8
   m_Name: PistolBody
   m_TagString: Untagged
@@ -181,19 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082497855410539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082497855410581}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143082498682802342
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3f7eaec4b23894a99ed62519366dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 0}
   bulletPoint: {fileID: 350767181374475366}
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
   animator: {fileID: 0}
@@ -278,7 +251,6 @@ GameObject:
   - component: {fileID: 1143082498997971987}
   - component: {fileID: 1143082498997971984}
   - component: {fileID: 1143082498997971985}
-  - component: {fileID: 1143082498997971986}
   m_Layer: 8
   m_Name: PistolGrip
   m_TagString: Untagged
@@ -351,19 +323,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082498997971986
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082498997971996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1516440516951130759
 GameObject:
   m_ObjectHideFlags: 0

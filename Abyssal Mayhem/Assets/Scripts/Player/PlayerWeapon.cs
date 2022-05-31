@@ -30,6 +30,7 @@ public class PlayerWeapon : MonoBehaviour
             Destroy(weapon.gameObject); //remove current weapon
         }
         weapon = Instantiate<GameObject>(newWeapon, weaponSlot).GetComponent<Weapon>(); //create new weapon
+        weapon.playerWeapon = this;
         bulletPoint = weapon.bulletPoint; 
     }
     
@@ -37,10 +38,14 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShiftAimTransform();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (weapon)
         {
-            weapon.Fire();
+            ShiftAimTransform();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Debug.Log("Firing weapon");
+                weapon.Fire();
+            }
         }
     }
 

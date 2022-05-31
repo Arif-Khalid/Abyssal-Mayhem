@@ -13,8 +13,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] TextMeshProUGUI quotaText;
     [SerializeField] TextMeshProUGUI waitingPrompt;
+    [SerializeField] TextMeshProUGUI interactPrompt;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
+
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
@@ -82,5 +84,10 @@ public class PlayerUI : MonoBehaviour
     public void ResetWaitingPrompt()
     {
         waitingPrompt.text = "Press X to spawn monsters while you wait";
+    }
+
+    public void UpdateInteractPrompt(string promptMessage)
+    {
+        interactPrompt.text = promptMessage;
     }
 }

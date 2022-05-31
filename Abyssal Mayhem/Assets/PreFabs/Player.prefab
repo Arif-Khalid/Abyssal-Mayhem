@@ -602,7 +602,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 0}
-  weaponSlot: {fileID: 1698161259195681004}
+  weaponSlot: {fileID: 1698161259195681005}
   cameraTransform: {fileID: 1698161261116011770}
   distance: 50
   layerMask:

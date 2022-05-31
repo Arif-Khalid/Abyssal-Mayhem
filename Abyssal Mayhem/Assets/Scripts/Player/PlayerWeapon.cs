@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public Weapon weapon; //stores current active weapon
-    [SerializeField] Transform weaponSlot; //Where weapons are equipped to
+    [SerializeField] public Transform weaponSlot; //Where weapons are equipped to
     
     //Aim variables
     [SerializeField] Transform cameraTransform; //Transform of the camera

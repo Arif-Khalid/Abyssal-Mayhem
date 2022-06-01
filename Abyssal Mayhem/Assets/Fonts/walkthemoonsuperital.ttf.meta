@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4b09beeb0f49d8447bfc109b2bda571b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Super-Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3626f9a022396cc4fb16d5dd06d9a3c3, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

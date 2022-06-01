@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 4707701fa2d7abf448e0bf9c45acc504
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon 3D Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d3669c5c216fcb74c85c33ac92fcbe84, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

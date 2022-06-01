@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +13,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundText;
     [SerializeField] TextMeshProUGUI quotaText;
     [SerializeField] TextMeshProUGUI waitingPrompt;
+    [SerializeField] TextMeshProUGUI interactPrompt;
+    [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
+
+
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
@@ -82,5 +86,22 @@ public class PlayerUI : MonoBehaviour
     public void ResetWaitingPrompt()
     {
         waitingPrompt.text = "Press X to spawn monsters while you wait";
+    }
+
+    public void UpdateInteractPrompt(string promptMessage)
+    {
+        interactPrompt.text = promptMessage;
+    }
+
+    public void UpdateAmmoText(int currentAmmo, int maxAmmo)
+    {
+        if(maxAmmo == -1)
+        {
+            ammoText.text = currentAmmo.ToString() + "/∞";
+        }
+        else
+        {
+            ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
+        }
     }
 }

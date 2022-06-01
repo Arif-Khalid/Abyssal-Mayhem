@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8f4ce6a10f1bb9144bec4cc58c86f7fd
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Gradient
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: abbd73b350e4eab40818fe72bc703960, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

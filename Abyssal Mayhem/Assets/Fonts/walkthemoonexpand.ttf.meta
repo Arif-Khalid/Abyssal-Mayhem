@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ea3d2f8d1417cd34a99a70261c2db6dc
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Expanded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: d1cedf6f8e8f8c24b886d518c70d81ba, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

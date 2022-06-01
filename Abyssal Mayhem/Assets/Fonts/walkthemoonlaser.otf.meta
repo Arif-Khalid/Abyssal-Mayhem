@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8d09236d983b43846909b1c27f6de85e
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Laser
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 413eecc2b86a2564a8a651aa72626d3f, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

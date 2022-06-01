@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d8709bd5af8e54a4784012b78d2bb777
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f302e87168f48604489cef4caeb4fb15, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

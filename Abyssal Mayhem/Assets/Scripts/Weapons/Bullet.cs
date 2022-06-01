@@ -65,6 +65,10 @@ public class Bullet : MonoBehaviour
     //Code for hitting something
     private void OnTriggerEnter(Collider other) 
     {
+        if (other.GetComponent<Interactable>())
+        {
+            return;
+        }
         HitSomething(other);
     }
 

@@ -3,14 +3,14 @@
   <Class Name="Weapon">
     <Position X="20" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAYAAAACASgQAAAAAAAAAQAAAgAEACAAABAAAAAAAAA=</HashCode>
+      <HashCode>BKYEAAACAWgQAAAAAAAAAwAQAgAEACAQCBAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Weapons\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerWeapon">
     <Position X="17.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAECgAAAAAAIAAAAAACEAAAAAgAQAAAEAAEAA=</HashCode>
+      <HashCode>AAQAAAAAECgAAAAAAIAAAAAAKEAAAAAgAQAAAEAAEAA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerWeapon.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -85,7 +85,7 @@
     <Position X="20" Y="4.75" Width="1.5" />
     <InheritanceLine Type="Weapon" FixedToPoint="true">
       <Path>
-        <Point X="21.5" Y="5.916" />
+        <Point X="21.5" Y="2.064" />
         <Point X="20.75" Y="4.75" />
       </Path>
     </InheritanceLine>
@@ -123,7 +123,7 @@
   <Class Name="PlayerUI">
     <Position X="15.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>wAAAEQAAAAAABAAACAAIACQkAACAAAAgEQAAEAAIBAA=</HashCode>
+      <HashCode>4AQAEQAAAAAABAAACAAIACQkAACAAAAgEQAAMAAMBAA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerUI.cs</FileName>
     </TypeIdentifier>
   </Class>

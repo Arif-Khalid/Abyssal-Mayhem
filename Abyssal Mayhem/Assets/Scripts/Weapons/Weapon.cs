@@ -7,7 +7,7 @@ public class Weapon : MonoBehaviour
     public PlayerWeapon playerWeapon; //Reference to player weapon script
     public Transform bulletPoint;//Where the bullets come from, set in inspector in prefab
     [SerializeField] GameObject bullet; //Reference to bullet prefab
-    [SerializeField] int maxAmmo = -1; //Set to -1 when infinite ammo
+    [SerializeField] public int maxAmmo = -1; //Set to -1 when infinite ammo
     [SerializeField] int clipSize = 10; //Size of weapon clip
     int currentAmmo; //current ammo in weapon
     PlayerUI playerUI;
@@ -44,6 +44,8 @@ public class Weapon : MonoBehaviour
             }      
         }
     }
+
+    //Start reloading weapon
     public void Reload()
     {
         if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left
@@ -59,6 +61,8 @@ public class Weapon : MonoBehaviour
         //For now just put ReloadFinish here
         ReloadFinish();
     }
+
+    //Called at the end of the reload animation
     public void ReloadFinish()
     {
         if(maxAmmo >= clipSize) //if enough ammo to reload full clip
@@ -89,8 +93,13 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            if(currentAmmo <= 0)
+            if(currentAmmo <= 0) //if no ammo to shoot
             {
+                if(maxAmmo == 0) //if no ammo at all in gun reserves
+                {
+                    OutOfAmmo();
+                    return;
+                }
                 Reload();
                 return;
             }
@@ -101,13 +110,18 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public virtual void CloseToWall()
+    protected virtual void OutOfAmmo()
+    {
+        //To be overriden in inherited class
+        //Function to call when no more ammo in clip or reserves and trying to shoot
+    }
+    protected virtual void CloseToWall()
     {
         DisableShooting();
         closeToWall = true;
     }
 
-    public virtual void NotCloseToWall()
+    protected virtual void NotCloseToWall()
     {
         closeToWall = false;
     }

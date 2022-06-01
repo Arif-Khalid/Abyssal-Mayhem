@@ -18,4 +18,9 @@ public class PistolWeapon : Weapon
         animator.SetFloat("Speed", -10f);
         base.NotCloseToWall();
     }
+
+    protected override void OutOfAmmo()
+    {
+        maxAmmo = -1; //Should never be called for pistol but just in case set ammo to infinite
+    }
 }

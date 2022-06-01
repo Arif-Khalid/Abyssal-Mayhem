@@ -3,14 +3,14 @@
   <Class Name="Weapon">
     <Position X="20" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAAAAAACgAAAAAAAAAAAAAAAAEAAAAABAAAAAAAAA=</HashCode>
+      <HashCode>BKYEAAACAWgQAAAAAAAAAwAQAgAEACAQCBAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Weapons\Weapon.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerWeapon">
     <Position X="17.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAECgAAAAAAIAAAAAACEAAAAAgAQAAAEAAEAA=</HashCode>
+      <HashCode>AAQAAAAAECgAAAAAAIAAAAAAKEAAAAAgAQAAAEAAEAA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerWeapon.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
@@ -38,8 +38,8 @@
       <FileName>Assets\Scripts\EnemyTest\EnemyHealth.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="enemySpawner" />
       <Field Name="playerSetup" />
+      <Field Name="enemySpawner" />
     </ShowAsAssociation>
   </Class>
   <Class Name="EnemyMeelee">
@@ -52,13 +52,13 @@
   <Class Name="EnemySpawner">
     <Position X="10" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AgQgAAIABAIBACAACJBDECAAiNCCAEAAAgGhAAIAoIA=</HashCode>
+      <HashCode>AgQgAAIABAIBgCAACJBDECAAiNCCAEAAAgGhAAIAoIA=</HashCode>
       <FileName>Assets\Scripts\EnemyTest\EnemySpawner.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
+      <Field Name="localUI" />
       <Field Name="awayPlayer" />
       <Field Name="awayUI" />
-      <Field Name="localUI" />
     </ShowAsAssociation>
   </Class>
   <Class Name="MouseLook">
@@ -85,12 +85,12 @@
     <Position X="20" Y="4.75" Width="1.5" />
     <InheritanceLine Type="Weapon" FixedToPoint="true">
       <Path>
-        <Point X="20.75" Y="4.011" />
+        <Point X="21.5" Y="2.064" />
         <Point X="20.75" Y="4.75" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAIAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Weapons\PistolWeapon.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -111,19 +111,19 @@
   <Class Name="PlayerSetup">
     <Position X="13" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>ABAEACAARCAhAAEAAACBAAAgEgAAwAAIAAEARBAQAIA=</HashCode>
+      <HashCode>ABQEACAARCAhAAEAAACBAAAgEgAAwAAIAAEARBAQAIA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerSetup.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="playerUI" />
-      <Field Name="mouseLook" />
       <Field Name="enemySpawner" />
+      <Field Name="mouseLook" />
+      <Field Name="playerUI" />
     </ShowAsAssociation>
   </Class>
   <Class Name="PlayerUI">
     <Position X="15.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>wAAAAQAAAAAAAAAACAAIACQkAACAAAAgEQAAEAAIBAA=</HashCode>
+      <HashCode>4AQAEQAAAAAABAAACAAIACQkAACAAAAgEQAAMAAMBAA=</HashCode>
       <FileName>Assets\Scripts\Player\PlayerUI.cs</FileName>
     </TypeIdentifier>
   </Class>

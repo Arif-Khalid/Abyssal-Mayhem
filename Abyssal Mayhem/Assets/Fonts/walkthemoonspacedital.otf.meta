@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 874736a0b11867547b34c2c7c02d72cf
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Spaced Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 12f3ecc056ffa424296983216869d67c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

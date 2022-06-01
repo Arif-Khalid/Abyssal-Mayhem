@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public Weapon weapon; //stores current active weapon
-    [SerializeField] Transform weaponSlot; //Where weapons are equipped to
+    public GameObject defaultWeapon; //stores default pistol weapon
+    [SerializeField] public Transform weaponSlot; //Where weapons are equipped to
     
     //Aim variables
     [SerializeField] Transform cameraTransform; //Transform of the camera
@@ -30,6 +31,7 @@ public class PlayerWeapon : MonoBehaviour
             Destroy(weapon.gameObject); //remove current weapon
         }
         weapon = Instantiate<GameObject>(newWeapon, weaponSlot).GetComponent<Weapon>(); //create new weapon
+        weapon.playerWeapon = this;
         bulletPoint = weapon.bulletPoint; 
     }
     
@@ -37,10 +39,18 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ShiftAimTransform();
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (weapon)
         {
-            weapon.Fire();
+            ShiftAimTransform();
+            if (Input.GetKeyDown(KeyCode.Mouse0))
+            {
+                Debug.Log("Firing weapon");
+                weapon.Fire();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                weapon.Reload();
+            }
         }
     }
 

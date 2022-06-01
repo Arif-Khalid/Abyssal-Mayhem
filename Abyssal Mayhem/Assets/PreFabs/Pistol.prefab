@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1143082497206574600}
   - component: {fileID: 1143082497206574605}
   - component: {fileID: 1143082497206574606}
-  - component: {fileID: 1143082497206574607}
   m_Layer: 8
   m_Name: PistolMag
   m_TagString: Untagged
@@ -27,12 +26,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143082497206574601}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.795492, z: 0.21525736}
-  m_LocalScale: {x: 0.70541006, y: 1, z: 0.16415998}
+  m_LocalPosition: {x: 0, y: -0.795492, z: 0.2152573}
+  m_LocalScale: {x: 0.7054101, y: 1, z: 0.16415991}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1143082498682802341}
-  m_RootOrder: 2
+  m_Father: {fileID: 4319929244557618833}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1143082497206574605
 MeshFilter:
@@ -84,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082497206574607
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082497206574601}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143082497855410581
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,7 +94,6 @@ GameObject:
   - component: {fileID: 1143082497855410580}
   - component: {fileID: 1143082497855410537}
   - component: {fileID: 1143082497855410538}
-  - component: {fileID: 1143082497855410539}
   m_Layer: 8
   m_Name: PistolBody
   m_TagString: Untagged
@@ -125,11 +110,11 @@ Transform:
   m_GameObject: {fileID: 1143082497855410581}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1143082498682802341}
-  m_RootOrder: 0
+  m_Father: {fileID: 4319929244557618833}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &1143082497855410537
 MeshFilter:
@@ -181,19 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082497855410539
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082497855410581}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1143082498682802342
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +176,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1143082498682802341}
   - component: {fileID: -2282373495785472687}
+  - component: {fileID: 1608229645423865061}
   m_Layer: 8
   m_Name: Pistol
   m_TagString: Untagged
@@ -223,10 +196,8 @@ Transform:
   m_LocalScale: {x: 0.18711436, y: 0.2149613, z: 0.60392815}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1143082497855410580}
-  - {fileID: 1143082498997971987}
-  - {fileID: 1143082497206574600}
   - {fileID: 350767181374475366}
+  - {fileID: 4319929244557618833}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -242,8 +213,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad3f7eaec4b23894a99ed62519366dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerWeapon: {fileID: 0}
   bulletPoint: {fileID: 350767181374475366}
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
+  maxAmmo: -1
+  clipSize: 10
+  animator: {fileID: 0}
+  whatIsNotPlayer:
+    serializedVersion: 2
+    m_Bits: 147
+--- !u!95 &1608229645423865061
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1143082498682802342}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3dadccf141fc0954781cd3df6fbb255f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1143082498997971996
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,7 +253,6 @@ GameObject:
   - component: {fileID: 1143082498997971987}
   - component: {fileID: 1143082498997971984}
   - component: {fileID: 1143082498997971985}
-  - component: {fileID: 1143082498997971986}
   m_Layer: 8
   m_Name: PistolGrip
   m_TagString: Untagged
@@ -271,11 +268,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1143082498997971996}
   m_LocalRotation: {x: 0.08825428, y: -0, z: -0, w: 0.996098}
-  m_LocalPosition: {x: 0, y: -0.795492, z: -0.31957436}
-  m_LocalScale: {x: 0.70541006, y: 0.77382606, z: 0.18322119}
+  m_LocalPosition: {x: 0, y: -0.795492, z: -0.3195742}
+  m_LocalScale: {x: 0.7054101, y: 0.7738262, z: 0.18322119}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1143082498682802341}
+  m_Father: {fileID: 4319929244557618833}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 10.126, y: 0, z: 0}
 --- !u!33 &1143082498997971984
@@ -328,19 +325,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1143082498997971986
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1143082498997971996}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1516440516951130759
 GameObject:
   m_ObjectHideFlags: 0
@@ -364,11 +348,45 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1516440516951130759}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.409}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.40899995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1143082498682802341}
-  m_RootOrder: 3
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2756170332696769141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4319929244557618833}
+  m_Layer: 8
+  m_Name: PistolMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4319929244557618833
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756170332696769141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1143082497206574600}
+  - {fileID: 1143082498997971987}
+  - {fileID: 1143082497855410580}
+  m_Father: {fileID: 1143082498682802341}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Weapons\Interactable.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\PistolWeapon.cs" />
@@ -64,9 +65,11 @@
     <Compile Include="Assets\Scripts\EnemyTest\EnemyMeelee.cs" />
     <Compile Include="Assets\Scripts\Player\Player movement\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSetup.cs" />
+    <Compile Include="Assets\Scripts\Weapons\PistolPickup.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\HealingCube.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemyHealth.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerInteract.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\WalkerAI.cs" />
     <Compile Include="Assets\Scripts\CameraCinema.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerUI.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Assets\Scripts\Player\Player movement\PlayerMovement.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemyAI.cs" />
+    <Compile Include="Assets\Scripts\MenuGameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />
@@ -89,6 +93,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
+    <None Include="Assets\Fonts\walkthemoon.txt" />
     <None Include="Assets\Skybox\GalaxyFire\Galaxy Fire Skybox Readme.txt" />
     <None Include="Assets\Materials\Mirror\Version.txt" />
     <None Include="Assets\Materials\Mirror\Readme.txt" />

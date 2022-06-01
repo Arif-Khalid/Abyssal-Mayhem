@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: b73b49ec25912e644bfc6e4075a70633
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Semi-Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 1601aafb216f39b4ab6b2f1d54383476, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

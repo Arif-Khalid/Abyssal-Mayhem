@@ -216,6 +216,8 @@ MonoBehaviour:
   playerWeapon: {fileID: 0}
   bulletPoint: {fileID: 350767181374475366}
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
+  maxAmmo: -1
+  clipSize: 10
   animator: {fileID: 0}
   whatIsNotPlayer:
     serializedVersion: 2

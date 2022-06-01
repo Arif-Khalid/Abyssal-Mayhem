@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
     public Weapon weapon; //stores current active weapon
+    public GameObject defaultWeapon; //stores default pistol weapon
     [SerializeField] public Transform weaponSlot; //Where weapons are equipped to
     
     //Aim variables
@@ -45,6 +46,10 @@ public class PlayerWeapon : MonoBehaviour
             {
                 Debug.Log("Firing weapon");
                 weapon.Fire();
+            }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                weapon.Reload();
             }
         }
     }

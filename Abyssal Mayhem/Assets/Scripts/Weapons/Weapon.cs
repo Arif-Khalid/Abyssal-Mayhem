@@ -7,16 +7,24 @@ public class Weapon : MonoBehaviour
     public PlayerWeapon playerWeapon; //Reference to player weapon script
     public Transform bulletPoint;//Where the bullets come from, set in inspector in prefab
     [SerializeField] GameObject bullet; //Reference to bullet prefab
+    [SerializeField] int maxAmmo = -1; //Set to -1 when infinite ammo
+    [SerializeField] int clipSize = 10; //Size of weapon clip
+    int currentAmmo; //current ammo in weapon
+    PlayerUI playerUI;
     public Animator animator;
     Vector3 dir;
     private bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
     private bool allowShooting = true;
+    private bool reloading = false;
     // Start is called before the first frame update
     void Start()
     {
         playerWeapon = GetComponentInParent<PlayerWeapon>();
+        playerUI = GetComponentInParent<PlayerUI>();
         animator = GetComponent<Animator>();
+        currentAmmo = clipSize;
+        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
     }
 
     private void Update()
@@ -36,18 +44,58 @@ public class Weapon : MonoBehaviour
             }      
         }
     }
+    public void Reload()
+    {
+        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left
+        {
+            return;
+        }
+        if(maxAmmo < -1) //should never reach this point but just in case
+        {
+            playerWeapon.Equip(playerWeapon.defaultWeapon);
+        }
+        reloading = true;
+        //Play some animation that calls reload finish on its last frame
+        //For now just put ReloadFinish here
+        ReloadFinish();
+    }
+    public void ReloadFinish()
+    {
+        if(maxAmmo >= clipSize) //if enough ammo to reload full clip
+        {
+            maxAmmo -= clipSize;
+            currentAmmo = clipSize;
+            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        }else if(maxAmmo > 0) //if enough ammo to reload partial clip
+        {
+            currentAmmo += maxAmmo;
+            maxAmmo = 0;
+            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        }
+        else if(maxAmmo == -1) //if max ammo is set to infinity
+        {
+            currentAmmo = clipSize;
+            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        }
+        reloading = false;
+    }
     //Fire a bullet
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public void Fire()
     {
-        Debug.Log("Pistol firing");
-        if (!allowShooting)
+        if (!allowShooting || reloading)
         {
             return;
         }
         else
         {
-            Debug.Log("spawning bullets");
+            if(currentAmmo <= 0)
+            {
+                Reload();
+                return;
+            }
+            currentAmmo -= 1;
+            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
             dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
             Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
         }

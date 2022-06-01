@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5c35c3675698e0941bdfc19d52580a2d
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Expanded Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 912e28762293fd543b7e0c08da3401af, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

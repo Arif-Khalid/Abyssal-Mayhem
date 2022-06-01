@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: c8782d6c2606ba848a4698252f945c81
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Walk The Moon Halftone Italic
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f3bc71fdcc7f71e4e9cb15a1dda11597, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

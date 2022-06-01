@@ -59,10 +59,11 @@
     <Compile Include="Assets\Scripts\Weapons\Interactable.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
-    <Compile Include="Assets\Scripts\Weapons\PistolWeapon.cs" />
+    <Compile Include="Assets\Scripts\Weapons\RifleWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\PistolBullet.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerHealth.cs" />
     <Compile Include="Assets\Scripts\MenuGameManager.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponSway.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\EnemyMeelee.cs" />
     <Compile Include="Assets\Scripts\Player\Player movement\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerSetup.cs" />
@@ -109,6 +110,7 @@
     <None Include="Assets\ScriptTemplates\52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Weapon Skins\MentalDreamsAssets\SoldierSoundsPack\ReadMe!.txt" />
     <None Include="Assets\Materials\Mirror\Notice.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\License.txt" />

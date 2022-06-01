@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
     }
     //Fire a bullet
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
-    public void Fire()
+    public virtual void Fire()
     {
         if (!allowShooting || reloading)
         {

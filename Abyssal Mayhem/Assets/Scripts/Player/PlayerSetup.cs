@@ -5,7 +5,7 @@ public class PlayerSetup : NetworkBehaviour
 {
     //References
     EnemySpawner enemySpawner;
-    MouseLook mouseLook;
+    public MouseLook mouseLook;
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
@@ -147,8 +147,8 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            mouseLook.LockMouse();
-            mouseLook.EnableRotation();
+            //mouseLook.LockMouse();
+            //mouseLook.EnableRotation();
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = true;
@@ -229,7 +229,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             componentsToDisable[i].enabled = false;
         }
-        mouseLook.StopRotation();
+        //mouseLook.StopRotation();
         NetworkLocalDeath();
     }
 }

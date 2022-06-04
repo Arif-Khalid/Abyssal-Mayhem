@@ -210,7 +210,7 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player dies
     public void LocalDeath()
     {
-        localPlayer.GetComponent<PlayerSetup>().mouseLook.UnlockMouse();
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableDeathUI();
         localPlayerReady = false;
         awayPlayerReady = false;
@@ -219,7 +219,7 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player wins
     public void LocalWin()
     {
-        localPlayer.GetComponent<PlayerSetup>().mouseLook.UnlockMouse();
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableWinUI();
         localPlayerReady = false;
         awayPlayerReady = false;
@@ -229,7 +229,7 @@ public class EnemySpawner : MonoBehaviour
     //Called when other player survives all rounds
     public void LocalLoss()
     {
-        localPlayer.GetComponent<PlayerSetup>().mouseLook.UnlockMouse();
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableDeathUI(); //To be replaced with different UI for loss and not death
         localPlayerReady = false;
         awayPlayerReady = false;
@@ -239,7 +239,7 @@ public class EnemySpawner : MonoBehaviour
     //Function that hard resets the game for local player
     public void LocalPlayAgain()
     {
-        localPlayer.GetComponent<PlayerSetup>().mouseLook.LockMouse();
+        PlayerSetup.localPlayerSetup.ExitUIMenu();
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
         localUI.ResetWaitingPrompt();
@@ -252,4 +252,6 @@ public class EnemySpawner : MonoBehaviour
         RestartGame();
         localPlayerReadyUp();
     }
+
+    
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class PlayerSetup : NetworkBehaviour
 {
@@ -13,7 +14,10 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] GameObject awayUI;
     Camera sceneCamera;
     PlayerUI playerUI;
+    public PlayerWeapon playerWeapon;
+    private bool isInMenu = false;
 
+    public static PlayerSetup localPlayerSetup;
     //Score to be kept track of on server
     [SyncVar(hook = nameof(scoreChange))] int myScore = 0;
 
@@ -28,6 +32,45 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             LocalPlayerSpawned();
+        }
+    }
+
+    //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
+    public void EnterUIMenu()
+    {
+        EnterMenu();
+        mouseLook.UnlockMouse();
+        playerWeapon.weapon.DisableShooting();
+    }
+
+    public void ExitUIMenu()
+    {
+        ExitMenu();
+        mouseLook.LockMouse();
+        playerWeapon.weapon.EnableShooting();
+    }
+    public void EnterMenu()
+    {
+        isInMenu = true;
+    }
+
+    public void ExitMenu()
+    {
+        isInMenu = false;
+    }
+
+    public void EnterEscapeMenu()
+    {
+        mouseLook.UnlockMouse();
+        playerWeapon.weapon.DisableShooting();
+    }
+
+    public void ExitEscapeMenu()
+    {
+        if (!isInMenu)
+        {
+            mouseLook.LockMouse();
+            playerWeapon.weapon.EnableShooting();
         }
     }
 
@@ -47,7 +90,19 @@ public class PlayerSetup : NetworkBehaviour
     //Set local variables in enemySpawner
     private void LocalPlayerSpawned()
     {
+        localPlayerSetup = this;
+        
         mouseLook = GetComponentInChildren<MouseLook>();
+        playerWeapon = GetComponent<PlayerWeapon>();
+        if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
+        {
+            //Do something in playerUI
+            //Dont let the player play the game as is currently unimplemented
+            Debug.Log("Bad scene");
+            playerUI.EnableDevUI();
+            EnterUIMenu();
+            return;
+        }
         sceneCamera = Camera.main;
         if (sceneCamera)
         {
@@ -73,10 +128,16 @@ public class PlayerSetup : NetworkBehaviour
         for (int i = 0; i < gameObjectsToDisable.Length; i++)
         {
             gameObjectsToDisable[i].SetActive(false);
-        }
+        }       
         this.gameObject.layer = 0;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
+        if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
+        {
+            //Currently unimplemented snipe to win scene
+            //So do nothing
+            return;
+        }
         playerUI.UpdateAwayScore(0);
         enemySpawner.awayPlayer = this;
         enemySpawner.awayUI = playerUI;
@@ -91,6 +152,7 @@ public class PlayerSetup : NetworkBehaviour
         if (isLocalPlayer)
         {
             enemySpawner.localPlayerReady = false;
+            localPlayerSetup = null;
             Cursor.lockState = CursorLockMode.None;
         }
         else

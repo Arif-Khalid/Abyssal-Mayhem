@@ -21,18 +21,6 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if(mouseLocked)
-            {
-                UnlockMouse();               
-            }
-            else
-            {
-                LockMouse();               
-            }
-
-        }
         if (mouseLocked && !stopRotation)
         {
             XRotate();

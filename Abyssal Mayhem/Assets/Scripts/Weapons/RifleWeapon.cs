@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RifleWeapon : Weapon
 {
-    //Default pistol weapon with default weapon implementations
+    //Default Rifle weapon with default weapon implementations
 
+   
     //Plays animation for close to wall and its reverse
     protected override void CloseToWall()
     {
@@ -21,6 +22,6 @@ public class RifleWeapon : Weapon
 
     protected override void OutOfAmmo()
     {
-        maxAmmo = -1; //Should never be called for pistol but just in case set ammo to infinite
+        maxAmmo = -1; //Should never be called for Rifle but just in case set ammo to infinite
     }
 }

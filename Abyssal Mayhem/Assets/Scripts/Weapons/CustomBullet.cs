@@ -8,6 +8,8 @@ public class CustomBullet : MonoBehaviour
     public Rigidbody rb;
     public GameObject explosion;
     public LayerMask whatIsEnemies;
+    public float speed = 20f; //Speed of bullet
+    public float snapDistance = 0.5f; //Distance till bullet snaps to target
 
     //Stats
     [Range(0f,1f)]
@@ -30,10 +32,12 @@ public class CustomBullet : MonoBehaviour
     void Start()
     {
         Setup();
+        MoveBullet();
     }
     
     private void Update()
     {
+        //CheckPath();
         //When to explode
         if (collisions > maxCollisions)
         Explode();
@@ -42,6 +46,15 @@ public class CustomBullet : MonoBehaviour
         maxLifeTime -= Time.deltaTime;
         if (maxLifeTime <=0)
         Explode();
+    }
+
+    private void MoveBullet() //Move the bullet, called in start function
+    {
+        //rb = GetComponent<Rigidbody>();
+        if (rb)
+        {
+            rb.velocity = transform.forward * speed; //Send bullet forward
+        }
     }
 
     private void Explode()
@@ -55,7 +68,9 @@ public class CustomBullet : MonoBehaviour
         for (int i = 0; i < enemies.Length; i++)
         {
             //Get component of enemy and call Take Damage
-            enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
+            if(enemies[i].GetComponent<EnemyHealth>()){
+                enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
+            }
 
             //Add explosion Force (if enemy has a rigidbody)
             if(enemies[i].GetComponent<Rigidbody>())
@@ -71,17 +86,28 @@ public class CustomBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Don't Count collision with other bullets
+    // private void OnCollisionEnter(Collision collision)
+    // {
+    //     //Don't Count collision with other bullets
         
-        //Count up collisions
-        collisions++;
+    //     //Count up collisions
+    //     collisions++;
 
-        //Explode if bullet hits an enemy directly and explodeOnTouch is activated
-        if(collision.collider.CompareTag("Enemy") && explodeOnTouch)
+    //     //Explode if bullet hits an enemy directly and explodeOnTouch is activated
+    //     if(collision.collider.CompareTag("Enemy") && explodeOnTouch)
+    //     Explode();
+    // }
+
+    private void OnTriggerEnter(Collider other) 
+    {
+        Debug.Log("trigger");
+        if (other.GetComponent<Interactable>())
+        {
+            return;
+        }
         Explode();
     }
+    
 
     private void Setup()
     {
@@ -91,7 +117,8 @@ public class CustomBullet : MonoBehaviour
         physics_mat.frictionCombine = PhysicMaterialCombine.Minimum;
         physics_mat.bounceCombine = PhysicMaterialCombine.Maximum;
         //Assign material to collider
-        GetComponent<SphereCollider>().material = physics_mat;
+        GetComponent<CapsuleCollider>().material = physics_mat;
+        rb = GetComponent<Rigidbody>();
 
         //Set gravity
         rb.useGravity = useGravity;

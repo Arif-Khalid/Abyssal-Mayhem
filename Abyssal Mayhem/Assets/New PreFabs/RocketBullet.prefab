@@ -73,7 +73,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 85320f50710fcfb4d886bc56151bea1b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -173,14 +173,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5883664202183286507}
-  explosion: {fileID: 1427962332153456, guid: a2e808a3ffd529d41a23888cc135c477, type: 3}
+  explosion: {fileID: 301145018502116267, guid: 0863f4d6853d3554e8061df72c3211d1,
+    type: 3}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 147
+  speed: 50
+  snapDistance: 0.5
   bounciness: 0.8
-  useGravity: 1
-  explosionDamage: 100
-  explosionRange: 3
+  useGravity: 0
+  explosionDamage: 50
+  explosionRange: 5
   explosionForce: 0
   maxCollisions: 10
   maxLifeTime: 4

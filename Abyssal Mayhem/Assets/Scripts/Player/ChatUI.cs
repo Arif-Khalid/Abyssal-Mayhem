@@ -5,6 +5,7 @@ using TMPro;
 using Mirror;
 using System;
 using UnityEngine.UI;
+using Steamworks;
 
 public class ChatUI : NetworkBehaviour
 
@@ -125,6 +126,7 @@ public class ChatUI : NetworkBehaviour
         inputField.text = string.Empty;
         if (!Input.GetKeyDown(KeyCode.Return)) { return; }
         if (string.IsNullOrWhiteSpace(message)) { return; }
+        message = $"[{SteamFriends.GetPersonaName()}]: {message}";
         CmdSendMessage(message);
     }
 
@@ -133,7 +135,7 @@ public class ChatUI : NetworkBehaviour
     {
         //validate or censor or something
         //To be replaces with display name later
-        RpcHandleMessage($"[{connectionToClient.connectionId}]: {message}");
+        RpcHandleMessage(message);
     }
 
     [ClientRpc]

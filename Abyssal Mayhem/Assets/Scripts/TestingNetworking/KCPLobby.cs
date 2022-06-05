@@ -26,7 +26,7 @@ public class KCPLobby : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name != MainMenuScene && Input.GetKeyDown(KeyCode.Escape))
+        if(SceneManager.GetActiveScene().name != "MainMenuKCP" && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isEscapeMenuActive)
             {

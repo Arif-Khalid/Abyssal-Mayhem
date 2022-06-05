@@ -42,7 +42,9 @@ public class SteamLobby : MonoBehaviour
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name != MainMenuScene && Input.GetKeyDown(KeyCode.Escape))
+        //REPLACE MAIN MENU STEAM WITH MAIN MENU NAME IF CHANGED MAIN MENU SCENE NAME
+        //USING MAIN MENU SCENE VARIABLE DOES NOT WORK
+        if (SceneManager.GetActiveScene().name != "MainMenuSteam" && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isEscapeMenuActive)
             {

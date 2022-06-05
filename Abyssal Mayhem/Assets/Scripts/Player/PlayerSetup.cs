@@ -16,6 +16,7 @@ public class PlayerSetup : NetworkBehaviour
     PlayerUI playerUI;
     public PlayerWeapon playerWeapon;
     private bool isInMenu = false;
+    private bool isInEscapeMenu = false;
 
     public static PlayerSetup localPlayerSetup;
     //Score to be kept track of on server
@@ -38,35 +39,31 @@ public class PlayerSetup : NetworkBehaviour
     //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
     public void EnterUIMenu()
     {
-        EnterMenu();
+        isInMenu = true;
         mouseLook.UnlockMouse();
         playerWeapon.weapon.DisableShooting();
     }
 
     public void ExitUIMenu()
     {
-        ExitMenu();
-        mouseLook.LockMouse();
-        playerWeapon.weapon.EnableShooting();
-    }
-    public void EnterMenu()
-    {
-        isInMenu = true;
-    }
-
-    public void ExitMenu()
-    {
         isInMenu = false;
+        if (!isInEscapeMenu)
+        {
+            mouseLook.LockMouse();
+            playerWeapon.weapon.EnableShooting();
+        }  
     }
 
     public void EnterEscapeMenu()
     {
+        isInEscapeMenu = true;
         mouseLook.UnlockMouse();
         playerWeapon.weapon.DisableShooting();
     }
 
     public void ExitEscapeMenu()
     {
+        isInEscapeMenu = false;
         if (!isInMenu)
         {
             mouseLook.LockMouse();
@@ -74,13 +71,12 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    //This code is only for letting monsters spawn while waiting
-    private void Update()
+    //Disables or enabled components in components to disable
+    public void SetComponents(bool isEnabled)
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        for (int i = 0; i < componentsToDisable.Length; i++)
         {
-            enemySpawner.AllowSpawns();
-            playerUI.UpdateWaitingPrompt();
+            componentsToDisable[i].enabled = isEnabled;
         }
     }
     /*Code for connection and disconnection of clients*/
@@ -95,10 +91,7 @@ public class PlayerSetup : NetworkBehaviour
         playerWeapon = GetComponent<PlayerWeapon>();
         if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
         {
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = false;
-            }
+            SetComponents(false);
             for (int i = 0; i < gameObjectsToDisable.Length; i++)
             {
                 gameObjectsToDisable[i].SetActive(false);
@@ -126,10 +119,7 @@ public class PlayerSetup : NetworkBehaviour
     private void AwayPlayerSpawned()
     {
         
-        for (int i = 0; i < componentsToDisable.Length; i++)
-        {
-            componentsToDisable[i].enabled = false;
-        }
+        SetComponents(false);
         for (int i = 0; i < gameObjectsToDisable.Length; i++)
         {
             gameObjectsToDisable[i].SetActive(false);
@@ -221,10 +211,8 @@ public class PlayerSetup : NetworkBehaviour
         {
             //mouseLook.LockMouse();
             //mouseLook.EnableRotation();
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = true;
-            }
+            SetComponents(true);
+            GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetScore();
             enemySpawner.LocalPlayAgain();
         }

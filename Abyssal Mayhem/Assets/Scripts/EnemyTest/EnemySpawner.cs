@@ -30,15 +30,22 @@ public class EnemySpawner : MonoBehaviour
 
     List<GameObject> spawnedMonsters = new List<GameObject>();
 
+    private bool isSinglePlayer = false;
+
     //Code for allowing monsters to spawn while waiting for player
     public void AllowSpawns()
     {
-        awayPlayerReady = true;
+        isSinglePlayer = true;
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
+        {
+            AllowSpawns();
+            localUI.UpdateWaitingPrompt();
+        }
         //Spawns monster at regular intervals if both players ready and quota not met
-        if (!alreadySpawned && localPlayerReady && awayPlayerReady && !metLocalQuota)
+        if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
         {
             SpawnMonster();
             alreadySpawned = true;
@@ -84,6 +91,10 @@ public class EnemySpawner : MonoBehaviour
         localPlayerReady = true;
         if (awayPlayerReady)
         {
+            isSinglePlayer = false;
+            PlayerSetup.localPlayerSetup.SetComponents(true);
+            DisablePlayerUI();
+            round = 0; //Ensure round is 0
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
@@ -95,6 +106,10 @@ public class EnemySpawner : MonoBehaviour
         awayPlayerReady = true;
         if (localPlayerReady)
         {
+            isSinglePlayer = false;
+            PlayerSetup.localPlayerSetup.SetComponents(true);
+            DisablePlayerUI();
+            round = 0;
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
@@ -103,6 +118,7 @@ public class EnemySpawner : MonoBehaviour
     //Starts the next round
     void StartNextRound()
     {
+        KillAll();
         alreadySpawned = false;
         Debug.Log("next round started");
         round += 1;
@@ -212,7 +228,8 @@ public class EnemySpawner : MonoBehaviour
     {
         PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableDeathUI();
-        localPlayerReady = false;
+        if (!isSinglePlayer) { localPlayerReady = false; } //Only unready local player if local player isnt in single player mode
+        isSinglePlayer = false; //Disable single player mode to stop spawning
         awayPlayerReady = false;
     }
 
@@ -253,5 +270,11 @@ public class EnemySpawner : MonoBehaviour
         localPlayerReadyUp();
     }
 
+    private void DisablePlayerUI()
+    {
+        PlayerSetup.localPlayerSetup.ExitUIMenu();
+        localUI.DisableWinUI();
+        localUI.DisableDeathUI();
+    }
     
 }

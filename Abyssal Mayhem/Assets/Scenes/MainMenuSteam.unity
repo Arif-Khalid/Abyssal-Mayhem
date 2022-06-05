@@ -702,7 +702,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &251125935
 MonoBehaviour:
@@ -946,8 +946,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736251702}
-        m_TargetAssemblyTypeName: KCPLobby, Assembly-CSharp
+      - m_Target: {fileID: 736251706}
+        m_TargetAssemblyTypeName: SteamLobby, Assembly-CSharp
         m_MethodName: HostSnipeToWinLobby
         m_Mode: 1
         m_Arguments:
@@ -1170,7 +1170,7 @@ RectTransform:
   - {fileID: 1617421988}
   - {fileID: 1264344324}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1261,8 +1261,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736251702}
-        m_TargetAssemblyTypeName: KCPLobby, Assembly-CSharp
+      - m_Target: {fileID: 736251706}
+        m_TargetAssemblyTypeName: SteamLobby, Assembly-CSharp
         m_MethodName: HostInfiniteSpawnLobby
         m_Mode: 1
         m_Arguments:
@@ -1712,8 +1712,7 @@ GameObject:
   m_Component:
   - component: {fileID: 736251705}
   - component: {fileID: 736251704}
-  - component: {fileID: 736251703}
-  - component: {fileID: 736251702}
+  - component: {fileID: 736251708}
   - component: {fileID: 736251706}
   m_Layer: 0
   m_Name: NetworkManager
@@ -1722,51 +1721,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &736251702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736251701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4521e94108591e4db9a83b7d7b4ffb1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  customNetworkManager: {fileID: 736251704}
-  escapeMenu: {fileID: 718280009}
-  InfiniteSpawnScene: Assets/Scenes/STEAMInfiniteSpawn Map1.unity
-  SnipeToWinScene: Assets/Scenes/TempSnipeToWin.unity
---- !u!114 &736251703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 736251701}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Port: 7777
-  DualMode: 1
-  NoDelay: 1
-  Interval: 10
-  Timeout: 10000
-  FastResend: 2
-  CongestionWindow: 0
-  SendWindowSize: 4096
-  ReceiveWindowSize: 4096
-  MaxRetransmit: 40
-  NonAlloc: 1
-  MaximizeSendReceiveBuffersToOSLimit: 1
-  ReliableMaxMessageSize: 298449
-  UnreliableMaxMessageSize: 1199
-  debugLog: 0
-  statisticsGUI: 0
-  statisticsLog: 0
 --- !u!114 &736251704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,9 +1737,9 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 30
-  offlineScene: Assets/Scenes/MainMenu.unity
+  offlineScene: Assets/Scenes/MainMenuSteam.unity
   onlineScene: 
-  transport: {fileID: 736251703}
+  transport: {fileID: 736251708}
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
@@ -1808,7 +1762,7 @@ Transform:
   m_Children:
   - {fileID: 718280013}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &736251706
 MonoBehaviour:
@@ -1819,11 +1773,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 736251701}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Script: {fileID: 11500000, guid: a4b4dd066d0ac2f4d9c8169fbbe39614, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
+  CurrentLobbyID: 0
+  manager: {fileID: 736251704}
+  escapeMenu: {fileID: 718280009}
+  InfiniteSpawnScene: Assets/Scenes/STEAMInfiniteSpawn Map1.unity
+  SnipeToWinScene: Assets/Scenes/TempSnipeToWin.unity
+  MainMenuScene: Assets/Scenes/MainMenuSteam.unity
+--- !u!114 &736251708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 736251701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea368fb6f27ec2f40a40e20977992b9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Channels: 0200000001000000
+  Timeout: 25
+  SteamAppID: 480
+  AllowSteamRelay: 1
+  UseNextGenSteamNetworking: 1
+  SteamUserID: 0
 --- !u!1 &750850816
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1881,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &805365346
 GameObject:
@@ -2003,7 +1979,7 @@ RectTransform:
   - {fileID: 1290045054}
   - {fileID: 1573262621}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3228,6 +3204,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816379878}
   m_CullTransparentMesh: 1
+--- !u!1 &2131543545
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2131543547}
+  - component: {fileID: 2131543546}
+  m_Layer: 0
+  m_Name: SteamManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2131543546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131543545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef4bffeda13d7a748973ff9204401c07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &2131543547
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2131543545}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 264.34192, y: 200.87152, z: 110.79396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2135780198
 GameObject:
   m_ObjectHideFlags: 0
@@ -3312,8 +3332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 736251702}
-        m_TargetAssemblyTypeName: KCPLobby, Assembly-CSharp
+      - m_Target: {fileID: 736251706}
+        m_TargetAssemblyTypeName: SteamLobby, Assembly-CSharp
         m_MethodName: QuitToMenu
         m_Mode: 1
         m_Arguments:
@@ -3427,7 +3447,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137627484
 GameObject:

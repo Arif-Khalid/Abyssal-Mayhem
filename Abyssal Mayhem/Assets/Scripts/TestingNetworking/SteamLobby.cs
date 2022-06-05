@@ -4,6 +4,7 @@ using UnityEngine;
 using Mirror;
 using Steamworks;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -15,26 +16,92 @@ public class SteamLobby : MonoBehaviour
     //Variables
     public ulong CurrentLobbyID;
     private const string HostAddressKey = "HostAddress";
-    private CustomNetworkManager manager;
+    public CustomNetworkManager manager;
 
     //Gameobject
-    public GameObject HostButton;
-    public TMP_Text LobbyNameText;
-    public GameObject StopButton;
+    //public GameObject HostButton;
+    //public TMP_Text LobbyNameText;
+    //public GameObject StopButton;
+    [SerializeField] GameObject escapeMenu;
 
+    bool isEscapeMenuActive = false;
+
+    //Scenes
+    [Scene] public string InfiniteSpawnScene;
+    [Scene] public string SnipeToWinScene;
+    [Scene] public string MainMenuScene;
     private void Start()
     {
         if (!SteamManager.Initialized) { return; }
 
-        manager = GetComponent<CustomNetworkManager>();
+        //manager = GetComponent<CustomNetworkManager>();
 
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
         JoinRequest = Callback<GameLobbyJoinRequested_t>.Create(OnJoinRequest);
         LobbyEntered = Callback<LobbyEnter_t>.Create(OnLobbyEntered);
     }
-
-    public void HostLobby()
+    private void Update()
     {
+        if (SceneManager.GetActiveScene().name != MainMenuScene && Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isEscapeMenuActive)
+            {
+                DisableEscapeMenu();
+            }
+            else
+            {
+                EnableEscapeMenu();
+            }
+        }
+    }
+
+    public void EnableEscapeMenu()
+    {
+        if (PlayerSetup.localPlayerSetup)
+        {
+            PlayerSetup.localPlayerSetup.EnterEscapeMenu();
+        }
+        escapeMenu.SetActive(true);
+        isEscapeMenuActive = true;
+    }
+
+    public void DisableEscapeMenu()
+    {
+        if (PlayerSetup.localPlayerSetup)
+        {
+            PlayerSetup.localPlayerSetup.ExitEscapeMenu();
+        }
+        escapeMenu.SetActive(false);
+        isEscapeMenuActive = false;
+    }
+    public void QuitToMenu()
+    {
+        Debug.Log("Entering QuitToMenu Function");
+        if (NetworkServer.active && NetworkClient.isConnected)
+        {
+            Debug.Log("quitting");
+            manager.StopHost();
+        }
+        // stop client if client-only
+        else if (NetworkClient.isConnected)
+        {
+            manager.StopClient();
+        }
+        // stop server if server-only
+        else if (NetworkServer.active)
+        {
+            manager.StopServer();
+        }
+    }
+        public void HostInfiniteSpawnLobby()
+    {
+        manager.onlineScene = InfiniteSpawnScene;
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, manager.maxConnections);
+    }
+
+    public void HostSnipeToWinLobby()
+    {
+        manager.onlineScene = SnipeToWinScene;
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, manager.maxConnections);
     }
     private void OnLobbyCreated(LobbyCreated_t callback)
@@ -60,11 +127,11 @@ public class SteamLobby : MonoBehaviour
     private void OnLobbyEntered(LobbyEnter_t callback)
     {
         //Everyone
-        HostButton.SetActive(false);
+        /*HostButton.SetActive(false);
         CurrentLobbyID = callback.m_ulSteamIDLobby;
         LobbyNameText.gameObject.SetActive(true);
-        LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name");
-
+        LobbyNameText.text = SteamMatchmaking.GetLobbyData(new CSteamID(callback.m_ulSteamIDLobby), "name");*/
+        CurrentLobbyID = callback.m_ulSteamIDLobby;
         //Clients
         if (NetworkServer.active) { return; }
 

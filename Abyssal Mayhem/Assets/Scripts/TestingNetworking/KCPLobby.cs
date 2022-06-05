@@ -10,6 +10,7 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] GameObject escapeMenu;
     [Scene] public string InfiniteSpawnScene;
     [Scene] public string SnipeToWinScene;
+    [Scene] public string MainMenuScene;
     private bool isEscapeMenuActive = false;
     public void HostInfiniteSpawnLobby()
     {
@@ -25,7 +26,7 @@ public class KCPLobby : MonoBehaviour
 
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name != "MainMenu" && Input.GetKeyDown(KeyCode.Escape))
+        if(SceneManager.GetActiveScene().name != MainMenuScene && Input.GetKeyDown(KeyCode.Escape))
         {
             if (isEscapeMenuActive)
             {

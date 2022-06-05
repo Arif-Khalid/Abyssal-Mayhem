@@ -7,14 +7,7 @@ using UnityEngine.SceneManagement;
 public class CustomNetworkManager : NetworkManager
 {
     
-    public override void OnStartServer()
-    {
-    }
-    public override void OnClientConnect()
-    {
 
-        base.OnClientConnect();
-    }
 
     
 }

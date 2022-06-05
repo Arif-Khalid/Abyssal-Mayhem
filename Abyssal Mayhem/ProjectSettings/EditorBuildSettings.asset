@@ -20,16 +20,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MainMenuKCP.unity
     guid: 78d922592d1ca12479d162b4ab1c6067
-  - enabled: 1
-    path: Assets/Scenes/STEAMInfiniteSpawn Map1.unity
-    guid: 85be9876681b75848b93f3f7f6711ed7
   - enabled: 0
     path: Assets/Scenes/CopySteamInfiniteSpawn.unity
     guid: d819664a88b45ce4c80ec6a82f6070a6
   - enabled: 1
-    path: Assets/Scenes/TempSnipeToWin.unity
-    guid: 1d7e6fc6e84041e4380468d610077f33
-  - enabled: 1
     path: Assets/Scenes/MainMenuSteam.unity
     guid: 845845fd035b2c94b995900e731a2233
+  - enabled: 1
+    path: Assets/Scenes/STEAMInfiniteSpawn Map1.unity
+    guid: 85be9876681b75848b93f3f7f6711ed7
+  - enabled: 1
+    path: Assets/Scenes/TempSnipeToWin.unity
+    guid: 1d7e6fc6e84041e4380468d610077f33
   m_configObjects: {}

@@ -90,19 +90,24 @@ public class PlayerSetup : NetworkBehaviour
     //Set local variables in enemySpawner
     private void LocalPlayerSpawned()
     {
-        localPlayerSetup = this;
         
         mouseLook = GetComponentInChildren<MouseLook>();
         playerWeapon = GetComponent<PlayerWeapon>();
         if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
         {
-            //Do something in playerUI
-            //Dont let the player play the game as is currently unimplemented
-            Debug.Log("Bad scene");
-            playerUI.EnableDevUI();
-            EnterUIMenu();
+            for (int i = 0; i < componentsToDisable.Length; i++)
+            {
+                componentsToDisable[i].enabled = false;
+            }
+            for (int i = 0; i < gameObjectsToDisable.Length; i++)
+            {
+                gameObjectsToDisable[i].SetActive(false);
+            }
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<CharacterController>().enabled = false;
             return;
         }
+        localPlayerSetup = this;
         sceneCamera = Camera.main;
         if (sceneCamera)
         {
@@ -145,12 +150,17 @@ public class PlayerSetup : NetworkBehaviour
     }
     private void OnDisable()
     {
+        if (!enemySpawner)
+        {
+            return;
+        }
         if (sceneCamera)
         {
             sceneCamera.gameObject.SetActive(true);
         }
         if (isLocalPlayer)
         {
+            
             enemySpawner.localPlayerReady = false;
             localPlayerSetup = null;
             Cursor.lockState = CursorLockMode.None;

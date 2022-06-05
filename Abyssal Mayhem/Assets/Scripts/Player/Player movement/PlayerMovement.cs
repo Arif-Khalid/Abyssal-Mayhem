@@ -13,13 +13,17 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     Vector3 move;
     bool isGrounded;
+    bool isMovementDisabled = false;
 
     // Update is called once per frame
     void Update()
     {
         HorizontalMovement();
         VerticalMovement();
-        controller.Move(move * Time.deltaTime);
+        if (!isMovementDisabled)
+        {
+            controller.Move(move * Time.deltaTime);
+        }    
     }
 
     //Movement horizontally locally
@@ -49,5 +53,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         move += velocity;
+    }
+
+    public void EnableMovement()
+    {
+        isMovementDisabled = false;
+    }
+    public void DisableMovement()
+    {
+        isMovementDisabled = true;
     }
 }

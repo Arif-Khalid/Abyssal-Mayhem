@@ -58,8 +58,10 @@ public class KCPLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
+        Debug.Log("Entering QuitToMenu Function");
         if (NetworkServer.active && NetworkClient.isConnected)
         {
+            Debug.Log("quitting");
            customNetworkManager.StopHost();
         }
         // stop client if client-only

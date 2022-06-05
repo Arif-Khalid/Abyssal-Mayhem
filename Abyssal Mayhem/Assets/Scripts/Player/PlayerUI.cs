@@ -16,7 +16,6 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI interactPrompt;
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] GameObject localUI;
-    [SerializeField] GameObject devUI;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
 
@@ -105,11 +104,5 @@ public class PlayerUI : MonoBehaviour
         {
             ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
         }
-    }
-
-    public void EnableDevUI()
-    {
-        localUI.SetActive(false);
-        devUI.SetActive(true);
     }
 }

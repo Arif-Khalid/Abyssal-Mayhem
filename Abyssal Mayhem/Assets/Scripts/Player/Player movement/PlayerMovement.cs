@@ -20,10 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement();
         VerticalMovement();
-        if (!isMovementDisabled)
-        {
-            controller.Move(move * Time.deltaTime);
-        }    
+        controller.Move(move * Time.deltaTime);        
     }
 
     //Movement horizontally locally
@@ -33,8 +30,12 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        move = transform.right * x + transform.forward * z; //move locally
-        move *= speed;
+        if (isMovementDisabled) { move = Vector3.zero; }
+        else
+        {
+            move = transform.right * x + transform.forward * z; //move locally
+            move *= speed;
+        }      
     }
     //Movement vertically with gravity and jumping
     private void VerticalMovement()
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             velocity.y = -2f;
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isMovementDisabled)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }

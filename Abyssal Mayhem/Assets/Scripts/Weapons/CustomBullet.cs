@@ -84,15 +84,19 @@ public class CustomBullet : MonoBehaviour
             //Get component of enemy and call Take Damage
             if(enemies[i].GetComponent<EnemyHealth>())
             {
+                Vector3 dir = enemies[i].transform.position - transform.position;
                 enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
+                enemies[i].GetComponent<EnemyAI>().BounceBackUndo(dir * explosionForce);
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0, ForceMode.Impulse);
+
             }
 
             //Add explosion Force (if enemy has a rigidbody)
-            if(enemies[i].GetComponent<Rigidbody>())
+            /*if(enemies[i].GetComponent<Rigidbody>())
             {
                 enemies[i].GetComponent<EnemyAI>().BounceBackUndo(); 
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0, ForceMode.Impulse);                 
-            }
+            }*/
                 
         }
 

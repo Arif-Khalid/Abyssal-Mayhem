@@ -11,7 +11,7 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public Transform player;
 
-    public Transform EnemyFeet;
+    public Collider enemyFeet;
 
     public LayerMask whatIsPlayer;
 
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
     {
         agent.SetDestination(transform.position);
 
-        transform.LookAt(player);
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
 
         if (!alreadyAttacked)
         {
@@ -91,14 +91,15 @@ public class EnemyAI : MonoBehaviour
     public virtual void ChasePlayer()
     { 
         agent.SetDestination(player.position);
-        transform.LookAt(player);
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
     }
 
-    public void BounceBackUndo()
+    public void BounceBackUndo(Vector3 direction)
     {
-        Invoke("SetBoolean", 0.01f);
+        Invoke("SetBoolean", 0.05f);
         // isNavMeshAgentEnabled = false;
         agent.enabled = false;
+        enemyFeet.enabled = true;
         Debug.Log("Undone");
         enemyRigidBody.isKinematic = false;
     }
@@ -109,6 +110,7 @@ public class EnemyAI : MonoBehaviour
         {
             Debug.Log("Redone");
             isNavMeshAgentEnabled = true;
+            enemyFeet.enabled = false;
             agent.enabled = true;
             enemyRigidBody.isKinematic = true;
         }

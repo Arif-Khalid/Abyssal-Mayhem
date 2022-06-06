@@ -197,9 +197,9 @@ MonoBehaviour:
   snapDistance: 3
   bounciness: 0
   useGravity: 0
-  explosionDamage: 5
+  explosionDamage: 10
   explosionRange: 6
-  explosionForce: 10
+  explosionForce: 5
   maxCollisions: 10
   maxLifeTime: 2
   explodeOnTouch: 1

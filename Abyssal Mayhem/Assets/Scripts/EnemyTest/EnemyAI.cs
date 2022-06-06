@@ -1,3 +1,4 @@
+//using System.Diagnostics;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,7 +11,13 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public Transform player;
 
+    public Transform EnemyFeet;
+
     public LayerMask whatIsPlayer;
+
+    public LayerMask whatIsSelf;
+
+    public Rigidbody enemyRigidBody;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -19,23 +26,30 @@ public class EnemyAI : MonoBehaviour
     //States
     public float attackRange;
     public bool playerInAttackRange;
+    public bool isNavMeshAgentEnabled = true;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemyRigidBody = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (player)
+        if (isNavMeshAgentEnabled)
         {
-            //Check for attack range
-            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            if (player)
+            {
+                //Check for attack range
+                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-            if (!playerInAttackRange) ChasePlayer();
-            if (playerInAttackRange) AttackPlayer();
+                if (!playerInAttackRange) ChasePlayer();
+                if (playerInAttackRange) AttackPlayer();
+            }
+        } else {
+            BounceBackRedo();
         }
     }
 
@@ -78,5 +92,30 @@ public class EnemyAI : MonoBehaviour
     { 
         agent.SetDestination(player.position);
         transform.LookAt(player);
+    }
+
+    public void BounceBackUndo()
+    {
+        Invoke("SetBoolean", 0.01f);
+        // isNavMeshAgentEnabled = false;
+        agent.enabled = false;
+        Debug.Log("Undone");
+        enemyRigidBody.isKinematic = false;
+    }
+
+    public void BounceBackRedo()
+    {
+        if(enemyRigidBody.velocity.magnitude <= 0.00001)
+        {
+            Debug.Log("Redone");
+            isNavMeshAgentEnabled = true;
+            agent.enabled = true;
+            enemyRigidBody.isKinematic = true;
+        }
+    }
+
+    public void SetBoolean()
+    {
+        isNavMeshAgentEnabled  = false;
     }
 }

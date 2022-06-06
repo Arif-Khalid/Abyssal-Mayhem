@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class CustomBullet : MonoBehaviour
 {
     //Assignables
     public Rigidbody rb;
     public GameObject explosion;
+    public GameObject explosionInstance;
     public LayerMask whatIsEnemies;
     public float speed = 20f; //Speed of bullet
     public float snapDistance = 0.5f; //Distance till bullet snaps to target
@@ -37,15 +39,27 @@ public class CustomBullet : MonoBehaviour
     
     private void Update()
     {
-        //CheckPath();
-        //When to explode
-        if (collisions > maxCollisions)
-        Explode();
+        CheckPath();
+        
 
         //Count down lifetime
         maxLifeTime -= Time.deltaTime;
         if (maxLifeTime <=0)
         Explode();
+    }
+
+    //Checks the path using raycasts a short distance in front of bullet and 
+    //teleports bullet to collision if raycast hit
+    private void CheckPath()
+    {
+        RaycastHit hit;
+        //Check a short distance ahead of bullet to check for collider
+        if (Physics.Raycast(transform.position, transform.forward, out hit, snapDistance, whatIsEnemies))
+        {
+            transform.position = hit.point;
+            Explode();
+
+        }
     }
 
     private void MoveBullet() //Move the bullet, called in start function
@@ -61,29 +75,39 @@ public class CustomBullet : MonoBehaviour
     {
         //Instantiate explosion
         if(explosion != null) 
-        Instantiate(explosion, transform.position, Quaternion.identity);
+        explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
 
         //Check for enemies
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
         for (int i = 0; i < enemies.Length; i++)
         {
             //Get component of enemy and call Take Damage
-            if(enemies[i].GetComponent<EnemyHealth>()){
+            if(enemies[i].GetComponent<EnemyHealth>())
+            {
                 enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
             }
 
             //Add explosion Force (if enemy has a rigidbody)
             if(enemies[i].GetComponent<Rigidbody>())
-                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange);
+            {
+                enemies[i].GetComponent<EnemyAI>().BounceBackUndo(); 
+                enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0, ForceMode.Impulse);                 
+            }
+                
         }
 
         //Add a little delay, just to make sure everything works fine
         Invoke("Delay", 0.05f);
     }
 
+        
     private void Delay()
     {
         Destroy(gameObject);
+    }
+    private void stopExploding()
+    {
+        Destroy(explosionInstance);
     }
 
     // private void OnCollisionEnter(Collision collision)

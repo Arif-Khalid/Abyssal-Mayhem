@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1200407861040370067}
   - component: {fileID: 5883664202183286507}
   - component: {fileID: -3256371503280927088}
-  - component: {fileID: 7609329381076076311}
   - component: {fileID: 9009852977590055700}
+  - component: {fileID: 4795751809798782331}
   m_Layer: 9
   m_Name: RocketBullet
   m_TagString: Untagged
@@ -73,7 +73,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 85320f50710fcfb4d886bc56151bea1b, type: 2}
+  - {fileID: 2100000, guid: a63744c57f85846429c94c6bcda6aba5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7169812, g: 0.6721803, b: 0.18600929, a: 1}
+      key0: {r: 0.735849, g: 0.1069134, b: 0.023602655, a: 1}
       key1: {r: 1, g: 1, b: 1, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
@@ -160,34 +160,6 @@ TrailRenderer:
   m_MinVertexDistance: 0.02
   m_Autodestruct: 0
   m_Emitting: 1
---- !u!114 &7609329381076076311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5534813618486378921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a9a1a12bf15f6f44887f40487dc1ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rb: {fileID: 5883664202183286507}
-  explosion: {fileID: 301145018502116267, guid: 0863f4d6853d3554e8061df72c3211d1,
-    type: 3}
-  whatIsEnemies:
-    serializedVersion: 2
-    m_Bits: 147
-  speed: 50
-  snapDistance: 0.5
-  bounciness: 0.8
-  useGravity: 0
-  explosionDamage: 50
-  explosionRange: 5
-  explosionForce: 0
-  maxCollisions: 10
-  maxLifeTime: 4
-  explodeOnTouch: 1
 --- !u!136 &9009852977590055700
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -202,6 +174,35 @@ CapsuleCollider:
   m_Height: 0.59523803
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4795751809798782331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5534813618486378921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a9a1a12bf15f6f44887f40487dc1ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 5883664202183286507}
+  explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
+    type: 3}
+  explosionInstance: {fileID: 0}
+  whatIsEnemies:
+    serializedVersion: 2
+    m_Bits: 147
+  speed: 60
+  snapDistance: 3
+  bounciness: 0
+  useGravity: 0
+  explosionDamage: 5
+  explosionRange: 6
+  explosionForce: 10
+  maxCollisions: 10
+  maxLifeTime: 2
+  explodeOnTouch: 1
 --- !u!1001 &1866829374864614484
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 8230614775318324065}
   - component: {fileID: 8768125842735476599}
   - component: {fileID: 7458535434719659921}
+  - component: {fileID: 7240645681206129051}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -790,6 +791,20 @@ MonoBehaviour:
   inputField: {fileID: 7549683456085128736}
   inputBackground: {fileID: 5002895703101742470}
   chatLifeTime: 5
+--- !u!136 &7240645681206129051
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698161260317292029}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1698161261116011767
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +873,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1783
+    m_Bits: 3831
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0

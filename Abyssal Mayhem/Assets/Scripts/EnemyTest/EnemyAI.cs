@@ -14,7 +14,7 @@ public class EnemyAI : MonoBehaviour
 
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool alreadyAttacked;
 
     //States
     public float attackRange;
@@ -41,7 +41,7 @@ public class EnemyAI : MonoBehaviour
 
     /*Code for attacks*/
     //Reset the ability to attack
-    private void ResetAttack()
+    protected void ResetAttack()
     {
         alreadyAttacked = false;
     }
@@ -58,11 +58,9 @@ public class EnemyAI : MonoBehaviour
     //Called in Late update
     //Stops movement and looks at player
     //Attack to be implemented in override
-    private void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-
-        transform.LookAt(player);
 
         if (!alreadyAttacked)
         {

@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
     //Called when collider triggered
     public virtual void HitSomething(Collider other)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script
+        EnemyHealth enemyHealth = other.gameObject.GetComponentInParent<EnemyHealth>(); //Check for health Script
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(bulletDamage);

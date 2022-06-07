@@ -97,22 +97,21 @@ public class EnemyAI : MonoBehaviour
     public void BounceBackUndo(Vector3 direction)
     {
         Invoke("SetBoolean", 0.05f);
-        // isNavMeshAgentEnabled = false;
         agent.enabled = false;
         enemyFeet.enabled = true;
-        Debug.Log("Undone");
         enemyRigidBody.isKinematic = false;
+        Debug.Log("Undone");
     }
 
     public void BounceBackRedo()
     {
         if(enemyRigidBody.velocity.magnitude <= 0.00001)
         {
-            Debug.Log("Redone");
             isNavMeshAgentEnabled = true;
             enemyFeet.enabled = false;
             agent.enabled = true;
             enemyRigidBody.isKinematic = true;
+            Debug.Log("Redone");
         }
     }
 

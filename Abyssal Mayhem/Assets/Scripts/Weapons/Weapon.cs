@@ -17,6 +17,9 @@ public class Weapon : MonoBehaviour
     public LayerMask whatIsNotPlayer;
     private bool allowShooting = true;
     private bool reloading = false;
+
+    public ParticleSystem muzzleFlash;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +90,7 @@ public class Weapon : MonoBehaviour
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public virtual void Fire()
     {
+        muzzleFlash.Play();
         if (!allowShooting || reloading)
         {
             return;

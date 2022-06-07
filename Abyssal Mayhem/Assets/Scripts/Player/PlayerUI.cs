@@ -15,6 +15,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI waitingPrompt;
     [SerializeField] TextMeshProUGUI interactPrompt;
     [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
 

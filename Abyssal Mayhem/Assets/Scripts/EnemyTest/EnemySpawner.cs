@@ -30,15 +30,22 @@ public class EnemySpawner : MonoBehaviour
 
     List<GameObject> spawnedMonsters = new List<GameObject>();
 
+    private bool isSinglePlayer = false;
+
     //Code for allowing monsters to spawn while waiting for player
     public void AllowSpawns()
     {
-        awayPlayerReady = true;
+        isSinglePlayer = true;
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
+        {
+            AllowSpawns();
+            localUI.UpdateWaitingPrompt();
+        }
         //Spawns monster at regular intervals if both players ready and quota not met
-        if (!alreadySpawned && localPlayerReady && awayPlayerReady && !metLocalQuota)
+        if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
         {
             SpawnMonster();
             alreadySpawned = true;
@@ -84,6 +91,10 @@ public class EnemySpawner : MonoBehaviour
         localPlayerReady = true;
         if (awayPlayerReady)
         {
+            isSinglePlayer = false;
+            PlayerSetup.localPlayerSetup.SetComponents(true);
+            DisablePlayerUI();
+            round = 0; //Ensure round is 0
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
@@ -95,6 +106,10 @@ public class EnemySpawner : MonoBehaviour
         awayPlayerReady = true;
         if (localPlayerReady)
         {
+            isSinglePlayer = false;
+            PlayerSetup.localPlayerSetup.SetComponents(true);
+            DisablePlayerUI();
+            round = 0;
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             StartNextRound();
         }
@@ -103,6 +118,7 @@ public class EnemySpawner : MonoBehaviour
     //Starts the next round
     void StartNextRound()
     {
+        KillAll();
         alreadySpawned = false;
         Debug.Log("next round started");
         round += 1;
@@ -210,14 +226,17 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player dies
     public void LocalDeath()
     {
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableDeathUI();
-        localPlayerReady = false;
+        if (!isSinglePlayer) { localPlayerReady = false; } //Only unready local player if local player isnt in single player mode
+        isSinglePlayer = false; //Disable single player mode to stop spawning
         awayPlayerReady = false;
     }
 
     //Called when a player wins
     public void LocalWin()
     {
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableWinUI();
         localPlayerReady = false;
         awayPlayerReady = false;
@@ -227,6 +246,7 @@ public class EnemySpawner : MonoBehaviour
     //Called when other player survives all rounds
     public void LocalLoss()
     {
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
         localUI.EnableDeathUI(); //To be replaced with different UI for loss and not death
         localPlayerReady = false;
         awayPlayerReady = false;
@@ -236,6 +256,7 @@ public class EnemySpawner : MonoBehaviour
     //Function that hard resets the game for local player
     public void LocalPlayAgain()
     {
+        PlayerSetup.localPlayerSetup.ExitUIMenu();
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
         localUI.ResetWaitingPrompt();
@@ -248,4 +269,12 @@ public class EnemySpawner : MonoBehaviour
         RestartGame();
         localPlayerReadyUp();
     }
+
+    private void DisablePlayerUI()
+    {
+        PlayerSetup.localPlayerSetup.ExitUIMenu();
+        localUI.DisableWinUI();
+        localUI.DisableDeathUI();
+    }
+    
 }

@@ -13,13 +13,14 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;
     Vector3 move;
     bool isGrounded;
+    bool isMovementDisabled = false;
 
     // Update is called once per frame
     void Update()
     {
         HorizontalMovement();
         VerticalMovement();
-        controller.Move(move * Time.deltaTime);
+        controller.Move(move * Time.deltaTime);        
     }
 
     //Movement horizontally locally
@@ -29,8 +30,12 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        move = transform.right * x + transform.forward * z; //move locally
-        move *= speed;
+        if (isMovementDisabled) { move = Vector3.zero; }
+        else
+        {
+            move = transform.right * x + transform.forward * z; //move locally
+            move *= speed;
+        }      
     }
     //Movement vertically with gravity and jumping
     private void VerticalMovement()
@@ -38,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded)
         {
             velocity.y = -2f;
-            if (Input.GetButtonDown("Jump"))
+            if (Input.GetButtonDown("Jump") && !isMovementDisabled)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
@@ -49,5 +54,14 @@ public class PlayerMovement : MonoBehaviour
         }
 
         move += velocity;
+    }
+
+    public void EnableMovement()
+    {
+        isMovementDisabled = false;
+    }
+    public void DisableMovement()
+    {
+        isMovementDisabled = true;
     }
 }

@@ -7,7 +7,6 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
-    [HideInInspector]
     public Transform player;
 
     public LayerMask whatIsPlayer;
@@ -27,7 +26,7 @@ public class EnemyAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if (player)
         {

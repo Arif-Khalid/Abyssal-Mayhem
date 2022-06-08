@@ -146,23 +146,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162f4f1aabc259b498a27abdde33e73f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerWeapon: {fileID: 0}
-  bulletPoint: {fileID: 0}
-  bullet: {fileID: 0}
-  maxAmmo: -1
-  clipSize: 10
-  animator: {fileID: 0}
-  whatIsNotPlayer:
-    serializedVersion: 2
-    m_Bits: 0
-  muzzleFlash: {fileID: 6559555288400726595, guid: 1389d9cdbf404ca40977a0b0168cc611,
-    type: 3}
   playerCamera: {fileID: 0}
+  playerWeapon: {fileID: 0}
   laserOrigin: {fileID: 7027317254155538495}
   gunRange: 50
   fireRate: 0.2
   laserDuration: 0.05
   laserDamage: 50
+  maxAmmo: -1
+  clipSize: 10
+  animator: {fileID: 0}
 --- !u!1 &1408655637627411839
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
  
 [RequireComponent(typeof(LineRenderer))]
-public class LaserWeapon : MonoBehaviour
+public class LaserWeapon : Weapon
 {
-    public Camera playerCamera;
-    public PlayerWeapon playerWeapon; //Reference to player weapon script
-    public Transform laserOrigin;
-    public float gunRange = 50f;
-    public float fireRate = 0.2f;
+    public Transform laserOrigin; 
+    public float gunRange = 50f; 
+    public float fireRate = 0.2f; 
     public float laserDuration = 0.05f;
-    public int laserDamage = 10; //Damage of the laser
-    private bool allowShooting = true;
-    private bool reloading = false;
-    [SerializeField] public int maxAmmo = -1; //Set to -1 when infinite ammo
-    [SerializeField] int clipSize = 10; //Size of weapon clip
-    int currentAmmo; //current ammo in weapon
-    public Animator animator;
-    PlayerUI playerUI;
-    [SerializeField] private LayerMask walls;
-    [SerializeField] private LayerMask enemies;
+    public int laserDamage = 50;
+    [SerializeField] private LayerMask walls; 
+    [SerializeField] private LayerMask enemies; 
 
 
     //Variables for ADS
@@ -33,20 +24,15 @@ public class LaserWeapon : MonoBehaviour
     LineRenderer laserLine;
     float fireTimer;
  
-    void Start()
+    protected override void ChildStart()
     {
-        playerWeapon = GetComponentInParent<PlayerWeapon>();
-        playerUI = GetComponentInParent<PlayerUI>();
-        animator = GetComponent<Animator>();
-        currentAmmo = clipSize;
-        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-
+        //in child start
         originalPosition = transform.localPosition;
         laserLine = GetComponent<LineRenderer>();        
     }
  
-    void Update()
-    {
+    protected override void ChildUpdate()
+    {       
         fireTimer += Time.deltaTime;
         if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
         {
@@ -69,12 +55,14 @@ public class LaserWeapon : MonoBehaviour
                         Reload();
                         return;
                     }
+                    muzzleFlash.Play();
+                    StartCoroutine(StartLight());
                     currentAmmo -= 1;
                     playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
                     fireTimer = 0;
                     laserLine.SetPosition(0, laserOrigin.position);
-                    Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-                    Ray ray = new Ray(rayOrigin, playerCamera.transform.forward);
+                    Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+                    Ray ray = new Ray(rayOrigin, Camera.main.transform.forward);
                     RaycastHit blockHit;
                     Vector3 laserEndPos = ray.GetPoint(gunRange);
                     float newRange;
@@ -116,50 +104,6 @@ public class LaserWeapon : MonoBehaviour
         }
     }
     
-    protected virtual void OutOfAmmo()
-    {
-        //To be overriden in inherited class
-        //Function to call when no more ammo in clip or reserves and trying to shoot
-    }
-
-    public void Reload()
-    {
-        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left
-        {
-            return;
-        }
-        if(maxAmmo < -1) //should never reach this point but just in case
-        {
-            playerWeapon.Equip(playerWeapon.defaultWeapon);
-        }
-        reloading = true;
-        //Play some animation that calls reload finish on its last frame
-        //For now just put ReloadFinish here
-        ReloadFinish();
-    }
-
-    //Called at the end of the reload animation
-    public void ReloadFinish()
-    {
-        if(maxAmmo >= clipSize) //if enough ammo to reload full clip
-        {
-            maxAmmo -= clipSize;
-            currentAmmo = clipSize;
-            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-        }else if(maxAmmo > 0) //if enough ammo to reload partial clip
-        {
-            currentAmmo += maxAmmo;
-            maxAmmo = 0;
-            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-        }
-        else if(maxAmmo == -1) //if max ammo is set to infinity
-        {
-            currentAmmo = clipSize;
-            playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-        }
-        reloading = false;
-    }
-
     public virtual void HitSomething(Collider other)
     {
         EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script

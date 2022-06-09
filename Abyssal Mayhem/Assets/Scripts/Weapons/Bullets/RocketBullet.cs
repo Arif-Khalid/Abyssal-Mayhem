@@ -3,20 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RocketBullet : MonoBehaviour
+public class RocketBullet : Bullet
 {
     //Assignables
-    public Rigidbody rb;
-    public GameObject explosion;
+    public GameObject explosion; 
     public GameObject explosionInstance;
     public LayerMask whatIsEnemies;
-    public float speed = 20f; //Speed of bullet
-    public float snapDistance = 0.5f; //Distance till bullet snaps to target
 
     //Stats
     [Range(0f,1f)]
-    public float bounciness;
-    public bool useGravity;
+    public float bounciness; 
+    public bool useGravity; 
  
     //Damage
     public int explosionDamage;
@@ -25,52 +22,29 @@ public class RocketBullet : MonoBehaviour
 
     //Lifetime
     public int maxCollisions;
-    public float maxLifeTime;
     public bool explodeOnTouch = true;
 
     int collisions;
-    PhysicMaterial physics_mat;    
+    PhysicMaterial physics_mat;
 
-    void Start()
+    protected override void ChildStart()
     {
-        Setup();
-        MoveBullet();
+        //Create a new Physic Material
+        physics_mat = new PhysicMaterial();
+        physics_mat.bounciness = bounciness;
+        physics_mat.frictionCombine = PhysicMaterialCombine.Minimum;
+        physics_mat.bounceCombine = PhysicMaterialCombine.Maximum;
+        //Assign material to collider
+        GetComponent<CapsuleCollider>().material = physics_mat;
+
+        //Set gravity
+        rigidBody.useGravity = useGravity;
     }
-    
-    private void Update()
-    {
-        CheckPath();
-        
 
-        //Count down lifetime
-        maxLifeTime -= Time.deltaTime;
-        if (maxLifeTime <=0)
+    protected override void EndOfExistence()
+    {
         Explode();
     }
-
-    //Checks the path using raycasts a short distance in front of bullet and 
-    //teleports bullet to collision if raycast hit
-    private void CheckPath()
-    {
-        RaycastHit hit;
-        //Check a short distance ahead of bullet to check for collider
-        if (Physics.Raycast(transform.position, transform.forward, out hit, snapDistance, whatIsEnemies))
-        {
-            transform.position = hit.point;
-            Explode();
-
-        }
-    }
-
-    private void MoveBullet() //Move the bullet, called in start function
-    {
-        //rb = GetComponent<Rigidbody>();
-        if (rb)
-        {
-            rb.velocity = transform.forward * speed; //Send bullet forward
-        }
-    }
-
     private void Explode()
     {
         //Instantiate explosion
@@ -102,52 +76,8 @@ public class RocketBullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
-    private void stopExploding()
+    public override void HitSomething(Collider other)
     {
-        Destroy(explosionInstance);
-    }
-
-    // private void OnCollisionEnter(Collision collision)
-    // {
-    //     //Don't Count collision with other bullets
-        
-    //     //Count up collisions
-    //     collisions++;
-
-    //     //Explode if bullet hits an enemy directly and explodeOnTouch is activated
-    //     if(collision.collider.CompareTag("Enemy") && explodeOnTouch)
-    //     Explode();
-    // }
-
-    private void OnTriggerEnter(Collider other) 
-    {
-        Debug.Log("trigger");
-        if (other.GetComponent<Interactable>())
-        {
-            return;
-        }
         Explode();
-    }
-    
-
-    private void Setup()
-    {
-        //Create a new Physic Material
-        physics_mat = new PhysicMaterial();
-        physics_mat.bounciness = bounciness;
-        physics_mat.frictionCombine = PhysicMaterialCombine.Minimum;
-        physics_mat.bounceCombine = PhysicMaterialCombine.Maximum;
-        //Assign material to collider
-        GetComponent<CapsuleCollider>().material = physics_mat;
-        rb = GetComponent<Rigidbody>();
-
-        //Set gravity
-        rb.useGravity = useGravity;
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, explosionRange);
     }
 }

@@ -6,7 +6,7 @@ public class Bullet : MonoBehaviour
 {
     //Variables for bullet movement
     public float speed = 20f; //Speed of bullet
-    Rigidbody rigidBody;
+    protected Rigidbody rigidBody;
 
     //Variables for collision and damage
     public float snapDistance = 0.5f; //Distance till bullet snaps to target
@@ -19,7 +19,14 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        MoveBullet();        
+        MoveBullet();
+        ChildStart();
+    }
+
+    //Function to be overriden by children for additional start implementation
+    protected virtual void ChildStart()
+    {
+        //To be overriden
     }
 
     private void MoveBullet() //Move the bullet, called in start function
@@ -58,10 +65,14 @@ public class Bullet : MonoBehaviour
         timeAlive += Time.deltaTime;
         if (timeAlive >= lifeTime)
         {
-            Destroy(this.gameObject);
+            EndOfExistence();
         }
     }
 
+    protected virtual void EndOfExistence()
+    {
+        Destroy(this.gameObject);
+    }
     //Code for hitting something
     private void OnTriggerEnter(Collider other) 
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2202729521524383937}
   - component: {fileID: 6559555288400726595}
   - component: {fileID: 8286020407955964190}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Muzzle Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3815862679760607943}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5395441583138862461}
@@ -223,7 +223,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 1, g: 0.9715663, b: 0.78679246, a: 1}
+      minColor: {r: 0.9716981, g: 0.95099676, b: 0.8561944, a: 1}
       maxColor: {r: 0.9056604, g: 0.8887586, b: 0.33663222, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -4882,13 +4882,13 @@ GameObject:
   - component: {fileID: 5395441583138862461}
   - component: {fileID: 7781125905246201614}
   - component: {fileID: 8542196387508889915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5395441583138862461
 Transform:
   m_ObjectHideFlags: 0
@@ -4897,7 +4897,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7679508413749646604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4911,13 +4911,13 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7679508413749646604}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 10000
-  m_Range: 10
+  m_Intensity: 1
+  m_Range: 0.1
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -4961,7 +4961,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 0, w: 0}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 2.0495642e+25}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0

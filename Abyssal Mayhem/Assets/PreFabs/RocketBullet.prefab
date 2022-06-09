@@ -103,7 +103,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.503067
+        value: 0.13747406
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -186,22 +186,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9a1a12bf15f6f44887f40487dc1ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 5883664202183286507}
+  speed: 60
+  snapDistance: 3
+  bulletDamage: 10
+  bulletCollisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 145
+  lifeTime: 2
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
   explosionInstance: {fileID: 0}
   whatIsEnemies:
     serializedVersion: 2
-    m_Bits: 147
-  speed: 60
-  snapDistance: 3
+    m_Bits: 128
   bounciness: 0
   useGravity: 0
   explosionDamage: 10
   explosionRange: 10
   explosionForce: 5
-  maxCollisions: 10
-  maxLifeTime: 2
+  maxCollisions: 1
   explodeOnTouch: 1
 --- !u!1001 &1866829374864614484
 PrefabInstance:

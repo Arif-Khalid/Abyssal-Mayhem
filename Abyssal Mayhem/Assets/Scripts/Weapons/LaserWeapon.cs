@@ -48,7 +48,6 @@ public class LaserWeapon : MonoBehaviour
     void Update()
     {
         fireTimer += Time.deltaTime;
-        gunRange = 50f;
         if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
         {
             AimDownSight();
@@ -75,73 +74,45 @@ public class LaserWeapon : MonoBehaviour
                     fireTimer = 0;
                     laserLine.SetPosition(0, laserOrigin.position);
                     Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-                    var mousePos = Input.mousePosition;
-                    var rayMouse = playerCamera.ScreenPointToRay(mousePos);
                     Ray ray = new Ray(rayOrigin, playerCamera.transform.forward);
                     RaycastHit blockHit;
-                    if (Physics.Raycast(ray, out blockHit, gunRange, LayerMask.GetMask("walls")))
+                    Vector3 laserEndPos = ray.GetPoint(gunRange);
+                    float newRange;
+                    if (Physics.Raycast(ray, out blockHit, gunRange, walls))
                     {
-                        gunRange = blockHit.distance;
-                        Debug.Log("Railgun hitted wall");        
+                        laserEndPos = blockHit.point;
+                        newRange = blockHit.distance;
+                        Debug.Log("Railgun hitted wall");
                     }
-                    RaycastHit[] hitInfos = Physics.RaycastAll(ray, gunRange, LayerMask.GetMask("enemies"));
-                    if (hitInfos != null)
+                    else
                     {
-                        laserLine.SetPosition(1, blockHit.point);                        
+                        newRange = gunRange;
+                    }
+                    RaycastHit[] hitInfos = Physics.RaycastAll(ray, newRange, enemies);
+                    laserLine.SetPosition(1, laserEndPos);
+                    StartCoroutine(ShootLaser());
+                    if (hitInfos != null)
+                    {                      
                         foreach (RaycastHit hitInfo in hitInfos)
                         {
                             if (hitInfo.collider.GetComponent<EnemyHealth>())
                             {
                                 HitSomething(hitInfo.collider);
                                 Debug.Log("Railgun Hitted " + hitInfo.collider.name);        
-                                StartCoroutine(ShootLaser());    
+  
                             }
-                            // else 
-                            // {
-                            //     var pos = rayMouse.GetPoint (gunRange);
-                            //     laserLine.SetPosition (1, pos);
-                            //     StartCoroutine(ShootLaser());
-                            // }
                         }
                     }
-                    else
-                    {
-                        var pos = rayMouse.GetPoint (gunRange);
-                        laserLine.SetPosition (1, pos);
-                        StartCoroutine(ShootLaser());
-                    }
-
-                    // RaycastHit hit;
-                    // if(Physics.Raycast(ray, out hit, gunRange))
-                    // {
-                    //     if (hit.transform.gameObject.GetComponent<EnemyHealth>())
-                    //     {
-                    //     laserLine.SetPosition(1, hit.point);
-                    //     HitSomething(hit.collider);
-                    //     Ray penetratingRay = new Ray(hit.point, hit.normal);
-                    //     hit.collider.GetComponent<EnemyHealth>().FireLaser(penetratingRay);
-                    //     Debug.Log("Railgun Fired 1");        
-                    //     StartCoroutine(ShootLaser());
-                    //     }
-                    //     else
-                    //     {
-                    //     var pos = rayMouse.GetPoint (gunRange);
-                    //     laserLine.SetPosition (1, pos);
-                    //     StartCoroutine(ShootLaser());
-                    //     }
-                    // }
-                    // else
-                    // {
-                    //     var pos = rayMouse.GetPoint (gunRange);
-                    //     laserLine.SetPosition (1, pos);
-                    //     StartCoroutine(ShootLaser());
-                    // }
                 }
             }
         }
         else
         {
             HipFire();
+        }
+        if (laserLine.enabled)
+        {
+            laserLine.SetPosition(0, laserOrigin.position);
         }
     }
     

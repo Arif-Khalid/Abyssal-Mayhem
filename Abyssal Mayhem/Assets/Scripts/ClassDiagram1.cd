@@ -90,7 +90,7 @@
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
-      <HashCode>AAIAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AIIAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Scripts\Weapons\PistolWeapon.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -116,8 +116,8 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="enemySpawner" />
-      <Field Name="mouseLook" />
       <Field Name="playerUI" />
+      <Field Name="mouseLook" />
     </ShowAsAssociation>
   </Class>
   <Class Name="PlayerUI">

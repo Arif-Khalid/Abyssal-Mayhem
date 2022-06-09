@@ -1,11 +1,12 @@
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 
 public class PlayerSetup : NetworkBehaviour
 {
     //References
     EnemySpawner enemySpawner;
-    MouseLook mouseLook;
+    public MouseLook mouseLook;
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
@@ -13,7 +14,11 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] GameObject awayUI;
     Camera sceneCamera;
     PlayerUI playerUI;
+    public PlayerWeapon playerWeapon;
+    private bool isInMenu = false;
+    private bool isInEscapeMenu = false;
 
+    public static PlayerSetup localPlayerSetup;
     //Score to be kept track of on server
     [SyncVar(hook = nameof(scoreChange))] int myScore = 0;
 
@@ -31,13 +36,47 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
-    //This code is only for letting monsters spawn while waiting
-    private void Update()
+    //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
+    public void EnterUIMenu()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        isInMenu = true;
+        mouseLook.UnlockMouse();
+        playerWeapon.weapon.DisableShooting();
+    }
+
+    public void ExitUIMenu()
+    {
+        isInMenu = false;
+        if (!isInEscapeMenu)
         {
-            enemySpawner.AllowSpawns();
-            playerUI.UpdateWaitingPrompt();
+            mouseLook.LockMouse();
+            playerWeapon.weapon.EnableShooting();
+        }  
+    }
+
+    public void EnterEscapeMenu()
+    {
+        isInEscapeMenu = true;
+        mouseLook.UnlockMouse();
+        playerWeapon.weapon.DisableShooting();
+    }
+
+    public void ExitEscapeMenu()
+    {
+        isInEscapeMenu = false;
+        if (!isInMenu)
+        {
+            mouseLook.LockMouse();
+            playerWeapon.weapon.EnableShooting();
+        }
+    }
+
+    //Disables or enabled components in components to disable
+    public void SetComponents(bool isEnabled)
+    {
+        for (int i = 0; i < componentsToDisable.Length; i++)
+        {
+            componentsToDisable[i].enabled = isEnabled;
         }
     }
     /*Code for connection and disconnection of clients*/
@@ -47,7 +86,21 @@ public class PlayerSetup : NetworkBehaviour
     //Set local variables in enemySpawner
     private void LocalPlayerSpawned()
     {
+        
         mouseLook = GetComponentInChildren<MouseLook>();
+        playerWeapon = GetComponent<PlayerWeapon>();
+        if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
+        {
+            SetComponents(false);
+            for (int i = 0; i < gameObjectsToDisable.Length; i++)
+            {
+                gameObjectsToDisable[i].SetActive(false);
+            }
+            GetComponent<MeshRenderer>().enabled = false;
+            GetComponent<CharacterController>().enabled = false;
+            return;
+        }
+        localPlayerSetup = this;
         sceneCamera = Camera.main;
         if (sceneCamera)
         {
@@ -66,17 +119,20 @@ public class PlayerSetup : NetworkBehaviour
     private void AwayPlayerSpawned()
     {
         
-        for (int i = 0; i < componentsToDisable.Length; i++)
-        {
-            componentsToDisable[i].enabled = false;
-        }
+        SetComponents(false);
         for (int i = 0; i < gameObjectsToDisable.Length; i++)
         {
             gameObjectsToDisable[i].SetActive(false);
-        }
+        }       
         this.gameObject.layer = 0;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CharacterController>().enabled = false;
+        if (SceneManager.GetActiveScene().name == "TempSnipeToWin")
+        {
+            //Currently unimplemented snipe to win scene
+            //So do nothing
+            return;
+        }
         playerUI.UpdateAwayScore(0);
         enemySpawner.awayPlayer = this;
         enemySpawner.awayUI = playerUI;
@@ -84,13 +140,19 @@ public class PlayerSetup : NetworkBehaviour
     }
     private void OnDisable()
     {
+        if (!enemySpawner)
+        {
+            return;
+        }
         if (sceneCamera)
         {
             sceneCamera.gameObject.SetActive(true);
         }
         if (isLocalPlayer)
         {
+            
             enemySpawner.localPlayerReady = false;
+            localPlayerSetup = null;
             Cursor.lockState = CursorLockMode.None;
         }
         else
@@ -147,12 +209,10 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
-            mouseLook.LockMouse();
-            mouseLook.EnableRotation();
-            for (int i = 0; i < componentsToDisable.Length; i++)
-            {
-                componentsToDisable[i].enabled = true;
-            }
+            //mouseLook.LockMouse();
+            //mouseLook.EnableRotation();
+            SetComponents(true);
+            GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetScore();
             enemySpawner.LocalPlayAgain();
         }
@@ -229,7 +289,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             componentsToDisable[i].enabled = false;
         }
-        mouseLook.StopRotation();
+        //mouseLook.StopRotation();
         NetworkLocalDeath();
     }
 }

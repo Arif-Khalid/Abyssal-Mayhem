@@ -96,6 +96,10 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateAmmoText(int currentAmmo, int maxAmmo)
     {
+        if(ammoText == null)
+        {
+            return;
+        }
         if(maxAmmo == -1)
         {
             ammoText.text = currentAmmo.ToString() + "/∞";

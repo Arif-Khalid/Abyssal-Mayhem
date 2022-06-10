@@ -1,4 +1,3 @@
-//using System.Diagnostics;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,13 +9,7 @@ public class EnemyAI : MonoBehaviour
 
     public Transform player;
 
-    public Collider enemyFeet;
-
     public LayerMask whatIsPlayer;
-
-    public LayerMask whatIsSelf;
-
-    public Rigidbody enemyRigidBody;
 
     //Attacking
     public float timeBetweenAttacks;
@@ -25,30 +18,23 @@ public class EnemyAI : MonoBehaviour
     //States
     public float attackRange;
     public bool playerInAttackRange;
-    public bool isNavMeshAgentEnabled = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyRigidBody = GetComponent<Rigidbody>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     protected virtual void LateUpdate()
     {
-        if (isNavMeshAgentEnabled)
+        if (player)
         {
-            if (player)
-            {
-                //Check for attack range
-                playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
+            //Check for attack range
+            playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-                if (!playerInAttackRange) ChasePlayer();
-                if (playerInAttackRange) AttackPlayer();
-            }
-        } else {
-            BounceBackRedo();
+            if (!playerInAttackRange) ChasePlayer();
+            if (playerInAttackRange) AttackPlayer();
         }
     }
 
@@ -88,32 +74,6 @@ public class EnemyAI : MonoBehaviour
     public virtual void ChasePlayer()
     { 
         agent.SetDestination(player.position);
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
-    }
-
-    public void BounceBackUndo(Vector3 direction)
-    {
-        Invoke("SetBoolean", 0.05f);
-        agent.enabled = false;
-        enemyFeet.enabled = true;
-        enemyRigidBody.isKinematic = false;
-        Debug.Log("Undone");
-    }
-
-    public void BounceBackRedo()
-    {
-        if(enemyRigidBody.velocity.magnitude <= 0.00001)
-        {
-            isNavMeshAgentEnabled = true;
-            enemyFeet.enabled = false;
-            agent.enabled = true;
-            enemyRigidBody.isKinematic = true;
-            Debug.Log("Redone");
-        }
-    }
-
-    public void SetBoolean()
-    {
-        isNavMeshAgentEnabled  = false;
+        transform.LookAt(player);
     }
 }

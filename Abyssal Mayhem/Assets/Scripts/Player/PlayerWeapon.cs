@@ -43,7 +43,7 @@ public class PlayerWeapon : MonoBehaviour
         if (weapon)
         {
             ShiftAimTransform();
-            if (!weapon.isLaser && Input.GetKeyDown(KeyCode.Mouse0))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Debug.Log("Firing weapon");
                 weapon.Fire();

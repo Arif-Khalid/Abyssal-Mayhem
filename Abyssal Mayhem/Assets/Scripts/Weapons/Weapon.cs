@@ -9,14 +9,19 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject bullet; //Reference to bullet prefab
     [SerializeField] public int maxAmmo = -1; //Set to -1 when infinite ammo
     [SerializeField] int clipSize = 10; //Size of weapon clip
-    int currentAmmo; //current ammo in weapon
-    PlayerUI playerUI;
+    protected int currentAmmo; //current ammo in weapon
+    protected PlayerUI playerUI;
     public Animator animator;
     Vector3 dir;
-    private bool closeToWall = false;
+    protected bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
-    private bool allowShooting = true;
-    private bool reloading = false;
+    protected bool allowShooting = true;
+    protected bool reloading = false;
+    [SerializeField]public bool isLaser;
+
+    public ParticleSystem muzzleFlash;
+    public Light muzzleLight;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +30,14 @@ public class Weapon : MonoBehaviour
         animator = GetComponent<Animator>();
         currentAmmo = clipSize;
         playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        ChildStart();
     }
 
+    //Start function to be overwriten by children should anything be needed to be added to start
+    protected virtual void ChildStart()
+    {
+        //To be overriden
+    }
     private void Update()
     {
         if(Physics.CheckSphere(playerWeapon.weaponSlot.position, 0.5f, whatIsNotPlayer))
@@ -43,12 +54,19 @@ public class Weapon : MonoBehaviour
                 NotCloseToWall();
             }      
         }
+        ChildUpdate();
+    }
+
+    //Function to be overriden by children should anything be needed to be called in update
+    protected virtual void ChildUpdate()
+    {
+        //To be overriden
     }
 
     //Start reloading weapon
     public void Reload()
     {
-        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left
+        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left or nothing to reload
         {
             return;
         }
@@ -85,8 +103,10 @@ public class Weapon : MonoBehaviour
     }
     //Fire a bullet
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
-    public void Fire()
+    public virtual void Fire()
     {
+        muzzleFlash.Play();
+        StartCoroutine(StartLight());
         if (!allowShooting || reloading)
         {
             return;
@@ -110,6 +130,12 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public IEnumerator StartLight()
+    {
+        muzzleLight.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        muzzleLight.enabled = false;
+    }
     protected virtual void OutOfAmmo()
     {
         //To be overriden in inherited class

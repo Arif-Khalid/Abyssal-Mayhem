@@ -9,8 +9,5 @@ public class PistolBullet : Bullet
     //Damages enemies on hit
     //Is destroyed on hit
     //Expires(destroyed) after a certain time of no collision
-    public override void HitSomething(Collider other)
-    {
-        base.HitSomething(other);
-    }
+
 }

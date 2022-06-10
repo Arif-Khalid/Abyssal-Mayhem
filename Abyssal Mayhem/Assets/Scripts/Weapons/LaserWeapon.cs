@@ -55,14 +55,13 @@ public class LaserWeapon : Weapon
                         Reload();
                         return;
                     }
-                    muzzleFlash.Play();
-                    StartCoroutine(StartLight());
+                    muzzleAnimator.Play("MuzzleFlashHomemade");
                     currentAmmo -= 1;
                     playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
                     fireTimer = 0;
                     laserLine.SetPosition(0, laserOrigin.position);
                     Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-                    Ray ray = new Ray(rayOrigin, Camera.main.transform.forward);
+                    Ray ray = new(rayOrigin, Camera.main.transform.forward);
                     RaycastHit blockHit;
                     Vector3 laserEndPos = ray.GetPoint(gunRange);
                     float newRange;
@@ -80,15 +79,19 @@ public class LaserWeapon : Weapon
                     laserLine.SetPosition(1, laserEndPos);
                     StartCoroutine(ShootLaser());
                     if (hitInfos != null)
-                    {                      
+                    {
+                        List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
                         foreach (RaycastHit hitInfo in hitInfos)
                         {
-                            if (hitInfo.collider.GetComponent<EnemyHealth>())
+                            EnemyHealth enemyHealth = hitInfo.transform.root.GetComponent<EnemyHealth>();
+                            if (!enemyHealths.Contains(enemyHealth))
                             {
-                                HitSomething(hitInfo.collider);
-                                Debug.Log("Railgun Hitted " + hitInfo.collider.name);        
-  
+                                enemyHealths.Add(enemyHealth);
                             }
+                        }
+                        foreach (EnemyHealth enemyHealth in enemyHealths)
+                        {
+                            DealDamage(enemyHealth);
                         }
                     }
                 }
@@ -104,9 +107,8 @@ public class LaserWeapon : Weapon
         }
     }
     
-    public virtual void HitSomething(Collider other)
+    public virtual void DealDamage(EnemyHealth enemyHealth)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(laserDamage);

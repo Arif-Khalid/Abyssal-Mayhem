@@ -43,29 +43,45 @@ public class RocketBullet : Bullet
 
     protected override void EndOfExistence()
     {
-        Explode();
+        if (!hasBulletCollided) { Explode(); }
     }
     private void Explode()
     {
+        counter++;
+        Debug.Log(counter);
         //Instantiate explosion
         if(explosion != null) 
         explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
 
         //Check for enemies
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
-        for (int i = 0; i < enemies.Length; i++)
+        List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            EnemyHealth enemyHealth = enemies[i].transform.root.GetComponent<EnemyHealth>();
+            if (!enemyHealths.Contains(enemyHealth))
+            {
+                enemyHealths.Add(enemyHealth);
+            }
+        }
+        foreach(EnemyHealth enemyHealth in enemyHealths)
+        {
+            enemyHealth.TakeDamage(explosionDamage);
+            enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
+            enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+        }
+        /*for (int i = 0; i < enemies.Length; i++)
         {
             //Get component of enemy and call Take Damage
             if(enemies[i].GetComponent<EnemyHealth>())
             {
-                Vector3 dir = enemies[i].transform.position - transform.position;
                 enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
-                enemies[i].GetComponent<EnemyAI>().BounceBackUndo(dir * explosionForce);
+                enemies[i].GetComponent<EnemyAI>().BounceBackUndo();
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
 
             }
                 
-        }
+        }*/
 
         //Add a little delay, just to make sure everything works fine
         Invoke("Delay", 0.05f);
@@ -76,8 +92,9 @@ public class RocketBullet : Bullet
     {
         Destroy(gameObject);
     }
-    public override void HitSomething(Collider other)
+    public override void DealDamage(Collider other)
     {
+        damageDealt = true;
         Explode();
     }
 }

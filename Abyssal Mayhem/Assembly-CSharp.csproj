@@ -63,6 +63,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteammusic.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\MatchmakingTypes\gameserveritem_t.cs" />
     <Compile Include="Assets\Scripts\Weapons\WeaponNew.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\WeaponIK.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\SteamCallbacks.cs" />
     <Compile Include="Assets\Scripts\Weapons\RocketWeapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamapps.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Weapons\RifleWeapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamHTTP\HTTPCookieContainerHandle.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\BidirectionalDictionary.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\DebugDrawline.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamparentalsettings.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\LegacyServer.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamnetworking.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamClient\SteamAPIWarningMessageHook_t.cs" />
     <Compile Include="Assets\Scripts\Player\Player movement\MouseLook.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamTypes\ManifestId_t.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\AssassinAI.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamTypes\RTime32.cs" />
     <Compile Include="Assets\Scripts\TestingNetworking\CustomNetworkManager.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamRemoteStorage\PublishedFileId_t.cs" />
@@ -164,6 +167,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerUI.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\JuggernautAI.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\MatchmakingTypes\servernetadr_t.cs" />
+    <Compile Include="Assets\AssaultCyborg\scripts\SmoothCameraOrbit.cs" />
     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamTypes\SteamAPICall_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamapplist.cs" />
@@ -176,6 +180,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamInventory\SteamInventoryResult_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamremoteplay.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\LegacyCommon.cs" />
+    <Compile Include="Assets\AssaultCyborg\scripts\Player.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\Steam_api_common\HSteamUser.cs" />
     <Compile Include="Assets\Scripts\Player\Player movement\PlayerMovement.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworkingSockets\ISteamNetworkingConnectionSignaling.cs" />
@@ -191,6 +196,7 @@
     <Compile Include="Assets\Scripts\Player\ChatUI.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworkingTypes\HSteamListenSocket.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteaminventory.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\DebugDrawSphere.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\ISteamMatchmakingResponses.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamhttp.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworking\SNetSocket_t.cs" />
@@ -210,12 +216,6 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\AssaultCyborg\scripts\SmoothCameraOrbit.cs" />
-    <Compile Include="Assets\AssaultCyborg\scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\DebugDrawline.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\DebugDrawSphere.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\WeaponIK.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\AssassinAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

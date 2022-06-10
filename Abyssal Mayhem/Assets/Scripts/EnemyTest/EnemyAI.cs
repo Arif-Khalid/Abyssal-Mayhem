@@ -14,8 +14,6 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsPlayer;
 
-    public LayerMask whatIsSelf;
-
     public Rigidbody enemyRigidBody;
 
     //Attacking
@@ -91,12 +89,12 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
     }
 
-    public void BounceBackUndo(Vector3 direction)
+    public void BounceBackUndo()
     {
-        Invoke("SetBoolean", 0.05f);
-        agent.enabled = false;
-        enemyFeet.enabled = true;
-        enemyRigidBody.isKinematic = false;
+        //Invoke("SetBoolean", 0.05f);
+        //agent.enabled = false;
+        //enemyFeet.enabled = true;
+        //enemyRigidBody.isKinematic = false;
         Debug.Log("Undone");
     }
 

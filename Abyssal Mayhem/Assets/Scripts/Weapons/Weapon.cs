@@ -12,15 +12,13 @@ public class Weapon : MonoBehaviour
     protected int currentAmmo; //current ammo in weapon
     protected PlayerUI playerUI;
     public Animator animator;
+    public Animator muzzleAnimator;
     Vector3 dir;
     protected bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
     protected bool allowShooting = true;
     protected bool reloading = false;
     [SerializeField]public bool isLaser;
-
-    public ParticleSystem muzzleFlash;
-    public Light muzzleLight;
 
     // Start is called before the first frame update
     void Start()
@@ -105,8 +103,7 @@ public class Weapon : MonoBehaviour
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public virtual void Fire()
     {
-        muzzleFlash.Play();
-        StartCoroutine(StartLight());
+        muzzleAnimator.Play("MuzzleFlashHomemade");
         if (!allowShooting || reloading)
         {
             return;
@@ -130,12 +127,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public IEnumerator StartLight()
-    {
-        muzzleLight.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        muzzleLight.enabled = false;
-    }
     protected virtual void OutOfAmmo()
     {
         //To be overriden in inherited class

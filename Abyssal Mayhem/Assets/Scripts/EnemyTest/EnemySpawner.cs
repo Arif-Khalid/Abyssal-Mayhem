@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] int[] juggernautSpawns;
     [SerializeField] GameObject assassin;
     [SerializeField] int[] assassinSpawns;
+    public List<Transform> assassinSpawnPoints = new List<Transform>();
     [SerializeField] Transform[] patrolTransforms;
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
@@ -74,30 +75,69 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
-        GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
-        spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
-        EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
-        enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
-        enemyHealth.enemySpawner = this;
-        spawnedMonsters.Add(spawnedMonster);
+        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
+        {
+            if (assassinSpawnPoints.Count.Equals(0))
+            {
+                return;
+            }
+            int spawnID = Random.Range(0, assassinSpawnPoints.Count - 1); //Choose a random spawnPoint
+            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
+            spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
+            EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+            enemyHealth.enemySpawner = this;
+            enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
+            assassinSpawnPoints.Remove(assassinSpawnPoints[spawnID]);
+            spawnedMonsters.Add(spawnedMonster);
+            //Do different stuff for assassin
+            WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
+            weaponIK.patrolTransforms = patrolTransforms;
+        }
+        else //spawning something else
+        {
+            GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+            spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
+            EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+            enemyHealth.enemySpawner = this;
+            spawnedMonsters.Add(spawnedMonster);
+        }       
     }
 
     //Spawns a mob at one of the predefined spawn locations(chosen randomly)
     private void SpawnMonster(EnemySpawner.MonsterID monsterID)
     {
-        int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
-        GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
-        spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
-        EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
-        enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
-        enemyHealth.enemySpawner = this;
-        spawnedMonsters.Add(spawnedMonster);
-        if(monsterID == EnemySpawner.MonsterID.assassin)
+        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
         {
+            if (assassinSpawnPoints.Count.Equals(0)) //no spawn points available
+            {
+                return;
+            }
+            int spawnID = Random.Range(0, assassinSpawnPoints.Count - 1); //Choose a random spawnPoint
+            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
+            spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
+            EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+            enemyHealth.enemySpawner = this;
+            enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
+            assassinSpawnPoints.Remove(assassinSpawnPoints[spawnID]);
+            spawnedMonsters.Add(spawnedMonster);
             //Do different stuff for assassin
             WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
             weaponIK.patrolTransforms = patrolTransforms;
         }
+        else //spawning anything else
+        {
+            int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
+            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+            spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
+            EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
+            enemyHealth.enemySpawner = this;
+            spawnedMonsters.Add(spawnedMonster);
+        }
+        
     }
         private void ResetSpawner()
     {
@@ -235,7 +275,10 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    
+    public void AddtoAssassinSpawnPoints(Transform assassinSpawnPoint)
+    {
+        assassinSpawnPoints.Add(assassinSpawnPoint);
+    }
     public void RemoveFromList(GameObject spawnedMonster)
     {
         spawnedMonsters.Remove(spawnedMonster);

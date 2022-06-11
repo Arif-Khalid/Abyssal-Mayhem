@@ -20,7 +20,9 @@ public class EnemyHealth : MonoBehaviour
     PlayerSetup playerSetup; //Reference to player setup script
     public EnemySpawner enemySpawner; //Reference to enemy spawner
     public EnemySpawner.MonsterID monsterID;
+    public Transform startingTransform; //assigned when spawned to know which spawnpoint already has assassin
 
+    [SerializeField] bool isAssassin = false;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;
@@ -70,6 +72,10 @@ public class EnemyHealth : MonoBehaviour
 
     public void Death() //called when an enemy dies
     {
+        if (isAssassin)
+        {
+            enemySpawner.AddtoAssassinSpawnPoints(startingTransform);
+        }
         enemySpawner.RemoveFromList(this.gameObject);
         Destroy(this.gameObject);
     }

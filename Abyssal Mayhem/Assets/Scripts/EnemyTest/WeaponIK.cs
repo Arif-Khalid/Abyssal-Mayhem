@@ -28,15 +28,21 @@ public class WeaponIK : MonoBehaviour
     public float idleAfterSeeingPlayer = 2f;
     public float idleTimer = 0.0f;
 
-    EnemyAI assassinAI;
+    private bool isAssassinStopped = true;
+    AssassinAI assassinAI;
     Vector3 lastTargetTransformPosition;
+    LineRenderer laserSight;
+    public Transform laserSightOrigin;
+    public LayerMask playerAndObstacles;
     
     // Start is called before the first frame update
     void Start()
     {
-        assassinAI = GetComponent<EnemyAI>();
+        assassinAI = GetComponent<AssassinAI>();
+        laserSight = GetComponent<LineRenderer>();
     }
 
+    //Handles target that goes too close to assassin or at too great an angle preventing weird mesh issues
     Vector3 GetTargetPosition()
     {
         Vector3 targetDirection = targetTransform.position - aimTransform.position;
@@ -57,17 +63,19 @@ public class WeaponIK : MonoBehaviour
         Vector3 direction = Vector3.Slerp(targetDirection, aimDirection, blendOut);
         return aimTransform.position + direction;
     }
-    // Update is called once per frame
+    
+    //Assassin patrols if player is out of sight and aims at player if in sight
     void LateUpdate()
     {
-        if(targetTransform == null)
+        if(targetTransform == null || !isAssassinStopped)
         {
+            //UpdateLaser();
             return;
         }
         if (isPlayerInSight)
         {
             backToPatrolWeight = 0.0f;
-            if(aimAtPlayerWeight <= 0.0f)
+            if(aimAtPlayerWeight >= 1.0f)
             {
                 //Don't do anything
             }
@@ -101,9 +109,8 @@ public class WeaponIK : MonoBehaviour
                     {
                         patrolWeight = 0.0f;
                     }
-                }
-            
-            }   
+                }         
+            }
         }       
         
         Vector3 targetPosition = GetTargetPosition();
@@ -114,9 +121,15 @@ public class WeaponIK : MonoBehaviour
                 float boneWeight = boneWeights[i] * weight;
                 AimAtTarget(boneTransforms[i], targetPosition, boneWeight);
             }
-        }       
+        }
+        if(aimAtPlayerWeight <= 0.0f)
+        {
+            assassinAI.isPatrolling = true;
+            UpdateLaser();
+        }
     }
 
+    //Aims assassin's weapon at target
     private void AimAtTarget(Transform bone, Vector3 targetPosition, float weight)
     {
         Vector3 aimDirection = aimTransform.forward;
@@ -130,6 +143,8 @@ public class WeaponIK : MonoBehaviour
     {
         targetTransform = target;
     }
+
+    //Called to check when assassin is aiming at player
     public bool CanAssassinShoot()
     {
         isPlayerInSight = true;
@@ -152,6 +167,7 @@ public class WeaponIK : MonoBehaviour
         isPlayerInSight = false;
     }
 
+    //Patrolling is the aim interpolating between two predefined targets
     private void Patrol()
     {
         if(patrolTransforms == null)
@@ -177,6 +193,32 @@ public class WeaponIK : MonoBehaviour
             }
             patrolWeight -= Time.deltaTime / patrolScalingFactor;
             targetTransform.position = Vector3.Lerp(patrolTransforms[0].position, patrolTransforms[1].position, patrolWeight);
+        }
+    }
+
+    //Functions called by assassinAI script to signal when assassin is moving to stop aiming
+    public void AssassinMoving()
+    {
+        isAssassinStopped = false;
+    }
+
+    public void AssassinStopped()
+    {
+        isAssassinStopped = true;
+    }
+
+    //Update laser sight position based on raycast from origin(useful when patrolling)
+   private void UpdateLaser()
+    {
+        laserSight.SetPosition(0, laserSightOrigin.position);
+        RaycastHit hit;
+        if (Physics.Raycast(laserSightOrigin.position, laserSightOrigin.forward, out hit, 200, playerAndObstacles))
+        {
+            laserSight.SetPosition(1, hit.point);
+        }
+        else
+        {
+            laserSight.SetPosition(1, (laserSightOrigin.position + laserSightOrigin.forward) * 200);
         }
     }
 }

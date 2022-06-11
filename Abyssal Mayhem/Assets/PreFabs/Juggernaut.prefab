@@ -778,6 +778,7 @@ MonoBehaviour:
   fill: {fileID: 366962030}
   cameraTransform: {fileID: 0}
   enemySpawner: {fileID: 0}
+  monsterID: 1
 --- !u!195 &1889445095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -814,17 +815,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 0}
+  enemyFeet: {fileID: 0}
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  playerAndObstacles:
-    serializedVersion: 2
-    m_Bits: 81
+  enemyRigidBody: {fileID: 0}
   timeBetweenAttacks: 0.1
+  alreadyAttacked: 0
   attackRange: 20
   playerInAttackRange: 0
+  isNavMeshAgentEnabled: 1
   enemyBullet: {fileID: 6014419872463244055, guid: e540bcb7f2a9f714d827ef70ebf9603f,
     type: 3}
   bulletPoints:
   - {fileID: 4139786580269972605}
   - {fileID: 9029156404637758236}
+  playerAndObstacles:
+    serializedVersion: 2
+    m_Bits: 81

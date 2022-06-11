@@ -47,8 +47,6 @@ public class RocketBullet : Bullet
     }
     private void Explode()
     {
-        counter++;
-        Debug.Log(counter);
         //Instantiate explosion
         if(explosion != null) 
         explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
@@ -68,7 +66,7 @@ public class RocketBullet : Bullet
         {
             enemyHealth.TakeDamage(explosionDamage);
             enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
-            enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            //enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
         }
         /*for (int i = 0; i < enemies.Length; i++)
         {

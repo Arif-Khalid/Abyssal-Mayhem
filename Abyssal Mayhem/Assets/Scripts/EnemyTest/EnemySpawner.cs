@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class EnemySpawner : MonoBehaviour
 {
     //Variables for spawning monsters
     [SerializeField] Transform[] spawnPoints;
-    [SerializeField] GameObject monster;
+    [SerializeField] GameObject walker;
+    [SerializeField] GameObject juggernaut;
+    [SerializeField] int[] juggernautSpawns;
+    [SerializeField] GameObject assassin;
+    [SerializeField] int[] assassinSpawns;
+    [SerializeField] Transform[] patrolTransforms;
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
@@ -31,7 +37,14 @@ public class EnemySpawner : MonoBehaviour
     List<GameObject> spawnedMonsters = new List<GameObject>();
 
     private bool isSinglePlayer = false;
-
+    public enum MonsterID { walker, juggernaut, assassin };
+    public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
+    private void Start()
+    {
+        Monsters.Add(EnemySpawner.MonsterID.walker, walker);
+        Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernaut);
+        Monsters.Add(EnemySpawner.MonsterID.assassin, assassin);
+    }
     //Code for allowing monsters to spawn while waiting for player
     public void AllowSpawns()
     {
@@ -41,28 +54,28 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
-            AllowSpawns();
-            localUI.UpdateWaitingPrompt();
+            //AllowSpawns();
+            //localUI.UpdateWaitingPrompt();
+            awayPlayerReadyUp();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
         if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
         {
-            SpawnMonster();
+            SpawnMonster(EnemySpawner.MonsterID.walker);
             alreadySpawned = true;
             Invoke(nameof(ResetSpawner), timeBetweenSpawn);
         }
     }
     
     //Spawns a mob at a specific vector3 position with the color blue
-    public void SpawnMonsterAtPoint(Vector3 position)
+    public void SpawnMonsterAtPoint(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
         if (!localPlayerReady)
         {
             return;
         }
-        GameObject spawnedMonster = Instantiate<GameObject>(monster, position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+        GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
-        spawnedMonster.GetComponent<Renderer>().material.color = Color.blue;
         EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
         enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
         enemyHealth.enemySpawner = this;
@@ -70,15 +83,21 @@ public class EnemySpawner : MonoBehaviour
     }
 
     //Spawns a mob at one of the predefined spawn locations(chosen randomly)
-    private void SpawnMonster()
+    private void SpawnMonster(EnemySpawner.MonsterID monsterID)
     {
         int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
-        GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(monster, spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+        GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
         spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
         EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
         enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
         enemyHealth.enemySpawner = this;
         spawnedMonsters.Add(spawnedMonster);
+        if(monsterID == EnemySpawner.MonsterID.assassin)
+        {
+            //Do different stuff for assassin
+            WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
+            weaponIK.patrolTransforms = patrolTransforms;
+        }
     }
         private void ResetSpawner()
     {
@@ -119,7 +138,6 @@ public class EnemySpawner : MonoBehaviour
     void StartNextRound()
     {
         KillAll();
-        alreadySpawned = false;
         Debug.Log("next round started");
         round += 1;
         if(round >= Quotas.Length)
@@ -132,8 +150,19 @@ public class EnemySpawner : MonoBehaviour
         metLocalQuota = false;
         localPlayer.GetComponent<PlayerSetup>().ResetScore(); //Resets scores
         newRoundStarted = false; //allows new round to be started
+        SpawnSpecial();
+        alreadySpawned = false;
     }
 
+    //Spawns all special monsters for that round
+    void SpawnSpecial()
+    {
+        //spawn juggernauts
+        for(int i = 0; i < juggernautSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.juggernaut); }
+        //spawn assassins
+        //yet to create special spawnpoints for assassins on towers
+        for(int i = 0; i < assassinSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.assassin); }
+    }
     /*Code for score updates*/
 
     //Checks if local score >= Quota and starts new round if quota for both players have been reached

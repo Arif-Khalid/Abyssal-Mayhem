@@ -169,9 +169,9 @@ public class PlayerSetup : NetworkBehaviour
     [Command]
     //Function to call when player killed an enemy
     //Increases player score and spawns enemy for opponent
-    public void killedAnEnemy(Vector3 position)
+    public void killedAnEnemy(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
-        spawnEnemy(position);
+        spawnEnemy(position, monsterID);
         myScore += 1;
     }
 
@@ -232,7 +232,7 @@ public class PlayerSetup : NetworkBehaviour
     }
     [ClientRpc]
     //Spawns an enemy for the player that didn't kill it
-    public void spawnEnemy(Vector3 position)
+    public void spawnEnemy(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
         if (isLocalPlayer)
         {
@@ -240,7 +240,7 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-            enemySpawner.SpawnMonsterAtPoint(position);
+            enemySpawner.SpawnMonsterAtPoint(position, monsterID);
         }
     }
     [ClientRpc]

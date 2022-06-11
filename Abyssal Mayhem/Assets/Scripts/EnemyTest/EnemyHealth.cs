@@ -19,6 +19,7 @@ public class EnemyHealth : MonoBehaviour
     public Transform cameraTransform; //Reference to player camera
     PlayerSetup playerSetup; //Reference to player setup script
     public EnemySpawner enemySpawner; //Reference to enemy spawner
+    public EnemySpawner.MonsterID monsterID;
 
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
@@ -63,7 +64,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void DeathByPlayer() //called when an enemy dies by a player
     {
-        playerSetup.killedAnEnemy(transform.position);
+        playerSetup.killedAnEnemy(transform.position, monsterID);
         Death();
     }
 

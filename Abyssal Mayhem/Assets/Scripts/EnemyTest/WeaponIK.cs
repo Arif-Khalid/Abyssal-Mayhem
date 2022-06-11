@@ -8,7 +8,7 @@ public class WeaponIK : MonoBehaviour
     public Transform targetTransform;
     public Transform aimTransform;
     public Transform[] boneTransforms;
-    public Transform[] patrolTransforms = new Transform[2];
+    public Transform[] patrolTransforms;
     public float[] boneWeights;
     [Range(0, 1)]
     public float weight = 1.0f;
@@ -154,6 +154,10 @@ public class WeaponIK : MonoBehaviour
 
     private void Patrol()
     {
+        if(patrolTransforms == null)
+        {
+            return;
+        }
         if (isPatrolRight)
         {
             if (patrolWeight >= 1.0f)

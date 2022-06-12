@@ -19,6 +19,10 @@ public class Weapon : MonoBehaviour
     protected bool allowShooting = true;
     protected bool reloading = false;
     [SerializeField]public bool isLaser;
+    [SerializeField] bool isRocket;
+    public bool isFiring = false;
+    public SkinnedMeshRenderer rocketObject;
+    public string weaponName;
 
     // Start is called before the first frame update
     void Start()
@@ -40,17 +44,11 @@ public class Weapon : MonoBehaviour
     {
         if(Physics.CheckSphere(playerWeapon.weaponSlot.position, 0.5f, whatIsNotPlayer))
         {
-            if (!closeToWall)
-            {
-                CloseToWall();
-            }
+            CloseToWall();
         }
         else
         {
-            if (closeToWall)
-            {
-                NotCloseToWall();
-            }      
+            NotCloseToWall();     
         }
         ChildUpdate();
     }
@@ -64,6 +62,10 @@ public class Weapon : MonoBehaviour
     //Start reloading weapon
     public void Reload()
     {
+        if(isFiring || reloading)
+        {
+            return;
+        }
         if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left or nothing to reload
         {
             return;
@@ -75,7 +77,7 @@ public class Weapon : MonoBehaviour
         reloading = true;
         //Play some animation that calls reload finish on its last frame
         //For now just put ReloadFinish here
-        ReloadFinish();
+        animator.Play(weaponName +"Reload");
     }
 
     //Called at the end of the reload animation
@@ -102,9 +104,8 @@ public class Weapon : MonoBehaviour
     //Fire a bullet
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public virtual void Fire()
-    {
-        muzzleAnimator.Play("MuzzleFlashHomemade");
-        if (!allowShooting || reloading)
+    {     
+        if (!allowShooting || reloading || isFiring)
         {
             return;
         }
@@ -120,13 +121,18 @@ public class Weapon : MonoBehaviour
                 Reload();
                 return;
             }
+            muzzleAnimator.Play("MuzzleFlashHomemade");
+            animator.Play(weaponName + "Fire");
             currentAmmo -= 1;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-            dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
-            Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
         }
     }
 
+    protected virtual void FireBullet()
+    {
+        dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
+        Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+    }
     protected virtual void OutOfAmmo()
     {
         //To be overriden in inherited class
@@ -150,8 +156,22 @@ public class Weapon : MonoBehaviour
     }
 
     //Called in empty initial state of weapon animation
-    public void EnableShooting()
+    public virtual void EnableShooting()
     {
         allowShooting = true;
+    }
+
+    public void StartFiring()
+    {
+        isFiring = true;
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+        if (isLaser)
+        {
+            animator.Play("AimDownSight", 0, 1f);
+        }
     }
 }

@@ -439,6 +439,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1698161259195681005}
+  - component: {fileID: 1496212362739494471}
   m_Layer: 0
   m_Name: WeaponSlot
   m_TagString: Untagged
@@ -458,10 +459,30 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 305564813336205656}
+  - {fileID: 8423169884479539940}
   m_Father: {fileID: 1698161261116011770}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1496212362739494471
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698161259195681004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ec530dfbb3d0c142b64a3303a1afcbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1698161259452351255
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +645,7 @@ MonoBehaviour:
   speed: 12
   gravity: -18
   jumpHeight: 1
+  weaponSlotAnimator: {fileID: 1496212362739494471}
 --- !u!114 &1698161260317292003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3943,7 +3965,7 @@ MonoBehaviour:
   m_isRichTextEditingAllowed: 0
   m_LineLimit: 0
   m_InputValidator: {fileID: 0}
---- !u!1001 &855858673169664509
+--- !u!1001 &8878872057842997825
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -4012,9 +4034,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 124047c7cbfa637428d8c3a70db0c13e, type: 3}
---- !u!4 &305564813336205656 stripped
+--- !u!4 &8423169884479539940 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1143082498682802341, guid: 124047c7cbfa637428d8c3a70db0c13e,
     type: 3}
-  m_PrefabInstance: {fileID: 855858673169664509}
+  m_PrefabInstance: {fileID: 8878872057842997825}
   m_PrefabAsset: {fileID: 0}

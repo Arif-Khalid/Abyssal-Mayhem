@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 12f;
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float jumpHeight = 2f;
+    [SerializeField] Animator weaponSlotAnimator;
 
     Vector3 velocity;
     Vector3 move;
@@ -20,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
     {
         HorizontalMovement();
         VerticalMovement();
-        controller.Move(move * Time.deltaTime);        
+        controller.Move(move * Time.deltaTime);
+        weaponSlotAnimator.SetFloat("WalkSpeed", controller.velocity.magnitude / speed ); //Set speed of walking animation
     }
 
     //Movement horizontally locally
@@ -38,19 +40,43 @@ public class PlayerMovement : MonoBehaviour
         }      
     }
     //Movement vertically with gravity and jumping
+    //Animator for FPS weapon movements
     private void VerticalMovement()
     {
         if (isGrounded)
         {
+            weaponSlotAnimator.SetBool("isGrounded", true);
             velocity.y = -2f;
             if (Input.GetButtonDown("Jump") && !isMovementDisabled)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                float currentAnimVelocity = weaponSlotAnimator.GetFloat("VelocityY");
+                //Prevent snapping by not allowing an increase of more than 2 in animator velocity
+                if (velocity.y - currentAnimVelocity > 2)
+                {
+                    weaponSlotAnimator.SetFloat("VelocityY", currentAnimVelocity + 2); //Set velocity for animations
+                }
+                else
+                {
+                    weaponSlotAnimator.SetFloat("VelocityY", velocity.y); //Set velocity for animation
+                }              
+                weaponSlotAnimator.SetBool("isGrounded", false); //Start rising and falling blendtree
             }
         }
         else
         {
             velocity.y += gravity * Time.deltaTime;
+            float currentAnimVelocity = weaponSlotAnimator.GetFloat("VelocityY");
+            //Prevent snapping
+            if (velocity.y - currentAnimVelocity > 2)
+            {
+                weaponSlotAnimator.SetFloat("VelocityY", currentAnimVelocity + 2);
+            }
+            else
+            {
+                weaponSlotAnimator.SetFloat("VelocityY", velocity.y); //Set velocity for animations
+            }
+            weaponSlotAnimator.SetBool("isGrounded", false); //Return to walking animations
         }
 
         move += velocity;

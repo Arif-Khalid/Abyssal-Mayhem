@@ -9,6 +9,7 @@ public class RocketBullet : Bullet
     public GameObject explosion; 
     public GameObject explosionInstance;
     public LayerMask whatIsEnemies;
+    public LayerMask whatIsPlayer;
 
     //Stats
     [Range(0f,1f)]
@@ -41,7 +42,7 @@ public class RocketBullet : Bullet
         rigidBody.useGravity = useGravity;
     }
 
-    protected override void EndOfExistence()
+    public override void EndOfExistence()
     {
         if (!hasBulletCollided) { Explode(); }
     }
@@ -66,7 +67,18 @@ public class RocketBullet : Bullet
         {
             enemyHealth.TakeDamage(explosionDamage);
             enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
-            //enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+        }
+        //Check for player
+        Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);
+        if(players!= null)
+        {
+            for(int i = 0; i < players.Length; i++)
+            {
+                PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
+                Vector3 dir = players[i].transform.position - transform.position;
+                playerMovement.AddImpact(dir, explosionForce * 10);
+            }
         }
         /*for (int i = 0; i < enemies.Length; i++)
         {

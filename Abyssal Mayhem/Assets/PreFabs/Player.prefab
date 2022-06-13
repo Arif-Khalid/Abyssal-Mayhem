@@ -646,6 +646,7 @@ MonoBehaviour:
   gravity: -18
   jumpHeight: 1
   weaponSlotAnimator: {fileID: 1496212362739494471}
+  mass: 1
 --- !u!114 &1698161260317292003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -691,6 +692,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 333220677}
+  invincible: 0
 --- !u!114 &1698161260317292004
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -146,6 +146,7 @@ public class Weapon : MonoBehaviour
 
     protected virtual void NotCloseToWall()
     {
+        EnableShooting();
         closeToWall = false;
     }
 

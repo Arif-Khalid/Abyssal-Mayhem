@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (isNavMeshAgentEnabled)
         {
-            if (player)
+            if (player && agent.enabled)
             {
                 //Check for attack range
                 playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -91,10 +91,10 @@ public class EnemyAI : MonoBehaviour
 
     public void BounceBackUndo()
     {
-        //Invoke("SetBoolean", 0.05f);
-        //agent.enabled = false;
-        //enemyFeet.enabled = true;
-        //enemyRigidBody.isKinematic = false;
+        Invoke("SetBoolean", 0.05f);
+        enemyFeet.enabled = true;
+        agent.enabled = false;        
+        enemyRigidBody.isKinematic = false;
         Debug.Log("Undone");
     }
 
@@ -113,5 +113,11 @@ public class EnemyAI : MonoBehaviour
     public void SetBoolean()
     {
         isNavMeshAgentEnabled  = false;
+    }
+
+    //Function to remove destroyed bullets from list for enemies that shoot bullets
+    public virtual void RemoveFromList(Bullet bullet)
+    {
+        //To be overriden
     }
 }

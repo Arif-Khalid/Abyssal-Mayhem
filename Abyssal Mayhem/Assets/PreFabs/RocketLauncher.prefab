@@ -51,7 +51,7 @@ MonoBehaviour:
   playerWeapon: {fileID: 0}
   bulletPoint: {fileID: 350767181374475366}
   bullet: {fileID: 5534813618486378921, guid: d181e84a514193f418a2c62d4198e15d, type: 3}
-  maxAmmo: 5
+  maxAmmo: 10
   clipSize: 1
   animator: {fileID: 0}
   muzzleAnimator: {fileID: 2956103890722335291}

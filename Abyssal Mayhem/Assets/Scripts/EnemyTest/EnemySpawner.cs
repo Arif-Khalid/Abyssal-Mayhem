@@ -37,6 +37,14 @@ public class EnemySpawner : MonoBehaviour
 
     List<GameObject> spawnedMonsters = new List<GameObject>();
 
+    //Variables for spawning pickups
+    public List<ChestContent> weaponChests = new List<ChestContent>();
+    List<ChestContent> availableWeaponChests = new List<ChestContent>();
+    public float timeBetweenPickups;
+    private float pickupTimer;
+    public bool pickupsReadyToSpawn;
+    public GameObject[] weaponPickups = new GameObject[2];
+
     private bool isSinglePlayer = false;
     public enum MonsterID { walker, juggernaut, assassin };
     public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
@@ -45,6 +53,10 @@ public class EnemySpawner : MonoBehaviour
         Monsters.Add(EnemySpawner.MonsterID.walker, walker);
         Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernaut);
         Monsters.Add(EnemySpawner.MonsterID.assassin, assassin);
+        foreach(ChestContent weaponChest in weaponChests)
+        {
+            availableWeaponChests.Add(weaponChest);
+        }
     }
     //Code for allowing monsters to spawn while waiting for player
     public void AllowSpawns()
@@ -66,8 +78,57 @@ public class EnemySpawner : MonoBehaviour
             alreadySpawned = true;
             Invoke(nameof(ResetSpawner), timeBetweenSpawn);
         }
+        if (pickupTimer < timeBetweenPickups)
+        {
+            pickupTimer += Time.deltaTime;           
+        }
+        else
+        {
+            pickupTimer = 0;
+            //spawn pickups function
+            SpawnPickups();
+        }
     }
-    
+
+    //Spawns pickups at available weapon chests
+    private void SpawnPickups()
+    {
+        if(availableWeaponChests.Count <= 0)
+        {
+            return;
+        }
+        int spawnID = Random.Range(0, availableWeaponChests.Count - 1);
+        int pickupID = Random.Range(0, weaponPickups.Length);
+        Debug.Log(pickupID);
+        if (availableWeaponChests[spawnID].ResetContent(weaponPickups[pickupID]))
+        {
+            availableWeaponChests.Remove(availableWeaponChests[spawnID]);
+        }
+        else
+        {
+            availableWeaponChests.Remove(availableWeaponChests[spawnID]);
+            SpawnPickups();
+        }
+    }
+
+    public void MakeWeaponChestAvailable(ChestContent weaponChest)
+    {
+        availableWeaponChests.Add(weaponChest);
+    }
+
+    //Destroys all pickups available and resets available weapon chests
+    public void ResetWeaponSpawns()
+    {
+        foreach(ChestContent weaponChest in weaponChests)
+        {
+            weaponChest.HardReset();
+            if (!availableWeaponChests.Contains(weaponChest))
+            {
+                availableWeaponChests.Add(weaponChest);
+            }
+        }
+        pickupTimer = 0;
+    }
     //Spawns a mob at a specific vector3 position with the color blue
     public void SpawnMonsterAtPoint(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
@@ -121,6 +182,7 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
+            enemyHealth.GetComponent<AssassinAI>().startingTransform = assassinSpawnPoints[spawnID];
             assassinSpawnPoints.Remove(assassinSpawnPoints[spawnID]);
             spawnedMonsters.Add(spawnedMonster);
             //Do different stuff for assassin
@@ -155,6 +217,7 @@ public class EnemySpawner : MonoBehaviour
             DisablePlayerUI();
             round = 0; //Ensure round is 0
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
+            ResetWeaponSpawns();
             StartNextRound();
         }
     }
@@ -170,6 +233,7 @@ public class EnemySpawner : MonoBehaviour
             DisablePlayerUI();
             round = 0;
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
+            ResetWeaponSpawns();
             StartNextRound();
         }
     }
@@ -269,6 +333,7 @@ public class EnemySpawner : MonoBehaviour
         round = 0;
         if (localPlayer != null)
         {
+            ResetWeaponSpawns();
             KillAll();
             localUI.BothPlayersNotReady();
             localUI.ResetRounds();

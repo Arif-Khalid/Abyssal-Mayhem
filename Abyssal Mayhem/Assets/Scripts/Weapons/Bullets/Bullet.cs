@@ -21,6 +21,7 @@ public class Bullet : MonoBehaviour
     public bool hasBulletCollided = false;
     protected bool damageDealt = false;
     public int counter = 0; //remove this
+    public EnemyAI enemyAI; //enemy that spawns bullets
 
     void Start()
     {
@@ -76,7 +77,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected virtual void EndOfExistence()
+    public virtual void EndOfExistence()
     {
         if (!hasBulletCollided) { Destroy(this.gameObject); }
     }

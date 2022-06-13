@@ -164,7 +164,7 @@ public class LaserWeapon : Weapon
 
     protected override void OutOfAmmo()
     {
-        maxAmmo = -1; 
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
     }
 
 

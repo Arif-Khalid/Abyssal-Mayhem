@@ -11,6 +11,10 @@ public class JuggernautBullet : Bullet
         {
             playerHealth.TakeDamage(bulletDamage);
         }
+        if (enemyAI)
+        {
+            enemyAI.RemoveFromList(this);
+        }
         Destroy(this.gameObject);
     }
 }

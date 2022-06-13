@@ -8,6 +8,7 @@ public class JuggernautAI : EnemyAI
     public GameObject enemyBullet;
     public Transform[] bulletPoints = new Transform[2];
     public LayerMask playerAndObstacles;
+    List<Bullet> bullets = new List<Bullet>();
 
     private void Start()
     {
@@ -39,7 +40,26 @@ public class JuggernautAI : EnemyAI
     {
         for (int i = 0; i < bulletPoints.Length; i++)
         {
-            Instantiate<GameObject>(enemyBullet, bulletPoints[i].position, Quaternion.LookRotation(player.position - bulletPoints[i].position));
+            Bullet spawnedBullet = Instantiate<GameObject>(enemyBullet, bulletPoints[i].position, Quaternion.LookRotation(player.position - bulletPoints[i].position)).GetComponent<Bullet>();
+            bullets.Add(spawnedBullet);
+            spawnedBullet.enemyAI = this;
         }
+    }
+
+    private void OnDisable()
+    {
+        foreach(Bullet bullet in bullets)
+        {
+            if (bullet)
+            {
+                bullet.EndOfExistence();
+            }           
+        }
+        bullets.Clear();
+    }
+
+    public override void RemoveFromList(Bullet bullet)
+    {
+        bullets.Remove(bullet);
     }
 }

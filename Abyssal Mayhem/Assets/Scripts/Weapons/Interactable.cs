@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public string interactMessage;
+    public string defaultMessage;
     public GameObject weaponToEquip;
     public void BaseInteract()
     {
@@ -14,5 +15,10 @@ public abstract class Interactable : MonoBehaviour
     protected virtual void Interact()
     {
         //To be overriden
+    }
+
+    public void ResetMessage()
+    {
+        interactMessage = defaultMessage;
     }
 }

@@ -15,14 +15,19 @@ public class PlayerMovement : MonoBehaviour
     Vector3 move;
     bool isGrounded;
     bool isMovementDisabled = false;
+    [SerializeField]float mass = 3.0f;
+    Vector3 impact = Vector3.zero;
+
 
     // Update is called once per frame
     void Update()
     {
         HorizontalMovement();
         VerticalMovement();
+        if (impact.magnitude > 0.2) move += impact; //apply the impact force
         controller.Move(move * Time.deltaTime);
         weaponSlotAnimator.SetFloat("WalkSpeed", controller.velocity.magnitude / speed ); //Set speed of walking animation
+        impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime); //consume the impact energy each cycle
     }
 
     //Movement horizontally locally
@@ -90,4 +95,13 @@ public class PlayerMovement : MonoBehaviour
     {
         isMovementDisabled = true;
     }
+
+    //Call this function to add impact force
+    public void AddImpact(Vector3 dir, float force)
+    {
+        dir.Normalize();
+        if (dir.y < 0) dir.y = -dir.y; //reflect down force on ground
+        impact += dir.normalized * force / mass;
+    }
+
 }

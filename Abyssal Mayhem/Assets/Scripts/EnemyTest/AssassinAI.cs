@@ -10,18 +10,18 @@ public class AssassinAI : EnemyAI
     public Transform headTransform;
     public LayerMask playerAndObstacles;
     WeaponIK weaponIK;
-    Transform startingTransform;
+    public Transform startingTransform;
     Animator animator;
     LineRenderer laserSight;
     public Transform laserSightOrigin;
     public bool isPatrolling;
+    List<Bullet> bullets = new List<Bullet>();
 
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         weaponIK = GetComponent<WeaponIK>();
         animator = GetComponent<Animator>();
-        startingTransform = transform;
         agent.SetDestination(startingTransform.position);
         laserSight = GetComponent<LineRenderer>();
     }
@@ -29,26 +29,24 @@ public class AssassinAI : EnemyAI
     //Handles when assassin is moving or stopped
     protected override void LateUpdate()
     {
+        if (!isNavMeshAgentEnabled)
+        {
+            BounceBackRedo();
+        }
         if(agent.velocity.magnitude > 0.01f)
         {
             weaponIK.AssassinMoving();
             animator.SetBool("IsMoving", true);
-            RaycastHit hit;
-            if(Physics.Raycast(laserSightOrigin.position, laserSightOrigin.forward, out hit, 200, playerAndObstacles))
-            {
-                UpdateLaser(hit.point);
-            }
-            else
-            {
-                UpdateLaser(laserSightOrigin.position + (laserSightOrigin.forward.normalized * 200));
-            }
+            laserSight.enabled = false;
         }
         if (player && agent.velocity.magnitude <= 0.01f)
         {
             animator.SetBool("IsMoving", false);
-            transform.rotation = startingTransform.rotation;
+            transform.rotation = Quaternion.Slerp(transform.localRotation,startingTransform.rotation, Time.deltaTime);
+            agent.SetDestination(startingTransform.position);
             weaponIK.AssassinStopped();
             AttackPlayer();
+            //laserSight.SetPosition(0, laserSightOrigin.position);
         }
     }
 
@@ -82,8 +80,11 @@ public class AssassinAI : EnemyAI
     public override void Attack()
     {
         Debug.Log("Attack");
-        Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position));
+        Bullet spawnedBullet = Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();
+        bullets.Add(spawnedBullet);
+        spawnedBullet.enemyAI = this;
     }
+
 
     //Update laser sight position 
     void UpdateLaser(Vector3 endPos)
@@ -92,7 +93,24 @@ public class AssassinAI : EnemyAI
         {
             return;
         }
-        laserSight.SetPosition(0, laserSightOrigin.position);
         laserSight.SetPosition(1, endPos);
+        laserSight.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        foreach (Bullet bullet in bullets)
+        {
+            if (bullet)
+            {
+                bullet.EndOfExistence();
+            }           
+        }
+        bullets.Clear();
+    }
+
+    public override void RemoveFromList(Bullet bullet)
+    {
+        bullets.Remove(bullet);
     }
 }

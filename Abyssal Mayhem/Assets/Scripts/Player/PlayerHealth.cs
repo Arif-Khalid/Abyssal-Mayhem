@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     public Gradient gradient; //color gradient of health bar
     [SerializeField] Image fill; //image of frontfill of healthbar
     private bool dead = false;
+    public bool invincible = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,10 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
+        if (invincible)
+        {
+            return;
+        }
         if (dead)
         {
             return;

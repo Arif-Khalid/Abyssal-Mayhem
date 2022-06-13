@@ -21,7 +21,7 @@ public class RocketWeapon : Weapon
 
     protected override void OutOfAmmo()
     {
-        maxAmmo = -1; //Should never be called for Rocket but just in case set ammo to infinite
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
     }
 
     //Function that doesn't do anything since using the same empty anim as laser

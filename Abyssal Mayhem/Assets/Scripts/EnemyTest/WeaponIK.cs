@@ -122,6 +122,7 @@ public class WeaponIK : MonoBehaviour
                 AimAtTarget(boneTransforms[i], targetPosition, boneWeight);
             }
         }
+        laserSight.SetPosition(0, laserSightOrigin.position);
         if(aimAtPlayerWeight <= 0.0f)
         {
             assassinAI.isPatrolling = true;
@@ -210,7 +211,6 @@ public class WeaponIK : MonoBehaviour
     //Update laser sight position based on raycast from origin(useful when patrolling)
    private void UpdateLaser()
     {
-        laserSight.SetPosition(0, laserSightOrigin.position);
         RaycastHit hit;
         if (Physics.Raycast(laserSightOrigin.position, laserSightOrigin.forward, out hit, 200, playerAndObstacles))
         {
@@ -219,6 +219,10 @@ public class WeaponIK : MonoBehaviour
         else
         {
             laserSight.SetPosition(1, (laserSightOrigin.position + laserSightOrigin.forward) * 200);
+        }
+        if(transform.rotation == assassinAI.startingTransform.rotation)
+        {
+            laserSight.enabled = true;
         }
     }
 }

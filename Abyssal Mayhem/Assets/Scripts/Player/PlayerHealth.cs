@@ -10,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Slider slider; //Slider controlling UI healthbar
     public Gradient gradient; //color gradient of health bar
     [SerializeField] Image fill; //image of frontfill of healthbar
-    private bool dead = false;
+    public bool dead = false;
     public bool invincible = false;
     // Start is called before the first frame update
     void Start()

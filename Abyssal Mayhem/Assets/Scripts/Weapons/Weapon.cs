@@ -17,12 +17,13 @@ public class Weapon : MonoBehaviour
     protected bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
     protected bool allowShooting = true;
-    protected bool reloading = false;
+    [SerializeField]protected bool reloading = true;
     [SerializeField]public bool isLaser;
     [SerializeField] bool isRocket;
     public bool isFiring = false;
     public SkinnedMeshRenderer rocketObject;
     public string weaponName;
+    public bool isInUI = false;
 
     // Start is called before the first frame update
     void Start()
@@ -105,7 +106,7 @@ public class Weapon : MonoBehaviour
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public virtual void Fire()
     {     
-        if (!allowShooting || reloading || isFiring)
+        if (!allowShooting || reloading || isFiring || isInUI)
         {
             return;
         }
@@ -139,15 +140,15 @@ public class Weapon : MonoBehaviour
         //Function to call when no more ammo in clip or reserves and trying to shoot
     }
     protected virtual void CloseToWall()
-    {
-        DisableShooting();
+    {       
         closeToWall = true;
+        DisableShooting();
     }
 
     protected virtual void NotCloseToWall()
-    {
-        EnableShooting();
+    {        
         closeToWall = false;
+        EnableShooting();
     }
 
     //Called when performing animations of weapon
@@ -174,5 +175,20 @@ public class Weapon : MonoBehaviour
         {
             animator.Play("AimDownSight", 0, 1f);
         }
+    }
+
+    public void FinishedEquipAnim()
+    {
+        reloading = false;
+    }
+
+    public void EnterUI()
+    {
+        isInUI = true;
+    }
+
+    public void ExitUI()
+    {
+        isInUI = false;
     }
 }

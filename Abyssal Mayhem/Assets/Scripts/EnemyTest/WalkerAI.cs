@@ -41,4 +41,5 @@ public class WalkerAI : EnemyAI
     {
         hitBox.SetActive(false);
     }
+
 }

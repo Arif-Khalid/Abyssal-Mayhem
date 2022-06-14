@@ -238,6 +238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 15232036}
   - component: {fileID: 15232037}
+  - component: {fileID: 15232038}
   m_Layer: 0
   m_Name: PlayerSpawn
   m_TagString: Untagged
@@ -270,6 +271,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 41f84591ce72545258ea98cb7518d8b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &15232038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 15232035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c385ce0cedc01b4fa22ef63cb6bea16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &15271245
@@ -2616,7 +2629,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &159615157
 MonoBehaviour:
@@ -2644,7 +2657,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: afa3d221892c63043a129350945cce56, type: 2}
   m_BuildHeightMesh: 0
@@ -27206,7 +27219,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &833902234
 GameObject:
@@ -33194,7 +33207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78cc1bcf7c0e94248b3f8f38cfc7a909, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactMessage: Use E to open weapon chest
+  interactMessage: 
   defaultMessage: Use E to open weapon chest
   weaponToEquip: {fileID: 0}
   animator: {fileID: 734122337}
@@ -36078,7 +36091,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &991068225
 GameObject:
@@ -63956,7 +63969,7 @@ MonoBehaviour:
   juggernaut: {fileID: 2918282258761587086, guid: 9fc47ab6355918642b9183a907e8ca36,
     type: 3}
   juggernautSpawns: 0000000001000000010000000000000001000000
-  assassin: {fileID: 3542629617369377454, guid: 9f3636069a45c97408768f82f3e77747,
+  assassin: {fileID: 6916093223672103810, guid: a27d622901649304c914c49e8383e778,
     type: 3}
   assassinSpawns: 0000000001000000000000000100000001000000
   assassinSpawnPoints:
@@ -96334,7 +96347,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1976876267}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -99121,7 +99134,7 @@ PrefabInstance:
     - target: {fileID: 4867436624624666799, guid: 5ea93e8073c098246b79e1be59609622,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4867436624624666799, guid: 5ea93e8073c098246b79e1be59609622,
         type: 3}
@@ -99190,7 +99203,7 @@ PrefabInstance:
     - target: {fileID: 6175627815075324363, guid: 51547607c8be4d343a0026e4de59dddd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6175627815075324363, guid: 51547607c8be4d343a0026e4de59dddd,
         type: 3}

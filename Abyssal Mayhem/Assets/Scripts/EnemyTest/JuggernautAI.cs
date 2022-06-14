@@ -46,7 +46,7 @@ public class JuggernautAI : EnemyAI
         }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         foreach(Bullet bullet in bullets)
         {

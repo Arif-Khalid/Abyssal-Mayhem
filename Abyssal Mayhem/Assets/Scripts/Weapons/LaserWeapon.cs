@@ -137,7 +137,7 @@ public class LaserWeapon : Weapon
         {
             isAiming = false;
         }*/
-        animator.SetFloat("ADS Speed", 2f);
+        animator.SetFloat("ADS Speed", 1f);
     }
 
     private void HipFire()
@@ -150,9 +150,9 @@ public class LaserWeapon : Weapon
     //Plays animation for close to wall and its reverse
     protected override void CloseToWall()
     {
-        animator.enabled = true;
         animator.SetFloat("ADS Speed", -3f);
         animator.SetFloat("Speed", 1.5f);
+        isAiming = false;
         base.CloseToWall();
     }
 

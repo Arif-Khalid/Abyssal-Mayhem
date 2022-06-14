@@ -618,7 +618,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 95000011553861148, guid: 11c7b899afd215840aaee6a859bf154b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 11c7b899afd215840aaee6a859bf154b, type: 3}
 --- !u!4 &2914508718355974682 stripped
 Transform:
@@ -810,6 +811,12 @@ MonoBehaviour:
   monsterID: 1
   startingTransform: {fileID: 0}
   isAssassin: 0
+  juggernautExplode: {fileID: 8219293752278952311}
+  isDead: 0
+  behavioursToDisable:
+  - {fileID: 1889445096}
+  - {fileID: 1889445095}
+  - {fileID: 1889445094}
 --- !u!195 &1889445095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -864,3 +871,22 @@ MonoBehaviour:
   playerAndObstacles:
     serializedVersion: 2
     m_Bits: 81
+--- !u!114 &8219293752278952311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2918282258761587086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 472ec50481b9a074bb95e1d18c697a9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionForce: 500
+  explosionRange: 100
+  behavioursToDisable:
+  - {fileID: 1889445096}
+  - {fileID: 1889445095}
+  - {fileID: 1889445094}
+  timeBeforeDestroy: 5

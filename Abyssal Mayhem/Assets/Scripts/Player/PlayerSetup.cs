@@ -36,12 +36,17 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    //Function called by enemyspawner when a new game starts or when both players are ready to reset weapon to default
+    public void ResetWeapons()
+    {
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
+    }
     //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
     public void EnterUIMenu()
     {
         isInMenu = true;
         mouseLook.UnlockMouse();
-        playerWeapon.weapon.DisableShooting();
+        playerWeapon.weapon.EnterUI();
     }
 
     public void ExitUIMenu()
@@ -50,7 +55,7 @@ public class PlayerSetup : NetworkBehaviour
         if (!isInEscapeMenu)
         {
             mouseLook.LockMouse();
-            playerWeapon.weapon.EnableShooting();
+            playerWeapon.weapon.ExitUI();
         }  
     }
 
@@ -58,7 +63,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         isInEscapeMenu = true;
         mouseLook.UnlockMouse();
-        playerWeapon.weapon.DisableShooting();
+        playerWeapon.weapon.EnterUI();
     }
 
     public void ExitEscapeMenu()
@@ -67,7 +72,7 @@ public class PlayerSetup : NetworkBehaviour
         if (!isInMenu)
         {
             mouseLook.LockMouse();
-            playerWeapon.weapon.EnableShooting();
+            playerWeapon.weapon.ExitUI();
         }
     }
 

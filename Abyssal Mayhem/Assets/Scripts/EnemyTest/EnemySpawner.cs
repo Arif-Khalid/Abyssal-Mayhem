@@ -82,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
         {
             pickupTimer += Time.deltaTime;           
         }
-        else
+        else if((localPlayerReady && awayPlayerReady)|| isSinglePlayer)
         {
             pickupTimer = 0;
             //spawn pickups function
@@ -218,6 +218,7 @@ public class EnemySpawner : MonoBehaviour
             round = 0; //Ensure round is 0
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetWeaponSpawns();
+            ResetPlayerPosition();
             StartNextRound();
         }
     }
@@ -234,6 +235,7 @@ public class EnemySpawner : MonoBehaviour
             round = 0;
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetWeaponSpawns();
+            ResetPlayerPosition();
             StartNextRound();
         }
     }
@@ -337,6 +339,7 @@ public class EnemySpawner : MonoBehaviour
             KillAll();
             localUI.BothPlayersNotReady();
             localUI.ResetRounds();
+            ResetPlayerPosition();
         }
     }
 
@@ -414,4 +417,11 @@ public class EnemySpawner : MonoBehaviour
         localUI.DisableDeathUI();
     }
     
+    //Resets the player to starting position
+    private void ResetPlayerPosition()
+    {
+        PlayerSetup.localPlayerSetup.transform.position = PlayerSpawn.playerSpawn.position;
+        PlayerSetup.localPlayerSetup.transform.rotation = PlayerSpawn.playerSpawn.rotation;
+        PlayerSetup.localPlayerSetup.ResetWeapons();
+    }
 }

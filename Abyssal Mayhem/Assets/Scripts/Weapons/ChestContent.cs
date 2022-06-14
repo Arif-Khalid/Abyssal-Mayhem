@@ -34,7 +34,10 @@ public class ChestContent : MonoBehaviour
     }
     public void CreateContent()
     {
-        contentInstance = Instantiate<GameObject>(chestContent, createTransform);
+        if (chestContent)
+        {
+            contentInstance = Instantiate<GameObject>(chestContent, createTransform);
+        }      
         chestContent = null;
     }
 
@@ -52,6 +55,7 @@ public class ChestContent : MonoBehaviour
     {
         chestContent = null;
         Destroy(contentInstance);
-        animator.SetBool("openChest", false);
+        animator.SetBool("openChest", true);
+        chestInteract.interactMessage = string.Empty;
     }
 }

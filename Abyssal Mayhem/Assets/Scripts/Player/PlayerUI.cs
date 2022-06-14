@@ -15,9 +15,19 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI waitingPrompt;
     [SerializeField] TextMeshProUGUI interactPrompt;
     [SerializeField] TextMeshProUGUI ammoText;
+    
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
+
+    [SerializeField] Animator animator;
+    
+    [Header("Prohibition")]
+    private int count = 6;
+    [SerializeField] GameObject prohibitionText;
+    [SerializeField] TextMeshProUGUI prohibitionCount;
+    [SerializeField] int prohibitionDamage;
+    [SerializeField] int prohibitionForce;
 
 
 
@@ -108,5 +118,42 @@ public class PlayerUI : MonoBehaviour
         {
             ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
         }
+    }
+
+    //Function to call by player movement when player is standing on prohibited area
+    public void StartProhibitionTimer()
+    {
+        count = 6;
+        prohibitionText.SetActive(true);//enable the text
+        StartCoroutine(Prohibition());
+    }
+
+    public void StopProhibitionTimer()
+    {
+        //disable the text and stop coroutines
+        StopAllCoroutines();
+        prohibitionText.SetActive(false);
+    }
+
+    IEnumerator Prohibition()
+    {
+        //Count decrease until becomes 0
+        while(count > 0)
+        {
+            count -= 1;
+            prohibitionCount.text = count.ToString();
+            yield return new WaitForSeconds(1f);
+        }
+
+        //Damage and push player up and off prohibited area
+        GetComponent<PlayerHealth>().TakeDamage(prohibitionDamage);
+        if (GetComponent<PlayerHealth>().dead)
+        {
+            yield break;
+        }
+        GetComponent<PlayerMovement>().AddImpact(-transform.forward, prohibitionForce);
+        
+        //Restart coroutine if still on prohibited area
+        StartProhibitionTimer();
     }
 }

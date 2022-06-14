@@ -104,7 +104,7 @@ public class Bullet : MonoBehaviour
     {
         damageDealt = true;
         EnemyHealth enemyHealth = otherCollider.transform.root.GetComponent<EnemyHealth>(); //Check for health Script
-        if (enemyHealth)
+        if (enemyHealth && !enemyHealth.isDead)
         {
             enemyHealth.TakeDamage(bulletDamage);
         }

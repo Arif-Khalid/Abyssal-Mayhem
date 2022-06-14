@@ -10,7 +10,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravity = -9.81f;
     [SerializeField] float jumpHeight = 2f;
     [SerializeField] Animator weaponSlotAnimator;
+    [SerializeField] float prohibitionRadius;
+    [SerializeField] Transform playerFeet;
+    [SerializeField] LayerMask whatIsProhibited;
+    [SerializeField] PlayerUI playerUI;
 
+    bool prohibitionStarted = false;
     Vector3 velocity;
     Vector3 move;
     bool isGrounded;
@@ -28,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * Time.deltaTime);
         weaponSlotAnimator.SetFloat("WalkSpeed", controller.velocity.magnitude / speed ); //Set speed of walking animation
         impact = Vector3.Lerp(impact, Vector3.zero, 5 * Time.deltaTime); //consume the impact energy each cycle
+        CheckProhibition();
     }
 
     //Movement horizontally locally
@@ -104,4 +110,29 @@ public class PlayerMovement : MonoBehaviour
         impact += dir.normalized * force / mass;
     }
 
+    private void CheckProhibition()
+    {
+        if(Physics.CheckSphere(playerFeet.position, prohibitionRadius, whatIsProhibited))
+        {
+            if (!prohibitionStarted)
+            {
+                prohibitionStarted = true;
+                playerUI.StartProhibitionTimer();
+            }
+        }
+        else
+        {
+            if (prohibitionStarted && controller.isGrounded)
+            {
+                prohibitionStarted = false;
+                playerUI.StopProhibitionTimer();
+            }
+        }
+    }
+
+    private void OnDisable()
+    {
+        move = Vector3.zero;
+        impact = Vector3.zero;    
+    }
 }

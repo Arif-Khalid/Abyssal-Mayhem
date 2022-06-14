@@ -23,6 +23,10 @@ public class EnemyHealth : MonoBehaviour
     public Transform startingTransform; //assigned when spawned to know which spawnpoint already has assassin
 
     [SerializeField] bool isAssassin = false;
+    [SerializeField] JuggernautExplode juggernautExplode;
+    [SerializeField] WalkerDeath walkerDeath;
+    [SerializeField] RagdollControl ragdollControl;
+    public bool isDead = false;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;
@@ -55,6 +59,10 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage) //Take Damage
     {
+        if (isDead)
+        {
+            return;
+        }
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
@@ -72,12 +80,31 @@ public class EnemyHealth : MonoBehaviour
 
     public void Death() //called when an enemy dies
     {
+        if (isDead)
+        {
+            return;
+        }
+        isDead = true;
+        enemySpawner.RemoveFromList(this.gameObject);
         if (isAssassin)
         {
-            enemySpawner.AddtoAssassinSpawnPoints(startingTransform);
+            enemySpawner.AddtoAssassinSpawnPoints(startingTransform);//for assassin
+            ragdollControl.ToggleRagdoll(true);
         }
-        enemySpawner.RemoveFromList(this.gameObject);
-        Destroy(this.gameObject);
+        else if (juggernautExplode)
+        {
+            juggernautExplode.ExplodeOnDeath();//for juggernaut
+        }
+        else if (walkerDeath)
+        {
+            walkerDeath.DeathAnim(); //for walker
+        }
+        //Destroy(this.gameObject); Called instead in whatever death animation or behaviour
+    }
+
+    private void OnDisable()
+    {
+        canvas.enabled = false;
     }
 
     // public void FireLaser(Ray incomingRay)
@@ -122,7 +149,7 @@ public class EnemyHealth : MonoBehaviour
     //     }
     //     //Destroy(other.gameObject);
     // }
-    
+
     // IEnumerator ShootLaser()
     // {
     //     laserRay.enabled = true;

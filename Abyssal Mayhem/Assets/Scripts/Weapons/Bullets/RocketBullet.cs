@@ -57,17 +57,25 @@ public class RocketBullet : Bullet
         List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
         for(int i = 0; i < enemies.Length; i++)
         {
-            EnemyHealth enemyHealth = enemies[i].transform.root.GetComponent<EnemyHealth>();
+            EnemyHealth enemyHealth = enemies[i].transform.root.GetComponent<EnemyHealth>();            
             if (!enemyHealths.Contains(enemyHealth))
             {
                 enemyHealths.Add(enemyHealth);
+            }
+            Rigidbody rigidBody = enemies[i].GetComponent<Rigidbody>();
+            if (rigidBody && rigidBody.isKinematic == false) //Add force directly for non kinematic rigidbodies
+            {
+                rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
             }
         }
         foreach(EnemyHealth enemyHealth in enemyHealths)
         {
             enemyHealth.TakeDamage(explosionDamage);
-            enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
-            enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            if (!enemyHealth.isDead)
+            {
+                enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
+                enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            }           
         }
         //Check for player
         Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);

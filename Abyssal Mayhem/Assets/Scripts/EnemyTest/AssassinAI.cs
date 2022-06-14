@@ -32,6 +32,9 @@ public class AssassinAI : EnemyAI
         if (!isNavMeshAgentEnabled)
         {
             BounceBackRedo();
+            laserSight.enabled = false;
+            weaponIK.AssassinMoving();
+            return;
         }
         if(agent.velocity.magnitude > 0.01f)
         {
@@ -39,11 +42,11 @@ public class AssassinAI : EnemyAI
             animator.SetBool("IsMoving", true);
             laserSight.enabled = false;
         }
-        if (player && agent.velocity.magnitude <= 0.01f)
+        if (player && agent.enabled && agent.velocity.magnitude <= 0.01f)
         {
             animator.SetBool("IsMoving", false);
             transform.rotation = Quaternion.Slerp(transform.localRotation,startingTransform.rotation, Time.deltaTime);
-            agent.SetDestination(startingTransform.position);
+            agent.SetDestination(startingTransform.position);          
             weaponIK.AssassinStopped();
             AttackPlayer();
             //laserSight.SetPosition(0, laserSightOrigin.position);
@@ -107,6 +110,7 @@ public class AssassinAI : EnemyAI
             }           
         }
         bullets.Clear();
+        laserSight.enabled = false;
     }
 
     public override void RemoveFromList(Bullet bullet)

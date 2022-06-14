@@ -1306,6 +1306,7 @@ GameObject:
   - component: {fileID: 6965175168769235425}
   - component: {fileID: 4933744486515703277}
   - component: {fileID: 2531828486647217725}
+  - component: {fileID: 3810445776870250186}
   m_Layer: 7
   m_Name: MushroomEnemy
   m_TagString: Untagged
@@ -1458,6 +1459,10 @@ MonoBehaviour:
   monsterID: 0
   startingTransform: {fileID: 0}
   isAssassin: 0
+  juggernautExplode: {fileID: 0}
+  walkerDeath: {fileID: 3810445776870250186}
+  ragdollControl: {fileID: 0}
+  isDead: 0
 --- !u!114 &1412969096229859116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1535,6 +1540,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5, z: 1}
   m_Center: {x: 0, y: 0.75, z: 0}
+--- !u!114 &3810445776870250186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473202670574732721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea1f59237547f394ebf2751914220152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behavioursToDisable:
+  - {fileID: 1412969096229859116}
+  - {fileID: 6965175168769235425}
+  - {fileID: 1727867469796606460}
 --- !u!1 &1473202670574734371
 GameObject:
   m_ObjectHideFlags: 0

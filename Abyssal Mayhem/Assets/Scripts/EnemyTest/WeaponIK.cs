@@ -225,4 +225,9 @@ public class WeaponIK : MonoBehaviour
             laserSight.enabled = true;
         }
     }
+
+    private void OnDisable()
+    {
+        laserSight.enabled = false;
+    }
 }

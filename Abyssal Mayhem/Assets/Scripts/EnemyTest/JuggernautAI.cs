@@ -8,6 +8,10 @@ public class JuggernautAI : EnemyAI
     public GameObject enemyBullet;
     public Transform[] bulletPoints = new Transform[2];
     public LayerMask playerAndObstacles;
+    public Animator animator;
+    public Animator muzzleLeftAnimator;
+    public Animator muzzleRightAnimator;
+    bool fireRight = true;
     List<Bullet> bullets = new List<Bullet>();
 
     private void Start()
@@ -20,7 +24,7 @@ public class JuggernautAI : EnemyAI
         transform.LookAt(player);
         RaycastHit hit;
         //Debug.DrawRay(transform.position, transform.forward * 10, Color.red, 10, false);
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 50, playerAndObstacles))
+        if (Physics.Raycast(bulletPoints[0].position, player.position - bulletPoints[0].position, out hit, attackRange, playerAndObstacles) || Physics.Raycast(bulletPoints[1].position, player.position - bulletPoints[1].position, out hit, attackRange, playerAndObstacles)) //Check if bullet points have LOS to player
         {
             if (hit.collider.GetComponent<PlayerHealth>())
             {
@@ -38,12 +42,15 @@ public class JuggernautAI : EnemyAI
     }
     public override void Attack()
     {
-        for (int i = 0; i < bulletPoints.Length; i++)
-        {
-            Bullet spawnedBullet = Instantiate<GameObject>(enemyBullet, bulletPoints[i].position, Quaternion.LookRotation(player.position - bulletPoints[i].position)).GetComponent<Bullet>();
-            bullets.Add(spawnedBullet);
-            spawnedBullet.enemyAI = this;
-        }
+        int pointID = fireRight ? 0 : 1;
+        //Play the muzzleflash
+        Bullet spawnedBullet = Instantiate<GameObject>(enemyBullet, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();
+        bullets.Add(spawnedBullet);
+        spawnedBullet.enemyAI = this;
+        //Play the animation
+        if (fireRight) { animator.Play("FireRight"); muzzleRightAnimator.Play("MuzzleFlashHomemade"); }
+        else { animator.Play("FireLeft"); muzzleLeftAnimator.Play("MuzzleFlashHomemade"); }
+        fireRight = !fireRight;
     }
 
     private void OnDestroy()

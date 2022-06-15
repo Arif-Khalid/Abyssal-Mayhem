@@ -157,6 +157,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\InteropHelp.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamInventory\SteamItemDef_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamMatchmaking\HServerListRequest.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworkingTypes\HSteamNetPollGroup.cs" />
     <Compile Include="Assets\Scripts\TestingNetworking\KCPLobby.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\JuggernautExplode.cs" />
@@ -221,7 +222,7 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerSpawn.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

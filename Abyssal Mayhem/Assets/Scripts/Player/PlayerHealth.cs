@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
         fill.color = gradient.Evaluate(1f);
         dead = false;
     }
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, float duration, float magnitude)
     {
         if (invincible)
         {
@@ -46,6 +46,7 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
+        CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(duration, magnitude));
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);

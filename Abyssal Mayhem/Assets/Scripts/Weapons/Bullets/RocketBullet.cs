@@ -27,6 +27,8 @@ public class RocketBullet : Bullet
 
     int collisions;
     PhysicMaterial physics_mat;
+    public float rocketShakeDuration = 0.15f;
+    public float rocketShakeMagnitude = 0.4f;
 
     protected override void ChildStart()
     {
@@ -86,6 +88,7 @@ public class RocketBullet : Bullet
                 PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
                 Vector3 dir = players[i].transform.position - transform.position;
                 playerMovement.AddImpact(dir, explosionForce * 10);
+                CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(rocketShakeDuration, rocketShakeMagnitude));
             }
         }
         /*for (int i = 0; i < enemies.Length; i++)
@@ -112,6 +115,7 @@ public class RocketBullet : Bullet
     }
     public override void DealDamage(Collider other)
     {
+        Debug.Log("Damage dealt");
         damageDealt = true;
         Explode();
     }

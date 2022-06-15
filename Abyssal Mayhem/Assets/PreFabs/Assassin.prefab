@@ -1031,6 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cada0bc16403ee24ba7448b104ef4ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 70
   slider: {fileID: 1813530062891433854}
   gradient:
     serializedVersion: 2

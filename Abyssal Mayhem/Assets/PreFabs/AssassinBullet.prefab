@@ -195,3 +195,5 @@ MonoBehaviour:
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
+  bulletShakeDuration: 0.15
+  bulletShakeMagnitude: 0.5

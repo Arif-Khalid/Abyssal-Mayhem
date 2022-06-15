@@ -208,10 +208,12 @@ MonoBehaviour:
   bounciness: 0
   useGravity: 0
   explosionDamage: 50
-  explosionRange: 15
+  explosionRange: 5
   explosionForce: 5
   maxCollisions: 1
   explodeOnTouch: 1
+  rocketShakeDuration: 0.15
+  rocketShakeMagnitude: 0.3
 --- !u!1001 &1866829374864614484
 PrefabInstance:
   m_ObjectHideFlags: 0

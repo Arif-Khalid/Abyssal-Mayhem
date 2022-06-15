@@ -219,7 +219,8 @@ public class EnemySpawner : MonoBehaviour
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetWeaponSpawns();
             ResetPlayerPosition();
-            StartNextRound();
+            localUI.BothPlayersReady(); //Removes waiting for player text
+            localUI.StartNewRoundCount();
         }
     }
 
@@ -236,13 +237,18 @@ public class EnemySpawner : MonoBehaviour
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
             ResetWeaponSpawns();
             ResetPlayerPosition();
-            StartNextRound();
+            localUI.BothPlayersReady(); //Removes waiting for player text
+            localUI.StartNewRoundCount();
         }
     }
 
     //Starts the next round
-    void StartNextRound()
+    public void StartNextRound()
     {
+        if(!localPlayerReady || !awayPlayerReady)
+        {
+            return;
+        }
         KillAll();
         Debug.Log("next round started");
         round += 1;
@@ -251,7 +257,7 @@ public class EnemySpawner : MonoBehaviour
             Debug.Log("you finished the damn game");
             return;
         }
-        localUI.BothPlayersReady(); //Removes waiting for player text
+        
         localUI.UpdateRoundText(round, Quotas[round]);
         metLocalQuota = false;
         localPlayer.GetComponent<PlayerSetup>().ResetScore(); //Resets scores
@@ -286,7 +292,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!newRoundStarted)
                 {
                     newRoundStarted = true;
-                    Invoke(nameof(StartNextRound), timeBetweenRounds);
+                    localUI.StartNewRoundCount();
                 }
             }
             else
@@ -314,7 +320,7 @@ public class EnemySpawner : MonoBehaviour
                 if (!newRoundStarted)
                 {
                     newRoundStarted = true;
-                    Invoke(nameof(StartNextRound), timeBetweenRounds); //delay by a short time to allow both clients to call this function
+                    localUI.StartNewRoundCount();
                 }               
             }
             else

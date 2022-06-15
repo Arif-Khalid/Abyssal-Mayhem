@@ -187,8 +187,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   snapDistance: 0.5
-  bulletDamage: 10
+  bulletDamage: 20
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 81
   lifeTime: 2
+  hasBulletCollided: 0
+  counter: 0
+  enemyAI: {fileID: 0}
+  bulletShakeDuration: 0.02
+  bulletShakeMagnitude: 0.2

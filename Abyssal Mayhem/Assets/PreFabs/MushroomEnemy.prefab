@@ -2692,3 +2692,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meeleeDamage: 10
+  meeleeShakeDuration: 0.1
+  meeleeShakeMagnitude: 0.5

@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 public class PlayerSetup : NetworkBehaviour
 {
     //References
-    EnemySpawner enemySpawner;
+    public EnemySpawner enemySpawner;
     public MouseLook mouseLook;
+    public CameraShake cameraShake;
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
@@ -111,6 +112,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             sceneCamera.gameObject.SetActive(false);
         }
+        cameraShake.SetStatic();
         enemySpawner.localPlayer = transform;
         enemySpawner.cameraTransform = GetComponentInChildren<Camera>().transform;
         awayUI.SetActive(false);

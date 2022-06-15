@@ -168,7 +168,7 @@ MonoBehaviour:
   chestContent: {fileID: 0}
   contentInstance: {fileID: 0}
   createTransform: {fileID: 7853287251427051775}
-  animator: {fileID: 0}
+  animator: {fileID: 7853287252527664796}
   enemySpawner: {fileID: 0}
   chestInteract: {fileID: 7853287252664709877}
 --- !u!1 &7853287252664709886

@@ -42,7 +42,7 @@ public class AssassinAI : EnemyAI
             animator.SetBool("IsMoving", true);
             laserSight.enabled = false;
         }
-        if (player && agent.enabled && agent.velocity.magnitude <= 0.01f)
+        if (player && agent.enabled && agent.desiredVelocity.magnitude <= 0.01f)
         {
             animator.SetBool("IsMoving", false);
             transform.rotation = Quaternion.Slerp(transform.localRotation,startingTransform.rotation, Time.deltaTime);

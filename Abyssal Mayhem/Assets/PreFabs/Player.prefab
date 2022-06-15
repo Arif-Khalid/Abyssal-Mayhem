@@ -790,7 +790,7 @@ MonoBehaviour:
   gravity: -18
   jumpHeight: 1
   weaponSlotAnimator: {fileID: 1496212362739494471}
-  prohibitionRadius: 0.5
+  prohibitionRadius: 1.2
   playerFeet: {fileID: 2742836774518399780}
   whatIsProhibited:
     serializedVersion: 2

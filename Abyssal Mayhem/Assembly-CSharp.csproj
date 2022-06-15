@@ -71,6 +71,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamgameservernetworking.cs" />
     <Compile Include="Assets\Scripts\Weapons\Bullets\Bullet.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\SteamStructs.cs" />
+    <Compile Include="Assets\Scripts\Player\CameraShake.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamutils.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamTypes\SiteId_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamnetworkingmessages.cs" />
@@ -222,7 +223,6 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Scripts\Player\CameraShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

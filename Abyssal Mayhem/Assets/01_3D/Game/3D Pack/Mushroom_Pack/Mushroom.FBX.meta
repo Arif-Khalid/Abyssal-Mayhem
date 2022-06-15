@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: 14718352e908f7845a478b43bab80171
+timeCreated: 1454483291
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: CATRigHub002
+    100002: CATRigHub002Gizmo
+    100004: CATRigHub003
+    100006: CATRigHub004
+    100008: CATRigHub004Gizmo
+    100010: CATRigHub005
+    100012: CATRigLArm1
+    100014: CATRigLArm2
+    100016: CATRigLArm3
+    100018: CATRigLArmCollarbone
+    100020: CATRigLArmPalm
+    100022: CATRigLArmPalmBone001
+    100024: CATRigLArmPalmBone001Bone001
+    100026: CATRigLArmPalmBone001Bone001Bone001
+    100028: CATRigLArmPalmBone001Bone002
+    100030: CATRigLArmPalmBone001Bone002Bone001
+    100032: CATRigLArmPalmBone001Bone003
+    100034: CATRigLArmPalmBone001Bone003Bone001
+    100036: CATRigRArm1
+    100038: CATRigRArm2
+    100040: CATRigRArm3
+    100042: CATRigRArmCollarbone
+    100044: CATRigRArmPalm
+    100046: CATRigRArmPalmBone001
+    100048: CATRigRArmPalmBone001Bone001
+    100050: CATRigRArmPalmBone001Bone001Bone001
+    100052: CATRigRArmPalmBone001Bone002
+    100054: CATRigRArmPalmBone001Bone002Bone001
+    100056: CATRigRArmPalmBone001Bone003
+    100058: CATRigRArmPalmBone001Bone003Bone001
+    100060: CATRigSpine
+    100062: CATRigSpine1
+    100064: CATRigSpine1 1
+    100066: CATRigSpine2
+    100068: CATRigSpine2 1
+    100070: CATRigSpine3
+    100072: Character001
+    100074: Horn01
+    100076: Horn02
+    100078: Horn03
+    100080: //RootNode
+    100082: Mushroom
+    400000: CATRigHub002
+    400002: CATRigHub002Gizmo
+    400004: CATRigHub003
+    400006: CATRigHub004
+    400008: CATRigHub004Gizmo
+    400010: CATRigHub005
+    400012: CATRigLArm1
+    400014: CATRigLArm2
+    400016: CATRigLArm3
+    400018: CATRigLArmCollarbone
+    400020: CATRigLArmPalm
+    400022: CATRigLArmPalmBone001
+    400024: CATRigLArmPalmBone001Bone001
+    400026: CATRigLArmPalmBone001Bone001Bone001
+    400028: CATRigLArmPalmBone001Bone002
+    400030: CATRigLArmPalmBone001Bone002Bone001
+    400032: CATRigLArmPalmBone001Bone003
+    400034: CATRigLArmPalmBone001Bone003Bone001
+    400036: CATRigRArm1
+    400038: CATRigRArm2
+    400040: CATRigRArm3
+    400042: CATRigRArmCollarbone
+    400044: CATRigRArmPalm
+    400046: CATRigRArmPalmBone001
+    400048: CATRigRArmPalmBone001Bone001
+    400050: CATRigRArmPalmBone001Bone001Bone001
+    400052: CATRigRArmPalmBone001Bone002
+    400054: CATRigRArmPalmBone001Bone002Bone001
+    400056: CATRigRArmPalmBone001Bone003
+    400058: CATRigRArmPalmBone001Bone003Bone001
+    400060: CATRigSpine
+    400062: CATRigSpine1
+    400064: CATRigSpine1 1
+    400066: CATRigSpine2
+    400068: CATRigSpine2 1
+    400070: CATRigSpine3
+    400072: Character001
+    400074: Horn01
+    400076: Horn02
+    400078: Horn03
+    400080: //RootNode
+    400082: Mushroom
+    2300000: Horn01
+    2300002: Horn02
+    2300004: Horn03
+    3300000: Horn01
+    3300002: Horn02
+    3300004: Horn03
+    4300000: Mushroom
+    4300002: Horn01
+    4300004: Horn03
+    4300006: Horn02
+    9500000: //RootNode
+    13700000: Mushroom
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

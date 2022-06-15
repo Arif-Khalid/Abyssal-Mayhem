@@ -13,10 +13,21 @@ public class WalkerAI : EnemyAI
         animator = GetComponent<Animator>();
     }
 
+    public override void ChasePlayer()
+    {
+        agent.SetDestination(player.position);
+        animator.SetFloat("velocity", agent.velocity.magnitude);
+    }
+
+    protected override void AttackPlayer()
+    {       
+        base.AttackPlayer();
+        animator.SetFloat("velocity", agent.velocity.magnitude);
+    }
     //Attack function for walker enemy
     public override void Attack()
     {
-        animator.Play("WalkerMeelee");
+        animator.Play("Attack");
     }
 
 
@@ -30,4 +41,5 @@ public class WalkerAI : EnemyAI
     {
         hitBox.SetActive(false);
     }
+
 }

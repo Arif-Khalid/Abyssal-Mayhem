@@ -16,9 +16,16 @@ public class Bullet : MonoBehaviour
     //Variables for destroying stray bullets
     private float timeAlive = 0f; //Variable to track time the bullet stays alive
     [SerializeField] float lifeTime = 2f; //Time of existence before bullet expires
+    private Collider bulletCollider;
+    private Collider otherCollider;
+    public bool hasBulletCollided = false;
+    protected bool damageDealt = false;
+    public int counter = 0; //remove this
+    public EnemyAI enemyAI; //enemy that spawns bullets
 
     void Start()
     {
+        bulletCollider = GetComponent<Collider>();
         MoveBullet();
         ChildStart();
     }
@@ -40,6 +47,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        if (hasBulletCollided && !damageDealt) { DealDamage(otherCollider); }
         CheckPath();
         LimitExistence();
     }
@@ -69,9 +77,9 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    protected virtual void EndOfExistence()
+    public virtual void EndOfExistence()
     {
-        Destroy(this.gameObject);
+        if (!hasBulletCollided) { Destroy(this.gameObject); }
     }
     //Code for hitting something
     private void OnTriggerEnter(Collider other) 
@@ -86,8 +94,17 @@ public class Bullet : MonoBehaviour
     //Called when collider triggered
     public virtual void HitSomething(Collider other)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script
-        if (enemyHealth)
+        bulletCollider.enabled = false;
+        hasBulletCollided = true;
+        otherCollider = other;
+    }
+
+    //Called the frame after collider triggered
+    public virtual void DealDamage(Collider other)
+    {
+        damageDealt = true;
+        EnemyHealth enemyHealth = otherCollider.transform.root.GetComponent<EnemyHealth>(); //Check for health Script
+        if (enemyHealth && !enemyHealth.isDead)
         {
             enemyHealth.TakeDamage(bulletDamage);
         }

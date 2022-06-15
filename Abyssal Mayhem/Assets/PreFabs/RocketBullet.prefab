@@ -193,19 +193,27 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 145
   lifeTime: 2
+  hasBulletCollided: 0
+  counter: 0
+  enemyAI: {fileID: 0}
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
   explosionInstance: {fileID: 0}
   whatIsEnemies:
     serializedVersion: 2
     m_Bits: 128
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
   bounciness: 0
   useGravity: 0
-  explosionDamage: 10
-  explosionRange: 10
+  explosionDamage: 50
+  explosionRange: 5
   explosionForce: 5
   maxCollisions: 1
   explodeOnTouch: 1
+  rocketShakeDuration: 0.15
+  rocketShakeMagnitude: 0.3
 --- !u!1001 &1866829374864614484
 PrefabInstance:
   m_ObjectHideFlags: 0

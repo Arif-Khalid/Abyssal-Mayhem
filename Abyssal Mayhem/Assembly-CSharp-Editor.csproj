@@ -1027,6 +1027,9 @@
     <Reference Include="Unity.AI.Navigation.Editor">
         <HintPath>C:\Users\aungp\Documents\GitHub\Abyssal-Mayhem\Abyssal-Mayhem\Abyssal Mayhem\Library\ScriptAssemblies\Unity.AI.Navigation.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Animation.Rigging.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Recorder">
         <HintPath>C:\Users\aungp\Documents\GitHub\Abyssal-Mayhem\Abyssal-Mayhem\Abyssal Mayhem\Library\ScriptAssemblies\Unity.Recorder.dll</HintPath>
     </Reference>
@@ -1095,6 +1098,9 @@
     </Reference>
     <Reference Include="Unity.TerrainTools">
         <HintPath>C:\Users\aungp\Documents\GitHub\Abyssal-Mayhem\Abyssal-Mayhem\Abyssal Mayhem\Library\ScriptAssemblies\Unity.TerrainTools.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Animation.Rigging">
+      <HintPath>Library\ScriptAssemblies\Unity.Animation.Rigging.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Services.Core.Analytics">
         <HintPath>C:\Users\aungp\Documents\GitHub\Abyssal-Mayhem\Abyssal-Mayhem\Abyssal Mayhem\Library\ScriptAssemblies\Unity.Services.Core.Analytics.dll</HintPath>

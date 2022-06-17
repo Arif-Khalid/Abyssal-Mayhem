@@ -28,7 +28,7 @@ public class PlayerPowerups : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            StartCoroutine(ActivateJuggernautSpawn());
+            ActivateExtraLife();
         }
     }
 
@@ -62,5 +62,20 @@ public class PlayerPowerups : MonoBehaviour
         yield return new WaitForSeconds(timeTillBlind); //should be greater than 3 since warning animation plays for 3 seconds
         //UI for paranoia
     }
+
     //Extra life
+    public void ActivateExtraLife()
+    {
+        playerHealth.AddLife();
+    }
+
+    public void ResetAppliedPowerups()
+    {
+        StopAllCoroutines();
+        playerHealth.invincible = false;
+        playerHealth.ResetLives();
+        playerWeapon.ChangeFireRate(1f);
+        playerSetup.enemySpawner.DisableOutline();
+        playerUI.StopAnimator();
+    }
 }

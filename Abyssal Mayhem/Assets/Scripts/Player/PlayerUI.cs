@@ -18,6 +18,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI roundStartCount;
     private int roundStartCounter = 3;
     [SerializeField] TextMeshProUGUI warningText;
+    [SerializeField] TextMeshProUGUI extraLifeText;
     
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
@@ -184,5 +185,22 @@ public class PlayerUI : MonoBehaviour
     {
         warningText.text = "!Incoming " + message + "!";
         animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
+    }
+
+    public void StopAnimator()
+    {
+        animator.Play("Empty", animator.GetLayerIndex("Warning Layer"));
+    }
+
+    public void UpdateExtraLives(int lives)
+    {
+        if(lives > 0)
+        {
+            extraLifeText.text = "+" + lives.ToString();
+        }
+        else
+        {
+            extraLifeText.text = string.Empty;
+        }
     }
 }

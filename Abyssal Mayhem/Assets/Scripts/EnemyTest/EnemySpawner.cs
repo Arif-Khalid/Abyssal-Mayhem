@@ -70,8 +70,9 @@ public class EnemySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
             //AllowSpawns();
-            localUI.UpdateWaitingPrompt();
-            awayPlayerReadyUp();
+            //localUI.UpdateWaitingPrompt();
+            //awayPlayerReadyUp();
+            ResetPlayerPosition();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
         if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
@@ -243,6 +244,8 @@ public class EnemySpawner : MonoBehaviour
             ResetWeaponSpawns();
             ResetPlayerPosition();
             localUI.BothPlayersReady(); //Removes waiting for player text
+            KillAll();
+            ResetAppliedPowerups();
             localUI.StartNewRoundCount();
         }
     }
@@ -261,6 +264,8 @@ public class EnemySpawner : MonoBehaviour
             ResetWeaponSpawns();
             ResetPlayerPosition();
             localUI.BothPlayersReady(); //Removes waiting for player text
+            KillAll();
+            ResetAppliedPowerups();
             localUI.StartNewRoundCount();
         }
     }
@@ -366,6 +371,7 @@ public class EnemySpawner : MonoBehaviour
         {
             ResetWeaponSpawns();
             KillAll();
+            ResetAppliedPowerups();
             localUI.BothPlayersNotReady();
             localUI.ResetRounds();
             ResetPlayerPosition();
@@ -449,9 +455,10 @@ public class EnemySpawner : MonoBehaviour
     //Resets the player to starting position
     private void ResetPlayerPosition()
     {
-        PlayerSetup.localPlayerSetup.transform.position = PlayerSpawn.playerSpawn.position;
-        PlayerSetup.localPlayerSetup.transform.rotation = PlayerSpawn.playerSpawn.rotation;
+        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = false;
+        PlayerSetup.localPlayerSetup.transform.SetPositionAndRotation(PlayerSpawn.playerSpawn.position, PlayerSpawn.playerSpawn.rotation);
         PlayerSetup.localPlayerSetup.ResetWeapons();
+        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = true;
     }
 
     /*Invincibility powerups code*/
@@ -471,5 +478,17 @@ public class EnemySpawner : MonoBehaviour
         {
             monster.GetComponent<Outline>().enabled = false;
         }
+    }
+
+    private void ResetAppliedPowerups()
+    {
+        PlayerPowerups playerPowerups = localPlayer.GetComponent<PlayerPowerups>();
+        playerPowerups.ResetAppliedPowerups();
+    }
+
+    public void Respawn() //Called if an extra life is possessed
+    {
+        ResetPlayerPosition();
+        localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
     }
 }

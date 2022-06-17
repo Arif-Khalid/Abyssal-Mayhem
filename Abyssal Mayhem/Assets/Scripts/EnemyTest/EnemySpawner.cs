@@ -45,6 +45,8 @@ public class EnemySpawner : MonoBehaviour
     public bool pickupsReadyToSpawn;
     public GameObject[] weaponPickups = new GameObject[2];
 
+    //Invincibility powerups variables
+    bool isInvincible = false;
     private bool isSinglePlayer = false;
     public enum MonsterID { walker, juggernaut, assassin };
     public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
@@ -68,7 +70,7 @@ public class EnemySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
             //AllowSpawns();
-            //localUI.UpdateWaitingPrompt();
+            localUI.UpdateWaitingPrompt();
             awayPlayerReadyUp();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
@@ -131,9 +133,14 @@ public class EnemySpawner : MonoBehaviour
     }
     //Spawns a mob at a specific vector3 position with the color blue
     public void SpawnMonsterAtPoint(Vector3 position, EnemySpawner.MonsterID monsterID)
-    {
+    {         
         if (!localPlayerReady)
         {
+            return;
+        }
+        if (position == Vector3.zero) //spawns monster randomly if no position given
+        {
+            SpawnMonster(monsterID);
             return;
         }
         if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
@@ -154,6 +161,10 @@ public class EnemySpawner : MonoBehaviour
             //Do different stuff for assassin
             WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
             weaponIK.patrolTransforms = patrolTransforms;
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         else //spawning something else
         {
@@ -163,6 +174,10 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }       
     }
 
@@ -188,6 +203,10 @@ public class EnemySpawner : MonoBehaviour
             //Do different stuff for assassin
             WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
             weaponIK.patrolTransforms = patrolTransforms;
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         else //spawning anything else
         {
@@ -198,6 +217,10 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         
     }
@@ -429,5 +452,24 @@ public class EnemySpawner : MonoBehaviour
         PlayerSetup.localPlayerSetup.transform.position = PlayerSpawn.playerSpawn.position;
         PlayerSetup.localPlayerSetup.transform.rotation = PlayerSpawn.playerSpawn.rotation;
         PlayerSetup.localPlayerSetup.ResetWeapons();
+    }
+
+    /*Invincibility powerups code*/
+    public void EnableOutline()
+    {
+        isInvincible = true;
+        foreach(GameObject monster in spawnedMonsters)
+        {
+            monster.GetComponent<Outline>().enabled = true;
+        }
+    }
+
+    public void DisableOutline()
+    {
+        isInvincible = false;
+        foreach(GameObject monster in spawnedMonsters)
+        {
+            monster.GetComponent<Outline>().enabled = false;
+        }
     }
 }

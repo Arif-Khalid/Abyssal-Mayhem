@@ -17,6 +17,7 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoText;
     [SerializeField] TextMeshProUGUI roundStartCount;
     private int roundStartCounter = 3;
+    [SerializeField] TextMeshProUGUI warningText;
     
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
@@ -177,5 +178,11 @@ public class PlayerUI : MonoBehaviour
         
         //Restart coroutine if still on prohibited area
         StartProhibitionTimer();
+    }
+
+    public void StartWarning(string message)
+    {
+        warningText.text = "!Incoming " + message + "!";
+        animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
     }
 }

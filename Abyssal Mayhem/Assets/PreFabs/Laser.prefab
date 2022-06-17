@@ -165,6 +165,7 @@ MonoBehaviour:
   isFiring: 0
   rocketObject: {fileID: 0}
   weaponName: Laser
+  isInUI: 0
   laserOrigin: {fileID: 7027317254155538495}
   gunRange: 150
   fireRate: 0.5

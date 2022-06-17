@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteaminput.cs" />
     <Compile Include="Assets\Scripts\Weapons\Interactable.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\SteamEnums.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\RifleWeapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamHTTP\HTTPCookieContainerHandle.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerPowerups.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\BidirectionalDictionary.cs" />
     <Compile Include="Assets\Scripts\EnemyTest\DebugDrawline.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamparentalsettings.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamClient\SteamAPI_PostAPIResultInProcess_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\Steam_api_common\HSteamPipe.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\LegacyClient.cs" />
+    <Compile Include="Assets\Scripts\DeathBox.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamInventory\SteamItemInstanceID_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\NextServer.cs" />
@@ -223,7 +226,6 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Scripts\DeathBox.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />
@@ -238,6 +240,7 @@
     <None Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Plugins\x86_64\steam_api64.dll" />
     <None Include="Assets\ScriptTemplates\56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
+    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Fonts\walkthemoon.txt" />
@@ -255,6 +258,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\ScriptTemplates\52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
+    <None Include="Assets\QuickOutline\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Weapon Skins\MentalDreamsAssets\SoldierSoundsPack\ReadMe!.txt" />
     <None Include="Assets\Materials\Mirror\Notice.txt" />
@@ -270,6 +274,7 @@
     <None Include="Assets\ScriptTemplates\50-Mirror__Network Manager-NewNetworkManager.cs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\ScriptTemplates\54-Mirror__Network Room Manager-NewNetworkRoomManager.cs.txt" />
+    <None Include="Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\AssaultCyborg\README.txt" />

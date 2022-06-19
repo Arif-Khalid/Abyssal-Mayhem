@@ -6,6 +6,7 @@ public class JuggernautExplode : MonoBehaviour
 {
     //Script to explode juggernaut on death
     MeshCollider[] colliders;
+    [SerializeField] JuggernautMissile juggernautMissile;
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRange;
     [SerializeField] Behaviour[] behavioursToDisable;
@@ -17,6 +18,10 @@ public class JuggernautExplode : MonoBehaviour
 
     public void ExplodeOnDeath()
     {
+        if (juggernautMissile)
+        {
+            juggernautMissile.StopAllCoroutines();
+        }
         foreach(Behaviour behaviour in behavioursToDisable)
         {
             behaviour.enabled = false;

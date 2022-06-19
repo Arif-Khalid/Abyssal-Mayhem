@@ -9,8 +9,12 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject walker;
     [SerializeField] GameObject juggernaut;
     [SerializeField] int[] juggernautSpawns;
-    [SerializeField] GameObject assassin;
+    [SerializeField] GameObject juggernautBoss;
+    [SerializeField] int[] juggernautBossSpawns;
+    [SerializeField] GameObject assassin;    
     [SerializeField] int[] assassinSpawns;
+    [SerializeField] GameObject assassinBoss;
+    [SerializeField] int[] assassinBossSpawns;
     public List<Transform> assassinSpawnPoints = new List<Transform>();
     [SerializeField] Transform[] patrolTransforms;
     [SerializeField] float timeBetweenSpawn;
@@ -48,13 +52,15 @@ public class EnemySpawner : MonoBehaviour
     //Invincibility powerups variables
     bool isInvincible = false;
     private bool isSinglePlayer = false;
-    public enum MonsterID { walker, juggernaut, assassin };
+    public enum MonsterID { walker, juggernaut, assassin, juggernautBoss, assassinBoss };
     public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
     private void Start()
     {
         Monsters.Add(EnemySpawner.MonsterID.walker, walker);
         Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernaut);
         Monsters.Add(EnemySpawner.MonsterID.assassin, assassin);
+        Monsters.Add(EnemySpawner.MonsterID.juggernautBoss, juggernautBoss);
+        Monsters.Add(EnemySpawner.MonsterID.assassinBoss, assassinBoss);
         foreach(ChestContent weaponChest in weaponChests)
         {
             availableWeaponChests.Add(weaponChest);
@@ -70,9 +76,8 @@ public class EnemySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
             //AllowSpawns();
-            //localUI.UpdateWaitingPrompt();
-            //awayPlayerReadyUp();
-            ResetPlayerPosition();
+            localUI.UpdateWaitingPrompt();
+            awayPlayerReadyUp();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
         if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
@@ -144,7 +149,7 @@ public class EnemySpawner : MonoBehaviour
             SpawnMonster(monsterID);
             return;
         }
-        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
+        if (monsterID == EnemySpawner.MonsterID.assassin || monsterID == EnemySpawner.MonsterID.assassinBoss) //spawning assassin
         {
             if (assassinSpawnPoints.Count.Equals(0))
             {
@@ -185,7 +190,7 @@ public class EnemySpawner : MonoBehaviour
     //Spawns a mob at one of the predefined spawn locations(chosen randomly)
     private void SpawnMonster(EnemySpawner.MonsterID monsterID)
     {
-        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
+        if (monsterID == EnemySpawner.MonsterID.assassin || monsterID == EnemySpawner.MonsterID.assassinBoss) //spawning assassin
         {
             if (assassinSpawnPoints.Count.Equals(0)) //no spawn points available
             {
@@ -299,9 +304,12 @@ public class EnemySpawner : MonoBehaviour
     {
         //spawn juggernauts
         for(int i = 0; i < juggernautSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.juggernaut); }
+        //spawn juggernautBoss
+        for(int i = 0; i < juggernautBossSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.juggernautBoss); }
         //spawn assassins
-        //yet to create special spawnpoints for assassins on towers
         for(int i = 0; i < assassinSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.assassin); }
+        //spawn assassinBoss
+        for(int i = 0; i < assassinBossSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.assassinBoss); }
     }
     /*Code for score updates*/
 
@@ -459,6 +467,7 @@ public class EnemySpawner : MonoBehaviour
         PlayerSetup.localPlayerSetup.transform.SetPositionAndRotation(PlayerSpawn.playerSpawn.position, PlayerSpawn.playerSpawn.rotation);
         PlayerSetup.localPlayerSetup.ResetWeapons();
         PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = true;
+        PlayerSetup.localPlayerSetup.GetComponent<PlayerMovement>().ResetImpact();
     }
 
     /*Invincibility powerups code*/

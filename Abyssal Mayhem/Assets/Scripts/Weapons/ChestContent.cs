@@ -37,6 +37,17 @@ public class ChestContent : MonoBehaviour
         if (chestContent)
         {
             contentInstance = Instantiate<GameObject>(chestContent, createTransform);
+            PistolPickup pistolPickup = contentInstance.GetComponent<PistolPickup>();
+            if (pistolPickup)
+            {
+                pistolPickup.chestContent = this;
+            }
+            else
+            {
+                PowerupPickup powerupPickup = contentInstance.GetComponent<PowerupPickup>();
+                powerupPickup.chestContent = this;
+            }
+            
         }      
         chestContent = null;
     }

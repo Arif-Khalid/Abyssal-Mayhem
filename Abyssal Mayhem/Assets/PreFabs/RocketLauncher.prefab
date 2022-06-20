@@ -53,16 +53,18 @@ MonoBehaviour:
   bullet: {fileID: 5534813618486378921, guid: d181e84a514193f418a2c62d4198e15d, type: 3}
   maxAmmo: 10
   clipSize: 1
-  animator: {fileID: 0}
+  animator: {fileID: 3846407901215376343}
   muzzleAnimator: {fileID: 2956103890722335291}
   whatIsNotPlayer:
     serializedVersion: 2
     m_Bits: 147
+  reloading: 1
   isLaser: 0
   isRocket: 1
   isFiring: 0
   rocketObject: {fileID: 3082550296209489129}
   weaponName: Rocket
+  isInUI: 0
 --- !u!95 &3846407901215376343
 Animator:
   serializedVersion: 4

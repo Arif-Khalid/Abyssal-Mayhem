@@ -905,6 +905,7 @@ MonoBehaviour:
   enemySpawner: {fileID: 0}
   mouseLook: {fileID: 5304629100156268415}
   cameraShake: {fileID: 4762184130248792231}
+  playerPowerups: {fileID: 6765575123762779254}
   componentsToDisable:
   - {fileID: 1698161260317292004}
   - {fileID: 1698161260317292003}

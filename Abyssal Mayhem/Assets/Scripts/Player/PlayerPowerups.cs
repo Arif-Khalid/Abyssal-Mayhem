@@ -33,7 +33,7 @@ public class PlayerPowerups : MonoBehaviour
     }
 
     //Invincibility
-    IEnumerator ActivateInvincibility()
+    public IEnumerator ActivateInvincibility()
     {
         playerHealth.invincible = true;
         playerWeapon.ChangeFireRate(invincibilityFireRate);
@@ -45,7 +45,7 @@ public class PlayerPowerups : MonoBehaviour
     }
     
     //Juggernaut Spawner
-    IEnumerator ActivateJuggernautSpawn()
+    public IEnumerator ActivateJuggernautSpawn()
     {
         playerUI.StartWarning(juggernautWarningMessage);
         yield return new WaitForSeconds(timeTillSpawn); //should be greater than 3 since warning animation plays for 3 seconds
@@ -56,7 +56,7 @@ public class PlayerPowerups : MonoBehaviour
     }
 
     //Paranoia
-    IEnumerator ActivateParanoia()
+    public IEnumerator ActivateParanoia()
     {
         playerUI.StartWarning(paranoiaWarningMessage);
         yield return new WaitForSeconds(timeTillBlind); //should be greater than 3 since warning animation plays for 3 seconds

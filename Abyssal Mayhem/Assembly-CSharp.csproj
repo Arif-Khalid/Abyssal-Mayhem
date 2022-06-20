@@ -138,6 +138,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamTypes\AppId_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamRemotePlay\RemotePlaySessionID_t.cs" />
     <Compile Include="Assets\Scripts\Weapons\ChestInteract.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\JuggernautMissile.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamUserStats\SteamLeaderboard_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamHTTP\HTTPRequestHandle.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworkingTypes\SteamNetworkingConfigValue_t.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\NativeMethods.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamgameserverapps.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamNetworkingTypes\HSteamNetConnection.cs" />
+    <Compile Include="Assets\Scripts\EnemyTest\Missile.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamRemoteStorage\UGCFileWriteStreamHandle_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamgameserverinventory.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamUserStats\SteamLeaderboardEntries_t.cs" />
@@ -226,8 +228,7 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\JuggernautMissile.cs" />
-    <Compile Include="Assets\Scripts\EnemyTest\Missile.cs" />
+    <Compile Include="Assets\Scripts\Weapons\PowerupPickup.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

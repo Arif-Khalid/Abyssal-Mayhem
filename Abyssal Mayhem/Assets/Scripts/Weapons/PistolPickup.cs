@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PistolPickup : Interactable
 {
+    public ChestContent chestContent;
     protected override void Interact()
     {
         //Do something like an animation or sound or destroy itself
-        GetComponentInParent<ChestContent>().MakeAvailable();
-        Destroy(this.gameObject);
+        chestContent.MakeAvailable();
+        Destroy(this.gameObject);       
     }
 }
 

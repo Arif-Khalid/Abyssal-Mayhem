@@ -48,6 +48,7 @@ public class EnemySpawner : MonoBehaviour
     private float pickupTimer;
     public bool pickupsReadyToSpawn;
     public GameObject[] weaponPickups = new GameObject[2];
+    public GameObject[] powerupPickups = new GameObject[4];
 
     //Invincibility powerups variables
     bool isInvincible = false;
@@ -94,28 +95,29 @@ public class EnemySpawner : MonoBehaviour
         {
             pickupTimer = 0;
             //spawn pickups function
-            SpawnPickups();
+            SpawnPickups(weaponPickups);
+            SpawnPickups(powerupPickups);
         }
     }
 
     //Spawns pickups at available weapon chests
-    private void SpawnPickups()
+    private void SpawnPickups(GameObject[] pickups)
     {
         if(availableWeaponChests.Count <= 0)
         {
             return;
         }
         int spawnID = Random.Range(0, availableWeaponChests.Count - 1);
-        int pickupID = Random.Range(0, weaponPickups.Length);
-        Debug.Log(pickupID);
-        if (availableWeaponChests[spawnID].ResetContent(weaponPickups[pickupID]))
+        int pickupID = Random.Range(0, pickups.Length);
+        Debug.Log(pickups.Length);
+        if (availableWeaponChests[spawnID].ResetContent(pickups[pickupID]))
         {
             availableWeaponChests.Remove(availableWeaponChests[spawnID]);
         }
         else
         {
             availableWeaponChests.Remove(availableWeaponChests[spawnID]);
-            SpawnPickups();
+            SpawnPickups(pickups);
         }
     }
 

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 7853287252527664796}
   - component: {fileID: 7853287252527664799}
   m_Layer: 10
-  m_Name: WeaponChest
+  m_Name: PickupChest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -283,6 +283,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactMessage: 
-  defaultMessage: Use E to open weapon chest
+  defaultMessage: Use E to open chest
   weaponToEquip: {fileID: 0}
   animator: {fileID: 7853287252527664796}

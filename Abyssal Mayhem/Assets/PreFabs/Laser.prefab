@@ -154,7 +154,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   maxAmmo: 30
   clipSize: 10
-  animator: {fileID: 0}
+  animator: {fileID: 1298665549391143256}
   muzzleAnimator: {fileID: 4313044256958847257}
   whatIsNotPlayer:
     serializedVersion: 2

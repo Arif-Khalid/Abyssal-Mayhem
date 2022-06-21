@@ -9,13 +9,18 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject walker;
     [SerializeField] GameObject juggernaut;
     [SerializeField] int[] juggernautSpawns;
-    [SerializeField] GameObject assassin;
+    [SerializeField] GameObject juggernautBoss;
+    [SerializeField] int[] juggernautBossSpawns;
+    [SerializeField] GameObject assassin;    
     [SerializeField] int[] assassinSpawns;
+    [SerializeField] GameObject assassinBoss;
+    [SerializeField] int[] assassinBossSpawns;
     public List<Transform> assassinSpawnPoints = new List<Transform>();
     [SerializeField] Transform[] patrolTransforms;
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
+    public int maxRounds = 5;
     
     //Variables for local player
     public Transform localPlayer;
@@ -44,15 +49,20 @@ public class EnemySpawner : MonoBehaviour
     private float pickupTimer;
     public bool pickupsReadyToSpawn;
     public GameObject[] weaponPickups = new GameObject[2];
+    public GameObject[] powerupPickups = new GameObject[4];
 
+    //Invincibility powerups variables
+    bool isInvincible = false;
     private bool isSinglePlayer = false;
-    public enum MonsterID { walker, juggernaut, assassin };
+    public enum MonsterID { walker, juggernaut, assassin, juggernautBoss, assassinBoss };
     public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
     private void Start()
     {
         Monsters.Add(EnemySpawner.MonsterID.walker, walker);
         Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernaut);
         Monsters.Add(EnemySpawner.MonsterID.assassin, assassin);
+        Monsters.Add(EnemySpawner.MonsterID.juggernautBoss, juggernautBoss);
+        Monsters.Add(EnemySpawner.MonsterID.assassinBoss, assassinBoss);
         foreach(ChestContent weaponChest in weaponChests)
         {
             availableWeaponChests.Add(weaponChest);
@@ -68,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
             //AllowSpawns();
-            //localUI.UpdateWaitingPrompt();
+            localUI.UpdateWaitingPrompt();
             awayPlayerReadyUp();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
@@ -86,28 +96,29 @@ public class EnemySpawner : MonoBehaviour
         {
             pickupTimer = 0;
             //spawn pickups function
-            SpawnPickups();
+            SpawnPickups(weaponPickups);
+            SpawnPickups(powerupPickups);
         }
     }
 
     //Spawns pickups at available weapon chests
-    private void SpawnPickups()
+    private void SpawnPickups(GameObject[] pickups)
     {
         if(availableWeaponChests.Count <= 0)
         {
             return;
         }
         int spawnID = Random.Range(0, availableWeaponChests.Count - 1);
-        int pickupID = Random.Range(0, weaponPickups.Length);
-        Debug.Log(pickupID);
-        if (availableWeaponChests[spawnID].ResetContent(weaponPickups[pickupID]))
+        int pickupID = Random.Range(0, pickups.Length);
+        Debug.Log(pickups.Length);
+        if (availableWeaponChests[spawnID].ResetContent(pickups[pickupID]))
         {
             availableWeaponChests.Remove(availableWeaponChests[spawnID]);
         }
         else
         {
             availableWeaponChests.Remove(availableWeaponChests[spawnID]);
-            SpawnPickups();
+            SpawnPickups(pickups);
         }
     }
 
@@ -131,12 +142,17 @@ public class EnemySpawner : MonoBehaviour
     }
     //Spawns a mob at a specific vector3 position with the color blue
     public void SpawnMonsterAtPoint(Vector3 position, EnemySpawner.MonsterID monsterID)
-    {
+    {         
         if (!localPlayerReady)
         {
             return;
         }
-        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
+        if (position == Vector3.zero) //spawns monster randomly if no position given
+        {
+            SpawnMonster(monsterID);
+            return;
+        }
+        if (monsterID == EnemySpawner.MonsterID.assassin || monsterID == EnemySpawner.MonsterID.assassinBoss) //spawning assassin
         {
             if (assassinSpawnPoints.Count.Equals(0))
             {
@@ -154,6 +170,10 @@ public class EnemySpawner : MonoBehaviour
             //Do different stuff for assassin
             WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
             weaponIK.patrolTransforms = patrolTransforms;
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         else //spawning something else
         {
@@ -163,13 +183,17 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }       
     }
 
     //Spawns a mob at one of the predefined spawn locations(chosen randomly)
     private void SpawnMonster(EnemySpawner.MonsterID monsterID)
     {
-        if (monsterID == EnemySpawner.MonsterID.assassin) //spawning assassin
+        if (monsterID == EnemySpawner.MonsterID.assassin || monsterID == EnemySpawner.MonsterID.assassinBoss) //spawning assassin
         {
             if (assassinSpawnPoints.Count.Equals(0)) //no spawn points available
             {
@@ -188,6 +212,10 @@ public class EnemySpawner : MonoBehaviour
             //Do different stuff for assassin
             WeaponIK weaponIK = spawnedMonster.GetComponent<WeaponIK>();
             weaponIK.patrolTransforms = patrolTransforms;
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         else //spawning anything else
         {
@@ -198,6 +226,10 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
+            if (isInvincible)
+            {
+                spawnedMonster.GetComponent<Outline>().enabled = true;
+            }
         }
         
     }
@@ -220,6 +252,8 @@ public class EnemySpawner : MonoBehaviour
             ResetWeaponSpawns();
             ResetPlayerPosition();
             localUI.BothPlayersReady(); //Removes waiting for player text
+            KillAll();
+            ResetAppliedPowerups();
             localUI.StartNewRoundCount();
         }
     }
@@ -238,6 +272,8 @@ public class EnemySpawner : MonoBehaviour
             ResetWeaponSpawns();
             ResetPlayerPosition();
             localUI.BothPlayersReady(); //Removes waiting for player text
+            KillAll();
+            ResetAppliedPowerups();
             localUI.StartNewRoundCount();
         }
     }
@@ -271,9 +307,12 @@ public class EnemySpawner : MonoBehaviour
     {
         //spawn juggernauts
         for(int i = 0; i < juggernautSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.juggernaut); }
+        //spawn juggernautBoss
+        for(int i = 0; i < juggernautBossSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.juggernautBoss); }
         //spawn assassins
-        //yet to create special spawnpoints for assassins on towers
         for(int i = 0; i < assassinSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.assassin); }
+        //spawn assassinBoss
+        for(int i = 0; i < assassinBossSpawns[round]; i++) { SpawnMonster(EnemySpawner.MonsterID.assassinBoss); }
     }
     /*Code for score updates*/
 
@@ -297,7 +336,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                if(round == Quotas.Length - 1)
+                if(round == maxRounds)
                 {
                     localPlayer.GetComponent<PlayerSetup>().Survived();
                 }                
@@ -343,6 +382,7 @@ public class EnemySpawner : MonoBehaviour
         {
             ResetWeaponSpawns();
             KillAll();
+            ResetAppliedPowerups();
             localUI.BothPlayersNotReady();
             localUI.ResetRounds();
             ResetPlayerPosition();
@@ -426,8 +466,47 @@ public class EnemySpawner : MonoBehaviour
     //Resets the player to starting position
     private void ResetPlayerPosition()
     {
-        PlayerSetup.localPlayerSetup.transform.position = PlayerSpawn.playerSpawn.position;
-        PlayerSetup.localPlayerSetup.transform.rotation = PlayerSpawn.playerSpawn.rotation;
+        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = false;
+        PlayerSetup.localPlayerSetup.transform.SetPositionAndRotation(PlayerSpawn.playerSpawn.position, PlayerSpawn.playerSpawn.rotation);
         PlayerSetup.localPlayerSetup.ResetWeapons();
+        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = true;
+        PlayerSetup.localPlayerSetup.GetComponent<PlayerMovement>().ResetImpact();
+    }
+
+    /*Invincibility powerups code*/
+    public void EnableOutline()
+    {
+        isInvincible = true;
+        foreach(GameObject monster in spawnedMonsters)
+        {
+            monster.GetComponent<Outline>().enabled = true;
+        }
+    }
+
+    public void DisableOutline()
+    {
+        isInvincible = false;
+        foreach(GameObject monster in spawnedMonsters)
+        {
+            monster.GetComponent<Outline>().enabled = false;
+        }
+    }
+
+    private void ResetAppliedPowerups()
+    {
+        PlayerPowerups playerPowerups = localPlayer.GetComponent<PlayerPowerups>();
+        playerPowerups.ResetAppliedPowerups();
+    }
+
+    public void Respawn() //Called if an extra life is possessed
+    {
+        ResetPlayerPosition();
+        localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
+    }
+
+    //Function called when non-host connects to set max rounds based on away player rounds
+    public void SetHostRounds()
+    {
+        maxRounds = awayPlayer.maxRounds;
     }
 }

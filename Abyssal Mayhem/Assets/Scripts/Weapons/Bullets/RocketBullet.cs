@@ -115,7 +115,6 @@ public class RocketBullet : Bullet
     }
     public override void DealDamage(Collider other)
     {
-        Debug.Log("Damage dealt");
         damageDealt = true;
         Explode();
     }

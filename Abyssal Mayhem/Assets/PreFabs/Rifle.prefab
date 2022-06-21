@@ -170,7 +170,7 @@ MonoBehaviour:
   bullet: {fileID: 6014419872463244055, guid: d1a4d5bd88cdc464fbf114f3c32864bf, type: 3}
   maxAmmo: -1
   clipSize: 25
-  animator: {fileID: 0}
+  animator: {fileID: 6601266765669384673}
   muzzleAnimator: {fileID: 8951438823144230218}
   whatIsNotPlayer:
     serializedVersion: 2
@@ -181,6 +181,7 @@ MonoBehaviour:
   isFiring: 0
   rocketObject: {fileID: 0}
   weaponName: Rifle
+  isInUI: 0
 --- !u!114 &8050673778747248622
 MonoBehaviour:
   m_ObjectHideFlags: 0

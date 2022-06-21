@@ -16,6 +16,7 @@ public class AssassinAI : EnemyAI
     public Transform laserSightOrigin;
     public bool isPatrolling;
     List<Bullet> bullets = new List<Bullet>();
+    public bool isBoss = false;
 
     private void Start()
     {
@@ -55,30 +56,44 @@ public class AssassinAI : EnemyAI
 
     protected override void AttackPlayer()
     {
-        RaycastHit hit;
-        if(Physics.Raycast(headTransform.position, (player.position - headTransform.position), out hit, attackRange, playerAndObstacles))
+        if (isBoss) //always lock onto player if isBoss
         {
-            UpdateLaser(hit.point);
-            Debug.DrawRay(headTransform.position, (player.position-headTransform.position) * 50);
-            if (hit.collider.GetComponent<PlayerHealth>())
+            UpdateLaser(player.position);
+            isPatrolling = false;
+            if (!alreadyAttacked && weaponIK.CanAssassinShoot())
             {
-                isPatrolling = false;
-                if(!alreadyAttacked && weaponIK.CanAssassinShoot())
+                Attack();
+                alreadyAttacked = true;
+                Invoke(nameof(ResetAttack), timeBetweenAttacks);
+            }
+        }
+        else
+        {
+            RaycastHit hit;
+            if (Physics.Raycast(headTransform.position, (player.position - headTransform.position), out hit, attackRange, playerAndObstacles))
+            {
+                UpdateLaser(hit.point);
+                Debug.DrawRay(headTransform.position, (player.position - headTransform.position) * 50);
+                if (hit.collider.GetComponent<PlayerHealth>())
                 {
-                    Attack();
-                    alreadyAttacked = true;
-                    Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                    isPatrolling = false;
+                    if (!alreadyAttacked && weaponIK.CanAssassinShoot())
+                    {
+                        Attack();
+                        alreadyAttacked = true;
+                        Invoke(nameof(ResetAttack), timeBetweenAttacks);
+                    }
+                }
+                else
+                {
+                    weaponIK.PlayerOutOfSight();
                 }
             }
             else
             {
                 weaponIK.PlayerOutOfSight();
             }
-        }
-        else
-        {
-            weaponIK.PlayerOutOfSight();
-        }
+        }      
     }
     public override void Attack()
     {

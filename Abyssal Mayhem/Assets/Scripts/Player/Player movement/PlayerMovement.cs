@@ -135,4 +135,10 @@ public class PlayerMovement : MonoBehaviour
         move = Vector3.zero;
         impact = Vector3.zero;    
     }
+
+    public void ResetImpact()
+    {
+        move = Vector3.zero;
+        impact = Vector3.zero;
+    }
 }

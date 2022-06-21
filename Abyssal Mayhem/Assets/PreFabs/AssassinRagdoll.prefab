@@ -1519,7 +1519,7 @@ MonoBehaviour:
   patrolWeight: 0
   backToPatrolWeight: 0
   scalingFactor: 1
-  patrolScalingFactor: 1
+  patrolScalingFactor: 3
   angleLimit: 90
   distanceLimit: 1.5
   idleAfterSeeingPlayer: 2
@@ -1616,6 +1616,7 @@ MonoBehaviour:
   startingTransform: {fileID: 0}
   laserSightOrigin: {fileID: 3932572345220920686}
   isPatrolling: 1
+  isBoss: 0
 --- !u!195 &7488292938307840111
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -50,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(duration, magnitude));
+        playerUI.HurtUI(); //Getting hurt UI
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);

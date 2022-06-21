@@ -77,9 +77,8 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
-            //AllowSpawns();
+            AllowSpawns();
             localUI.UpdateWaitingPrompt();
-            awayPlayerReadyUp();
         }
         //Spawns monster at regular intervals if both players ready and quota not met
         if (!alreadySpawned && ((localPlayerReady && awayPlayerReady && !metLocalQuota) || isSinglePlayer))
@@ -165,6 +164,7 @@ public class EnemySpawner : MonoBehaviour
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
+            enemyHealth.GetComponent<AssassinAI>().startingTransform = assassinSpawnPoints[spawnID];
             assassinSpawnPoints.Remove(assassinSpawnPoints[spawnID]);
             spawnedMonsters.Add(spawnedMonster);
             //Do different stuff for assassin

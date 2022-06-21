@@ -181,6 +181,12 @@ public class PlayerUI : MonoBehaviour
         StartProhibitionTimer();
     }
 
+    public void HurtUI()
+    {
+        animator.Play("PlayerHurt", animator.GetLayerIndex("Hurt Layer"), 0f);
+    }
+
+    /*Code for powerups UI*/
     public void StartWarning(string message)
     {
         warningText.text = "!Incoming " + message + "!";

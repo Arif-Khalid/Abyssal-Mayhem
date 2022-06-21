@@ -37,7 +37,7 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        SetMaxHealth(100);
+        SetMaxHealth(maxHealth);
         playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
     }
 

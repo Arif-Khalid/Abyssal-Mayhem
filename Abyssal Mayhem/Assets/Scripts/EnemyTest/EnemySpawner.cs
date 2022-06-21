@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
+    public int maxRounds = 5;
     
     //Variables for local player
     public Transform localPlayer;
@@ -335,7 +336,7 @@ public class EnemySpawner : MonoBehaviour
             }
             else
             {
-                if(round == Quotas.Length - 1)
+                if(round == maxRounds)
                 {
                     localPlayer.GetComponent<PlayerSetup>().Survived();
                 }                
@@ -501,5 +502,11 @@ public class EnemySpawner : MonoBehaviour
     {
         ResetPlayerPosition();
         localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
+    }
+
+    //Function called when non-host connects to set max rounds based on away player rounds
+    public void SetHostRounds()
+    {
+        maxRounds = awayPlayer.maxRounds;
     }
 }

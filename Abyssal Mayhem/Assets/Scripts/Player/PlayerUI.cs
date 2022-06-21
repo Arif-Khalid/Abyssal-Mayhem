@@ -187,9 +187,16 @@ public class PlayerUI : MonoBehaviour
         animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
     }
 
+    public void StartBlind()
+    {
+        //Play blind animation
+        animator.Play("Blind", animator.GetLayerIndex("Blind Layer"), 0f);
+    }
     public void StopAnimator()
     {
         animator.Play("Empty", animator.GetLayerIndex("Warning Layer"));
+        //Stop blind animation as well
+        animator.Play("Empty", animator.GetLayerIndex("Blind Layer"));
     }
 
     public void UpdateExtraLives(int lives)

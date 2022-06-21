@@ -30,6 +30,29 @@ public class SteamLobby : MonoBehaviour
     [Scene] public string InfiniteSpawnScene;
     [Scene] public string SnipeToWinScene;
     [Scene] public string MainMenuScene;
+
+    [SerializeField] int easyRounds;
+    [SerializeField] int mediumRounds;
+    [SerializeField] int hardRounds;
+
+
+    public void SetEasyInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", easyRounds);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetMediumInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", mediumRounds);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetHardInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", hardRounds);
+        HostInfiniteSpawnLobby();
+    }
     private void Start()
     {
         if (!SteamManager.Initialized) { return; }

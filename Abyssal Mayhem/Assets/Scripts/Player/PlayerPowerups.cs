@@ -24,14 +24,6 @@ public class PlayerPowerups : MonoBehaviour
     [SerializeField] float timeTillBlind;
     [SerializeField] string paranoiaWarningMessage;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            ActivateExtraLife();
-        }
-    }
-
     //Invincibility
     public IEnumerator ActivateInvincibility()
     {
@@ -60,7 +52,7 @@ public class PlayerPowerups : MonoBehaviour
     {
         playerUI.StartWarning(paranoiaWarningMessage);
         yield return new WaitForSeconds(timeTillBlind); //should be greater than 3 since warning animation plays for 3 seconds
-        //UI for paranoia
+        playerUI.StartBlind();//UI for paranoia
     }
 
     //Extra life

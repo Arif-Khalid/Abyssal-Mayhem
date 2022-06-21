@@ -12,6 +12,29 @@ public class KCPLobby : MonoBehaviour
     [Scene] public string SnipeToWinScene;
     [Scene] public string MainMenuScene;
     private bool isEscapeMenuActive = false;
+
+    [SerializeField] int easyRounds;
+    [SerializeField] int mediumRounds;
+    [SerializeField] int hardRounds;
+
+
+    public void SetEasyInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", easyRounds);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetMediumInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", mediumRounds);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetHardInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", hardRounds);
+        HostInfiniteSpawnLobby();
+    }
     public void HostInfiniteSpawnLobby()
     {
         customNetworkManager.onlineScene = InfiniteSpawnScene;

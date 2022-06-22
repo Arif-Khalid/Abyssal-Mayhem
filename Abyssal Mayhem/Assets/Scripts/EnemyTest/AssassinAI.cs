@@ -117,6 +117,10 @@ public class AssassinAI : EnemyAI
 
     private void OnDisable()
     {
+        laserSight.enabled = false;
+    }
+    private void OnDestroy()
+    {
         foreach (Bullet bullet in bullets)
         {
             if (bullet)

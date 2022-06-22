@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
+using TMPro;
 
 public class KCPLobby : MonoBehaviour
 {
@@ -16,6 +17,13 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] int easyRounds;
     [SerializeField] int mediumRounds;
     [SerializeField] int hardRounds;
+
+    [SerializeField] TextMeshProUGUI spawnJuggernautText;
+    [SerializeField] TextMeshProUGUI spawnJuggernautBossText;
+    [SerializeField] TextMeshProUGUI spawnAssassinText;
+    [SerializeField] TextMeshProUGUI spawnAssassinBossText;
+    [SerializeField] TextMeshProUGUI spawnFeedbackText;
+    [SerializeField] Animator animator;
 
 
     public void SetEasyInfSpawn()
@@ -99,4 +107,73 @@ public class KCPLobby : MonoBehaviour
             customNetworkManager.StopServer();
         }
     }
+
+    /*Functions for spawning monsters in single player*/
+    public void SpawnJuggernaut()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
+            spawnFeedbackText.color = spawnJuggernautText.color;
+            spawnFeedbackText.text = "juggernaut spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnJuggernautBoss()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
+            spawnFeedbackText.color = spawnJuggernautBossText.color;
+            spawnFeedbackText.text = "juggernaut boss spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnAssassin()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
+            spawnFeedbackText.color = spawnAssassinText.color;
+            spawnFeedbackText.text = "assassin spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnAssassinBoss()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
+            spawnFeedbackText.color = spawnAssassinBossText.color;
+            spawnFeedbackText.text = "assassin boss spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    private void SpawnDisabledUI()
+    {
+        spawnFeedbackText.color = Color.white;
+        spawnFeedbackText.text = "spawning disabled";
+        animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+    }
+
 }

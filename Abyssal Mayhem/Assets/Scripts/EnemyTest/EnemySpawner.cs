@@ -20,7 +20,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
-    public int maxRounds = 5;
+    public int maxRounds = 15;
+    private float healthMultiplier = 1f;
     
     //Variables for local player
     public Transform localPlayer;
@@ -161,6 +162,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
@@ -180,6 +182,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
@@ -203,6 +206,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             enemyHealth.startingTransform = assassinSpawnPoints[spawnID];
@@ -223,6 +227,7 @@ public class EnemySpawner : MonoBehaviour
             GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
+            enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
             enemyHealth.cameraTransform = cameraTransform; //Set camera for healthbar to face
             enemyHealth.enemySpawner = this;
             spawnedMonsters.Add(spawnedMonster);
@@ -504,9 +509,25 @@ public class EnemySpawner : MonoBehaviour
         localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
     }
 
-    //Function called when non-host connects to set max rounds based on away player rounds
-    public void SetHostRounds()
+    //Function called when non-host connects to set difficulty based on away player difficulty or host difficulty
+    public void SetHostDifficulty()
     {
-        maxRounds = awayPlayer.maxRounds;
+        SetDifficulty(awayPlayer.difficultyID);
+    }
+
+    //Function called by host that sets local difficulty based on player prefs called in player setup
+    public void SetDifficulty(int difficultyID)
+    {
+        if(difficultyID == 0)//easy ID
+        {
+            //Set the boss mobs to be normal mobs
+            healthMultiplier = 0.5f;
+        }
+        else if(difficultyID == 2)//hard ID
+        {
+            //Set the normal mobs to be boss mobs
+            healthMultiplier = 1.5f;
+        }
+        //Normal ID is how the game is by default
     }
 }

@@ -31,9 +31,9 @@ public class SteamLobby : MonoBehaviour
     [Scene] public string SnipeToWinScene;
     [Scene] public string MainMenuScene;
 
-    [SerializeField] int easyRounds;
-    [SerializeField] int mediumRounds;
-    [SerializeField] int hardRounds;
+    [SerializeField] int easyID;
+    [SerializeField] int mediumID;
+    [SerializeField] int hardID;
 
     //Variables for spawning special monsters
     [SerializeField] TextMeshProUGUI spawnJuggernautText;
@@ -44,19 +44,19 @@ public class SteamLobby : MonoBehaviour
     [SerializeField] Animator animator;
     public void SetEasyInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", easyRounds);
+        PlayerPrefs.SetInt("difficulty", easyID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetMediumInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", mediumRounds);
+        PlayerPrefs.SetInt("difficulty", mediumID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetHardInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", hardRounds);
+        PlayerPrefs.SetInt("difficulty", hardID);
         HostInfiniteSpawnLobby();
     }
     private void Start()

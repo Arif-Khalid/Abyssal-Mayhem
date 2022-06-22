@@ -757,7 +757,7 @@ GameObject:
   - component: {fileID: 226927847}
   - component: {fileID: 226927846}
   m_Layer: 5
-  m_Name: MediumButton
+  m_Name: NormalButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2558,9 +2558,9 @@ MonoBehaviour:
   InfiniteSpawnScene: Assets/Scenes/STEAMInfiniteSpawn Map1.unity
   SnipeToWinScene: Assets/Scenes/TempSnipeToWin.unity
   MainMenuScene: Assets/Scenes/MainMenuKCP.unity
-  easyRounds: 5
-  mediumRounds: 10
-  hardRounds: 15
+  easyID: 0
+  mediumID: 1
+  hardID: 2
   spawnJuggernautText: {fileID: 1074765986}
   spawnJuggernautBossText: {fileID: 2051778443}
   spawnAssassinText: {fileID: 375184961}
@@ -4858,7 +4858,7 @@ GameObject:
   - component: {fileID: 1618066165}
   - component: {fileID: 1618066164}
   m_Layer: 5
-  m_Name: MediumText
+  m_Name: NormalText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4904,7 +4904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Medium
+  m_text: Normal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0349b5cdec71cf64ca21d998371e3e99, type: 2}
   m_sharedMaterial: {fileID: 2192269244014317836, guid: 0349b5cdec71cf64ca21d998371e3e99,

@@ -14,9 +14,9 @@ public class KCPLobby : MonoBehaviour
     [Scene] public string MainMenuScene;
     private bool isEscapeMenuActive = false;
 
-    [SerializeField] int easyRounds;
-    [SerializeField] int mediumRounds;
-    [SerializeField] int hardRounds;
+    [SerializeField] int easyID;
+    [SerializeField] int mediumID;
+    [SerializeField] int hardID;
 
     [SerializeField] TextMeshProUGUI spawnJuggernautText;
     [SerializeField] TextMeshProUGUI spawnJuggernautBossText;
@@ -28,19 +28,19 @@ public class KCPLobby : MonoBehaviour
 
     public void SetEasyInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", easyRounds);
+        PlayerPrefs.SetInt("difficulty", easyID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetMediumInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", mediumRounds);
+        PlayerPrefs.SetInt("difficulty", mediumID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetHardInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", hardRounds);
+        PlayerPrefs.SetInt("difficulty", hardID);
         HostInfiniteSpawnLobby();
     }
     public void HostInfiniteSpawnLobby()

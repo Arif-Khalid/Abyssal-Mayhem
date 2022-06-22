@@ -24,7 +24,7 @@ public class PlayerSetup : NetworkBehaviour
     //Score to be kept track of on server
     [SyncVar(hook = nameof(scoreChange))] int myScore = 0;
     //Max number of rounds to be set by host
-    [SyncVar] public int maxRounds;
+    [SyncVar] public int difficultyID;
 
     private void Start()
     {
@@ -112,14 +112,14 @@ public class PlayerSetup : NetworkBehaviour
         localPlayerSetup = this;
         if (isServer)
         {
-            //Run CMD that sets max rounds
-            CmdSetMaxRounds();
-            enemySpawner.maxRounds = maxRounds;
+            //Run CMD that sets difficulty rounds
+            CmdSetDifficulty();
+            enemySpawner.SetDifficulty(difficultyID);
         }
         else
         {
-            //Take max rounds from away player
-            enemySpawner.SetHostRounds();
+            //Take difficulty from away player
+            enemySpawner.SetHostDifficulty();
         }
         sceneCamera = Camera.main;
         if (sceneCamera)
@@ -188,9 +188,9 @@ public class PlayerSetup : NetworkBehaviour
 
     [Command]
     //Function that sets the max rounds if local player is host
-    private void CmdSetMaxRounds()
+    private void CmdSetDifficulty()
     {
-        maxRounds = PlayerPrefs.GetInt("difficulty");
+        difficultyID = PlayerPrefs.GetInt("difficulty");
     }
 
     [Command]

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     //Health count variables
-    [SerializeField]private int maxHealth = 100;
+    public int maxHealth = 100;
     private int currentHealth;
 
     //UI variables
@@ -36,8 +36,6 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
-        SetMaxHealth(maxHealth);
         playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
     }
 
@@ -51,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
+        Debug.Log(value);
         maxHealth = value;
         currentHealth = maxHealth;
         slider.maxValue = value;

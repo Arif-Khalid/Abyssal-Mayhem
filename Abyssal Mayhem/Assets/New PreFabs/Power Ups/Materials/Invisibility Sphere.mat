@@ -85,7 +85,7 @@ Material:
     m_Floats:
     - _AlphaClip: 0
     - _Blend: 0
-    - _BoarderPower: 1
+    - _BoarderPower: 0.3
     - _BoarderSize: 5
     - _BumpScale: 1
     - _ClearCoatMask: 0
@@ -118,9 +118,9 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BoarderColor: {r: 0.24528301, g: 0.047436804, b: 0.08424155, a: 0}
+    - _BoarderColor: {r: 1, g: 0.9451673, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorTexture: {r: 0.9056604, g: 0.8046036, b: 0.20932718, a: 1}
+    - _ColorTexture: {r: 0.9622642, g: 0.8007696, b: 0.06808472, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

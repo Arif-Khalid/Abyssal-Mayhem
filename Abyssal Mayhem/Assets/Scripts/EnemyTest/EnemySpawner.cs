@@ -77,8 +77,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
-            awayPlayerReadyUp();
-            //AllowSpawns();
+            AllowSpawns();
             localUI.UpdateWaitingPrompt();
         }
         //Spawns monster at regular intervals if both players ready and quota not met

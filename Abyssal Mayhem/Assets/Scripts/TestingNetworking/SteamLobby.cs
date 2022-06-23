@@ -5,6 +5,7 @@ using Mirror;
 using Steamworks;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class SteamLobby : MonoBehaviour
     [SerializeField] TextMeshProUGUI spawnAssassinBossText;
     [SerializeField] TextMeshProUGUI spawnFeedbackText;
     [SerializeField] Animator animator;
+    [SerializeField] Slider mouseSensitivitySlider;
     public void SetEasyInfSpawn()
     {
         PlayerPrefs.SetInt("difficulty", easyID);
@@ -236,5 +238,14 @@ public class SteamLobby : MonoBehaviour
         spawnFeedbackText.color = Color.white;
         spawnFeedbackText.text = "spawning disabled";
         animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+    }
+
+    //Function called in escape menu mouse sensitivity slider
+    public void ChangeMouseSensitivity()
+    {
+        if (PlayerSetup.localPlayerSetup)
+        {
+            PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
+        }
     }
 }

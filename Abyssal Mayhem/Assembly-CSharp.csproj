@@ -83,6 +83,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamInput\InputHandle_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\CallbackIdentity.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamuserstats.cs" />
+    <Compile Include="Assets\Scripts\Weapons\WeaponPickupStandalone.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Weapons\RifleWeapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamHTTP\HTTPCookieContainerHandle.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\LegacyClient.cs" />
     <Compile Include="Assets\Scripts\DeathBox.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Scripts\Weapons\JuggernautWeapon.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\types\SteamInventory\SteamItemInstanceID_t.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\NextServer.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamgameserverstats.cs" />
@@ -229,8 +231,6 @@
     <Compile Include="Assets\Scripts\TestingNetworking\NetworkMessages.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\Steam.cs" />
     <Compile Include="Assets\Mirror\Runtime\Transport\FizzySteamworks\Dependencies\Runtime\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Scripts\Weapons\WeaponPickupStandalone.cs" />
-    <Compile Include="Assets\Scripts\Weapons\JuggernautWeapon.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Materials\Mirror\Plugins\Mono.Cecil\Mono.CecilX.dll" />

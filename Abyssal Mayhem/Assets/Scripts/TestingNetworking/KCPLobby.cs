@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
 using TMPro;
+using UnityEngine.UI;
 
 public class KCPLobby : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] TextMeshProUGUI spawnAssassinBossText;
     [SerializeField] TextMeshProUGUI spawnFeedbackText;
     [SerializeField] Animator animator;
+    [SerializeField] Slider mouseSensitivitySlider;
 
 
     public void SetEasyInfSpawn()
@@ -174,6 +176,15 @@ public class KCPLobby : MonoBehaviour
         spawnFeedbackText.color = Color.white;
         spawnFeedbackText.text = "spawning disabled";
         animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+    }
+
+    //Function called to change mouse sensitivity called in escape menu slider
+    public void ChangeMouseSensitivity()
+    {
+        if (PlayerSetup.localPlayerSetup)
+        {
+            PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
+        }
     }
 
 }

@@ -873,6 +873,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4243
   aimTransform: {fileID: 1698161259452351256}
+  testWeapon: {fileID: 3983524928201402946, guid: 73fa7b7d7b451a7478b208a9d5655d5c,
+    type: 3}
 --- !u!114 &1698161260317292005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -919,7 +921,7 @@ MonoBehaviour:
   - {fileID: 868281582}
   awayUI: {fileID: 3982145923436985944}
   playerWeapon: {fileID: 0}
-  maxRounds: 0
+  difficultyID: 0
 --- !u!114 &8230614775318324065
 MonoBehaviour:
   m_ObjectHideFlags: 0

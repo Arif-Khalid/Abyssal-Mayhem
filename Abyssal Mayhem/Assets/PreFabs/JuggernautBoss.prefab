@@ -1243,6 +1243,10 @@ MonoBehaviour:
   - {fileID: 1889445094}
   - {fileID: 548055714089131347}
   timeBeforeDestroy: 10
+  juggernautWeaponPickup: {fileID: 6164827358444201402, guid: 1bcb8fb485d8f984590d58d6916fddf2,
+    type: 3}
+  isBoss: 1
+  yOffset: 4
 --- !u!1 &2918282259645569926 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000012312821218, guid: 11c7b899afd215840aaee6a859bf154b,

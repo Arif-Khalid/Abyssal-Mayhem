@@ -61,7 +61,7 @@ public class Weapon : MonoBehaviour
     }
 
     //Start reloading weapon
-    public void Reload()
+    public virtual void Reload()
     {
         if(isFiring || reloading)
         {

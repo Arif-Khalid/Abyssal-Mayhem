@@ -11,6 +11,8 @@ public class JuggernautExplode : MonoBehaviour
     [SerializeField] float explosionRange;
     [SerializeField] Behaviour[] behavioursToDisable;
     [SerializeField] float timeBeforeDestroy;
+    [SerializeField] GameObject juggernautWeaponPickup;
+    [SerializeField] bool isBoss = false;
     void Start()
     {
         colliders = GetComponentsInChildren<MeshCollider>();
@@ -31,6 +33,10 @@ public class JuggernautExplode : MonoBehaviour
             Rigidbody rigidBody = collider.gameObject.AddComponent<Rigidbody>();
             rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRange);
         }
+        if (isBoss) {
+            GameObject spawnedPickup = Instantiate<GameObject>(juggernautWeaponPickup, transform);
+        }
+        
         Invoke(nameof(Destroy), timeBeforeDestroy);
     }
 

@@ -18,6 +18,8 @@ public class PlayerWeapon : MonoBehaviour
 
     float fireRate = 1f;
 
+    [SerializeField] GameObject testWeapon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +49,10 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Equip(testWeapon);
+        }
         if (weapon)
         {
             ShiftAimTransform();

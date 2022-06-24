@@ -2,12 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuGameManager : MonoBehaviour
 {
     [SerializeField] Canvas mainMenu;
     [SerializeField] Canvas optionsMenu;
     [SerializeField] Canvas difficultyMenu;
+    [SerializeField] Canvas howToPlayGuide;
+    [SerializeField] Scrollbar guideScrollBar;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (howToPlayGuide.enabled)
+            {
+                DisableGuide();
+            }
+        }
+    }
+
     public void StartInfiniteSpawn()
     {
         SceneManager.LoadScene(1);
@@ -41,6 +56,20 @@ public class MenuGameManager : MonoBehaviour
         difficultyMenu.enabled = false; 
     }
 
+    public void EnableGuide()
+    {
+        //Disable main menu and enable guide
+        mainMenu.enabled = false;
+        howToPlayGuide.enabled = true;
+    }
+
+    public void DisableGuide()
+    {
+        //Disable guide and enable main menu
+        mainMenu.enabled = true;
+        howToPlayGuide.enabled = false;
+        guideScrollBar.value = 1;
+    }
     public void QuitGame()
     {
         Application.Quit();

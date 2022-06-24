@@ -7,6 +7,7 @@ public class MenuGameManager : MonoBehaviour
 {
     [SerializeField] Canvas mainMenu;
     [SerializeField] Canvas optionsMenu;
+    [SerializeField] Canvas difficultyMenu;
     public void StartInfiniteSpawn()
     {
         SceneManager.LoadScene(1);
@@ -24,6 +25,20 @@ public class MenuGameManager : MonoBehaviour
         //Disable options menu and enable main menu
         mainMenu.enabled = true;
         optionsMenu.enabled = false;
+    }
+
+    public void EnableDifficultySelect()
+    {
+        //Disable main menu and enabled difficulty select
+        mainMenu.enabled = false;
+        difficultyMenu.enabled = true;
+    }
+
+    public void DisableDifficultySelect()
+    {
+        //Disable difficulty select and enabled main menu
+        mainMenu.enabled = true;
+        difficultyMenu.enabled = false; 
     }
 
     public void QuitGame()

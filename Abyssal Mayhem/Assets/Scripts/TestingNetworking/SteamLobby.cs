@@ -5,6 +5,7 @@ using Mirror;
 using Steamworks;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SteamLobby : MonoBehaviour
 {
@@ -30,6 +31,36 @@ public class SteamLobby : MonoBehaviour
     [Scene] public string InfiniteSpawnScene;
     [Scene] public string SnipeToWinScene;
     [Scene] public string MainMenuScene;
+
+    [SerializeField] int easyID;
+    [SerializeField] int mediumID;
+    [SerializeField] int hardID;
+
+    //Variables for spawning special monsters
+    [SerializeField] TextMeshProUGUI spawnJuggernautText;
+    [SerializeField] TextMeshProUGUI spawnJuggernautBossText;
+    [SerializeField] TextMeshProUGUI spawnAssassinText;
+    [SerializeField] TextMeshProUGUI spawnAssassinBossText;
+    [SerializeField] TextMeshProUGUI spawnFeedbackText;
+    [SerializeField] Animator animator;
+    [SerializeField] Slider mouseSensitivitySlider;
+    public void SetEasyInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", easyID);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetMediumInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", mediumID);
+        HostInfiniteSpawnLobby();
+    }
+
+    public void SetHardInfSpawn()
+    {
+        PlayerPrefs.SetInt("difficulty", hardID);
+        HostInfiniteSpawnLobby();
+    }
     private void Start()
     {
         if (!SteamManager.Initialized) { return; }
@@ -78,7 +109,6 @@ public class SteamLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
-        Debug.Log("Entering QuitToMenu Function");
         if (NetworkServer.active && NetworkClient.isConnected)
         {
             Debug.Log("quitting");
@@ -142,4 +172,80 @@ public class SteamLobby : MonoBehaviour
         manager.StartClient();
     }
 
+    /*Functions for spawning monsters in single player*/
+    public void SpawnJuggernaut()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
+            spawnFeedbackText.color = spawnJuggernautText.color;
+            spawnFeedbackText.text = "juggernaut spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnJuggernautBoss()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
+            spawnFeedbackText.color = spawnJuggernautBossText.color;
+            spawnFeedbackText.text = "juggernaut boss spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnAssassin()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
+            spawnFeedbackText.color = spawnAssassinText.color;
+            spawnFeedbackText.text = "assassin spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    public void SpawnAssassinBoss()
+    {
+        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        {
+            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
+            spawnFeedbackText.color = spawnAssassinBossText.color;
+            spawnFeedbackText.text = "assassin boss spawned";
+            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        }
+        else
+        {
+            SpawnDisabledUI();
+        }
+    }
+
+    private void SpawnDisabledUI()
+    {
+        spawnFeedbackText.color = Color.white;
+        spawnFeedbackText.text = "spawning disabled";
+        animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+    }
+
+    //Function called in escape menu mouse sensitivity slider
+    public void ChangeMouseSensitivity()
+    {
+        if (PlayerSetup.localPlayerSetup)
+        {
+            PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
+        }
+    }
 }

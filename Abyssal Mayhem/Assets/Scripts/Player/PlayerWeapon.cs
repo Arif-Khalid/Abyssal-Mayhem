@@ -16,6 +16,10 @@ public class PlayerWeapon : MonoBehaviour
     public Transform aimTransform; //Where bullets should head
     Transform bulletPoint; //Where bullets shoot from
 
+    float fireRate = 1f;
+
+    [SerializeField] GameObject testWeapon;
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +37,11 @@ public class PlayerWeapon : MonoBehaviour
         }
         weapon = Instantiate<GameObject>(newWeapon, weaponSlot).GetComponent<Weapon>(); //create new weapon
         weapon.playerWeapon = this;
+        weapon.animator.SetFloat("FireRate", fireRate);
+        if (weapon.isLaser)
+        {
+            weapon.GetComponent<LaserWeapon>().fireRate = (2 - fireRate) / 2;
+        }
         bulletPoint = weapon.bulletPoint; 
     }
     
@@ -40,10 +49,14 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Equip(testWeapon);
+        }
         if (weapon)
         {
             ShiftAimTransform();
-            if (!weapon.isLaser && Input.GetKeyDown(KeyCode.Mouse0))
+            if (!weapon.isLaser && Input.GetKey(KeyCode.Mouse0))
             {
                 Debug.Log("Firing weapon");
                 weapon.Fire();
@@ -68,6 +81,17 @@ public class PlayerWeapon : MonoBehaviour
         {
             //Default the aimTransform as right in front of the gun
             aimTransform.position = bulletPoint.position + bulletPoint.forward;
+        }
+    }
+
+    //Called by invincibility powerup that changes fire rate of current and future equipped weapons
+    public void ChangeFireRate(float newFireRate)
+    {
+        fireRate = newFireRate;
+        weapon.animator.SetFloat("FireRate", fireRate);
+        if (weapon.isLaser)
+        {
+            weapon.GetComponent<LaserWeapon>().fireRate = (2 - fireRate) /2;
         }
     }
 

@@ -17,10 +17,10 @@ TagManager:
   - Weapon
   - Bullet
   - Interactable
-  - Particle
-  - 
-  - 
-  - 
+  - EnemyBullet
+  - SniperPlatforms
+  - Prohibited
+  - AssassinBossBullet
   - 
   - 
   - 

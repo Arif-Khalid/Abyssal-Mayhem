@@ -28,68 +28,74 @@ public class LaserWeapon : Weapon
     {
         //in child start
         originalPosition = transform.localPosition;
-        laserLine = GetComponent<LineRenderer>();        
+        laserLine = GetComponent<LineRenderer>();
     }
  
     protected override void ChildUpdate()
-    {       
-        fireTimer += Time.deltaTime;
+    {
+        if (fireTimer < fireRate) { fireTimer += Time.deltaTime; }
         if(Input.GetKey(KeyCode.Mouse0) || Input.GetKey(KeyCode.Mouse1))
         {
+            if (!allowShooting || reloading)
+            {
+                HipFire();
+                return;
+            }
             AimDownSight();
-            if (!allowShooting || reloading || !isAiming)
+            if (!isAiming || animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
             {
                 return;
             }
-            else
+            if (fireTimer >= fireRate && Input.GetKey(KeyCode.Mouse0) && !isFiring)
             {
-                if(fireTimer >= fireRate && Input.GetKey(KeyCode.Mouse0))
+                if (currentAmmo <= 0) //if no ammo to shoot
                 {
-                    if(currentAmmo <= 0) //if no ammo to shoot
+                    if (maxAmmo == 0) //if no ammo at all in gun reserves
                     {
-                        if(maxAmmo == 0) //if no ammo at all in gun reserves
-                        {
-                            OutOfAmmo();
-                            return;
-                        }
-                        Reload();
+                        OutOfAmmo();
                         return;
                     }
-                    muzzleFlash.Play();
-                    StartCoroutine(StartLight());
-                    currentAmmo -= 1;
-                    playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-                    fireTimer = 0;
-                    laserLine.SetPosition(0, laserOrigin.position);
-                    Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
-                    Ray ray = new Ray(rayOrigin, Camera.main.transform.forward);
-                    RaycastHit blockHit;
-                    Vector3 laserEndPos = ray.GetPoint(gunRange);
-                    float newRange;
-                    if (Physics.Raycast(ray, out blockHit, gunRange, walls))
+                    Reload();
+                    return;
+                }
+                muzzleAnimator.Play("MuzzleFlashHomemade");
+                animator.Play(weaponName + "Fire");
+                currentAmmo -= 1;
+                playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+                fireTimer = 0;
+                laserLine.SetPosition(0, laserOrigin.position);
+                Vector3 rayOrigin = Camera.main.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0));
+                Ray ray = new(rayOrigin, Camera.main.transform.forward);
+                RaycastHit blockHit;
+                Vector3 laserEndPos = ray.GetPoint(gunRange);
+                float newRange;
+                if (Physics.Raycast(ray, out blockHit, gunRange, walls))
+                {
+                    laserEndPos = blockHit.point;
+                    newRange = blockHit.distance;
+                    Debug.Log("Railgun hitted wall");
+                }
+                else
+                {
+                    newRange = gunRange;
+                }
+                RaycastHit[] hitInfos = Physics.RaycastAll(ray, newRange, enemies);
+                laserLine.SetPosition(1, laserEndPos);
+                StartCoroutine(ShootLaser());
+                if (hitInfos != null)
+                {
+                    List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
+                    foreach (RaycastHit hitInfo in hitInfos)
                     {
-                        laserEndPos = blockHit.point;
-                        newRange = blockHit.distance;
-                        Debug.Log("Railgun hitted wall");
-                    }
-                    else
-                    {
-                        newRange = gunRange;
-                    }
-                    RaycastHit[] hitInfos = Physics.RaycastAll(ray, newRange, enemies);
-                    laserLine.SetPosition(1, laserEndPos);
-                    StartCoroutine(ShootLaser());
-                    if (hitInfos != null)
-                    {                      
-                        foreach (RaycastHit hitInfo in hitInfos)
+                        EnemyHealth enemyHealth = hitInfo.transform.root.GetComponent<EnemyHealth>();
+                        if (!enemyHealths.Contains(enemyHealth))
                         {
-                            if (hitInfo.collider.GetComponent<EnemyHealth>())
-                            {
-                                HitSomething(hitInfo.collider);
-                                Debug.Log("Railgun Hitted " + hitInfo.collider.name);        
-  
-                            }
+                            enemyHealths.Add(enemyHealth);
                         }
+                    }
+                    foreach (EnemyHealth enemyHealth in enemyHealths)
+                    {
+                        DealDamage(enemyHealth);
                     }
                 }
             }
@@ -104,9 +110,8 @@ public class LaserWeapon : Weapon
         }
     }
     
-    public virtual void HitSomething(Collider other)
+    public virtual void DealDamage(EnemyHealth enemyHealth)
     {
-        EnemyHealth enemyHealth = other.gameObject.GetComponent<EnemyHealth>(); //Check for health Script
         if (enemyHealth)
         {
             enemyHealth.TakeDamage(laserDamage);
@@ -123,7 +128,7 @@ public class LaserWeapon : Weapon
 
     private void AimDownSight()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimDownSightSpeed);
+        /*transform.localPosition = Vector3.Lerp(transform.localPosition, aimPosition, Time.deltaTime * aimDownSightSpeed);
         if(transform.localPosition == aimPosition)
         {
             isAiming = true;
@@ -131,12 +136,57 @@ public class LaserWeapon : Weapon
         else
         {
             isAiming = false;
-        }
+        }*/
+        animator.SetFloat("ADS Speed", 1f);
     }
 
     private void HipFire()
     {
-        transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimDownSightSpeed);
+        /* transform.localPosition = Vector3.Lerp(transform.localPosition, originalPosition, Time.deltaTime * aimDownSightSpeed);
+         isAiming = false;*/
+        animator.SetFloat("ADS Speed", -3f);
+    }
+
+    //Plays animation for close to wall and its reverse
+    protected override void CloseToWall()
+    {
+        animator.SetFloat("ADS Speed", -3f);
+        animator.SetFloat("Speed", 1.5f);
         isAiming = false;
+        base.CloseToWall();
+    }
+
+    protected override void NotCloseToWall()
+    {
+        animator.SetFloat("Speed", -10f);
+        base.NotCloseToWall();
+    }
+
+    protected override void OutOfAmmo()
+    {
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
+    }
+
+
+    public void Aimed()
+    {
+        Debug.Log("Aimed");
+        isAiming = true;
+    }
+
+    public void NotAimed()
+    {
+        Debug.Log("Not Aimed");
+        isAiming = false;
+    }
+
+    public void BackToEmpty()
+    {
+        animator.SetBool("GoToEmpty", true);
+    }
+
+    public void InEmpty()
+    {
+        animator.SetBool("GoToEmpty", false);
     }
 }

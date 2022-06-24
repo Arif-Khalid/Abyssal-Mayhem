@@ -9,18 +9,24 @@ public class RocketWeapon : Weapon
     //Plays animation for close to wall and its reverse
     protected override void CloseToWall()
     {
-        //animator.SetFloat("Speed", 1.5f);
-        //base.CloseToWall();
+        animator.SetFloat("Speed", 1.5f);
+        base.CloseToWall();
     }
 
     protected override void NotCloseToWall()
     {
-        //animator.SetFloat("Speed", -10f);
-        //base.NotCloseToWall();
+        animator.SetFloat("Speed", -10f);
+        base.NotCloseToWall();
     }
 
     protected override void OutOfAmmo()
     {
-        maxAmmo = -1; //Should never be called for Rocket but just in case set ammo to infinite
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
     }
+
+    //Function that doesn't do anything since using the same empty anim as laser
+    public void NotAimed()
+    {
+    }
+
 }

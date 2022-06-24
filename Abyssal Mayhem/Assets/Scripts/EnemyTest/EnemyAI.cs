@@ -8,20 +8,17 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent agent;
 
-    [HideInInspector]
     public Transform player;
 
     public Collider enemyFeet;
 
     public LayerMask whatIsPlayer;
 
-    public LayerMask whatIsSelf;
-
     public Rigidbody enemyRigidBody;
 
     //Attacking
     public float timeBetweenAttacks;
-    bool alreadyAttacked;
+    public bool alreadyAttacked;
 
     //States
     public float attackRange;
@@ -36,11 +33,11 @@ public class EnemyAI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    protected virtual void LateUpdate()
     {
         if (isNavMeshAgentEnabled)
         {
-            if (player)
+            if (player && agent.enabled)
             {
                 //Check for attack range
                 playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
@@ -55,7 +52,7 @@ public class EnemyAI : MonoBehaviour
 
     /*Code for attacks*/
     //Reset the ability to attack
-    private void ResetAttack()
+    protected void ResetAttack()
     {
         alreadyAttacked = false;
     }
@@ -72,11 +69,9 @@ public class EnemyAI : MonoBehaviour
     //Called in Late update
     //Stops movement and looks at player
     //Attack to be implemented in override
-    private void AttackPlayer()
+    protected virtual void AttackPlayer()
     {
         agent.SetDestination(transform.position);
-
-        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
 
         if (!alreadyAttacked)
         {
@@ -94,11 +89,11 @@ public class EnemyAI : MonoBehaviour
         transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
     }
 
-    public void BounceBackUndo(Vector3 direction)
+    public void BounceBackUndo()
     {
         Invoke("SetBoolean", 0.05f);
-        agent.enabled = false;
         enemyFeet.enabled = true;
+        agent.enabled = false;        
         enemyRigidBody.isKinematic = false;
         Debug.Log("Undone");
     }
@@ -118,5 +113,11 @@ public class EnemyAI : MonoBehaviour
     public void SetBoolean()
     {
         isNavMeshAgentEnabled  = false;
+    }
+
+    //Function to remove destroyed bullets from list for enemies that shoot bullets
+    public virtual void RemoveFromList(Bullet bullet)
+    {
+        //To be overriden
     }
 }

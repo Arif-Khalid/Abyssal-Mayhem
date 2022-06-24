@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
     //Health count variables
-    private int maxHealth = 100;
+    public int maxHealth = 100;
     private int currentHealth;
 
     //UI variables
@@ -19,7 +19,14 @@ public class EnemyHealth : MonoBehaviour
     public Transform cameraTransform; //Reference to player camera
     PlayerSetup playerSetup; //Reference to player setup script
     public EnemySpawner enemySpawner; //Reference to enemy spawner
+    public EnemySpawner.MonsterID monsterID;
+    public Transform startingTransform; //assigned when spawned to know which spawnpoint already has assassin
 
+    [SerializeField] bool isAssassin = false;
+    [SerializeField] JuggernautExplode juggernautExplode;
+    [SerializeField] WalkerDeath walkerDeath;
+    [SerializeField] RagdollControl ragdollControl;
+    public bool isDead = false;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;
@@ -29,8 +36,6 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHealth = maxHealth;
-        SetMaxHealth(100);
         playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
     }
 
@@ -44,6 +49,7 @@ public class EnemyHealth : MonoBehaviour
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
+        Debug.Log(value);
         maxHealth = value;
         currentHealth = maxHealth;
         slider.maxValue = value;
@@ -52,6 +58,10 @@ public class EnemyHealth : MonoBehaviour
     }
     public void TakeDamage(int damage) //Take Damage
     {
+        if (isDead)
+        {
+            return;
+        }
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
@@ -63,14 +73,37 @@ public class EnemyHealth : MonoBehaviour
 
     public void DeathByPlayer() //called when an enemy dies by a player
     {
-        playerSetup.killedAnEnemy(transform.position);
+        playerSetup.killedAnEnemy(transform.position, monsterID);
         Death();
     }
 
     public void Death() //called when an enemy dies
     {
+        if (isDead)
+        {
+            return;
+        }
+        isDead = true;
         enemySpawner.RemoveFromList(this.gameObject);
-        Destroy(this.gameObject);
+        if (isAssassin)
+        {
+            enemySpawner.AddtoAssassinSpawnPoints(startingTransform);//for assassin
+            ragdollControl.ToggleRagdoll(true);
+        }
+        else if (juggernautExplode)
+        {
+            juggernautExplode.ExplodeOnDeath();//for juggernaut
+        }
+        else if (walkerDeath)
+        {
+            walkerDeath.DeathAnim(); //for walker
+        }
+        //Destroy(this.gameObject); Called instead in whatever death animation or behaviour
+    }
+
+    private void OnDisable()
+    {
+        canvas.enabled = false;
     }
 
     // public void FireLaser(Ray incomingRay)
@@ -115,7 +148,7 @@ public class EnemyHealth : MonoBehaviour
     //     }
     //     //Destroy(other.gameObject);
     // }
-    
+
     // IEnumerator ShootLaser()
     // {
     //     laserRay.enabled = true;

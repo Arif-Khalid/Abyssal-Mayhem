@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 public class PlayerSetup : NetworkBehaviour
 {
     //References
-    EnemySpawner enemySpawner;
+    public EnemySpawner enemySpawner;
     public MouseLook mouseLook;
+    public CameraShake cameraShake;
+    public PlayerPowerups playerPowerups;
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
@@ -21,6 +23,8 @@ public class PlayerSetup : NetworkBehaviour
     public static PlayerSetup localPlayerSetup;
     //Score to be kept track of on server
     [SyncVar(hook = nameof(scoreChange))] int myScore = 0;
+    //Max number of rounds to be set by host
+    [SyncVar] public int difficultyID;
 
     private void Start()
     {
@@ -36,12 +40,17 @@ public class PlayerSetup : NetworkBehaviour
         }
     }
 
+    //Function called by enemyspawner when a new game starts or when both players are ready to reset weapon to default
+    public void ResetWeapons()
+    {
+        playerWeapon.Equip(playerWeapon.defaultWeapon);
+    }
     //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
     public void EnterUIMenu()
     {
         isInMenu = true;
         mouseLook.UnlockMouse();
-        playerWeapon.weapon.DisableShooting();
+        playerWeapon.weapon.EnterUI();
     }
 
     public void ExitUIMenu()
@@ -50,7 +59,7 @@ public class PlayerSetup : NetworkBehaviour
         if (!isInEscapeMenu)
         {
             mouseLook.LockMouse();
-            playerWeapon.weapon.EnableShooting();
+            playerWeapon.weapon.ExitUI();
         }  
     }
 
@@ -58,7 +67,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         isInEscapeMenu = true;
         mouseLook.UnlockMouse();
-        playerWeapon.weapon.DisableShooting();
+        playerWeapon.weapon.EnterUI();
     }
 
     public void ExitEscapeMenu()
@@ -67,7 +76,7 @@ public class PlayerSetup : NetworkBehaviour
         if (!isInMenu)
         {
             mouseLook.LockMouse();
-            playerWeapon.weapon.EnableShooting();
+            playerWeapon.weapon.ExitUI();
         }
     }
 
@@ -101,11 +110,23 @@ public class PlayerSetup : NetworkBehaviour
             return;
         }
         localPlayerSetup = this;
+        if (isServer)
+        {
+            //Run CMD that sets difficulty rounds
+            CmdSetDifficulty();
+            enemySpawner.SetDifficulty(difficultyID);
+        }
+        else
+        {
+            //Take difficulty from away player
+            enemySpawner.SetHostDifficulty();
+        }
         sceneCamera = Camera.main;
         if (sceneCamera)
         {
             sceneCamera.gameObject.SetActive(false);
         }
+        cameraShake.SetStatic();
         enemySpawner.localPlayer = transform;
         enemySpawner.cameraTransform = GetComponentInChildren<Camera>().transform;
         awayUI.SetActive(false);
@@ -165,13 +186,19 @@ public class PlayerSetup : NetworkBehaviour
     
     /*Code called on Client->Server*/
 
+    [Command]
+    //Function that sets the max rounds if local player is host
+    private void CmdSetDifficulty()
+    {
+        difficultyID = PlayerPrefs.GetInt("difficulty");
+    }
 
     [Command]
     //Function to call when player killed an enemy
     //Increases player score and spawns enemy for opponent
-    public void killedAnEnemy(Vector3 position)
+    public void killedAnEnemy(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
-        spawnEnemy(position);
+        spawnEnemy(position, monsterID);
         myScore += 1;
     }
 
@@ -201,7 +228,24 @@ public class PlayerSetup : NetworkBehaviour
     {
         PlayerSurvived();
     }
+
+    //Functions for networked powerup pickups
+    [Command]
+    //Network juggernaut spawn pickups
+    public void CmdJuggernautSpawn()
+    {
+        RpcJuggernautSpawn();
+    }
+
+    [Command]
+    //Network paranoia pickup
+    public void CmdParanoia()
+    {
+        RpcParanoia();
+    }
+
     /*Code called on Server->Client*/
+
 
     [ClientRpc]
     //Function that restarts local game for local client and signals away player ready if not local player
@@ -232,7 +276,7 @@ public class PlayerSetup : NetworkBehaviour
     }
     [ClientRpc]
     //Spawns an enemy for the player that didn't kill it
-    public void spawnEnemy(Vector3 position)
+    public void spawnEnemy(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
         if (isLocalPlayer)
         {
@@ -240,7 +284,7 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-            enemySpawner.SpawnMonsterAtPoint(position);
+            enemySpawner.SpawnMonsterAtPoint(position, monsterID);
         }
     }
     [ClientRpc]
@@ -254,6 +298,27 @@ public class PlayerSetup : NetworkBehaviour
         else
         {
             LocalLoss();
+        }
+    }
+
+    //Functions called by server on client to signal powerup pickups
+    [ClientRpc]
+    //Start juggernaut routine on not local client
+    public void RpcJuggernautSpawn()
+    {
+        if (!isLocalPlayer)
+        {
+            PlayerSetup.localPlayerSetup.playerPowerups.StartCoroutine(PlayerSetup.localPlayerSetup.playerPowerups.ActivateJuggernautSpawn());
+        }
+    }
+
+    [ClientRpc]
+    //Start paranoia routine on not local client
+    public void RpcParanoia()
+    {
+        if (!isLocalPlayer)
+        {
+            PlayerSetup.localPlayerSetup.playerPowerups.StartCoroutine(PlayerSetup.localPlayerSetup.playerPowerups.ActivateParanoia());
         }
     }
     //Code called on change of score on server to update local and away score for clients

@@ -9,6 +9,7 @@ public class RocketBullet : Bullet
     public GameObject explosion; 
     public GameObject explosionInstance;
     public LayerMask whatIsEnemies;
+    public LayerMask whatIsPlayer;
 
     //Stats
     [Range(0f,1f)]
@@ -26,6 +27,8 @@ public class RocketBullet : Bullet
 
     int collisions;
     PhysicMaterial physics_mat;
+    public float rocketShakeDuration = 0.15f;
+    public float rocketShakeMagnitude = 0.4f;
 
     protected override void ChildStart()
     {
@@ -41,9 +44,9 @@ public class RocketBullet : Bullet
         rigidBody.useGravity = useGravity;
     }
 
-    protected override void EndOfExistence()
+    public override void EndOfExistence()
     {
-        Explode();
+        if (!hasBulletCollided) { Explode(); }
     }
     private void Explode()
     {
@@ -53,19 +56,53 @@ public class RocketBullet : Bullet
 
         //Check for enemies
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);
-        for (int i = 0; i < enemies.Length; i++)
+        List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
+        for(int i = 0; i < enemies.Length; i++)
+        {
+            EnemyHealth enemyHealth = enemies[i].transform.root.GetComponent<EnemyHealth>();            
+            if (!enemyHealths.Contains(enemyHealth))
+            {
+                enemyHealths.Add(enemyHealth);
+            }
+            Rigidbody rigidBody = enemies[i].GetComponent<Rigidbody>();
+            if (rigidBody && rigidBody.isKinematic == false) //Add force directly for non kinematic rigidbodies
+            {
+                rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            }
+        }
+        foreach(EnemyHealth enemyHealth in enemyHealths)
+        {
+            enemyHealth.TakeDamage(explosionDamage);
+            if (!enemyHealth.isDead)
+            {
+                enemyHealth.GetComponent<EnemyAI>().BounceBackUndo();
+                enemyHealth.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
+            }           
+        }
+        //Check for player
+        Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);
+        if(players!= null)
+        {
+            for(int i = 0; i < players.Length; i++)
+            {
+                PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
+                Vector3 dir = players[i].transform.position - transform.position;
+                playerMovement.AddImpact(dir, explosionForce * 10);
+                CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(rocketShakeDuration, rocketShakeMagnitude));
+            }
+        }
+        /*for (int i = 0; i < enemies.Length; i++)
         {
             //Get component of enemy and call Take Damage
             if(enemies[i].GetComponent<EnemyHealth>())
             {
-                Vector3 dir = enemies[i].transform.position - transform.position;
                 enemies[i].GetComponent<EnemyHealth>().TakeDamage(explosionDamage);
-                enemies[i].GetComponent<EnemyAI>().BounceBackUndo(dir * explosionForce);
+                enemies[i].GetComponent<EnemyAI>().BounceBackUndo();
                 enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRange, 0.01f, ForceMode.Impulse);
 
             }
                 
-        }
+        }*/
 
         //Add a little delay, just to make sure everything works fine
         Invoke("Delay", 0.05f);
@@ -76,8 +113,9 @@ public class RocketBullet : Bullet
     {
         Destroy(gameObject);
     }
-    public override void HitSomething(Collider other)
+    public override void DealDamage(Collider other)
     {
+        damageDealt = true;
         Explode();
     }
 }

@@ -12,15 +12,18 @@ public class Weapon : MonoBehaviour
     protected int currentAmmo; //current ammo in weapon
     protected PlayerUI playerUI;
     public Animator animator;
+    public Animator muzzleAnimator;
     Vector3 dir;
     protected bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
     protected bool allowShooting = true;
-    protected bool reloading = false;
+    [SerializeField]protected bool reloading = true;
     [SerializeField]public bool isLaser;
-
-    public ParticleSystem muzzleFlash;
-    public Light muzzleLight;
+    [SerializeField] bool isRocket;
+    public bool isFiring = false;
+    public SkinnedMeshRenderer rocketObject;
+    public string weaponName;
+    public bool isInUI = false;
 
     // Start is called before the first frame update
     void Start()
@@ -42,17 +45,11 @@ public class Weapon : MonoBehaviour
     {
         if(Physics.CheckSphere(playerWeapon.weaponSlot.position, 0.5f, whatIsNotPlayer))
         {
-            if (!closeToWall)
-            {
-                CloseToWall();
-            }
+            CloseToWall();
         }
         else
         {
-            if (closeToWall)
-            {
-                NotCloseToWall();
-            }      
+            NotCloseToWall();     
         }
         ChildUpdate();
     }
@@ -64,8 +61,12 @@ public class Weapon : MonoBehaviour
     }
 
     //Start reloading weapon
-    public void Reload()
+    public virtual void Reload()
     {
+        if(isFiring || reloading)
+        {
+            return;
+        }
         if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left or nothing to reload
         {
             return;
@@ -77,7 +78,7 @@ public class Weapon : MonoBehaviour
         reloading = true;
         //Play some animation that calls reload finish on its last frame
         //For now just put ReloadFinish here
-        ReloadFinish();
+        animator.Play(weaponName +"Reload");
     }
 
     //Called at the end of the reload animation
@@ -104,10 +105,8 @@ public class Weapon : MonoBehaviour
     //Fire a bullet
     //Default implementation spawns a bullet a predefined bulletPoint facing towards aimTransform of player weapon script
     public virtual void Fire()
-    {
-        muzzleFlash.Play();
-        StartCoroutine(StartLight());
-        if (!allowShooting || reloading)
+    {     
+        if (!allowShooting || reloading || isFiring || isInUI)
         {
             return;
         }
@@ -123,18 +122,17 @@ public class Weapon : MonoBehaviour
                 Reload();
                 return;
             }
+            muzzleAnimator.Play("MuzzleFlashHomemade");
+            animator.Play(weaponName + "Fire");
             currentAmmo -= 1;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-            dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
-            Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
         }
     }
 
-    public IEnumerator StartLight()
+    protected virtual void FireBullet()
     {
-        muzzleLight.enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        muzzleLight.enabled = false;
+        dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
+        Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
     }
     protected virtual void OutOfAmmo()
     {
@@ -142,14 +140,15 @@ public class Weapon : MonoBehaviour
         //Function to call when no more ammo in clip or reserves and trying to shoot
     }
     protected virtual void CloseToWall()
-    {
-        DisableShooting();
+    {       
         closeToWall = true;
+        DisableShooting();
     }
 
     protected virtual void NotCloseToWall()
-    {
+    {        
         closeToWall = false;
+        EnableShooting();
     }
 
     //Called when performing animations of weapon
@@ -159,8 +158,37 @@ public class Weapon : MonoBehaviour
     }
 
     //Called in empty initial state of weapon animation
-    public void EnableShooting()
+    public virtual void EnableShooting()
     {
         allowShooting = true;
+    }
+
+    public void StartFiring()
+    {
+        isFiring = true;
+    }
+
+    public void StopFiring()
+    {
+        isFiring = false;
+        if (isLaser)
+        {
+            animator.Play("AimDownSight", 0, 1f);
+        }
+    }
+
+    public void FinishedEquipAnim()
+    {
+        reloading = false;
+    }
+
+    public void EnterUI()
+    {
+        isInUI = true;
+    }
+
+    public void ExitUI()
+    {
+        isInUI = false;
     }
 }

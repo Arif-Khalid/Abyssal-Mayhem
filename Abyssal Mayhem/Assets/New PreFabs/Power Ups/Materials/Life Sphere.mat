@@ -52,8 +52,8 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BoarderPower: 0.3
-    - _BoarderSize: 20
+    - _BoarderPower: 1
+    - _BoarderSize: 50
     - _DistortionSpeed: 0.1
     - _NoiseScale: 0.05
     - _QueueControl: 0
@@ -61,6 +61,6 @@ Material:
     - _ScrollingSpeed: 0.1
     - _SurfaceMovementSpeed: 0.1
     m_Colors:
-    - _BoarderColor: {r: 29.706163, g: 0, b: 0.27961716, a: 0}
-    - _ColorTexture: {r: 2.9036849, g: 0.023391841, b: 0, a: 1}
+    - _BoarderColor: {r: 28.017948, g: 5.654999, b: 57.06408, a: 0}
+    - _ColorTexture: {r: 1.7630233, g: 0.593493, b: 3.543502, a: 1}
   m_BuildTextureStacks: []

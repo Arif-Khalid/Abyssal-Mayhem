@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2764924178706748920}
   - component: {fileID: 2764924178706748923}
   - component: {fileID: 2764924178706748922}
-  - component: {fileID: 2764924178706748921}
   m_Layer: 0
   m_Name: Outer Sphere
   m_TagString: Untagged
@@ -27,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2764924178706747911}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 52.68, y: 26.536175, z: -66.163}
+  m_LocalPosition: {x: 52.68, y: 26.536175, z: -64.684}
   m_LocalScale: {x: 1.7778, y: 1.7778, z: 1.7778}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -86,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &2764924178706748921
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2764924178706747911}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2764924178795536261
 GameObject:
   m_ObjectHideFlags: 0
@@ -354,6 +340,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Heart_Up
       objectReference: {fileID: 0}
+    - target: {fileID: 5885919900576338478, guid: 1396a2ea9f077044493cb2b01308fce0,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 195a2502c5fba1e4b8d9d1c1e673af5f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1396a2ea9f077044493cb2b01308fce0, type: 3}
 --- !u!4 &7563885433053674490 stripped

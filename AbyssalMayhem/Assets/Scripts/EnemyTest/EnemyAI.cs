@@ -52,7 +52,7 @@ public class EnemyAI : MonoBehaviour
 
     /*Code for attacks*/
     //Reset the ability to attack
-    protected void ResetAttack()
+    public void ResetAttack()
     {
         alreadyAttacked = false;
     }

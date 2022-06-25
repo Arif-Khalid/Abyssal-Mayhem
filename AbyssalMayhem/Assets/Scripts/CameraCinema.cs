@@ -6,6 +6,7 @@ public class CameraCinema : MonoBehaviour
 {
     Animator animator;
     private bool rotating;
+    public AssassinCinematic assassinCinematic;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,5 +29,10 @@ public class CameraCinema : MonoBehaviour
                 rotating = true;
             }   
         }
+    }
+
+    public void ToggleADS()
+    {
+        assassinCinematic.ToggleAimAnim();
     }
 }

@@ -23,7 +23,6 @@ public class PlayerPowerups : MonoBehaviour
     //Paranoia variables
     [SerializeField] float timeTillBlind;
     [SerializeField] string paranoiaWarningMessage;
-
     //Invincibility
     public IEnumerator ActivateInvincibility()
     {

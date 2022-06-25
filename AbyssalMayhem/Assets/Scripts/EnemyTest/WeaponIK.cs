@@ -123,7 +123,17 @@ public class WeaponIK : MonoBehaviour
             }
         }
         laserSight.SetPosition(0, laserSightOrigin.position);
-        if(aimAtPlayerWeight <= 0.0f)
+        /*if (!assassinAI.isPatrolling)
+        {
+            if (!assassinAI.alreadyAttacked && CanAssassinShoot())
+            {
+                assassinAI.Attack();
+                assassinAI.alreadyAttacked = true;
+                assassinAI.Invoke(nameof(assassinAI.ResetAttack), assassinAI.timeBetweenAttacks);
+            }
+        }*/
+
+        if (aimAtPlayerWeight <= 0.0f)
         {
             assassinAI.isPatrolling = true;
             UpdateLaser();

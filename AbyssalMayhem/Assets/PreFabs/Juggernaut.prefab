@@ -817,6 +817,9 @@ MonoBehaviour:
   walkerDeath: {fileID: 0}
   ragdollControl: {fileID: 0}
   isDead: 0
+  score: 2
+  addScoreUI: {fileID: 8820906357504841634, guid: 769a4207a8eeafe4f9b834b96950a513,
+    type: 3}
 --- !u!195 &1889445095
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1075,6 +1078,8 @@ MonoBehaviour:
   - {fileID: 1889445094}
   - {fileID: 548055714089131347}
   timeBeforeDestroy: 5
+  juggernautWeaponPickup: {fileID: 0}
+  isBoss: 0
 --- !u!1001 &4309926853290887610
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1582,6 +1582,10 @@ MonoBehaviour:
   walkerDeath: {fileID: 0}
   ragdollControl: {fileID: 2770597462249236297}
   isDead: 0
+  score: 4
+  addScoreUI: {fileID: 8820906357504841634, guid: 769a4207a8eeafe4f9b834b96950a513,
+    type: 3}
+  offset: {x: 0, y: 8.8, z: 0}
 --- !u!114 &6916093223679504451
 MonoBehaviour:
   m_ObjectHideFlags: 0

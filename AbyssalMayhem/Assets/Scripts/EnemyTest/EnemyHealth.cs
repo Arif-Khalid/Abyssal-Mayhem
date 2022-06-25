@@ -27,6 +27,11 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] WalkerDeath walkerDeath;
     [SerializeField] RagdollControl ragdollControl;
     public bool isDead = false;
+
+    //Variables for creating add score UI
+    [SerializeField] private int score;
+    [SerializeField] private AddScoreUI addScoreUI;
+    [SerializeField] private Vector3 offset = Vector3.zero;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;
@@ -74,6 +79,8 @@ public class EnemyHealth : MonoBehaviour
     public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position, monsterID);
+        AddScoreUI spawnedScore = Instantiate<AddScoreUI>(addScoreUI, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
+        spawnedScore.SetScoreAdded(score);
         Death();
     }
 

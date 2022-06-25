@@ -49,7 +49,22 @@ VisualEffect:
   m_ResourceVersion: 1
   m_PropertySheet:
     m_Float:
-      m_Array: []
+      m_Array:
+      - m_Value: 30
+        m_Name: SpawnRate
+        m_Overridden: 1
+      - m_Value: 500
+        m_Name: AttractionSpeed
+        m_Overridden: 1
+      - m_Value: 200
+        m_Name: AttractionForce
+        m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: StickDistance
+        m_Overridden: 1
+      - m_Value: 20000000
+        m_Name: StickForce
+        m_Overridden: 1
     m_Vector2f:
       m_Array: []
     m_Vector3f:
@@ -5126,7 +5141,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5816450273865262894}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.7778, y: 1.7778, z: 1.7778}
   m_ConstrainProportionsScale: 0

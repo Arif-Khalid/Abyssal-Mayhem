@@ -19,7 +19,7 @@ jobs:
           lfs: true
       - uses: actions/cache@v2
         with:
-          path: Abyssal\ Mayhem/Library
+          path: AbyssalMayhem/Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - uses: game-ci/unity-builder@v2
@@ -29,5 +29,5 @@ jobs:
           targetPlatform: ${{ matrix.targetPlatform }}
       - uses: actions/upload-artifact@v2
         with:
-          name: Abyssal\ Mayhem/Build-${{ matrix.targetPlatform }}
-          path: build/${{ matrix.targetPlatform }}
+          name: Build-${{ matrix.targetPlatform }}
+          path: AbyssalMayhem/build/${{ matrix.targetPlatform }}

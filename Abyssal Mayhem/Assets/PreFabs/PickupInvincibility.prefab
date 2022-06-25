@@ -50,13 +50,13 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 25
+      - m_Value: 20
         m_Name: SpawnRate
         m_Overridden: 1
-      - m_Value: 10
+      - m_Value: 45
         m_Name: StickForce
         m_Overridden: 1
-      - m_Value: 0.5
+      - m_Value: 0.2
         m_Name: StickDistance
         m_Overridden: 1
       - m_Value: 1
@@ -68,13 +68,13 @@ VisualEffect:
       - m_Value: 0.55
         m_Name: ConformSphereSize
         m_Overridden: 1
-      - m_Value: 40
+      - m_Value: 50
         m_Name: AttractionSpeed
         m_Overridden: 1
       - m_Value: 0.5
         m_Name: Sphere Radius
         m_Overridden: 1
-      - m_Value: 400
+      - m_Value: 8
         m_Name: AttractionForce
         m_Overridden: 1
     m_Vector2f:

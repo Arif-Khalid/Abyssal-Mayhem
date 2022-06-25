@@ -2927,7 +2927,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Press X to spawn monsters while you wait
+  m_text: 'Press X to spawn monsters and pickups while you wait
 
 '
   m_isRightToLeft: 0
@@ -2956,8 +2956,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
-  m_fontSizeBase: 20
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4226,7 +4226,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -60.128, y: -13.97}
+  m_AnchoredPosition: {x: -60.12805, y: -13.97}
   m_SizeDelta: {x: 120.25, y: 27.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6130024536257217311
@@ -4613,10 +4613,10 @@ RectTransform:
   m_Father: {fileID: 868281586}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 139}
-  m_SizeDelta: {x: 400, y: 46.3905}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -108}
+  m_SizeDelta: {x: 400, y: 46.390503}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8447503431688584576
 CanvasRenderer:
@@ -4673,8 +4673,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 15
+  m_fontSizeBase: 15
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -97,12 +97,12 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateWaitingPrompt()
     {
-        waitingPrompt.text = "monsters now spawning";
+        waitingPrompt.text = "monsters and pickups now spawning";
     }
 
     public void ResetWaitingPrompt()
     {
-        waitingPrompt.text = "Press X to spawn monsters while you wait";
+        waitingPrompt.text = "Press X to spawn monsters and pickups while you wait";
     }
 
     public void UpdateInteractPrompt(string promptMessage)

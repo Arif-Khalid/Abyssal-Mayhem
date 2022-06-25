@@ -267,7 +267,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6164827358444201402}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -328,8 +328,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup rocket launcher
+  defaultMessage: 
   weaponToEquip: {fileID: 1143082498682802342, guid: 0b55a7b6074afa14596de5b79573649a,
     type: 3}
+  chestContent: {fileID: 0}
 --- !u!95 &6164827358444201412
 Animator:
   serializedVersion: 4

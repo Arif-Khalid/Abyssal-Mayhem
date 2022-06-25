@@ -44,7 +44,7 @@ public class ChestContent : MonoBehaviour
             }
             else
             {
-                PowerupPickup powerupPickup = contentInstance.GetComponent<PowerupPickup>();
+                PowerupPickup powerupPickup = contentInstance.GetComponentInChildren<PowerupPickup>();
                 powerupPickup.chestContent = this;
             }
             

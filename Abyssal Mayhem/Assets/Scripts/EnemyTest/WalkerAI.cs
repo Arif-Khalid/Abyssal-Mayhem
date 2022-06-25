@@ -21,7 +21,7 @@ public class WalkerAI : EnemyAI
 
     protected override void AttackPlayer()
     {
-        transform.LookAt(player.position);
+        transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
         base.AttackPlayer();
         animator.SetFloat("velocity", agent.velocity.magnitude);
     }

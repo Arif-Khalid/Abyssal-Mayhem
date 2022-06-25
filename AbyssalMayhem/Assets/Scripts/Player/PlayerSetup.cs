@@ -199,7 +199,18 @@ public class PlayerSetup : NetworkBehaviour
     public void killedAnEnemy(Vector3 position, EnemySpawner.MonsterID monsterID)
     {
         spawnEnemy(position, monsterID);
-        myScore += 1;
+        if (monsterID == EnemySpawner.MonsterID.assassin || monsterID == EnemySpawner.MonsterID.juggernaut)
+        {
+            myScore += 2;
+        }
+        else if(monsterID == EnemySpawner.MonsterID.assassinBoss || monsterID == EnemySpawner.MonsterID.juggernautBoss)
+        {
+            myScore += 4;
+        }
+        else
+        {
+            myScore += 1;
+        }
     }
 
     [Command]

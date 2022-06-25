@@ -73190,7 +73190,7 @@ MonoBehaviour:
   awayPlayer: {fileID: 0}
   awayPlayerReady: 0
   awayUI: {fileID: 0}
-  Quotas: e80300000a0000000a0000000f0000000f0000000a0000000f0000000f00000014000000140000000f000000140000001400000014000000140000000f000000
+  Quotas: e80300000500000006000000060000000a0000000c0000000f0000000f0000001400000014000000140000001400000014000000140000001400000014000000
   weaponChests:
   - {fileID: 1139682920}
   - {fileID: 1140946186}
@@ -112440,6 +112440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LauncherPickup
       objectReference: {fileID: 0}
+    - target: {fileID: 4867436624624666798, guid: 5ea93e8073c098246b79e1be59609622,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4867436624624666799, guid: 5ea93e8073c098246b79e1be59609622,
         type: 3}
       propertyPath: m_RootOrder
@@ -112508,6 +112513,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LaserPickup
+      objectReference: {fileID: 0}
+    - target: {fileID: 4460335560243448979, guid: 51547607c8be4d343a0026e4de59dddd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6175627815075324363, guid: 51547607c8be4d343a0026e4de59dddd,
         type: 3}

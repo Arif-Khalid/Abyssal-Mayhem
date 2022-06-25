@@ -49,10 +49,6 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Equip(testWeapon);
-        }
         if (weapon)
         {
             ShiftAimTransform();

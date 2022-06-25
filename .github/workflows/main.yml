@@ -1,6 +1,6 @@
 name: Build project
 
-on: [push]
+on: []
 
 jobs:
   buildForAllSupportedPlatforms:

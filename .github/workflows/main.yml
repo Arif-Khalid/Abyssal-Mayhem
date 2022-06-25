@@ -11,7 +11,8 @@ jobs:
       matrix:
         targetPlatform:
           - StandaloneWindows64 # Build a Windows 64-bit standalone.
-
+        projectPath:
+          - AbyssalMayhem
     steps:
       - uses: actions/checkout@v2
         with:
@@ -19,7 +20,7 @@ jobs:
           lfs: true
       - uses: actions/cache@v2
         with:
-          path: AbyssalMayhem/Library
+          path: Library
           key: Library-${{ matrix.targetPlatform }}
           restore-keys: Library-
       - uses: game-ci/unity-builder@v2
@@ -30,4 +31,4 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: Build-${{ matrix.targetPlatform }}
-          path: AbyssalMayhem/build/${{ matrix.targetPlatform }}
+          path: build/${{ matrix.targetPlatform }}

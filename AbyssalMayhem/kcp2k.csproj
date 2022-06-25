@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C6491E84-C82D-0305-AC73-F591EAB70582}</ProjectGuid>
+    <ProjectGuid>{B66D00E7-53D9-8161-8F09-29A312E21D62}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>kcp2k</AssemblyName>
@@ -757,7 +757,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="where-allocations.csproj">
-      <Project>{3CD46D53-A15D-67DD-0E05-C3918D166F44}</Project>
+      <Project>{525F132A-13CE-0E16-83F2-B998E7401116}</Project>
       <Name>where-allocations</Name>
     </ProjectReference>
   </ItemGroup>

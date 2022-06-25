@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{886A1C80-6EEE-CE4E-29EB-3A91649855D8}</ProjectGuid>
+    <ProjectGuid>{CCB3A7CE-8D70-B478-B836-11BB65F8FEBE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>SimpleWebTransport</AssemblyName>
@@ -765,7 +765,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Mirror.csproj">
-      <Project>{93E85D75-10D7-EE58-7EFC-A78CDCF61520}</Project>
+      <Project>{0FCEB0A2-DB4A-5717-9199-04FD00180B6B}</Project>
       <Name>Mirror</Name>
     </ProjectReference>
   </ItemGroup>

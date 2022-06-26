@@ -17,7 +17,6 @@ public class EnemyHealth : MonoBehaviour
 
     //Reference variables
     public Transform cameraTransform; //Reference to player camera
-    PlayerSetup playerSetup; //Reference to player setup script
     public EnemySpawner enemySpawner; //Reference to enemy spawner
     public EnemySpawner.MonsterID monsterID;
     public Transform startingTransform; //assigned when spawned to know which spawnpoint already has assassin
@@ -32,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private int score;
     [SerializeField] private AddScoreUI addScoreUI;
     [SerializeField] private Vector3 offset = Vector3.zero;
+    PlayerSetup playerSetup;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;

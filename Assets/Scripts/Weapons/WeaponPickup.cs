@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PistolPickup : Interactable
+public class WeaponPickup : Interactable
 {
     public ChestContent chestContent;
     protected override void Interact()

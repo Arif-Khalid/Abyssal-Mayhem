@@ -197,3 +197,5 @@ MonoBehaviour:
   enemyAI: {fileID: 0}
   bulletShakeDuration: 0.15
   bulletShakeMagnitude: 0.5
+  indicatorID: SniperShot
+  strength: 0.5

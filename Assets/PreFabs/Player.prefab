@@ -683,6 +683,7 @@ GameObject:
   - component: {fileID: 7240645681206129051}
   - component: {fileID: 1262892390920751529}
   - component: {fileID: 6765575123762779254}
+  - component: {fileID: 4699755693907105065}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -955,6 +956,8 @@ MonoBehaviour:
   prohibitionForce: 100
   prohibitionShakeDuration: 0.15
   prohibitionShakeMagnitude: 1
+  strength: 0
+  indicatorID: 
 --- !u!114 &8768125842735476599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1046,6 +1049,39 @@ MonoBehaviour:
   numberOfJuggernauts: 2
   timeTillBlind: 3.5
   paranoiaWarningMessage: Blind
+--- !u!114 &4699755693907105065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698161260317292029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5727edf962d4d4ec09992d1b70ee3b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioOn: 0
+  audioVolumeMin: 0.2
+  audioVolumeMax: 1
+  audioChannels: 4
+  audioDistance: 1.1
+  indicatorDistance: 1
+  indicatorAngle: 0
+  indicatorScale: 1
+  indicatorBend: 0.24
+  indicatorPreview: 0
+  indicatorCamera: {fileID: 1698161261116011769}
+  indicatorsActive: 
+  indicators:
+  - {fileID: 11400000, guid: b69574f4771454ef5b38caf9f4360891, type: 2}
+  - {fileID: 11400000, guid: 5e559673d7b1f4b8391f0d53d738ab29, type: 2}
+  - {fileID: 11400000, guid: 937ee16d265054991b0ef6e557487e0f, type: 2}
+  - {fileID: 11400000, guid: 81d463bfea7b74e5cb5168563d057d2a, type: 2}
+  indicatorAdd: {fileID: 0}
+  onRenderObject: 1
+  diIndex: 0
+  drawPreview: 0
 --- !u!1 &1698161261116011767
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,6 +1095,7 @@ GameObject:
   - component: {fileID: 1698161261116011768}
   - component: {fileID: 1698161261116011771}
   - component: {fileID: 4762184130248792231}
+  - component: {fileID: 1249767288389973685}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1180,6 +1217,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56177f078e7adb4ebc1999ad93c2d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1249767288389973685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698161261116011767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5727edf962d4d4ec09992d1b70ee3b25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioOn: 0
+  audioVolumeMin: 0.2
+  audioVolumeMax: 1
+  audioChannels: 4
+  audioDistance: 0.09
+  indicatorDistance: 1
+  indicatorAngle: 0
+  indicatorScale: 1
+  indicatorBend: 0.24
+  indicatorPreview: 0
+  indicatorCamera: {fileID: 1698161261116011769}
+  indicatorsActive: 
+  indicators:
+  - {fileID: 11400000, guid: b69574f4771454ef5b38caf9f4360891, type: 2}
+  - {fileID: 11400000, guid: f7a837b00784d4ef69c0ce24dd438779, type: 2}
+  - {fileID: 11400000, guid: 5e559673d7b1f4b8391f0d53d738ab29, type: 2}
+  - {fileID: 11400000, guid: 2c4c3c1f54a764fbaa8acf051925f1ae, type: 2}
+  - {fileID: 11400000, guid: 0d01d1dc674a441fc9fb7e696a95757f, type: 2}
+  - {fileID: 11400000, guid: 937ee16d265054991b0ef6e557487e0f, type: 2}
+  - {fileID: 11400000, guid: 81d463bfea7b74e5cb5168563d057d2a, type: 2}
+  indicatorAdd: {fileID: 0}
+  onRenderObject: 0
+  diIndex: 0
+  drawPreview: 0
 --- !u!1 &1958624105233556999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1831,9 +1904,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2625,7 +2696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -29}
+  m_AnchoredPosition: {x: 0, y: -22}
   m_SizeDelta: {x: 332.302, y: 44.119904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5944621803632581378
@@ -2685,15 +2756,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -2896,7 +2967,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -67}
+  m_AnchoredPosition: {x: 0, y: -56}
   m_SizeDelta: {x: 387.795, y: 22.979797}
   m_Pivot: {x: 0.5, y: 0.49999997}
 --- !u!222 &8864130241682997280
@@ -4130,7 +4201,7 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4288717055
   m_fontColor: {r: 1, g: 0.6264151, b: 0.6264151, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3

@@ -68,6 +68,8 @@ MonoBehaviour:
     type: 3}
   explosionForce: 3
   explosionRange: 3
+  indicatorID: FireBall
+  strength: 0.25
 --- !u!96 &6391645609043294643
 TrailRenderer:
   serializedVersion: 2

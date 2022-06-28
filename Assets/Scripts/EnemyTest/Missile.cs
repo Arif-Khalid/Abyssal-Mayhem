@@ -22,6 +22,10 @@ public class Missile : MonoBehaviour
     public GameObject explosion;
     public float explosionForce;
     public float explosionRange;
+
+    //Variables for damage indicator
+    [SerializeField] string indicatorID;
+    [SerializeField] float strength;
     private void Start()
     {
         StartCoroutine(MissileTravel());
@@ -96,6 +100,7 @@ public class Missile : MonoBehaviour
                 PlayerHealth playerHealth = players[i].GetComponent<PlayerHealth>();
                 Vector3 dir = players[i].transform.position - transform.position;
                 playerMovement.AddImpact(dir, explosionForce * 10);
+                if (!playerHealth.dead) { IndicatorProManager.Activate(indicatorID, transform.position, strength); }
                 playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude);
                 //CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(missileShakeDuration, missileShakeMagnitude));
             }

@@ -35,7 +35,23 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] float prohibitionShakeDuration = 0.15f;
     [SerializeField] float prohibitionShakeMagnitude = 0.4f;
 
+    [SerializeField] float strength;
+    [SerializeField] string indicatorID;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Debug.Log("Indicator Activated");
+            IndicatorProManager.Activate(indicatorID, transform.position - transform.forward, strength);
+            /*IndicatorProManager.Activate("Shot", transform.position - transform.forward, 1.0f);
+            IndicatorProManager.Activate("Classic", transform.position - transform.forward, 1.0f);
+            IndicatorProManager.Activate("BluntForce", transform.position - transform.forward, 1.0f);
+            IndicatorProManager.Activate("FireBall", transform.position - transform.forward, 1.0f);
+            IndicatorProManager.Activate("Magic", transform.position - transform.forward, 1.0f);
+            IndicatorProManager.Activate("Radiation", transform.position - transform.forward, 1.0f);*/
+        }
+    }
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)

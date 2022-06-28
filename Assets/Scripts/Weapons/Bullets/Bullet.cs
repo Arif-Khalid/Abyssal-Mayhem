@@ -22,6 +22,7 @@ public class Bullet : MonoBehaviour
     protected bool damageDealt = false;
     public int counter = 0; //remove this
     public EnemyAI enemyAI; //enemy that spawns bullets
+    public Vector3 shooterPosition; //Stores position for damage indicator should enemy die before damage indicator triggered
 
     void Start()
     {

@@ -1,0 +1,34 @@
+﻿v1.15
+*fixed: namespace error when using with shaderone
+
+v1.14
+*added LW RP Support
+
+v1.12
+*fixed: build error when using il2cpp
+
+v1.11
+*fixed: error when building app on some plantforms
+
+v1.1
+*fixed: bug with movement of indicators
+*fixed: bug with indicators not rotating in VR
+*changed: no longer need to pass transform of player
+*changed: main camera is used for audio positioning
+*changed: optimized the code more
+*added : 3D Angle
+*added : 3D Bending of Indicators
+*added : Can use Manager on any object now
+*added : preview mode on manager
+
+v1.05
+*added: VR Support
+
+v1.02
+*Fixed issue with indicators not showing
+
+v1.01
+*Fixed Null Reference error
+
+v1.0
+*initial release

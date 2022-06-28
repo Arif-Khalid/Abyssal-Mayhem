@@ -1,0 +1,225 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81c3abe736d9342bdbbb6d2b85c9bb8c, type: 3}
+  m_Name: FireBall
+  m_EditorClassIdentifier: 
+  data:
+    offsetU_ID: 253
+    offsetV_ID: 254
+    dissolve_ID: 255
+    color_ID: 252
+    distortionAmount1_ID: 256
+    distortionSpeed1_ID: 257
+    distortionStrength1_ID: 258
+    distortionAmount2_ID: 259
+    distortionSpeed2_ID: 260
+    distortionStrength2_ID: 261
+    dissolveEdgeWidth_ID: 262
+    dissolveEdgeColor_ID: 263
+    dissolveEdgeAmplify_ID: 264
+    previewAngle: 264
+    previewStrength: 1
+    previewPercent: 0.504
+    previewLockAlpha: 0
+    previewLockMovement: 0
+    mesh:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    hitMaterial: {fileID: 0}
+    manualAngle: 0
+    meshHQ: 1
+    radiusPercent: 0.2
+    widthPercent1: 0.05
+    lengthPercent1: 0.17
+    scalePercent1: 1
+    widthPercent2: 0.07
+    lengthPercent2: 0.36
+    scalePercent2: 1
+    meshCount: 5
+    segmentCountU1: 17
+    maxHitCount: 16
+    offsetU: 0
+    offsetV: 0
+    duration: 2
+    startAmplify: 8
+    endAmplify: 1
+    startColor: {r: 1, g: 0.258, b: 0, a: 1}
+    endColor: {r: 1, g: 0.55862063, b: 0, a: 1}
+    colorCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    alphaCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.47059083
+        value: 0.8293742
+        inSlope: -1.1521578
+        outSlope: -1.1521578
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    moveCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0.039993286
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.049999997
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    indicatorTex: {fileID: 2800000, guid: ee5a50338a67642b9a9b547ab6a8eedb, type: 3}
+    texturePacked: 0
+    blendMode: 2
+    distortion: 1
+    distortionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    distortionAmount1: 11
+    distortionSpeed1: 2
+    distortionStrength1: 0.05
+    distortionAmount2: 13
+    distortionSpeed2: 2
+    distortionStrength2: 0.01
+    dissolve: 1
+    dissolveCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.3012643
+        value: 0.97189635
+        inSlope: -0.6619096
+        outSlope: -0.6619096
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    dissolveEdgeWidth: 0.75
+    dissolveEdgeColor: {r: 1, g: 0.7948276, b: 0.125, a: 1}
+    dissolveEdgeAmplify: 8
+    customMesh: {fileID: 0}
+    alphaDistort: 1
+    packedTexture: 1
+    audioClip: {fileID: 8300000, guid: 07c111569cdcd41828fa87eabf885a4e, type: 3}
+  enabled: 1

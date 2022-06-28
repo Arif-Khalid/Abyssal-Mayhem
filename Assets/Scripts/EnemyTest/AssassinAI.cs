@@ -101,6 +101,7 @@ public class AssassinAI : EnemyAI
         Bullet spawnedBullet = Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();
         bullets.Add(spawnedBullet);
         spawnedBullet.enemyAI = this;
+        spawnedBullet.shooterPosition = transform.position;
     }
 
 

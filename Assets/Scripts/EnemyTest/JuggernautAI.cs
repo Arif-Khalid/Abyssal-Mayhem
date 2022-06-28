@@ -47,6 +47,7 @@ public class JuggernautAI : EnemyAI
         Bullet spawnedBullet = Instantiate<GameObject>(enemyBullet, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();
         bullets.Add(spawnedBullet);
         spawnedBullet.enemyAI = this;
+        spawnedBullet.shooterPosition = transform.position;
         //Play the animation
         if (fireRight) { animator.Play("FireRight"); muzzleRightAnimator.Play("MuzzleFlashHomemade"); }
         else { animator.Play("FireLeft"); muzzleLeftAnimator.Play("MuzzleFlashHomemade"); }

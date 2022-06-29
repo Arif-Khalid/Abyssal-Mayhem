@@ -73203,6 +73203,7 @@ MonoBehaviour:
   weaponPickups:
   - {fileID: 5816450273865262894, guid: e861318d59ea2f8489d9361d02d4fa67, type: 3}
   - {fileID: 6164827358444201402, guid: 6465bb9b8fceb974d8970d4cb2a6d0f8, type: 3}
+  - {fileID: 6164827358444201402, guid: f99621e8a76908d429dc2a5c95905fbf, type: 3}
   powerupPickups:
   - {fileID: 5816450273865262894, guid: 0a8672880b4b8e749bc7859cd0022bcb, type: 3}
   - {fileID: 5816450273865262894, guid: 1301f2dd1ab664c4c91a490f9791d217, type: 3}

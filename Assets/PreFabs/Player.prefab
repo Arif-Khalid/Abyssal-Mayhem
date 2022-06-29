@@ -1095,7 +1095,6 @@ GameObject:
   - component: {fileID: 1698161261116011768}
   - component: {fileID: 1698161261116011771}
   - component: {fileID: 4762184130248792231}
-  - component: {fileID: 1249767288389973685}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1217,42 +1216,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b56177f078e7adb4ebc1999ad93c2d18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1249767288389973685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698161261116011767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5727edf962d4d4ec09992d1b70ee3b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioOn: 0
-  audioVolumeMin: 0.2
-  audioVolumeMax: 1
-  audioChannels: 4
-  audioDistance: 0.09
-  indicatorDistance: 1
-  indicatorAngle: 0
-  indicatorScale: 1
-  indicatorBend: 0.24
-  indicatorPreview: 0
-  indicatorCamera: {fileID: 1698161261116011769}
-  indicatorsActive: 
-  indicators:
-  - {fileID: 11400000, guid: b69574f4771454ef5b38caf9f4360891, type: 2}
-  - {fileID: 11400000, guid: f7a837b00784d4ef69c0ce24dd438779, type: 2}
-  - {fileID: 11400000, guid: 5e559673d7b1f4b8391f0d53d738ab29, type: 2}
-  - {fileID: 11400000, guid: 2c4c3c1f54a764fbaa8acf051925f1ae, type: 2}
-  - {fileID: 11400000, guid: 0d01d1dc674a441fc9fb7e696a95757f, type: 2}
-  - {fileID: 11400000, guid: 937ee16d265054991b0ef6e557487e0f, type: 2}
-  - {fileID: 11400000, guid: 81d463bfea7b74e5cb5168563d057d2a, type: 2}
-  indicatorAdd: {fileID: 0}
-  onRenderObject: 0
-  diIndex: 0
-  drawPreview: 0
 --- !u!1 &1958624105233556999
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,14 +6,14 @@ public class Weapon : MonoBehaviour
 {
     public PlayerWeapon playerWeapon; //Reference to player weapon script
     public Transform bulletPoint;//Where the bullets come from, set in inspector in prefab
-    [SerializeField] GameObject bullet; //Reference to bullet prefab
+    [SerializeField]public GameObject bullet; //Reference to bullet prefab
     [SerializeField] public int maxAmmo = -1; //Set to -1 when infinite ammo
     [SerializeField] int clipSize = 10; //Size of weapon clip
     protected int currentAmmo; //current ammo in weapon
     protected PlayerUI playerUI;
     public Animator animator;
     public Animator muzzleAnimator;
-    Vector3 dir;
+    public Vector3 dir;
     protected bool closeToWall = false;
     public LayerMask whatIsNotPlayer;
     protected bool allowShooting = true;

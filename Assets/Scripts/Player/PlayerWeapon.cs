@@ -6,43 +6,77 @@ using UnityEngine.AI;
 public class PlayerWeapon : MonoBehaviour
 {
     public Weapon weapon; //stores current active weapon
-    public GameObject defaultWeapon; //stores default pistol weapon
+    public PlayerWeapons defaultWeapon; //stores default rifle weapon
     [SerializeField] public Transform weaponSlot; //Where weapons are equipped to
+
     
     //Aim variables
     [SerializeField] Transform cameraTransform; //Transform of the camera
     [SerializeField] float distance = 50f; //Distance of raycast to move aim transform
     [SerializeField] LayerMask layerMask; //What aim transform will move to when faced
     public Transform aimTransform; //Where bullets should head
-    Transform bulletPoint; //Where bullets shoot from
 
     float fireRate = 1f;
 
     [SerializeField] GameObject testWeapon;
 
+    [Header("Weapons")]
+    [SerializeField] GameObject rifle;
+    [SerializeField] GameObject shotgun;
+    [SerializeField] GameObject laser;
+    [SerializeField] GameObject rocket;
+    [SerializeField] GameObject juggernautWeapon;
+    public enum PlayerWeapons { Rifle, Shotgun, Laser, Rocket, JuggernautWeapon, None }
 
     // Start is called before the first frame update
     void Start()
     {
         weapon = GetComponentInChildren<Weapon>();
-        bulletPoint = weapon.bulletPoint;
     }
 
     //Equip a new weapon
-    public void Equip(GameObject newWeapon) 
+    public void Equip(PlayerWeapons weaponName) 
     {
         if (weapon != null)
         {
-            Destroy(weapon.gameObject); //remove current weapon
+            weapon.gameObject.SetActive(false);
         }
-        weapon = Instantiate<GameObject>(newWeapon, weaponSlot).GetComponent<Weapon>(); //create new weapon
-        weapon.playerWeapon = this;
-        weapon.animator.SetFloat("FireRate", fireRate);
-        if (weapon.isLaser)
+        if (weaponName == PlayerWeapons.Rifle) 
+        { 
+            weapon = rifle.GetComponent<Weapon>();
+            weapon.playerWeapon = this;
+            weapon.gameObject.SetActive(true);
+            weapon.animator.SetFloat("FireRate", fireRate);
+        }
+        else if(weaponName == PlayerWeapons.Shotgun)
         {
+            weapon = shotgun.GetComponent<Weapon>();
+            weapon.playerWeapon = this;
+            weapon.gameObject.SetActive(true);
+            weapon.animator.SetFloat("FireRate", fireRate);
+        }
+        else if (weaponName == PlayerWeapons.Laser) 
+        {
+            weapon = laser.GetComponent<Weapon>();
+            weapon.playerWeapon = this;
+            weapon.gameObject.SetActive(true);
+            weapon.animator.SetFloat("FireRate", fireRate);
             weapon.GetComponent<LaserWeapon>().fireRate = (2 - fireRate) / 2;
         }
-        bulletPoint = weapon.bulletPoint; 
+        else if (weaponName == PlayerWeapons.Rocket) 
+        {
+            weapon = rocket.GetComponent<Weapon>();
+            weapon.playerWeapon = this;
+            weapon.gameObject.SetActive(true);
+            weapon.animator.SetFloat("FireRate", fireRate);
+        }
+        else if (weaponName == PlayerWeapons.JuggernautWeapon) 
+        {
+            weapon = juggernautWeapon.GetComponent<Weapon>();
+            weapon.playerWeapon = this;
+            weapon.gameObject.SetActive(true);
+            weapon.animator.SetFloat("FireRate", fireRate);
+        }
     }
     
  
@@ -62,6 +96,11 @@ public class PlayerWeapon : MonoBehaviour
                 weapon.Reload();
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Equip(defaultWeapon);
+        }
     }
 
     //Called in Update to shift the aim transform object to where player camera is facing
@@ -76,7 +115,7 @@ public class PlayerWeapon : MonoBehaviour
         else
         {
             //Default the aimTransform as right in front of the gun
-            aimTransform.position = bulletPoint.position + bulletPoint.forward;
+            aimTransform.position = Camera.main.transform.position + Camera.main.transform.forward * 200;
         }
     }
 

@@ -27,6 +27,6 @@ public class PowerupPickup : Interactable
             playerPowerups.ActivateExtraLife();
         }
         chestContent.MakeAvailable();
-        Destroy(transform.parent.gameObject);
+        gameObject.SetActive(false);
     }
 }

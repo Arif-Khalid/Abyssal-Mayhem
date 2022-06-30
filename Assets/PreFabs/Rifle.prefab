@@ -183,6 +183,7 @@ MonoBehaviour:
   rocketObject: {fileID: 0}
   weaponName: Rifle
   isInUI: 0
+  spawnTag: Bullet
 --- !u!114 &8050673778747248622
 MonoBehaviour:
   m_ObjectHideFlags: 0

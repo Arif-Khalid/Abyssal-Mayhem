@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IPooledObject
 {
     //Variables for bullet movement
     public float speed = 20f; //Speed of bullet
@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
     //Variables for destroying stray bullets
     private float timeAlive = 0f; //Variable to track time the bullet stays alive
     [SerializeField] float lifeTime = 2f; //Time of existence before bullet expires
-    private Collider bulletCollider;
+    [SerializeField] private Collider bulletCollider;
     private Collider otherCollider;
     public bool hasBulletCollided = false;
     protected bool damageDealt = false;
@@ -26,9 +26,22 @@ public class Bullet : MonoBehaviour
 
     void Start()
     {
-        bulletCollider = GetComponent<Collider>();
+        //MoveBullet();
+        //ChildStart();
+    }
+
+    public void OnObjectSpawn()
+    {
         MoveBullet();
         ChildStart();
+    }
+
+    public void OnDisable()
+    {
+        bulletCollider.enabled = true;
+        hasBulletCollided = false;
+        damageDealt = false;
+        timeAlive = 0;
     }
 
     //Function to be overriden by children for additional start implementation
@@ -80,7 +93,7 @@ public class Bullet : MonoBehaviour
 
     public virtual void EndOfExistence()
     {
-        if (!hasBulletCollided) { Destroy(this.gameObject); }
+        if (!hasBulletCollided) { gameObject.SetActive(false); }
     }
     //Code for hitting something
     private void OnTriggerEnter(Collider other) 
@@ -109,6 +122,6 @@ public class Bullet : MonoBehaviour
         {
             enemyHealth.TakeDamage(bulletDamage);
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

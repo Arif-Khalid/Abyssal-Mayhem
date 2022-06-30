@@ -193,9 +193,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 145
   lifeTime: 2
+  bulletCollider: {fileID: 9009852977590055700}
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
+  shooterPosition: {x: 0, y: 0, z: 0}
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
   explosionInstance: {fileID: 0}

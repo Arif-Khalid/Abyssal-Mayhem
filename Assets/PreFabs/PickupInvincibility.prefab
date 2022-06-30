@@ -303,7 +303,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup invincibility
   defaultMessage: 
-  weaponToEquip: {fileID: 0}
+  weaponToEquip: 5
   chestContent: {fileID: 0}
   pickupName: 0
 --- !u!1 &4305782405398892526

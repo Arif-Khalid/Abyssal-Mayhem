@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [HideInInspector]
     public NavMeshAgent agent;
 
     public Transform player;
@@ -102,12 +101,16 @@ public class EnemyAI : MonoBehaviour
     {
         if(enemyRigidBody.velocity.magnitude <= 0.00001)
         {
-            isNavMeshAgentEnabled = true;
-            enemyFeet.enabled = false;
-            agent.enabled = true;
-            enemyRigidBody.isKinematic = true;
-            Debug.Log("Redone");
+            ReenableNavMesh();
         }
+    }
+
+    public void ReenableNavMesh()
+    {
+        isNavMeshAgentEnabled = true;
+        enemyFeet.enabled = false;
+        agent.enabled = true;
+        enemyRigidBody.isKinematic = true;
     }
 
     public void SetBoolean()

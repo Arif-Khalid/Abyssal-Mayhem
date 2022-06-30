@@ -189,4 +189,9 @@ public class LaserWeapon : Weapon
     {
         animator.SetBool("GoToEmpty", false);
     }
+
+    override protected void ChildOnDisable()
+    {
+        laserLine.enabled = false;
+    }
 }

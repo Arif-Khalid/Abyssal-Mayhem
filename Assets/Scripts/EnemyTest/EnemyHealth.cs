@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
+        playerSetup = PlayerSetup.localPlayerSetup;
     }
 
     private void LateUpdate()
@@ -55,8 +55,7 @@ public class EnemyHealth : MonoBehaviour
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
         Debug.Log(value);
-        maxHealth = value;
-        currentHealth = maxHealth;
+        currentHealth = value;
         slider.maxValue = value;
         slider.value = value;
         fill.color = gradient.Evaluate(1f);
@@ -108,6 +107,11 @@ public class EnemyHealth : MonoBehaviour
         //Destroy(this.gameObject); Called instead in whatever death animation or behaviour
     }
 
+    private void OnEnable()
+    {
+        canvas.enabled = true;
+        isDead = false;
+    }
     private void OnDisable()
     {
         canvas.enabled = false;

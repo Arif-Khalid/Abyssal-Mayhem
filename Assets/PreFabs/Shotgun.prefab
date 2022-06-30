@@ -814,6 +814,7 @@ MonoBehaviour:
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
   maxAmmo: 32
   clipSize: 8
+  defaultMaxAmmo: 32
   animator: {fileID: 6864049596179632965}
   muzzleAnimator: {fileID: 3362885800809391267}
   dir: {x: 0, y: 0, z: 0}
@@ -827,6 +828,7 @@ MonoBehaviour:
   rocketObject: {fileID: 0}
   weaponName: Shotgun
   isInUI: 0
+  spawnTag: Bullet
   spread: 0.025
   numberOfBullets: 5
 --- !u!1 &4835675619894012090

@@ -5,49 +5,43 @@ using UnityEngine;
 public class ChestContent : MonoBehaviour
 {
     public GameObject chestContent;
-    public GameObject contentInstance;
     public Transform createTransform;
     public Animator animator;
     public EnemySpawner enemySpawner;
     public Interactable chestInteract;
 
+    [Header("Weapons")]
+    [SerializeField] WeaponPickup[] weaponPickups;
+
+
+    [Header("Powerups")]
+    [SerializeField] PowerupPickup[] powerupPickups;
     private void Start()
     {
         animator = GetComponent<Animator>();;
     }
     
     //Function called by enemySpawner to reset contents of chest
-    //Returns true if successfully reset and false otherwise
-    public bool ResetContent(GameObject newContent)
+    public void ResetContent(bool spawnWeapon)
     {
-        if(!contentInstance && !chestContent)
+        if (spawnWeapon)
         {
-            //enter if content has been spawned and spawned content has been taken
-            chestContent = newContent; //reset content with new content
-            animator.SetBool("openChest", false); //close back the chest
-            return true;
+            int spawnID = Random.Range(0, weaponPickups.Length);
+            chestContent = weaponPickups[spawnID].gameObject;
         }
         else
         {
-            return false;
+            int spawnID = Random.Range(0, powerupPickups.Length);
+            chestContent = powerupPickups[spawnID].gameObject;
         }
+        animator.SetBool("openChest", false); //close back the chest
     }
+
     public void CreateContent()
     {
         if (chestContent)
         {
-            contentInstance = Instantiate<GameObject>(chestContent, createTransform);
-            WeaponPickup pistolPickup = contentInstance.GetComponent<WeaponPickup>();
-            if (pistolPickup)
-            {
-                pistolPickup.chestContent = this;
-            }
-            else
-            {
-                PowerupPickup powerupPickup = contentInstance.GetComponentInChildren<PowerupPickup>();
-                powerupPickup.chestContent = this;
-            }
-            
+            chestContent.SetActive(true);
         }      
         chestContent = null;
     }
@@ -64,8 +58,11 @@ public class ChestContent : MonoBehaviour
 
     public void HardReset()
     {
-        chestContent = null;
-        Destroy(contentInstance);
+        if (chestContent)
+        {
+            chestContent.SetActive(false);
+            chestContent = null;
+        }
         animator.SetBool("openChest", true);
         chestInteract.interactMessage = string.Empty;
     }

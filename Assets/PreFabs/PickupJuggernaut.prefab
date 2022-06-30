@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to summon juggernauts for opponent
   defaultMessage: 
-  weaponToEquip: {fileID: 0}
+  weaponToEquip: 5
   chestContent: {fileID: 0}
   pickupName: 1
 --- !u!1 &5002941936209278933

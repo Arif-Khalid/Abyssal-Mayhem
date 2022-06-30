@@ -894,8 +894,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup shotgun
   defaultMessage: 
-  weaponToEquip: {fileID: 4619933952578148873, guid: 8489dce3503461643bc89861756f9856,
-    type: 3}
+  weaponToEquip: 1
   chestContent: {fileID: 0}
 --- !u!95 &6164827358444201412
 Animator:

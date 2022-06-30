@@ -9,8 +9,6 @@ public class WalkerAI : EnemyAI
     [SerializeField] GameObject hitBox;
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
     }
 
     public override void ChasePlayer()

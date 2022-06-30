@@ -111,7 +111,7 @@ public class RocketBullet : Bullet
         
     private void Delay()
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     public override void DealDamage(Collider other)
     {

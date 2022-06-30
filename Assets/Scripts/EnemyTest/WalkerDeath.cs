@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WalkerDeath : MonoBehaviour
+public class WalkerDeath : MonoBehaviour,IPooledObject
 {
     Animator animator;
     [SerializeField] Behaviour[] behavioursToDisable;
+    [SerializeField] EnemyAI enemyAI;
+    [SerializeField] GameObject hitBox;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -22,7 +24,17 @@ public class WalkerDeath : MonoBehaviour
 
     private void Destroy()
     {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void OnObjectSpawn()
+    {
+        enemyAI.ReenableNavMesh();
+        foreach (Behaviour behaviour in behavioursToDisable)
+        {
+            behaviour.enabled = true;
+        }
+        hitBox.SetActive(false);
     }
 
 }

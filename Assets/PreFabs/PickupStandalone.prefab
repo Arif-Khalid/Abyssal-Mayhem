@@ -303,5 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup juggernaut weapons
   defaultMessage: 
-  weaponToEquip: {fileID: 3983524928201402946, guid: 73fa7b7d7b451a7478b208a9d5655d5c,
-    type: 3}
+  weaponToEquip: 4

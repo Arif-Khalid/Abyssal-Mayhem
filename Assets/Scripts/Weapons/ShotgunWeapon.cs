@@ -35,7 +35,7 @@ public class ShotgunWeapon : Weapon
             dir.y += Random.Range(-spread, spread);
             dir.x += Random.Range(-spread, spread);
             dir.z += Random.Range(-spread, spread);
-            Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+            ObjectPooler.Instance.SpawnFromPool(spawnTag, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir));
         }
         //Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
     }

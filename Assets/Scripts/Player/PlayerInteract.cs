@@ -28,7 +28,7 @@ public class PlayerInteract : MonoBehaviour
             playerUI.UpdateInteractPrompt(interactable.interactMessage);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (interactable.weaponToEquip)
+                if (interactable.weaponToEquip != PlayerWeapon.PlayerWeapons.None)
                 {
                     playerWeapon.Equip(interactable.weaponToEquip);
                 }                

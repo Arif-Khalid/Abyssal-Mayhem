@@ -1481,7 +1481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fa0bdc63223353468dc93328586361c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
+  agent: {fileID: 6965175168769235425}
   player: {fileID: 0}
   enemyFeet: {fileID: 2531828486647217725}
   whatIsPlayer:
@@ -1493,7 +1493,7 @@ MonoBehaviour:
   attackRange: 1.5
   playerInAttackRange: 0
   isNavMeshAgentEnabled: 1
-  animator: {fileID: 0}
+  animator: {fileID: 1473202670567394489}
   hitBox: {fileID: 8993665773930062315}
 --- !u!195 &6965175168769235425
 NavMeshAgent:
@@ -1562,6 +1562,8 @@ MonoBehaviour:
   - {fileID: 1412969096229859116}
   - {fileID: 6965175168769235425}
   - {fileID: 1727867469796606460}
+  enemyAI: {fileID: 1412969096229859116}
+  hitBox: {fileID: 8993665773930062315}
 --- !u!114 &2095842673804297085
 MonoBehaviour:
   m_ObjectHideFlags: 0

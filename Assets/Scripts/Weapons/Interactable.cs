@@ -6,7 +6,7 @@ public abstract class Interactable : MonoBehaviour
 {
     public string interactMessage;
     public string defaultMessage;
-    public GameObject weaponToEquip;
+    public PlayerWeapon.PlayerWeapons weaponToEquip;
     public void BaseInteract()
     {
         Interact();

@@ -7,10 +7,11 @@ public class Weapon : MonoBehaviour
     public PlayerWeapon playerWeapon; //Reference to player weapon script
     public Transform bulletPoint;//Where the bullets come from, set in inspector in prefab
     [SerializeField]public GameObject bullet; //Reference to bullet prefab
-    [SerializeField] public int maxAmmo = -1; //Set to -1 when infinite ammo
+    [SerializeField] public int maxAmmo = -1; //Storing the max ammo of the current weapon instance
     [SerializeField] int clipSize = 10; //Size of weapon clip
+    [SerializeField] int defaultMaxAmmo = -1; //The max ammo of the weapon when equipped, -1 means infinite ammo
     protected int currentAmmo; //current ammo in weapon
-    protected PlayerUI playerUI;
+    public PlayerUI playerUI;
     public Animator animator;
     public Animator muzzleAnimator;
     public Vector3 dir;
@@ -21,21 +22,22 @@ public class Weapon : MonoBehaviour
     [SerializeField]public bool isLaser;
     [SerializeField] bool isRocket;
     public bool isFiring = false;
-    public SkinnedMeshRenderer rocketObject;
     public string weaponName;
     public bool isInUI = false;
 
+    public string spawnTag;
     // Start is called before the first frame update
     void Start()
-    {
-        playerWeapon = GetComponentInParent<PlayerWeapon>();
-        playerUI = GetComponentInParent<PlayerUI>();
-        animator = GetComponent<Animator>();
-        currentAmmo = clipSize;
-        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+    {        
         ChildStart();
     }
 
+    private void OnEnable()
+    {
+        maxAmmo = defaultMaxAmmo;
+        currentAmmo = clipSize;
+        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+    }
     //Start function to be overwriten by children should anything be needed to be added to start
     protected virtual void ChildStart()
     {
@@ -132,7 +134,8 @@ public class Weapon : MonoBehaviour
     protected virtual void FireBullet()
     {
         dir = playerWeapon.aimTransform.position - bulletPoint.position; //Get direction of where to aim
-        Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+        //Instantiate(bullet, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir)); //Fire at bulletPoint, facing the direction found
+        ObjectPooler.Instance.SpawnFromPool(spawnTag, new Vector3(bulletPoint.position.x, bulletPoint.position.y, bulletPoint.position.z), Quaternion.LookRotation(dir));
     }
     protected virtual void OutOfAmmo()
     {
@@ -190,5 +193,18 @@ public class Weapon : MonoBehaviour
     public void ExitUI()
     {
         isInUI = false;
+    }
+
+    private void OnDisable()
+    {
+        isInUI = false;
+        reloading = true;
+        isFiring = false;
+        ChildOnDisable();
+    }
+
+    protected virtual void ChildOnDisable()
+    {
+        //TO be overriden
     }
 }

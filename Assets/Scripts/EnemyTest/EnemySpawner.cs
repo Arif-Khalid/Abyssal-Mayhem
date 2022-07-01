@@ -402,7 +402,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach(var spawnedMonster in spawnedMonsters)
         {
-            Destroy(spawnedMonster);
+            spawnedMonster.SetActive(false);
         }
         spawnedMonsters.Clear();
     }

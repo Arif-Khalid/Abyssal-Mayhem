@@ -26,6 +26,6 @@ public class JuggernautBullet : Bullet
             
             enemyAI.RemoveFromList(this);
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

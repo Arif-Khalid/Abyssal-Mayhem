@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JuggernautExplode : MonoBehaviour
+public class JuggernautExplode : MonoBehaviour, IPooledObject
 {
     //Script to explode juggernaut on death
-    MeshCollider[] colliders;
+    [SerializeField] Rigidbody[] rigidBodies;
     [SerializeField] JuggernautMissile juggernautMissile;
     [SerializeField] float explosionForce;
     [SerializeField] float explosionRange;
@@ -13,11 +13,8 @@ public class JuggernautExplode : MonoBehaviour
     [SerializeField] float timeBeforeDestroy;
     [SerializeField] GameObject juggernautWeaponPickup;
     [SerializeField] bool isBoss = false;
-    void Start()
-    {
-        colliders = GetComponentsInChildren<MeshCollider>();
-    }
-
+    [SerializeField] EnemyAI enemyAI;
+    [SerializeField] Outline outline;
     public void ExplodeOnDeath()
     {
         if (juggernautMissile)
@@ -28,21 +25,39 @@ public class JuggernautExplode : MonoBehaviour
         {
             behaviour.enabled = false;
         }
-        foreach(MeshCollider collider in colliders)
+        foreach(Rigidbody rigidBody in rigidBodies)
         {
-            Rigidbody rigidBody = collider.gameObject.AddComponent<Rigidbody>();
+            rigidBody.isKinematic = false;
             rigidBody.AddExplosionForce(explosionForce, transform.position, explosionRange);
         }
         if (isBoss) {
-            GameObject spawnedPickup = Instantiate<GameObject>(juggernautWeaponPickup, transform);
+            juggernautWeaponPickup.SetActive(true);
         }
         
         Invoke(nameof(Destroy), timeBeforeDestroy);
     }
 
     private void Destroy()
-    {
-        Destroy(this.gameObject);
+    {       
+        gameObject.SetActive(false);
     }
 
+    public void OnObjectSpawn()
+    {
+        enemyAI.ReenableNavMesh();
+        foreach (Behaviour behaviour in behavioursToDisable)
+        {
+            behaviour.enabled = true;
+        }
+        foreach (Rigidbody rigidBody in rigidBodies)
+        {
+            rigidBody.isKinematic = true;
+        }
+    }
+    private void OnDisable()
+    {
+        GetComponent<JuggernautAI>().ClearBullets();
+        outline.enabled = false;
+        if (juggernautWeaponPickup) { juggernautWeaponPickup.SetActive(false); }
+    }
 }

@@ -6,6 +6,6 @@ public class WeaponPickupStandalone : Interactable
 {
     protected override void Interact()
     {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

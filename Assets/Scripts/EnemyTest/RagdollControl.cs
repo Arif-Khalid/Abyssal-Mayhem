@@ -2,18 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RagdollControl : MonoBehaviour
+public class RagdollControl : MonoBehaviour,IPooledObject
 {
     [SerializeField] private Animator animator;
     [SerializeField] Rigidbody rootBody;
     [SerializeField] Collider rootCollider;
     [SerializeField] float timeBeforeDestroyed;
     [SerializeField] Behaviour[] behavioursToDisable;
+    [SerializeField] EnemyAI enemyAI;
+    [SerializeField] Outline outline;
     private Rigidbody[] rigidBodies;
     private Collider[] ragdollColliders;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rigidBodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
@@ -53,11 +55,23 @@ public class RagdollControl : MonoBehaviour
             }
         }
 
-        Invoke(nameof(Destroy), timeBeforeDestroyed);
+        if (state) { Invoke(nameof(Destroy), timeBeforeDestroyed); }
     }
 
+    public void OnObjectSpawn()
+    {
+        ToggleRagdoll(false);
+        enemyAI.ReenableNavMesh();
+    }
     private void Destroy()
     {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        //Clear bullets
+        GetComponent<AssassinAI>().ClearBullets();
+        outline.enabled = false;
     }
 }

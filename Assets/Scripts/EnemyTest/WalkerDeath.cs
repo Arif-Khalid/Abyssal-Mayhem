@@ -8,6 +8,7 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
     [SerializeField] Behaviour[] behavioursToDisable;
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] GameObject hitBox;
+    [SerializeField] Outline outline;
     private void Start()
     {
         animator = GetComponent<Animator>();
@@ -23,7 +24,7 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
     }
 
     private void Destroy()
-    {
+    {        
         gameObject.SetActive(false);
     }
 
@@ -37,4 +38,8 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
         hitBox.SetActive(false);
     }
 
+    private void OnDisable()
+    {
+        outline.enabled = false;
+    }
 }

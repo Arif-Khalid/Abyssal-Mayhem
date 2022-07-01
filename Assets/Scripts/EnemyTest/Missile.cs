@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+public class Missile : MonoBehaviour,IPooledObject
 {
     public JuggernautMissile juggernautMissile; //Reference to remove from list
     public JuggernautAI juggernautAI; //Reference to AI for player position
@@ -26,11 +26,10 @@ public class Missile : MonoBehaviour
     //Variables for damage indicator
     [SerializeField] string indicatorID;
     [SerializeField] float strength;
-    private void Start()
+    public void OnObjectSpawn()
     {
         StartCoroutine(MissileTravel());
     }
-
     private void Update()
     {
         CheckPath();
@@ -115,6 +114,11 @@ public class Missile : MonoBehaviour
         {
             juggernautMissile.RemoveFromList(this);
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        timeAlive = 0;
     }
 }

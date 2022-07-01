@@ -30,6 +30,7 @@ public class EnemyHealth : MonoBehaviour
     //Variables for creating add score UI
     [SerializeField] private int score;
     [SerializeField] private AddScoreUI addScoreUI;
+    [SerializeField] private string addScoreUITag = "AddScoreUI";
     [SerializeField] private Vector3 offset = Vector3.zero;
     PlayerSetup playerSetup;
     // //Variables used to shoot laser through enemies
@@ -78,7 +79,7 @@ public class EnemyHealth : MonoBehaviour
     public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position, monsterID);
-        AddScoreUI spawnedScore = Instantiate<AddScoreUI>(addScoreUI, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
+        AddScoreUI spawnedScore = ObjectPooler.Instance.SpawnFromPool(addScoreUITag, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward)).GetComponent<AddScoreUI>();//Instantiate<AddScoreUI>(addScoreUI, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
         spawnedScore.SetScoreAdded(score);
         Death();
     }
@@ -115,8 +116,8 @@ public class EnemyHealth : MonoBehaviour
     private void OnDisable()
     {
         canvas.enabled = false;
+        if (isAssassin && enemySpawner) { enemySpawner.AddtoAssassinSpawnPoints(startingTransform); }
     }
-
     // public void FireLaser(Ray incomingRay)
     // {
     //     Debug.Log("Firing Railgun");

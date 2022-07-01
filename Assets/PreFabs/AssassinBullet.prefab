@@ -192,9 +192,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 81
   lifeTime: 4
+  bulletCollider: {fileID: 523895175790031311}
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
+  shooterPosition: {x: 0, y: 0, z: 0}
   bulletShakeDuration: 0.15
   bulletShakeMagnitude: 0.5
   indicatorID: SniperShot

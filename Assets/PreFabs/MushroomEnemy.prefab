@@ -1468,6 +1468,7 @@ MonoBehaviour:
   score: 1
   addScoreUI: {fileID: 8820906357504841634, guid: 769a4207a8eeafe4f9b834b96950a513,
     type: 3}
+  addScoreUITag: AddScoreUI
   offset: {x: 0, y: 0, z: 0}
 --- !u!114 &1412969096229859116
 MonoBehaviour:
@@ -1564,6 +1565,7 @@ MonoBehaviour:
   - {fileID: 1727867469796606460}
   enemyAI: {fileID: 1412969096229859116}
   hitBox: {fileID: 8993665773930062315}
+  outline: {fileID: 2095842673804297085}
 --- !u!114 &2095842673804297085
 MonoBehaviour:
   m_ObjectHideFlags: 0

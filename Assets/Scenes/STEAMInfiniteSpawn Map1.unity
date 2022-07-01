@@ -67856,15 +67856,51 @@ MonoBehaviour:
   - tag: Bullet
     prefab: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6,
       type: 3}
-    size: 20
+    size: 50
   - tag: Rocket
     prefab: {fileID: 5534813618486378921, guid: d181e84a514193f418a2c62d4198e15d,
       type: 3}
-    size: 2
+    size: 5
   - tag: Walker
     prefab: {fileID: 1473202670574732721, guid: a98daa07a015e494cbe7a14cdf1b4842,
       type: 3}
-    size: 2
+    size: 200
+  - tag: Juggernaut
+    prefab: {fileID: 2918282258761587086, guid: 9fc47ab6355918642b9183a907e8ca36,
+      type: 3}
+    size: 20
+  - tag: JuggernautBullet
+    prefab: {fileID: 6014419872463244055, guid: e540bcb7f2a9f714d827ef70ebf9603f,
+      type: 3}
+    size: 500
+  - tag: JuggernautBoss
+    prefab: {fileID: 2918282258761587086, guid: 1932691d539881e42b3524e268180d05,
+      type: 3}
+    size: 10
+  - tag: Missile
+    prefab: {fileID: 6391645609043294645, guid: ad6d940855627224080382a511313e58,
+      type: 3}
+    size: 150
+  - tag: Assassin
+    prefab: {fileID: 6916093223672103810, guid: a27d622901649304c914c49e8383e778,
+      type: 3}
+    size: 10
+  - tag: AssassinBullet
+    prefab: {fileID: 6014419872463244055, guid: 12c7a6fdaa9151f44a514fa7ad3ffe88,
+      type: 3}
+    size: 50
+  - tag: AssassinBoss
+    prefab: {fileID: 6916093223672103810, guid: 174d58c02773b234bacb2ead9ad0a154,
+      type: 3}
+    size: 10
+  - tag: AssassinBossBullet
+    prefab: {fileID: 6014419872463244055, guid: 12599a469145c844a8c05fde171be073,
+      type: 3}
+    size: 50
+  - tag: AddScoreUI
+    prefab: {fileID: 8820906357504841636, guid: 769a4207a8eeafe4f9b834b96950a513,
+      type: 3}
+    size: 300
 --- !u!4 &1471224188
 Transform:
   m_ObjectHideFlags: 0
@@ -73212,21 +73248,21 @@ MonoBehaviour:
   - {fileID: 1984591796}
   walkerTag: Walker
   walker: {fileID: 1473202670574732721, guid: a98daa07a015e494cbe7a14cdf1b4842, type: 3}
-  juggernautTag: 
+  juggernautTag: Juggernaut
   juggernaut: {fileID: 2918282258761587086, guid: 9fc47ab6355918642b9183a907e8ca36,
     type: 3}
   juggernautSpawns: 00000000000000000100000000000000010000000000000002000000020000000300000003000000000000000400000004000000050000000500000000000000
   juggernautBoss: {fileID: 2918282258761587086, guid: 1932691d539881e42b3524e268180d05,
     type: 3}
-  juggernautBossTag: 
+  juggernautBossTag: JuggernautBoss
   juggernautBossSpawns: 00000000000000000000000000000000000000000100000000000000000000000000000000000000010000000000000000000000000000000000000002000000
   assassin: {fileID: 6916093223672103810, guid: a27d622901649304c914c49e8383e778,
     type: 3}
-  assassinTag: 
+  assassinTag: Assassin
   assassinSpawns: 00000000000000000000000001000000010000000000000001000000020000000200000003000000000000000300000004000000040000000500000000000000
   assassinBoss: {fileID: 6916093223672103810, guid: 174d58c02773b234bacb2ead9ad0a154,
     type: 3}
-  assassinBossTag: 
+  assassinBossTag: AssassinBoss
   assassinBossSpawns: 00000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000002000000
   assassinSpawnPoints:
   - {fileID: 474393311}

@@ -6,7 +6,8 @@ using UnityEngine.AI;
 public class RocketBullet : Bullet
 {
     //Assignables
-    public GameObject explosion; 
+    public GameObject explosion;
+    public string explosionTag;
     public GameObject explosionInstance;
     public LayerMask whatIsEnemies;
     public LayerMask whatIsPlayer;
@@ -51,8 +52,10 @@ public class RocketBullet : Bullet
     private void Explode()
     {
         //Instantiate explosion
-        if(explosion != null) 
-        explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
+        //if (explosion != null)
+        explosionInstance = ObjectPooler.Instance.SpawnFromPool(explosionTag, transform.position, Quaternion.identity);
+        //explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
+
 
         //Check for enemies
         Collider[] enemies = Physics.OverlapSphere(transform.position, explosionRange, whatIsEnemies);

@@ -200,6 +200,7 @@ MonoBehaviour:
   shooterPosition: {x: 0, y: 0, z: 0}
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
+  explosionTag: Explosion
   explosionInstance: {fileID: 0}
   whatIsEnemies:
     serializedVersion: 2

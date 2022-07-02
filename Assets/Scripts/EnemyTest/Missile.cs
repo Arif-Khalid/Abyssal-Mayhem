@@ -20,6 +20,7 @@ public class Missile : MonoBehaviour,IPooledObject
     [SerializeField]Rigidbody rigidBody;
     GameObject explosionInstance;
     public GameObject explosion;
+    public string explosionTag;
     public float explosionForce;
     public float explosionRange;
 
@@ -84,10 +85,11 @@ public class Missile : MonoBehaviour,IPooledObject
     private void Explode()
     {
         //Instantiate explosion
-        if (explosion != null)
+        explosionInstance = ObjectPooler.Instance.SpawnFromPool(explosionTag, transform.position, Quaternion.identity);
+        /*if (explosion != null)
         {
             explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
-        }
+        }*/
 
         //Check for player
         Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);

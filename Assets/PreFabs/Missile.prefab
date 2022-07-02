@@ -66,6 +66,7 @@ MonoBehaviour:
   rigidBody: {fileID: 3818150920390941535}
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
+  explosionTag: Explosion
   explosionForce: 3
   explosionRange: 3
   indicatorID: FireBall

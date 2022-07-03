@@ -191,10 +191,9 @@ MonoBehaviour:
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 147
-  lifeTime: 2
+  lifeTime: 3
   bulletCollider: {fileID: 523895175790031311}
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
   shooterPosition: {x: 0, y: 0, z: 0}
-  bulletTrail: {fileID: 6014419872463244054}

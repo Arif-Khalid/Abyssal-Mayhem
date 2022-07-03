@@ -43,12 +43,12 @@ public class ChestContent : MonoBehaviour
         {
             chestContent.SetActive(true);
         }      
-        chestContent = null;
     }
 
     public void MakeAvailable()
     {
         enemySpawner.MakeWeaponChestAvailable(this);
+        chestContent = null;
     }
 
     public void MakeInteractable()

@@ -65,6 +65,10 @@ public class SteamLobby : MonoBehaviour
     {
         if (!SteamManager.Initialized) { return; }
 
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+        }
         //manager = GetComponent<CustomNetworkManager>();
 
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);
@@ -245,6 +249,7 @@ public class SteamLobby : MonoBehaviour
     {
         if (PlayerSetup.localPlayerSetup)
         {
+            PlayerPrefs.SetFloat("Sensitivity", mouseSensitivitySlider.value);
             PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }

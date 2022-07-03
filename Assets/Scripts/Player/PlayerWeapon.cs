@@ -88,18 +88,12 @@ public class PlayerWeapon : MonoBehaviour
             ShiftAimTransform();
             if (!weapon.isLaser && Input.GetKey(KeyCode.Mouse0))
             {
-                Debug.Log("Firing weapon");
                 weapon.Fire();
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
                 weapon.Reload();
             }
-        }
-
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Equip(defaultWeapon);
         }
     }
 

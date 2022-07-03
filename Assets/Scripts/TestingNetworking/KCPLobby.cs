@@ -27,7 +27,13 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Slider mouseSensitivitySlider;
 
-
+    private void Start()
+    {
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+        }
+    }
     public void SetEasyInfSpawn()
     {
         PlayerPrefs.SetInt("difficulty", easyID);
@@ -183,6 +189,7 @@ public class KCPLobby : MonoBehaviour
     {
         if (PlayerSetup.localPlayerSetup)
         {
+            PlayerPrefs.SetFloat("Sensitivity", mouseSensitivitySlider.value);
             PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }

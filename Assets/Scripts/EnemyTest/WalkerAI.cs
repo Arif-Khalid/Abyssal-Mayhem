@@ -13,7 +13,7 @@ public class WalkerAI : EnemyAI
 
     public override void ChasePlayer()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(new Vector3(player.position.x, player.position.y - 0.834f, player.position.z));
         animator.SetFloat("velocity", agent.velocity.magnitude);
     }
 

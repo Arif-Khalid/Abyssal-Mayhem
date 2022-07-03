@@ -112,6 +112,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void CheckProhibition()
     {
+        if (!controller.isGrounded)
+        {
+            return;
+        }
         if(Physics.CheckSphere(playerFeet.position, prohibitionRadius, whatIsProhibited))
         {
             if (!prohibitionStarted)
@@ -122,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            if (prohibitionStarted && controller.isGrounded)
+            if (prohibitionStarted)
             {
                 prohibitionStarted = false;
                 playerUI.StopProhibitionTimer();

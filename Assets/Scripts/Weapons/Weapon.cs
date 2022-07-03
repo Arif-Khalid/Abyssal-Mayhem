@@ -45,7 +45,7 @@ public class Weapon : MonoBehaviour
     }
     private void Update()
     {
-        if(Physics.CheckSphere(playerWeapon.weaponSlot.position, 0.5f, whatIsNotPlayer))
+        if(Physics.CheckSphere(playerWeapon.weaponSlot.position, 0.45f, whatIsNotPlayer))
         {
             CloseToWall();
         }

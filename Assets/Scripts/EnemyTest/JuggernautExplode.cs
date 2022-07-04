@@ -15,6 +15,20 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
     [SerializeField] bool isBoss = false;
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] Outline outline;
+    [SerializeField] float fadeScale;
+    MeshRenderer[] juggernautMeshes;
+    Material newMat;
+
+    private void Awake()
+    {
+        juggernautMeshes = GetComponentsInChildren<MeshRenderer>();
+        newMat = Instantiate(juggernautMeshes[0].material);
+        foreach(MeshRenderer mesh in juggernautMeshes)
+        {
+            mesh.material = newMat;
+        }
+    }
+
     public void ExplodeOnDeath()
     {
         if (juggernautMissile)
@@ -38,8 +52,8 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
     }
 
     private void Destroy()
-    {       
-        gameObject.SetActive(false);
+    {
+        StartCoroutine(FadeOut());
     }
 
     public void OnObjectSpawn()
@@ -53,11 +67,25 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
         {
             rigidBody.isKinematic = true;
         }
+        newMat.SetFloat("_Opacity", 1f);
     }
     private void OnDisable()
     {
+        StopAllCoroutines();
         GetComponent<JuggernautAI>().ClearBullets();
         outline.enabled = false;
         if (juggernautWeaponPickup) { juggernautWeaponPickup.SetActive(false); }
+    }
+
+    IEnumerator FadeOut()
+    {
+        float i = 1f;
+        while (i >= 0)
+        {
+            i -= Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 }

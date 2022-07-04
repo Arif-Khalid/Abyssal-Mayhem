@@ -4,14 +4,21 @@ using UnityEngine;
 
 public class WalkerDeath : MonoBehaviour,IPooledObject
 {
-    Animator animator;
+    [SerializeField] Animator animator;
     [SerializeField] Behaviour[] behavioursToDisable;
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] GameObject hitBox;
     [SerializeField] Outline outline;
-    private void Start()
+    [SerializeField] SkinnedMeshRenderer mushroomMesh;
+    [SerializeField] MeshRenderer hornMesh;
+    Material newMat;
+    [SerializeField] float fadeScale; //Higher fade scale means a slower fade
+
+    private void Awake()
     {
-        animator = GetComponent<Animator>();
+        newMat = Instantiate(mushroomMesh.material);
+        mushroomMesh.material = newMat;
+        hornMesh.material = newMat;
     }
 
     public void DeathAnim()
@@ -24,8 +31,8 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
     }
 
     private void Destroy()
-    {        
-        gameObject.SetActive(false);
+    {
+        StartCoroutine(FadeOut());
     }
 
     public void OnObjectSpawn()
@@ -36,10 +43,25 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
             behaviour.enabled = true;
         }
         hitBox.SetActive(false);
+        newMat.SetFloat("_Opacity", 1);
     }
 
     private void OnDisable()
     {
+        StopAllCoroutines();
         outline.enabled = false;
     }
+
+    IEnumerator FadeOut()
+    {
+        float i = 1f;
+        while(i >= 0)
+        {
+            i -= Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        gameObject.SetActive(false);
+    }
+
 }

@@ -1798,6 +1798,9 @@ MonoBehaviour:
   - {fileID: 6916093223679504450}
   enemyAI: {fileID: 6916093223679504451}
   outline: {fileID: 7433192274004572534}
+  assassinMesh: {fileID: 6916093223675285120}
+  sniperMesh: {fileID: 6916093223669914946}
+  fadeScale: 1
 --- !u!114 &7433192274004572534
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -61,7 +61,8 @@ public class PlayerWeapon : MonoBehaviour
             weapon.playerWeapon = this;
             weapon.gameObject.SetActive(true);
             weapon.animator.SetFloat("FireRate", fireRate);
-            weapon.GetComponent<LaserWeapon>().fireRate = (2 - fireRate) / 2;
+            if (fireRate == 1.0f) { weapon.GetComponent<LaserWeapon>().fireRate = (1.6f - fireRate) / 2; }
+            else { weapon.GetComponent<LaserWeapon>().fireRate = (1.9f - fireRate) / 2; }
         }
         else if (weaponName == PlayerWeapons.Rocket) 
         {
@@ -120,7 +121,8 @@ public class PlayerWeapon : MonoBehaviour
         weapon.animator.SetFloat("FireRate", fireRate);
         if (weapon.isLaser)
         {
-            weapon.GetComponent<LaserWeapon>().fireRate = (2 - fireRate) /2;
+            if (fireRate == 1.0f) { weapon.GetComponent<LaserWeapon>().fireRate = (1.6f - fireRate) / 2; }
+            else { weapon.GetComponent<LaserWeapon>().fireRate = (1.9f - fireRate) / 2; }
         }
     }
 

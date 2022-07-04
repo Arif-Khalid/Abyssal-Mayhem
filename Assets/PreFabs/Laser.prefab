@@ -171,7 +171,7 @@ MonoBehaviour:
   spawnTag: 
   laserOrigin: {fileID: 7027317254155538495}
   gunRange: 200
-  fireRate: 0.5
+  fireRate: 0.3
   laserDuration: 0.05
   laserDamage: 30
   walls:

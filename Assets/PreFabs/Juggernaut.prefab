@@ -1171,6 +1171,7 @@ MonoBehaviour:
   isBoss: 0
   enemyAI: {fileID: 1889445096}
   outline: {fileID: 7106811645185743688}
+  fadeScale: 1
 --- !u!1001 &4309926853290887610
 PrefabInstance:
   m_ObjectHideFlags: 0

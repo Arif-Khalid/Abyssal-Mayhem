@@ -11,6 +11,10 @@ public class RagdollControl : MonoBehaviour,IPooledObject
     [SerializeField] Behaviour[] behavioursToDisable;
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] Outline outline;
+    [SerializeField] SkinnedMeshRenderer assassinMesh;
+    [SerializeField] MeshRenderer sniperMesh;
+    [SerializeField] float fadeScale;
+    Material newMat;
     private Rigidbody[] rigidBodies;
     private Collider[] ragdollColliders;
 
@@ -27,7 +31,9 @@ public class RagdollControl : MonoBehaviour,IPooledObject
         {
             rb.isKinematic = true;
         }
-        
+        newMat = Instantiate(assassinMesh.material);
+        assassinMesh.material = newMat;
+        sniperMesh.material = newMat;        
     }
 
 
@@ -62,16 +68,30 @@ public class RagdollControl : MonoBehaviour,IPooledObject
     {
         ToggleRagdoll(false);
         enemyAI.ReenableNavMesh();
+        newMat.SetFloat("_Opacity", 1f);
     }
     private void Destroy()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(FadeOut());
     }
 
     private void OnDisable()
     {
+        StopAllCoroutines();
         //Clear bullets
         GetComponent<AssassinAI>().ClearBullets();
         outline.enabled = false;
+    }
+
+    IEnumerator FadeOut()
+    {
+        float i = 1f;
+        while (i >= 0)
+        {
+            i -= Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        gameObject.SetActive(false);
     }
 }

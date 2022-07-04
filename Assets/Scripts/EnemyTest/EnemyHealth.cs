@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,6 +27,8 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] WalkerDeath walkerDeath;
     [SerializeField] RagdollControl ragdollControl;
     public bool isDead = false;
+    private delegate void OnTakeDamage();
+    OnTakeDamage onTakeDamage;
 
     //Variables for creating add score UI
     [SerializeField] private int score;
@@ -70,6 +73,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        onTakeDamage?.Invoke();
         if(currentHealth <= 0)
         {
             DeathByPlayer();
@@ -108,6 +112,15 @@ public class EnemyHealth : MonoBehaviour
         //Destroy(this.gameObject); Called instead in whatever death animation or behaviour
     }
 
+    public void RegisterToTakeDamage(Action action)
+    {
+        onTakeDamage += new OnTakeDamage(action);
+    }
+
+    public void RemoveFromTakeDamage(Action action)
+    {
+        onTakeDamage -= new OnTakeDamage(action);
+    }
     private void OnEnable()
     {
         canvas.enabled = true;

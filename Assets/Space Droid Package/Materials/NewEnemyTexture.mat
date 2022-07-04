@@ -135,6 +135,7 @@ Material:
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0
+    - _Saturation: 1
     - _Shininess: 0.16
     - _Smoothness: 0.16
     - _SmoothnessSource: 1

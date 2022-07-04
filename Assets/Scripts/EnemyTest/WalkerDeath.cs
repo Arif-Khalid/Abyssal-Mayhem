@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class WalkerDeath : MonoBehaviour,IPooledObject
@@ -12,13 +13,19 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
     [SerializeField] SkinnedMeshRenderer mushroomMesh;
     [SerializeField] MeshRenderer hornMesh;
     Material newMat;
-    [SerializeField] float fadeScale; //Higher fade scale means a slower fade
+    Color originalColor;
+    [SerializeField] float hurtFadeScale; //Higher scale means a slower fade from red to normal color on getting hurt
+    [SerializeField] float fadeScale; //Higher fade scale means a slower fade to dissappearing on death
+
+    [SerializeField] EnemyHealth enemyHealth;
 
     private void Awake()
     {
         newMat = Instantiate(mushroomMesh.material);
         mushroomMesh.material = newMat;
         hornMesh.material = newMat;
+        originalColor = newMat.color;
+        enemyHealth.RegisterToTakeDamage(OnTakeDamage);
     }
 
     public void DeathAnim()
@@ -44,6 +51,13 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
         }
         hitBox.SetActive(false);
         newMat.SetFloat("_Opacity", 1);
+        newMat.color = originalColor;
+    }
+
+    public void OnTakeDamage()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Hurt());
     }
 
     private void OnDisable()
@@ -64,4 +78,18 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
         gameObject.SetActive(false);
     }
 
+    IEnumerator Hurt()
+    {
+        newMat.color = Color.red;
+        while (newMat.color != originalColor)
+        {
+            newMat.color = Color.Lerp(newMat.color, originalColor, Time.deltaTime/hurtFadeScale);
+            yield return null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        enemyHealth.RemoveFromTakeDamage(OnTakeDamage);
+    }
 }

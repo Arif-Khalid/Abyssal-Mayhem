@@ -197,7 +197,7 @@ MonoBehaviour:
   counter: 0
   enemyAI: {fileID: 0}
   shooterPosition: {x: 0, y: 0, z: 0}
-  bulletShakeDuration: 0.02
-  bulletShakeMagnitude: 0.2
+  bulletShakeDuration: 0.04
+  bulletShakeMagnitude: 0.3
   indicatorID: Shot
   strength: 1

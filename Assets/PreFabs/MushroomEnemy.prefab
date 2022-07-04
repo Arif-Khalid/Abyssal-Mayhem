@@ -1569,7 +1569,9 @@ MonoBehaviour:
   outline: {fileID: 2095842673804297085}
   mushroomMesh: {fileID: 1473202670563212919}
   hornMesh: {fileID: 1473202670576694511}
+  hurtFadeScale: 0.5
   fadeScale: 1
+  enemyHealth: {fileID: 1727867469796606460}
 --- !u!114 &2095842673804297085
 MonoBehaviour:
   m_ObjectHideFlags: 0

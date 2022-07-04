@@ -16,8 +16,11 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
     [SerializeField] EnemyAI enemyAI;
     [SerializeField] Outline outline;
     [SerializeField] float fadeScale;
+    [SerializeField] float hurtFadeScale; //Higher fade scale means a slower fade to original color on hurt
+    [SerializeField] EnemyHealth enemyHealth;
     MeshRenderer[] juggernautMeshes;
     Material newMat;
+    Color originalColor;
 
     private void Awake()
     {
@@ -27,6 +30,8 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
         {
             mesh.material = newMat;
         }
+        originalColor = newMat.color;
+        enemyHealth.RegisterToTakeDamage(OnTakeDamage);
     }
 
     public void ExplodeOnDeath()
@@ -68,6 +73,7 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
             rigidBody.isKinematic = true;
         }
         newMat.SetFloat("_Opacity", 1f);
+        newMat.color = originalColor;
     }
     private void OnDisable()
     {
@@ -75,6 +81,12 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
         GetComponent<JuggernautAI>().ClearBullets();
         outline.enabled = false;
         if (juggernautWeaponPickup) { juggernautWeaponPickup.SetActive(false); }
+    }
+
+    public void OnTakeDamage()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Hurt());
     }
 
     IEnumerator FadeOut()
@@ -87,5 +99,20 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
             yield return null;
         }
         gameObject.SetActive(false);
+    }
+
+    IEnumerator Hurt()
+    {
+        newMat.color = Color.red;
+        while (newMat.color != originalColor)
+        {
+            newMat.color = Color.Lerp(newMat.color, originalColor, Time.deltaTime/hurtFadeScale);
+            yield return null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        enemyHealth.RemoveFromTakeDamage(OnTakeDamage);
     }
 }

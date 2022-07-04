@@ -13,8 +13,13 @@ public class RagdollControl : MonoBehaviour,IPooledObject
     [SerializeField] Outline outline;
     [SerializeField] SkinnedMeshRenderer assassinMesh;
     [SerializeField] MeshRenderer sniperMesh;
+    [SerializeField] EnemyHealth enemyHealth;
     [SerializeField] float fadeScale;
+    [SerializeField] float hurtFadeScale;
+    [SerializeField] float maxSaturation;
+    [SerializeField] float defaultSaturation;
     Material newMat;
+    Color originalColor;
     private Rigidbody[] rigidBodies;
     private Collider[] ragdollColliders;
 
@@ -33,7 +38,9 @@ public class RagdollControl : MonoBehaviour,IPooledObject
         }
         newMat = Instantiate(assassinMesh.material);
         assassinMesh.material = newMat;
-        sniperMesh.material = newMat;        
+        sniperMesh.material = newMat;
+        originalColor = newMat.color;
+        enemyHealth.RegisterToTakeDamage(OnTakeDamage);
     }
 
 
@@ -64,11 +71,19 @@ public class RagdollControl : MonoBehaviour,IPooledObject
         if (state) { Invoke(nameof(Destroy), timeBeforeDestroyed); }
     }
 
+    public void OnTakeDamage()
+    {
+        StopAllCoroutines();
+        StartCoroutine(Hurt());
+    }
+
     public void OnObjectSpawn()
     {
         ToggleRagdoll(false);
         enemyAI.ReenableNavMesh();
         newMat.SetFloat("_Opacity", 1f);
+        newMat.color = originalColor;
+        newMat.SetFloat("_Saturation", defaultSaturation);
     }
     private void Destroy()
     {
@@ -93,5 +108,24 @@ public class RagdollControl : MonoBehaviour,IPooledObject
             yield return null;
         }
         gameObject.SetActive(false);
+    }
+
+    IEnumerator Hurt()
+    {
+        newMat.color = Color.red;
+        newMat.SetFloat("_Saturation", maxSaturation);
+        float currentSat = maxSaturation;
+        while (newMat.color != originalColor || currentSat > defaultSaturation)
+        {
+            currentSat = Mathf.Lerp(currentSat, defaultSaturation, Time.deltaTime / hurtFadeScale);
+            newMat.color = Color.Lerp(newMat.color, originalColor, Time.deltaTime / hurtFadeScale);
+            newMat.SetFloat("_Saturation", currentSat);
+            yield return null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        enemyHealth.RemoveFromTakeDamage(OnTakeDamage);
     }
 }

@@ -1800,7 +1800,11 @@ MonoBehaviour:
   outline: {fileID: 7433192274004572534}
   assassinMesh: {fileID: 6916093223675285120}
   sniperMesh: {fileID: 6916093223669914946}
+  enemyHealth: {fileID: 6916093223679504460}
   fadeScale: 1
+  hurtFadeScale: 0.5
+  maxSaturation: 20
+  defaultSaturation: 5
 --- !u!114 &7433192274004572534
 MonoBehaviour:
   m_ObjectHideFlags: 0

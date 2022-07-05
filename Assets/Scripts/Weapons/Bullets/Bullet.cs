@@ -124,4 +124,5 @@ public class Bullet : MonoBehaviour, IPooledObject
         }
         gameObject.SetActive(false);
     }
+
 }

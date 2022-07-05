@@ -32,7 +32,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled)
         {
             StartRegen();
         }
@@ -80,6 +80,7 @@ public class PlayerHealth : MonoBehaviour
     public void RestoreHealth(int value)
     {
         currentHealth += value;
+        if(currentHealth >= maxHealth) { currentHealth = maxHealth; }
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
@@ -97,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
         {
             PlayerSetup.localPlayerSetup.enemySpawner.Respawn();
             playerUI.UpdateExtraLives(lives);
+            playerUI.StartWarning("Extra Life Used");
         }
         
     }

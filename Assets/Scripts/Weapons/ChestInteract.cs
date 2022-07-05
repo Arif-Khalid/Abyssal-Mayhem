@@ -8,6 +8,7 @@ public class ChestInteract : Interactable
     protected override void Interact()
     {
         animator.SetBool("openChest", true); //open the chest
+        interactCollider.enabled = false;
         interactMessage = string.Empty;
     }
 

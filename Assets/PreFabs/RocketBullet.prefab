@@ -186,7 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9a1a12bf15f6f44887f40487dc1ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 80
   snapDistance: 3
   bulletDamage: 10
   bulletCollisionLayerMask:
@@ -212,7 +212,7 @@ MonoBehaviour:
   useGravity: 0
   explosionDamage: 50
   explosionRange: 7.5
-  explosionForce: 5
+  explosionForce: 4
   maxCollisions: 1
   explodeOnTouch: 1
   rocketShakeDuration: 0.15

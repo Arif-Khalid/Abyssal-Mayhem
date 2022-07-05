@@ -6,6 +6,7 @@ public abstract class Interactable : MonoBehaviour
 {
     public string interactMessage;
     public string defaultMessage;
+    public Collider interactCollider;
     public PlayerWeapon.PlayerWeapons weaponToEquip;
     public void BaseInteract()
     {
@@ -17,8 +18,9 @@ public abstract class Interactable : MonoBehaviour
         //To be overriden
     }
 
-    public void ResetMessage()
+    public void ResetInteract()
     {
+        interactCollider.enabled = true;
         interactMessage = defaultMessage;
     }
 }

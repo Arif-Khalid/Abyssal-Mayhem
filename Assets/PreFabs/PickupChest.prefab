@@ -44,7 +44,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 2.63, y: 1, z: 1.4}
-  m_Center: {x: 0, y: -2.81, z: 0.25}
+  m_Center: {x: 0, y: -2.99, z: 0.25}
 --- !u!1 &3319835837514679782
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.555656, y: 2.5603228, z: 1.1147392}
+  m_Size: {x: 2.555656, y: 2.5603228, z: 1.19}
   m_Center: {x: 0.0065730214, y: -1.1559483, z: 0.31240973}
 --- !u!1 &7481203296189999867
 GameObject:
@@ -149,8 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 0
-  m_StartPoint: {x: 0, y: 1.5323046, z: 1.4396877}
-  m_EndPoint: {x: 0, y: 0.11731018, z: 2.7668133}
+  m_StartPoint: {x: 0, y: 1.23, z: 1.18}
+  m_EndPoint: {x: 0, y: 0.11731018, z: 2.22}
   m_Width: 0
   m_CostModifier: -1
   m_Bidirectional: 1
@@ -355,8 +355,9 @@ GameObject:
   - component: {fileID: 7853287252664709881}
   - component: {fileID: 7853287252664709882}
   - component: {fileID: 7853287252664709883}
-  - component: {fileID: 7853287252664709880}
   - component: {fileID: 7853287252664709877}
+  - component: {fileID: 1825661759798480136}
+  - component: {fileID: 6926655208763573234}
   m_Layer: 10
   m_Name: chest_up
   m_TagString: Untagged
@@ -430,20 +431,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &7853287252664709880
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7853287252664709886}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300126, guid: 4e15996ba1e2f4b4392985ef6ac6b27c, type: 3}
 --- !u!114 &7853287252664709877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,8 +445,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: 
   defaultMessage: Use E to open chest
+  interactCollider: {fileID: 1825661759798480136}
   weaponToEquip: 5
   animator: {fileID: 7853287252527664796}
+--- !u!65 &1825661759798480136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853287252664709886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 2.555656, y: 2.5603228, z: 2}
+  m_Center: {x: 0.0065730214, y: -1.1559483, z: -0.14}
+--- !u!64 &6926655208763573234
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7853287252664709886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300126, guid: 4e15996ba1e2f4b4392985ef6ac6b27c, type: 3}
 --- !u!1001 &1503870440269412761
 PrefabInstance:
   m_ObjectHideFlags: 0

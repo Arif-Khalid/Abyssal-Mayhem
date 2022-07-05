@@ -186,11 +186,10 @@ public class PlayerUI : MonoBehaviour
     {
         animator.Play("PlayerHurt", animator.GetLayerIndex("Hurt Layer"), 0f);
     }
-
     /*Code for powerups UI*/
     public void StartWarning(string message)
     {
-        warningText.text = "!Incoming " + message + "!";
+        warningText.text = "!" + message + "!";
         animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
     }
 

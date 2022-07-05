@@ -53,7 +53,7 @@ public class ChestContent : MonoBehaviour
 
     public void MakeInteractable()
     {
-        chestInteract.ResetMessage();
+        chestInteract.ResetInteract();
     }
 
     public void HardReset()

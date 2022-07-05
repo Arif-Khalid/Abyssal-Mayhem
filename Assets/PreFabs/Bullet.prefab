@@ -185,8 +185,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bd5178120305b4497acf7f46eb36a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  snapDistance: 2
+  speed: 100
+  snapDistance: 3
   bulletDamage: 10
   bulletCollisionLayerMask:
     serializedVersion: 2

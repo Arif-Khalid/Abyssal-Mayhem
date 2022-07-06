@@ -36,18 +36,21 @@ public class KCPLobby : MonoBehaviour
     }
     public void SetEasyInfSpawn()
     {
+        ButtonAudio();
         PlayerPrefs.SetInt("difficulty", easyID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetMediumInfSpawn()
     {
+        ButtonAudio();
         PlayerPrefs.SetInt("difficulty", mediumID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetHardInfSpawn()
     {
+        ButtonAudio();
         PlayerPrefs.SetInt("difficulty", hardID);
         HostInfiniteSpawnLobby();
     }
@@ -59,6 +62,7 @@ public class KCPLobby : MonoBehaviour
 
     public void HostSnipeToWinLobby()
     {
+        ButtonAudio();
         customNetworkManager.onlineScene = SnipeToWinScene;
         customNetworkManager.StartHost();
     }
@@ -98,6 +102,7 @@ public class KCPLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
+        ButtonAudio();
         Debug.Log("Entering QuitToMenu Function");
         if (NetworkServer.active && NetworkClient.isConnected)
         {
@@ -119,6 +124,7 @@ public class KCPLobby : MonoBehaviour
     /*Functions for spawning monsters in single player*/
     public void SpawnJuggernaut()
     {
+        ButtonAudio();
         if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
@@ -134,6 +140,7 @@ public class KCPLobby : MonoBehaviour
 
     public void SpawnJuggernautBoss()
     {
+        ButtonAudio();
         if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
@@ -149,6 +156,7 @@ public class KCPLobby : MonoBehaviour
 
     public void SpawnAssassin()
     {
+        ButtonAudio();
         if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
@@ -164,6 +172,7 @@ public class KCPLobby : MonoBehaviour
 
     public void SpawnAssassinBoss()
     {
+        ButtonAudio();
         if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
@@ -194,4 +203,8 @@ public class KCPLobby : MonoBehaviour
         }
     }
 
+    public static void ButtonAudio()
+    {
+        AudioManager.instance.Play("ButtonPress");
+    }
 }

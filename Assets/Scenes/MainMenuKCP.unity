@@ -4522,6 +4522,135 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1290045053}
   m_CullTransparentMesh: 1
+--- !u!1 &1300778063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1300778065}
+  - component: {fileID: 1300778064}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1300778064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300778063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef016ffceb7df04c92a32a69217e1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: 0d5dab2d9e8a04cb8a1b06c583193e55, type: 3}
+    name: BluntForce
+    volume: 0.5
+    pitch: 0.8
+    loop: 0
+    description: Walker player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 142d785ea6ccf42698025a1ff8ee1366, type: 3}
+    name: Shot
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Juggernaut bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 42511c6dc3bff4584b08c422366bd1f3, type: 3}
+    name: SniperShot
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 08d5810d653eb4ab0ba625cd6017606b, type: 3}
+    name: RocketFire
+    volume: 0.8
+    pitch: 1
+    loop: 0
+    description: Rocket launcher firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e5f0a762c652f4065a1238d2febd38c6, type: 3}
+    name: RifleFire
+    volume: 0.2
+    pitch: 0.8
+    loop: 0
+    description: Assault rifle firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 270e84d37dc0c4999977a731e70cba50, type: 3}
+    name: RifleRemoveClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Assault rifle removing clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 552e1ee9826bb42fe83505a9defb673d, type: 3}
+    name: RifleInsertClip
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Assault rifle inserting clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 07e17c040baac49bfbab34e436244b01, type: 3}
+    name: PlayerBulletHit
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Player bullet hitting enemy
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: a4ef8ffb6472a4f39a9a6462b071a991, type: 3}
+    name: ShotgunFire
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Shotgun firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
+    name: LaserFire
+    volume: 0.5
+    pitch: 0.8
+    loop: 0
+    description: Laser Firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0174ef91f20e54e9283ea94e619f46f6, type: 3}
+    name: ButtonPress
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Pressing UI buttons in main menu
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0174ef91f20e54e9283ea94e619f46f6, type: 3}
+    name: ButtonPress
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Pressing UI buttons in main menu
+    source: {fileID: 0}
+--- !u!4 &1300778065
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300778063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.159407, y: 36.393578, z: -91.7203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1312275692
 GameObject:
   m_ObjectHideFlags: 0

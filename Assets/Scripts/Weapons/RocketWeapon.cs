@@ -28,5 +28,4 @@ public class RocketWeapon : Weapon
     public void NotAimed()
     {
     }
-
 }

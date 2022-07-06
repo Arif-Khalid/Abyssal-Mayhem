@@ -17,7 +17,10 @@ public class EnemyMeelee : MonoBehaviour
         {
             if (playerHealth.dead) { isPlayerDead = true; }
             playerHealth.TakeDamage(meeleeDamage, meeleeShakeDuration, meeleeShakeMagnitude);
-            if(!isPlayerDead) { IndicatorProManager.Activate(indicatorID, transform.root.position, strength); }
+            if(!isPlayerDead) { 
+                IndicatorProManager.Activate(indicatorID, transform.root.position, strength);
+                AudioManager.instance.Play(indicatorID);
+            }
             this.gameObject.SetActive(false);
         }
     }

@@ -18,6 +18,7 @@ public class JuggernautBullet : Bullet
             {
                 if (enemyAI) { IndicatorProManager.Activate(indicatorID, enemyAI.transform.position, strength); }
                 else { IndicatorProManager.Activate(indicatorID, shooterPosition, strength); }
+                AudioManager.instance.Play(indicatorID);
             }
             playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude);
         }

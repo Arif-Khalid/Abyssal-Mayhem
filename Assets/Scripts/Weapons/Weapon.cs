@@ -207,4 +207,20 @@ public class Weapon : MonoBehaviour
     {
         //TO be overriden
     }
+
+    //Plays specific weapon sound called in animation
+    public virtual void FiringSound()
+    {
+        AudioManager.instance.Play(weaponName + "Fire");
+    }
+
+    public virtual void RemoveClipSound()
+    {
+        AudioManager.instance.Play(weaponName + "RemoveClip");
+    }
+
+    public virtual void InsertClipSound()
+    {
+        AudioManager.instance.Play(weaponName + "InsertClip");
+    }
 }

@@ -253,4 +253,9 @@ public class SteamLobby : MonoBehaviour
             PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }
+
+    public static void ButtonAudio()
+    {
+        AudioManager.instance.Play("ButtonPress");
+    }
 }

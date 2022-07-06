@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 6aa5caf957f444f1580383f67cd285fd
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Floor
+    100002: Pillar
+    100004: Pillar.1
+    100006: Pillar.2
+    100008: Pillar.3
+    100010: Pillar.4
+    100012: Pillar.5
+    100014: Portal
+    100016: Portal.1
+    100018: Portal.2
+    100020: Portal.3
+    100022: Portal.4
+    100024: Portal.5
+    100026: PortalFire1
+    100028: PortalFire2
+    100030: PortalMagic1
+    100032: PortalMagic2
+    100034: PortalShot1
+    100036: PortalShot2
+    100038: Radiation
+    100040: skyRing1
+    100042: skyRing2
+    100044: skyRing3
+    100046: Tube
+    100048: Type
+    100050: Type.1
+    100052: Type.2
+    100054: Type.3
+    100056: Type.4
+    100058: Type.5
+    100060: //RootNode
+    100062: WallLight
+    100064: SkyRing
+    100066: Floor.split
+    100068: Tube.1
+    100070: Boolean
+    100072: Wall
+    100074: Portal1
+    100076: Portal2
+    100078: Portal3
+    100080: Portal4
+    100082: Portal5
+    100084: Portal6
+    400000: Floor
+    400002: Pillar
+    400004: Pillar.1
+    400006: Pillar.2
+    400008: Pillar.3
+    400010: Pillar.4
+    400012: Pillar.5
+    400014: Portal
+    400016: Portal.1
+    400018: Portal.2
+    400020: Portal.3
+    400022: Portal.4
+    400024: Portal.5
+    400026: PortalFire1
+    400028: PortalFire2
+    400030: PortalMagic1
+    400032: PortalMagic2
+    400034: PortalShot1
+    400036: PortalShot2
+    400038: Radiation
+    400040: skyRing1
+    400042: skyRing2
+    400044: skyRing3
+    400046: Tube
+    400048: Type
+    400050: Type.1
+    400052: Type.2
+    400054: Type.3
+    400056: Type.4
+    400058: Type.5
+    400060: //RootNode
+    400062: WallLight
+    400064: SkyRing
+    400066: Floor.split
+    400068: Tube.1
+    400070: Boolean
+    400072: Wall
+    400074: Portal1
+    400076: Portal2
+    400078: Portal3
+    400080: Portal4
+    400082: Portal5
+    400084: Portal6
+    2100000: Floor
+    2100002: Radiation
+    2100004: walls
+    2100006: Pillar
+    2100008: PortalRim
+    2100010: Portal
+    2100012: MagicType
+    2100014: PortalFire
+    2100016: FireType
+    2100018: PortalShot
+    2100020: ClassicType
+    2100022: RedLight
+    2100024: FloorStep
+    2100026: No Name
+    2300000: Floor
+    2300002: Pillar
+    2300004: Pillar.1
+    2300006: Pillar.2
+    2300008: Pillar.3
+    2300010: Pillar.4
+    2300012: Pillar.5
+    2300014: Portal
+    2300016: Portal.1
+    2300018: Portal.2
+    2300020: Portal.3
+    2300022: Portal.4
+    2300024: Portal.5
+    2300026: PortalFire1
+    2300028: PortalFire2
+    2300030: PortalMagic1
+    2300032: PortalMagic2
+    2300034: PortalShot1
+    2300036: PortalShot2
+    2300038: Radiation
+    2300040: skyRing1
+    2300042: skyRing2
+    2300044: skyRing3
+    2300046: Tube
+    2300048: Type
+    2300050: Type.1
+    2300052: Type.2
+    2300054: Type.3
+    2300056: Type.4
+    2300058: Type.5
+    2300060: WallLight
+    2300062: SkyRing
+    2300064: Floor.split
+    2300066: Tube.1
+    2300068: Boolean
+    2300070: Wall
+    2300072: Portal1
+    2300074: Portal2
+    2300076: Portal3
+    2300078: Portal4
+    2300080: Portal5
+    2300082: Portal6
+    3300000: Floor
+    3300002: Pillar
+    3300004: Pillar.1
+    3300006: Pillar.2
+    3300008: Pillar.3
+    3300010: Pillar.4
+    3300012: Pillar.5
+    3300014: Portal
+    3300016: Portal.1
+    3300018: Portal.2
+    3300020: Portal.3
+    3300022: Portal.4
+    3300024: Portal.5
+    3300026: PortalFire1
+    3300028: PortalFire2
+    3300030: PortalMagic1
+    3300032: PortalMagic2
+    3300034: PortalShot1
+    3300036: PortalShot2
+    3300038: Radiation
+    3300040: skyRing1
+    3300042: skyRing2
+    3300044: skyRing3
+    3300046: Tube
+    3300048: Type
+    3300050: Type.1
+    3300052: Type.2
+    3300054: Type.3
+    3300056: Type.4
+    3300058: Type.5
+    3300060: WallLight
+    3300062: SkyRing
+    3300064: Floor.split
+    3300066: Tube.1
+    3300068: Boolean
+    3300070: Wall
+    3300072: Portal1
+    3300074: Portal2
+    3300076: Portal3
+    3300078: Portal4
+    3300080: Portal5
+    3300082: Portal6
+    4300000: Floor
+    4300002: Radiation
+    4300004: Tube
+    4300006: skyRing1
+    4300008: skyRing3
+    4300010: skyRing2
+    4300012: Pillar
+    4300014: Pillar.1
+    4300016: Pillar.2
+    4300018: Pillar.3
+    4300020: Pillar.4
+    4300022: Pillar.5
+    4300024: PortalMagic1
+    4300026: Portal
+    4300028: Type
+    4300030: PortalMagic2
+    4300032: Portal.1
+    4300034: Type.1
+    4300036: PortalFire1
+    4300038: Portal.2
+    4300040: Type.2
+    4300042: PortalFire2
+    4300044: Portal.3
+    4300046: Type.3
+    4300048: PortalShot1
+    4300050: Portal.4
+    4300052: Type.4
+    4300054: PortalShot2
+    4300056: Portal.5
+    4300058: Type.5
+    4300060: WallLight
+    4300062: SkyRing
+    4300064: Floor.split
+    4300066: Tube.1
+    4300068: Boolean
+    4300070: Wall
+    4300072: Portal1
+    4300074: Portal2
+    4300076: Portal3
+    4300078: Portal4
+    4300080: Portal5
+    4300082: Portal6
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ClassicType
+    second: {fileID: 2100000, guid: 62c7769d905e44f5dabd4321247010bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FireType
+    second: {fileID: 2100000, guid: 0c4a610eddead4330a94eaa3bc8f042d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Floor
+    second: {fileID: 2100000, guid: f9221f4ff3ecf4800a68bdbf498ead57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: FloorStep
+    second: {fileID: 2100000, guid: 7a72ef1c72e82401d93e355bd8a23379, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MagicType
+    second: {fileID: 2100000, guid: a0e1f49f429854067b7e2628c0d23434, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Pillar
+    second: {fileID: 2100000, guid: 1275c3a8baedd41539f205a950969216, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Portal
+    second: {fileID: 2100000, guid: 02e40c9d385d0456c9863fc123e6133e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PortalFire
+    second: {fileID: 2100000, guid: 45c733dfff3544f95982979b7a167528, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PortalRim
+    second: {fileID: 2100000, guid: 175f1a0821c114f509f6844324283456, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PortalShot
+    second: {fileID: 2100000, guid: 2d05563ce7c3840a99d6a0f0dbe466ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Radiation
+    second: {fileID: 2100000, guid: dab166457a73b4ae998b974daf9d12e0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RedLight
+    second: {fileID: 2100000, guid: bff4403b40c9f4ac8a4a027be9f5347e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: walls
+    second: {fileID: 2100000, guid: 384f1172c7fe0431d922402d84ec7c09, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

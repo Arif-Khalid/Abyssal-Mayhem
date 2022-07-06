@@ -186,18 +186,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9a1a12bf15f6f44887f40487dc1ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 60
+  speed: 80
   snapDistance: 3
   bulletDamage: 10
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 145
   lifeTime: 2
+  bulletCollider: {fileID: 9009852977590055700}
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
+  shooterPosition: {x: 0, y: 0, z: 0}
   explosion: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd,
     type: 3}
+  explosionTag: Explosion
   explosionInstance: {fileID: 0}
   whatIsEnemies:
     serializedVersion: 2
@@ -208,8 +211,8 @@ MonoBehaviour:
   bounciness: 0
   useGravity: 0
   explosionDamage: 50
-  explosionRange: 5
-  explosionForce: 5
+  explosionRange: 7.5
+  explosionForce: 4
   maxCollisions: 1
   explodeOnTouch: 1
   rocketShakeDuration: 0.15

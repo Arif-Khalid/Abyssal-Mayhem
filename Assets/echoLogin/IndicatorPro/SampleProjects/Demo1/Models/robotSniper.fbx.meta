@@ -1,0 +1,175 @@
+fileFormatVersion: 2
+guid: c94023644802d49b6960f340e68c3da8
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Body
+    100002: Door
+    100004: Eye
+    100006: Flash1
+    100008: //RootNode
+    100010: ShootPoint1
+    400000: Body
+    400002: Door
+    400004: Eye
+    400006: Flash1
+    400008: //RootNode
+    400010: ShootPoint1
+    2100000: RobotBody
+    2100002: RobotEar
+    2100004: RobotThrust
+    2100006: RobotSniperBlueLight
+    2100008: RobotSniperText
+    2100010: RobotEyeFrame
+    2100012: RobotInside
+    2100014: No Name
+    2100016: MuzzleFlash
+    2100018: RobotSniperEye
+    2300000: Body
+    2300002: Door
+    2300004: Eye
+    2300006: Flash1
+    2300008: ShootPoint1
+    3300000: Body
+    3300002: Door
+    3300004: Eye
+    3300006: Flash1
+    3300008: ShootPoint1
+    4300000: Body
+    4300002: Door
+    4300004: ShootPoint1
+    4300006: Flash1
+    4300008: Eye
+    7400000: DoorOpen
+    7400002: DoorClose
+    9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MuzzleFlash
+    second: {fileID: 2100000, guid: 82eea2b75d8d94626945ee6fb7ac0b3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 7089d815c2608481c8fd613fc49ce36e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotBody
+    second: {fileID: 2100000, guid: f52568f8268b7446bb3e8cea5dbb246a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotEar
+    second: {fileID: 2100000, guid: abad12266d74d4c09a75b2bd65150358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotEyeFrame
+    second: {fileID: 2100000, guid: 3be5a00c0c5db4e9fadbf1e71f51ba6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotInside
+    second: {fileID: 2100000, guid: 60429c8e726a542469148de3d54ab28a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotSniperBlueLight
+    second: {fileID: 2100000, guid: c404f9813924e49fd81228b22644215b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotSniperEye
+    second: {fileID: 2100000, guid: 7f5c2699e288a41419a644b7a420acfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotSniperText
+    second: {fileID: 2100000, guid: 673e07281097d449a80e223f3d9090a8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotThrust
+    second: {fileID: 2100000, guid: 978908e1bc8704551be44f466fb8c9cb, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 2
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

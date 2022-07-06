@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to blind opponent
   defaultMessage: 
-  weaponToEquip: {fileID: 0}
+  weaponToEquip: 5
   chestContent: {fileID: 0}
   pickupName: 2
 --- !u!1 &5816450273865262894

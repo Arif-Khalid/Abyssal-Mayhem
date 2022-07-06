@@ -35,7 +35,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] float prohibitionShakeDuration = 0.15f;
     [SerializeField] float prohibitionShakeMagnitude = 0.4f;
 
-
+    [SerializeField] float strength;
+    [SerializeField] string indicatorID;
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
@@ -185,11 +186,10 @@ public class PlayerUI : MonoBehaviour
     {
         animator.Play("PlayerHurt", animator.GetLayerIndex("Hurt Layer"), 0f);
     }
-
     /*Code for powerups UI*/
     public void StartWarning(string message)
     {
-        warningText.text = "!Incoming " + message + "!";
+        warningText.text = "!" + message + "!";
         animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
     }
 

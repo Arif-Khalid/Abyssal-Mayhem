@@ -23,12 +23,11 @@ public class PlayerInteract : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit,  interactDistance, interactableLayer))
         {
-            Debug.Log("interactable detected");
             Interactable interactable = hit.collider.GetComponent<Interactable>();
             playerUI.UpdateInteractPrompt(interactable.interactMessage);
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (interactable.weaponToEquip)
+                if (interactable.weaponToEquip != PlayerWeapon.PlayerWeapons.None)
                 {
                     playerWeapon.Equip(interactable.weaponToEquip);
                 }                

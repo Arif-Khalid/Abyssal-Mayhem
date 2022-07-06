@@ -6,14 +6,19 @@ public class EnemySpawner : MonoBehaviour
 {
     //Variables for spawning monsters
     [SerializeField] Transform[] spawnPoints;
+    [SerializeField] string walkerTag;
     [SerializeField] GameObject walker;
+    [SerializeField] string juggernautTag;
     [SerializeField] GameObject juggernaut;
     [SerializeField] int[] juggernautSpawns;
     [SerializeField] GameObject juggernautBoss;
+    [SerializeField] string juggernautBossTag;
     [SerializeField] int[] juggernautBossSpawns;
-    [SerializeField] GameObject assassin;    
+    [SerializeField] GameObject assassin;
+    [SerializeField] string assassinTag;
     [SerializeField] int[] assassinSpawns;
     [SerializeField] GameObject assassinBoss;
+    [SerializeField] string assassinBossTag;
     [SerializeField] int[] assassinBossSpawns;
     public List<Transform> assassinSpawnPoints = new List<Transform>();
     [SerializeField] Transform[] patrolTransforms;
@@ -49,21 +54,19 @@ public class EnemySpawner : MonoBehaviour
     public float timeBetweenPickups;
     private float pickupTimer;
     public bool pickupsReadyToSpawn;
-    public GameObject[] weaponPickups = new GameObject[2];
-    public GameObject[] powerupPickups = new GameObject[4];
 
     //Invincibility powerups variables
     bool isInvincible = false;
     private bool isSinglePlayer = false;
     public enum MonsterID { walker, juggernaut, assassin, juggernautBoss, assassinBoss };
-    public Dictionary<EnemySpawner.MonsterID, GameObject> Monsters = new Dictionary<EnemySpawner.MonsterID, GameObject>();
+    public Dictionary<EnemySpawner.MonsterID, string> Monsters = new Dictionary<EnemySpawner.MonsterID, string>();
     private void Start()
     {
-        Monsters.Add(EnemySpawner.MonsterID.walker, walker);
-        Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernaut);
-        Monsters.Add(EnemySpawner.MonsterID.assassin, assassin);
-        Monsters.Add(EnemySpawner.MonsterID.juggernautBoss, juggernautBoss);
-        Monsters.Add(EnemySpawner.MonsterID.assassinBoss, assassinBoss);
+        Monsters.Add(EnemySpawner.MonsterID.walker, walkerTag);
+        Monsters.Add(EnemySpawner.MonsterID.juggernaut, juggernautTag);
+        Monsters.Add(EnemySpawner.MonsterID.assassin, assassinTag);
+        Monsters.Add(EnemySpawner.MonsterID.juggernautBoss, juggernautBossTag);
+        Monsters.Add(EnemySpawner.MonsterID.assassinBoss, assassinBossTag);
         foreach(ChestContent weaponChest in weaponChests)
         {
             availableWeaponChests.Add(weaponChest);
@@ -96,30 +99,21 @@ public class EnemySpawner : MonoBehaviour
         {
             pickupTimer = 0;
             //spawn pickups function
-            SpawnPickups(weaponPickups);
-            SpawnPickups(powerupPickups);
+            SpawnPickups(true); //spawns weapon
+            SpawnPickups(false); //spawns powerup
         }
     }
 
     //Spawns pickups at available weapon chests
-    private void SpawnPickups(GameObject[] pickups)
+    private void SpawnPickups(bool spawnWeapon)
     {
         if(availableWeaponChests.Count <= 0)
         {
             return;
         }
-        int spawnID = Random.Range(0, availableWeaponChests.Count - 1);
-        int pickupID = Random.Range(0, pickups.Length);
-        Debug.Log(pickups.Length);
-        if (availableWeaponChests[spawnID].ResetContent(pickups[pickupID]))
-        {
-            availableWeaponChests.Remove(availableWeaponChests[spawnID]);
-        }
-        else
-        {
-            availableWeaponChests.Remove(availableWeaponChests[spawnID]);
-            SpawnPickups(pickups);
-        }
+        int spawnID = Random.Range(0, availableWeaponChests.Count);
+        availableWeaponChests[spawnID].ResetContent(spawnWeapon);
+        availableWeaponChests.Remove(availableWeaponChests[spawnID]);
     }
 
     public void MakeWeaponChestAvailable(ChestContent weaponChest)
@@ -159,7 +153,7 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
             int spawnID = Random.Range(0, assassinSpawnPoints.Count - 1); //Choose a random spawnPoint
-            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
+            GameObject spawnedMonster = ObjectPooler.Instance.SpawnFromPool(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation);//(GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
             enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
@@ -179,7 +173,7 @@ public class EnemySpawner : MonoBehaviour
         }
         else //spawning something else
         {
-            GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+            GameObject spawnedMonster = ObjectPooler.Instance.SpawnFromPool(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position));//GameObject spawnedMonster = Instantiate<GameObject>(Monsters[monsterID], position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
             enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
@@ -203,7 +197,7 @@ public class EnemySpawner : MonoBehaviour
                 return;
             }
             int spawnID = Random.Range(0, assassinSpawnPoints.Count - 1); //Choose a random spawnPoint
-            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
+            GameObject spawnedMonster = ObjectPooler.Instance.SpawnFromPool(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation);//GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], assassinSpawnPoints[spawnID].position, assassinSpawnPoints[spawnID].rotation); //Spawn assassin facing predefined rotation
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
             enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
@@ -224,7 +218,7 @@ public class EnemySpawner : MonoBehaviour
         else //spawning anything else
         {
             int spawnID = Random.Range(0, spawnPoints.Length - 1); //Choose a random spawnPoint
-            GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
+            GameObject spawnedMonster = ObjectPooler.Instance.SpawnFromPool(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position));//GameObject spawnedMonster = (GameObject)Instantiate<GameObject>(Monsters[monsterID], spawnPoints[spawnID].position, Quaternion.LookRotation(localPlayer.position - transform.position)); //Spawn monster facing the player
             spawnedMonster.GetComponent<EnemyAI>().player = localPlayer; //Set target for monster
             EnemyHealth enemyHealth = spawnedMonster.GetComponent<EnemyHealth>();
             enemyHealth.SetMaxHealth((int)(enemyHealth.maxHealth * healthMultiplier));
@@ -408,7 +402,7 @@ public class EnemySpawner : MonoBehaviour
     {
         foreach(var spawnedMonster in spawnedMonsters)
         {
-            Destroy(spawnedMonster);
+            spawnedMonster.SetActive(false);
         }
         spawnedMonsters.Clear();
     }

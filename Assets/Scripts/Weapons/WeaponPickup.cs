@@ -9,7 +9,7 @@ public class WeaponPickup : Interactable
     {
         //Do something like an animation or sound or destroy itself
         chestContent.MakeAvailable();
-        Destroy(this.gameObject);       
+        gameObject.SetActive(false);     
     }
 }
 

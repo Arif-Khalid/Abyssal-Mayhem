@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class AddScoreUI : MonoBehaviour
+public class AddScoreUI : MonoBehaviour,IPooledObject
 {
     [SerializeField] Canvas canvas;
     [SerializeField] TextMeshProUGUI scoreText;
@@ -20,7 +20,12 @@ public class AddScoreUI : MonoBehaviour
 
     public void DestroySelf()
     {
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    public void OnObjectSpawn()
+    {
+        scoreText.text = string.Empty;
     }
 }
 

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -26,10 +27,13 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] WalkerDeath walkerDeath;
     [SerializeField] RagdollControl ragdollControl;
     public bool isDead = false;
+    private delegate void OnTakeDamage();
+    OnTakeDamage onTakeDamage;
 
     //Variables for creating add score UI
     [SerializeField] private int score;
     [SerializeField] private AddScoreUI addScoreUI;
+    [SerializeField] private string addScoreUITag = "AddScoreUI";
     [SerializeField] private Vector3 offset = Vector3.zero;
     PlayerSetup playerSetup;
     // //Variables used to shoot laser through enemies
@@ -41,7 +45,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSetup = GetComponent<EnemyAI>().player.GetComponent<PlayerSetup>();
+        playerSetup = PlayerSetup.localPlayerSetup;
     }
 
     private void LateUpdate()
@@ -55,8 +59,7 @@ public class EnemyHealth : MonoBehaviour
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
         Debug.Log(value);
-        maxHealth = value;
-        currentHealth = maxHealth;
+        currentHealth = value;
         slider.maxValue = value;
         slider.value = value;
         fill.color = gradient.Evaluate(1f);
@@ -70,6 +73,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        onTakeDamage?.Invoke();
         if(currentHealth <= 0)
         {
             DeathByPlayer();
@@ -79,7 +83,7 @@ public class EnemyHealth : MonoBehaviour
     public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position, monsterID);
-        AddScoreUI spawnedScore = Instantiate<AddScoreUI>(addScoreUI, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
+        AddScoreUI spawnedScore = ObjectPooler.Instance.SpawnFromPool(addScoreUITag, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward)).GetComponent<AddScoreUI>();//Instantiate<AddScoreUI>(addScoreUI, transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
         spawnedScore.SetScoreAdded(score);
         Death();
     }
@@ -108,11 +112,25 @@ public class EnemyHealth : MonoBehaviour
         //Destroy(this.gameObject); Called instead in whatever death animation or behaviour
     }
 
+    public void RegisterToTakeDamage(Action action)
+    {
+        onTakeDamage += new OnTakeDamage(action);
+    }
+
+    public void RemoveFromTakeDamage(Action action)
+    {
+        onTakeDamage -= new OnTakeDamage(action);
+    }
+    private void OnEnable()
+    {
+        canvas.enabled = true;
+        isDead = false;
+    }
     private void OnDisable()
     {
         canvas.enabled = false;
+        if (isAssassin && enemySpawner) { enemySpawner.AddtoAssassinSpawnPoints(startingTransform); }
     }
-
     // public void FireLaser(Ray incomingRay)
     // {
     //     Debug.Log("Firing Railgun");

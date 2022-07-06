@@ -112,12 +112,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerWeapon: {fileID: 0}
-  bulletPoint: {fileID: 0}
+  bulletPoint: {fileID: 3692003583339007050}
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
   maxAmmo: 0
   clipSize: 300
+  defaultMaxAmmo: -1
+  playerUI: {fileID: 0}
   animator: {fileID: 1495178171140964340}
   muzzleAnimator: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
   whatIsNotPlayer:
     serializedVersion: 2
     m_Bits: 145
@@ -125,9 +128,9 @@ MonoBehaviour:
   isLaser: 0
   isRocket: 0
   isFiring: 0
-  rocketObject: {fileID: 0}
   weaponName: JuggernautWeapon
   isInUI: 0
+  spawnTag: Bullet
   bulletPoints:
   - {fileID: 3692003583339007050}
   - {fileID: 6823903181996030176}
@@ -218,7 +221,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 749cecfe7061d2449847264b3390b149, type: 2}
+  - {fileID: 2100000, guid: 91aecd7e7a4ce784f82f2fa8146eb6bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -318,7 +321,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 749cecfe7061d2449847264b3390b149, type: 2}
+  - {fileID: 2100000, guid: 91aecd7e7a4ce784f82f2fa8146eb6bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

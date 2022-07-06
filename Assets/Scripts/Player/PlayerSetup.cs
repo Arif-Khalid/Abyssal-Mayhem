@@ -126,6 +126,10 @@ public class PlayerSetup : NetworkBehaviour
         {
             sceneCamera.gameObject.SetActive(false);
         }
+        if (PlayerPrefs.HasKey("Sensitivity"))
+        {
+            mouseLook.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
+        }
         cameraShake.SetStatic();
         enemySpawner.localPlayer = transform;
         enemySpawner.cameraTransform = GetComponentInChildren<Camera>().transform;

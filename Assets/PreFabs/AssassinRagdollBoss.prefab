@@ -1258,7 +1258,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d97ec9de6da47484e90b50f0f3ccaf44, type: 3}
+  - {fileID: 2100000, guid: ce66a52e2d247de41952b71e0c50d439, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1524,6 +1524,7 @@ MonoBehaviour:
   distanceLimit: 1.5
   idleAfterSeeingPlayer: 2
   idleTimer: 0.37333333
+  laserSight: {fileID: 831024981947855140}
   laserSightOrigin: {fileID: 3932572345220920686}
   playerAndObstacles:
     serializedVersion: 2
@@ -1585,6 +1586,7 @@ MonoBehaviour:
   score: 4
   addScoreUI: {fileID: 8820906357504841634, guid: 769a4207a8eeafe4f9b834b96950a513,
     type: 3}
+  addScoreUITag: AddScoreUI
   offset: {x: 0, y: 8.8, z: 0}
 --- !u!114 &6916093223679504451
 MonoBehaviour:
@@ -1612,12 +1614,14 @@ MonoBehaviour:
   isNavMeshAgentEnabled: 1
   sniperBullet: {fileID: 6014419872463244055, guid: 12599a469145c844a8c05fde171be073,
     type: 3}
+  sniperBulletTag: AssassinBossBullet
   aimTransform: {fileID: 8645194952048796555}
   headTransform: {fileID: 8645194952233442966}
   playerAndObstacles:
     serializedVersion: 2
     m_Bits: 64
   startingTransform: {fileID: 0}
+  laserSight: {fileID: 831024981947855140}
   laserSightOrigin: {fileID: 3932572345220920686}
   isPatrolling: 1
   isBoss: 1
@@ -1792,6 +1796,15 @@ MonoBehaviour:
   - {fileID: 7488292938307840111}
   - {fileID: 6916093223679504460}
   - {fileID: 6916093223679504450}
+  enemyAI: {fileID: 6916093223679504451}
+  outline: {fileID: 7433192274004572534}
+  assassinMesh: {fileID: 6916093223675285120}
+  sniperMesh: {fileID: 6916093223669914946}
+  enemyHealth: {fileID: 6916093223679504460}
+  fadeScale: 1
+  hurtFadeScale: 0.5
+  maxSaturation: 20
+  defaultSaturation: 5
 --- !u!114 &7433192274004572534
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,0 +1,223 @@
+fileFormatVersion: 2
+guid: d64ed2a9e065444c28bedd20c82bd7c3
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Ball
+    100002: Ball.1
+    100004: //RootNode
+    100006: Body
+    100008: Door
+    100010: Eye
+    100012: Cylinder
+    100014: Gun1
+    100016: Gun2
+    100018: Flash1
+    100020: Flash2
+    100022: ShootPoint1
+    100024: ShootPoint2
+    400000: Ball
+    400002: Ball.1
+    400004: //RootNode
+    400006: Body
+    400008: Door
+    400010: Eye
+    400012: Cylinder
+    400014: Gun1
+    400016: Gun2
+    400018: Flash1
+    400020: Flash2
+    400022: ShootPoint1
+    400024: ShootPoint2
+    2100000: RobotBody
+    2100002: RobotBlueLight
+    2100004: RobotEye
+    2100006: RobotThrust
+    2100008: RobotText
+    2100010: RobotEyeFrame
+    2100012: RobotEar
+    2100014: inside
+    2100016: RobotInside
+    2100018: Delete me
+    2100020: MuzzleFlash
+    2100022: ShotDamage
+    2300000: Ball
+    2300002: Ball.1
+    2300004: Body
+    2300006: Door
+    2300008: Eye
+    2300010: Cylinder
+    2300012: Gun1
+    2300014: Gun2
+    2300016: Flash1
+    2300018: Flash2
+    2300020: ShootPoint1
+    2300022: ShootPoint2
+    3300000: Ball
+    3300002: Ball.1
+    3300004: Body
+    3300006: Door
+    3300008: Eye
+    3300010: Cylinder
+    3300012: Gun1
+    3300014: Gun2
+    3300016: Flash1
+    3300018: Flash2
+    3300020: ShootPoint1
+    3300022: ShootPoint2
+    4300000: Ball
+    4300002: Ball.1
+    4300004: Body
+    4300006: Door
+    4300008: Eye
+    4300010: Cylinder
+    4300012: Gun1
+    4300014: Gun2
+    4300016: Flash1
+    4300018: Flash2
+    4300020: ShootPoint1
+    4300022: ShootPoint2
+    7400000: DoorOpen
+    7400002: DoorClose
+    9500000: //RootNode
+    11100000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Delete me
+    second: {fileID: 2100000, guid: 253f408289105454b96f2311d2b71714, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MuzzleFlash
+    second: {fileID: 2100000, guid: 82eea2b75d8d94626945ee6fb7ac0b3c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotBlueLight
+    second: {fileID: 2100000, guid: 6070c9be4bfad492d839b0632fda2ca7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotBody
+    second: {fileID: 2100000, guid: f52568f8268b7446bb3e8cea5dbb246a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotEar
+    second: {fileID: 2100000, guid: abad12266d74d4c09a75b2bd65150358, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotEye
+    second: {fileID: 2100000, guid: 16a8e046958ce46109f2221f95d75619, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotEyeFrame
+    second: {fileID: 2100000, guid: 3be5a00c0c5db4e9fadbf1e71f51ba6e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotInside
+    second: {fileID: 2100000, guid: 60429c8e726a542469148de3d54ab28a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotText
+    second: {fileID: 2100000, guid: 0ed29072b67354c09813ea69b48a40f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RobotThrust
+    second: {fileID: 2100000, guid: 978908e1bc8704551be44f466fb8c9cb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ShotDamage
+    second: {fileID: 2100000, guid: 4189eebee2f88408396ffcc7a79e75da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: inside
+    second: {fileID: 2100000, guid: 9f44c9165be8f49a1affb600ffebb4f9, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 2
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

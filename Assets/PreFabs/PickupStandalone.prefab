@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 749cecfe7061d2449847264b3390b149, type: 2}
+  - {fileID: 2100000, guid: 91aecd7e7a4ce784f82f2fa8146eb6bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,7 +146,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 749cecfe7061d2449847264b3390b149, type: 2}
+  - {fileID: 2100000, guid: 91aecd7e7a4ce784f82f2fa8146eb6bc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -303,5 +303,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup juggernaut weapons
   defaultMessage: 
-  weaponToEquip: {fileID: 3983524928201402946, guid: 73fa7b7d7b451a7478b208a9d5655d5c,
-    type: 3}
+  weaponToEquip: 4

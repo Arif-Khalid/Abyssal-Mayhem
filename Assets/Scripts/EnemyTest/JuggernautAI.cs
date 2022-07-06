@@ -13,6 +13,7 @@ public class JuggernautAI : EnemyAI
     public Animator muzzleRightAnimator;
     bool fireRight = true;
     List<Bullet> bullets = new List<Bullet>();
+    public string bulletTag;
 
     private void Start()
     {
@@ -44,9 +45,10 @@ public class JuggernautAI : EnemyAI
     {
         int pointID = fireRight ? 0 : 1;
         //Play the muzzleflash
-        Bullet spawnedBullet = Instantiate<GameObject>(enemyBullet, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();
+        Bullet spawnedBullet = ObjectPooler.Instance.SpawnFromPool(bulletTag, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();//Instantiate<GameObject>(enemyBullet, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();
         bullets.Add(spawnedBullet);
         spawnedBullet.enemyAI = this;
+        spawnedBullet.shooterPosition = transform.position;
         //Play the animation
         if (fireRight) { animator.Play("FireRight"); muzzleRightAnimator.Play("MuzzleFlashHomemade"); }
         else { animator.Play("FireLeft"); muzzleLeftAnimator.Play("MuzzleFlashHomemade"); }
@@ -61,6 +63,18 @@ public class JuggernautAI : EnemyAI
             {
                 bullet.EndOfExistence();
             }           
+        }
+        bullets.Clear();
+    }
+
+    public void ClearBullets()
+    {
+        foreach (Bullet bullet in bullets)
+        {
+            if (bullet)
+            {
+                bullet.EndOfExistence();
+            }
         }
         bullets.Clear();
     }

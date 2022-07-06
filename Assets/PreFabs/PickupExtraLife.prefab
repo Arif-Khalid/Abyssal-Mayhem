@@ -258,7 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup extra life
   defaultMessage: 
-  weaponToEquip: {fileID: 0}
+  weaponToEquip: 5
   chestContent: {fileID: 0}
   pickupName: 3
 --- !u!135 &7843288927357349989

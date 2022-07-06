@@ -65,4 +65,9 @@ public class JuggernautWeapon : Weapon
     {
         playerWeapon.Equip(playerWeapon.defaultWeapon);
     }
+
+    //Function called my empty anim since using same empty as laser
+    public void NotAimed()
+    {
+    }
 }

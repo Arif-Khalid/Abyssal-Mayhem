@@ -185,10 +185,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85bd5178120305b4497acf7f46eb36a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  snapDistance: 2
+  speed: 100
+  snapDistance: 3
   bulletDamage: 10
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 147
-  lifeTime: 2
+  lifeTime: 3
+  bulletCollider: {fileID: 523895175790031311}
+  hasBulletCollided: 0
+  counter: 0
+  enemyAI: {fileID: 0}
+  shooterPosition: {x: 0, y: 0, z: 0}

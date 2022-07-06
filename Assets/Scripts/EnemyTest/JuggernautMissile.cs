@@ -6,6 +6,7 @@ public class JuggernautMissile : MonoBehaviour
 {
     [SerializeField] Animator animator;
     [SerializeField] Missile missilePrefab;
+    [SerializeField] string missileTag;
     [SerializeField] JuggernautAI juggernautAI;
     List<Missile> missiles = new List<Missile>(); //Stores shot missiles
     [SerializeField]GameObject[] missileOrigins; //Assigned in inspector the stationary origin points on juggernaut
@@ -26,7 +27,7 @@ public class JuggernautMissile : MonoBehaviour
         for(int i = 0;i < missileOrigins.Length; i++)
         {
             missileOrigins[i].SetActive(false);
-            Missile missile = Instantiate<Missile>(missilePrefab, missileOrigins[i].transform.position, Quaternion.identity);//shoot missile
+            Missile missile = ObjectPooler.Instance.SpawnFromPool(missileTag, missileOrigins[i].transform.position, Quaternion.identity).GetComponent<Missile>();//Instantiate<Missile>(missilePrefab, missileOrigins[i].transform.position, Quaternion.identity);//shoot missile
             missiles.Add(missile);
             missile.juggernautAI = juggernautAI;
             missile.juggernautMissile = this;
@@ -37,6 +38,15 @@ public class JuggernautMissile : MonoBehaviour
         {
             missileOrigins[i].SetActive(true);
             yield return new WaitForSeconds(0.017f);
+        }
+        missilesShot = false;
+    }
+
+    private void OnEnable()
+    {
+        for (int i = 0; i < missileOrigins.Length; i++)
+        {
+            missileOrigins[i].SetActive(true);
         }
         missilesShot = false;
     }
@@ -56,7 +66,7 @@ public class JuggernautMissile : MonoBehaviour
         foreach(Missile missile in missiles){
             if (missile)
             {
-                Destroy(missile.gameObject);
+                missile.gameObject.SetActive(false);
             }
         }
         missiles.Clear();

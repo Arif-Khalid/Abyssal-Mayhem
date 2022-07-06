@@ -6,13 +6,14 @@ using UnityEngine.AI;
 public class AssassinAI : EnemyAI
 {
     public GameObject sniperBullet;
+    public string sniperBulletTag;
     public Transform aimTransform;
     public Transform headTransform;
     public LayerMask playerAndObstacles;
     WeaponIK weaponIK;
     public Transform startingTransform;
     Animator animator;
-    LineRenderer laserSight;
+    public LineRenderer laserSight;
     public Transform laserSightOrigin;
     public bool isPatrolling;
     List<Bullet> bullets = new List<Bullet>();
@@ -60,12 +61,13 @@ public class AssassinAI : EnemyAI
         {
             UpdateLaser(player.position);
             isPatrolling = false;
-            if (!alreadyAttacked && weaponIK.CanAssassinShoot())
+            weaponIK.PlayerInSight();
+            /*if (!alreadyAttacked && weaponIK.CanAssassinShoot())
             {
                 Attack();
                 alreadyAttacked = true;
                 Invoke(nameof(ResetAttack), timeBetweenAttacks);
-            }
+            }*/
         }
         else
         {
@@ -77,12 +79,13 @@ public class AssassinAI : EnemyAI
                 if (hit.collider.GetComponent<PlayerHealth>())
                 {
                     isPatrolling = false;
-                    if (!alreadyAttacked && weaponIK.CanAssassinShoot())
+                    weaponIK.PlayerInSight();
+                    /*if (!alreadyAttacked && weaponIK.CanAssassinShoot())
                     {
                         Attack();
                         alreadyAttacked = true;
                         Invoke(nameof(ResetAttack), timeBetweenAttacks);
-                    }
+                    }*/
                 }
                 else
                 {
@@ -98,9 +101,10 @@ public class AssassinAI : EnemyAI
     public override void Attack()
     {
         Debug.Log("Attack");
-        Bullet spawnedBullet = Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();
+        Bullet spawnedBullet = ObjectPooler.Instance.SpawnFromPool(sniperBulletTag, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();//Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();
         bullets.Add(spawnedBullet);
         spawnedBullet.enemyAI = this;
+        spawnedBullet.shooterPosition = transform.position;
     }
 
 
@@ -127,6 +131,19 @@ public class AssassinAI : EnemyAI
             {
                 bullet.EndOfExistence();
             }           
+        }
+        bullets.Clear();
+        laserSight.enabled = false;
+    }
+
+    public void ClearBullets()
+    {
+        foreach (Bullet bullet in bullets)
+        {
+            if (bullet)
+            {
+                bullet.EndOfExistence();
+            }
         }
         bullets.Clear();
         laserSight.enabled = false;

@@ -329,8 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactMessage: Use E to pickup rocket launcher
   defaultMessage: 
-  weaponToEquip: {fileID: 1143082498682802342, guid: 0b55a7b6074afa14596de5b79573649a,
-    type: 3}
+  weaponToEquip: 3
   chestContent: {fileID: 0}
 --- !u!95 &6164827358444201412
 Animator:

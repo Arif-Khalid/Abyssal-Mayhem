@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Missile : MonoBehaviour
+public class Missile : MonoBehaviour,IPooledObject
 {
     public JuggernautMissile juggernautMissile; //Reference to remove from list
     public JuggernautAI juggernautAI; //Reference to AI for player position
@@ -20,13 +20,17 @@ public class Missile : MonoBehaviour
     [SerializeField]Rigidbody rigidBody;
     GameObject explosionInstance;
     public GameObject explosion;
+    public string explosionTag;
     public float explosionForce;
     public float explosionRange;
-    private void Start()
+
+    //Variables for damage indicator
+    [SerializeField] string indicatorID;
+    [SerializeField] float strength;
+    public void OnObjectSpawn()
     {
         StartCoroutine(MissileTravel());
     }
-
     private void Update()
     {
         CheckPath();
@@ -81,10 +85,11 @@ public class Missile : MonoBehaviour
     private void Explode()
     {
         //Instantiate explosion
-        if (explosion != null)
+        explosionInstance = ObjectPooler.Instance.SpawnFromPool(explosionTag, transform.position, Quaternion.identity);
+        /*if (explosion != null)
         {
             explosionInstance = Instantiate(explosion, transform.position, Quaternion.identity);
-        }
+        }*/
 
         //Check for player
         Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);
@@ -96,6 +101,7 @@ public class Missile : MonoBehaviour
                 PlayerHealth playerHealth = players[i].GetComponent<PlayerHealth>();
                 Vector3 dir = players[i].transform.position - transform.position;
                 playerMovement.AddImpact(dir, explosionForce * 10);
+                if (!playerHealth.dead) { IndicatorProManager.Activate(indicatorID, transform.position, strength); }
                 playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude);
                 //CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(missileShakeDuration, missileShakeMagnitude));
             }
@@ -110,6 +116,11 @@ public class Missile : MonoBehaviour
         {
             juggernautMissile.RemoveFromList(this);
         }
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        timeAlive = 0;
     }
 }

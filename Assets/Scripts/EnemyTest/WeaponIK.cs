@@ -31,7 +31,7 @@ public class WeaponIK : MonoBehaviour
     private bool isAssassinStopped = true;
     AssassinAI assassinAI;
     Vector3 lastTargetTransformPosition;
-    LineRenderer laserSight;
+    public LineRenderer laserSight;
     public Transform laserSightOrigin;
     public LayerMask playerAndObstacles;
     
@@ -123,15 +123,15 @@ public class WeaponIK : MonoBehaviour
             }
         }
         laserSight.SetPosition(0, laserSightOrigin.position);
-        /*if (!assassinAI.isPatrolling)
+        if (!assassinAI.isPatrolling)
         {
-            if (!assassinAI.alreadyAttacked && CanAssassinShoot())
+            if (!assassinAI.alreadyAttacked && CanAssassinShoot() && isPlayerInSight)
             {
                 assassinAI.Attack();
                 assassinAI.alreadyAttacked = true;
                 assassinAI.Invoke(nameof(assassinAI.ResetAttack), assassinAI.timeBetweenAttacks);
             }
-        }*/
+        }
 
         if (aimAtPlayerWeight <= 0.0f)
         {
@@ -158,7 +158,7 @@ public class WeaponIK : MonoBehaviour
     //Called to check when assassin is aiming at player
     public bool CanAssassinShoot()
     {
-        isPlayerInSight = true;
+        //isPlayerInSight = true;
         if(aimAtPlayerWeight >= 1.0f)
         {
             return true;
@@ -169,6 +169,10 @@ public class WeaponIK : MonoBehaviour
         }
     }
 
+    public void PlayerInSight()
+    {
+        isPlayerInSight = true;
+    }
     public void PlayerOutOfSight()
     {
         if (isPlayerInSight)

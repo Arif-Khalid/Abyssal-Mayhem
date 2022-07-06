@@ -185,15 +185,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 273ada0369c83b54f81ed0fd306492dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 70
-  snapDistance: 1
+  speed: 300
+  snapDistance: 5
   bulletDamage: 30
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 81
   lifeTime: 4
+  bulletCollider: {fileID: 523895175790031311}
   hasBulletCollided: 0
   counter: 0
   enemyAI: {fileID: 0}
+  shooterPosition: {x: 0, y: 0, z: 0}
   bulletShakeDuration: 0.15
   bulletShakeMagnitude: 0.5
+  indicatorID: SniperShot
+  strength: 0.25

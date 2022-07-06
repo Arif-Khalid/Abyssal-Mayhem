@@ -154,8 +154,11 @@ MonoBehaviour:
   bullet: {fileID: 0}
   maxAmmo: 30
   clipSize: 10
+  defaultMaxAmmo: 30
+  playerUI: {fileID: 0}
   animator: {fileID: 1298665549391143256}
   muzzleAnimator: {fileID: 4313044256958847257}
+  dir: {x: 0, y: 0, z: 0}
   whatIsNotPlayer:
     serializedVersion: 2
     m_Bits: 145
@@ -163,12 +166,12 @@ MonoBehaviour:
   isLaser: 1
   isRocket: 0
   isFiring: 0
-  rocketObject: {fileID: 0}
   weaponName: Laser
   isInUI: 0
+  spawnTag: 
   laserOrigin: {fileID: 7027317254155538495}
-  gunRange: 150
-  fireRate: 0.5
+  gunRange: 200
+  fireRate: 0.3
   laserDuration: 0.05
   laserDamage: 30
   walls:

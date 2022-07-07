@@ -43,15 +43,4 @@ public class ShotgunWeapon : Weapon
     public void NotAimed()
     {
     }
-
-    public override void RemoveClipSound()
-    {
-        AudioManager.instance.Play("RifleRemoveClip");
-    }
-
-    public override void InsertClipSound()
-    {
-        AudioManager.instance.Play("RifleInsertClip");
-    }
-
 }

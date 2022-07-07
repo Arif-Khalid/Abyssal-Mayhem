@@ -4580,35 +4580,49 @@ MonoBehaviour:
     loop: 0
     description: Rocket launcher firing
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: e5f0a762c652f4065a1238d2febd38c6, type: 3}
+  - clip: {fileID: 8300000, guid: fc2ce981a3e9c9b47b7a276110690574, type: 3}
+    name: RifleEquip
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Equipping Rifle
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d3a0a57d6fee83246a78bb82f49764ba, type: 3}
     name: RifleFire
     volume: 0.2
     pitch: 0.8
     loop: 0
     description: Assault rifle firing
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 270e84d37dc0c4999977a731e70cba50, type: 3}
+  - clip: {fileID: 8300000, guid: 978f9ec1d8054cd4095f7a7ea32cf066, type: 3}
     name: RifleRemoveClip
     volume: 1
     pitch: 1
     loop: 0
     description: Assault rifle removing clip
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3db344b9418ef394eb0af13bcd7c42ba, type: 3}
+    name: ShotgunEquip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Equipping Shotgun
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 552e1ee9826bb42fe83505a9defb673d, type: 3}
-    name: RifleInsertClip
+    name: ShotgunInsertClip
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Shotgun inserting clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 270e84d37dc0c4999977a731e70cba50, type: 3}
+    name: ShotgunRemoveClip
     volume: 0.5
     pitch: 1
     loop: 0
-    description: Assault rifle inserting clip
+    description: Removing clip of shotgun
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 07e17c040baac49bfbab34e436244b01, type: 3}
-    name: PlayerBulletHit
-    volume: 0.5
-    pitch: 1
-    loop: 0
-    description: Player bullet hitting enemy
-    source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: a4ef8ffb6472a4f39a9a6462b071a991, type: 3}
+  - clip: {fileID: 8300000, guid: 175ea3b9e84d69a4e9bfcab3b8c97654, type: 3}
     name: ShotgunFire
     volume: 1
     pitch: 1
@@ -4629,12 +4643,33 @@ MonoBehaviour:
     loop: 0
     description: Pressing UI buttons in main menu
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 0174ef91f20e54e9283ea94e619f46f6, type: 3}
-    name: ButtonPress
-    volume: 0.5
+  - clip: {fileID: 8300000, guid: 2eedb62936b4e0c4aa750c7a241f70c9, type: 3}
+    name: LaserRemoveClip
+    volume: 1
     pitch: 1
     loop: 0
-    description: Pressing UI buttons in main menu
+    description: Removing clip of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f46d4420909b56f44822491d427c3498, type: 3}
+    name: LaserInsertClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Inserting clip of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bd5a51ec1add69d458bba09d055762e7, type: 3}
+    name: LaserEquip
+    volume: 1
+    pitch: 0.98
+    loop: 0
+    description: Equip sound of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bd5a51ec1add69d458bba09d055762e7, type: 3}
+    name: Roc
+    volume: 1
+    pitch: 0.98
+    loop: 0
+    description: Equip sound of laser weapon
     source: {fileID: 0}
 --- !u!4 &1300778065
 Transform:

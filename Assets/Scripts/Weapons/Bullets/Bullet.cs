@@ -121,7 +121,6 @@ public class Bullet : MonoBehaviour, IPooledObject
         if (enemyHealth && !enemyHealth.isDead)
         {
             enemyHealth.TakeDamage(bulletDamage);
-            AudioManager.instance.Play("PlayerBulletHit");
         }
         gameObject.SetActive(false);
     }

@@ -24,6 +24,14 @@ public class PlayerPowerups : MonoBehaviour
     [SerializeField] float timeTillBlind;
     [SerializeField] string paranoiaWarningMessage;
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            StartCoroutine(ActivateInvincibility());
+        }
+    }
     //Invincibility
     public IEnumerator ActivateInvincibility()
     {

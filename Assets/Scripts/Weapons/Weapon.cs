@@ -223,4 +223,9 @@ public class Weapon : MonoBehaviour
     {
         AudioManager.instance.Play(weaponName + "InsertClip");
     }
+
+    public virtual void EquipSound()
+    {
+        AudioManager.instance.Play(weaponName + "Equip");
+    }
 }

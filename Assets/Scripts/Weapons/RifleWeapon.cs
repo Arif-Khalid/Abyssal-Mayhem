@@ -30,4 +30,9 @@ public class RifleWeapon : Weapon
     {
     }
 
+    public override void InsertClipSound()
+    {
+        //Do nothing since insert clip sound included in remove clip sound
+    }
+
 }

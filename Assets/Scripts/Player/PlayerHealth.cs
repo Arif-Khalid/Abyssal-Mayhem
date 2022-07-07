@@ -14,6 +14,12 @@ public class PlayerHealth : MonoBehaviour
     public bool invincible = false;
     public int lives = 0;
 
+    //variables for sliding healthbar
+    public float chipSpeed = 1f;
+    private float lerpTimer;
+    public Image backHealthBar;
+
+
     [SerializeField] PlayerUI playerUI;
     // Start is called before the first frame update
     void Start()
@@ -24,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        
+        UpdateHealthUI();
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
@@ -38,6 +44,20 @@ public class PlayerHealth : MonoBehaviour
         slider.value = value;
         fill.color = gradient.Evaluate(1f);
         dead = false;
+        backHealthBar.fillAmount = 1f;
+    }
+    public void UpdateHealthUI()
+    {
+        float fillB = backHealthBar.fillAmount;
+        float hFraction = (currentHealth * 1.0f) / (maxHealth * 1.0f);
+        if (fillB > hFraction)
+        {
+            backHealthBar.color = Color.red;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            percentComplete = percentComplete * percentComplete;
+            backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+        }
     }
     public void TakeDamage(int damage, float duration, float magnitude)
     {
@@ -54,7 +74,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-        if(currentHealth <= 0)
+        lerpTimer = 0f;
+        if (currentHealth <= 0)
         {
             Death();           
         }

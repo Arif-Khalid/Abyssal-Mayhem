@@ -9,5 +9,4 @@ public class RifleBullet : Bullet
     //Damages enemies on hit
     //Is destroyed on hit
     //Expires(destroyed) after a certain time of no collision
-
 }

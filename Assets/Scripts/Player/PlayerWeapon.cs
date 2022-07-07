@@ -86,7 +86,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.T))
         {
-            Equip(PlayerWeapons.Laser);
+            Equip(PlayerWeapons.JuggernautWeapon);
         }
         if (weapon)
         {

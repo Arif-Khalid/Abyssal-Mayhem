@@ -14,8 +14,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Transform playerFeet;
     [SerializeField] LayerMask whatIsProhibited;
     [SerializeField] PlayerUI playerUI;
+    [SerializeField] float footStepsHeight;
+    [SerializeField] LayerMask whatIsFloor;
 
     bool prohibitionStarted = false;
+    bool playingFootsteps = false;
     Vector3 velocity;
     Vector3 move;
     bool isGrounded;
@@ -48,7 +51,43 @@ public class PlayerMovement : MonoBehaviour
         {
             move = transform.right * x + transform.forward * z; //move locally
             move *= speed;
-        }      
+        }
+        if (move.magnitude > 0.01f) {
+            if (isGrounded)
+            {
+                if (!playingFootsteps)
+                {
+                    AudioManager.instance.Play("Footsteps");
+                    playingFootsteps = true;
+                }
+            }
+            else
+            {
+                if (Physics.Raycast(playerFeet.position, -Vector3.up, footStepsHeight, whatIsFloor))
+                {
+                    //Do not stop footsteps
+                    if (!playingFootsteps)
+                    {
+                        AudioManager.instance.Play("Footsteps");
+                        playingFootsteps = true;
+                    }
+                }
+                else
+                {
+                    //Stop Footsteps only if a certain height above ground
+                    AudioManager.instance.Stop("Footsteps");
+                    playingFootsteps = false;
+                }
+            }
+            
+        }
+        else { 
+            if (playingFootsteps) 
+            { 
+                AudioManager.instance.Stop("Footsteps");
+                playingFootsteps = false;
+            } 
+        }
     }
     //Movement vertically with gravity and jumping
     //Animator for FPS weapon movements
@@ -60,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
             if (Input.GetButtonDown("Jump") && !isMovementDisabled)
             {
+                AudioManager.instance.Play("JumpUp");
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
                 float currentAnimVelocity = weaponSlotAnimator.GetFloat("VelocityY");
                 //Prevent snapping by not allowing an increase of more than 2 in animator velocity

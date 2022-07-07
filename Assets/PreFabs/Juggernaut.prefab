@@ -943,7 +943,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemyRigidBody: {fileID: 8130012852543473231}
-  timeBetweenAttacks: 0.1
+  timeBetweenAttacks: 0.2
   alreadyAttacked: 0
   attackRange: 30
   playerInAttackRange: 0

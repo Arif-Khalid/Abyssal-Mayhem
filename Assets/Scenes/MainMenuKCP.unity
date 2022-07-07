@@ -4552,6 +4552,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - clip: {fileID: 8300000, guid: d29bfbcccac3e9a4f93f19f647ac24b1, type: 3}
+    name: Footsteps
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    description: Player walking sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8fc22ec7040e742448ba999d24ed5ad2, type: 3}
+    name: JumpUp
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Player jump sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b8f2b526ba206f24089c4be60046653a, type: 3}
+    name: JumpDown
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    description: Player jump sound
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 0d5dab2d9e8a04cb8a1b06c583193e55, type: 3}
     name: BluntForce
     volume: 0.5
@@ -4559,23 +4580,65 @@ MonoBehaviour:
     loop: 0
     description: Walker player hitsound
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 142d785ea6ccf42698025a1ff8ee1366, type: 3}
-    name: Shot
-    volume: 1
+  - clip: {fileID: 8300000, guid: 1b4fe7571bed58744a72f346d6a75a79, type: 3}
+    name: Shot0
+    volume: 0.6
     pitch: 1
     loop: 0
     description: Juggernaut bullets player hitsound
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 42511c6dc3bff4584b08c422366bd1f3, type: 3}
-    name: SniperShot
-    volume: 1
+  - clip: {fileID: 8300000, guid: 127341ead1fa77d41a74f53e39f9a03e, type: 3}
+    name: Shot1
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Juggernaut bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4cac786c046883f42888772988c62013, type: 3}
+    name: SniperShot0
+    volume: 0.6
     pitch: 1
     loop: 0
     description: Assassin bullets player hitsound
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: 08d5810d653eb4ab0ba625cd6017606b, type: 3}
+  - clip: {fileID: 8300000, guid: bbed8bf12901499419b0cbfa204b9578, type: 3}
+    name: SniperShot1
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 20092bc34e2c81b479056aee8f5e9f27, type: 3}
+    name: SniperShot2
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 78e2275ff9a22f94b87305b3ef51ff21, type: 3}
+    name: SniperShot3
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 60ac739e6ddf8304a878d8e4c24682ae, type: 3}
+    name: SniperShot4
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eaa81ba81539b2041a9bae575c5e0795, type: 3}
+    name: SniperShot5
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f7ff0a8160d0b334081c49de43ae847a, type: 3}
     name: RocketFire
-    volume: 0.8
+    volume: 1
     pitch: 1
     loop: 0
     description: Rocket launcher firing
@@ -4664,12 +4727,40 @@ MonoBehaviour:
     loop: 0
     description: Equip sound of laser weapon
     source: {fileID: 0}
-  - clip: {fileID: 8300000, guid: bd5a51ec1add69d458bba09d055762e7, type: 3}
-    name: Roc
+  - clip: {fileID: 8300000, guid: 959db31b5bff25f458f97f65124e34cf, type: 3}
+    name: RocketRemoveClip
     volume: 1
-    pitch: 0.98
+    pitch: 1
     loop: 0
-    description: Equip sound of laser weapon
+    description: Starting Rocket reload animation
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 7df1c6483bcf7bc4d977804ea2b773a6, type: 3}
+    name: RocketInsertClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Inserting Rocket into Rocket Launcher
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f24ae325df90b4042a2f200f5058486b, type: 3}
+    name: RocketEquip
+    volume: 0.3
+    pitch: 1.2
+    loop: 0
+    description: Equipping Rocket Launcher
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 627ceb3310183844cb74ae44f535b642, type: 3}
+    name: JuggernautWeaponFire
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Firing JuggernautWeapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 348c194e216d68f4eab9938607eeca1b, type: 3}
+    name: JuggernautWeaponEquip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Firing JuggernautWeapon
     source: {fileID: 0}
 --- !u!4 &1300778065
 Transform:

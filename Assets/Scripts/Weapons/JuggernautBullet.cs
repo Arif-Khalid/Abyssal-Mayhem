@@ -8,9 +8,12 @@ public class JuggernautBullet : Bullet
     public float bulletShakeMagnitude = 0.4f;
     [SerializeField] string indicatorID;
     [SerializeField] float strength;
+    public int numberOfHitSounds;
     
     public override void HitSomething(Collider other)
     {
+        bulletCollider.enabled = false;
+        rigidBody.velocity = Vector3.zero;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth)
         {
@@ -18,15 +21,19 @@ public class JuggernautBullet : Bullet
             {
                 if (enemyAI) { IndicatorProManager.Activate(indicatorID, enemyAI.transform.position, strength); }
                 else { IndicatorProManager.Activate(indicatorID, shooterPosition, strength); }
-                AudioManager.instance.Play(indicatorID);
-            }
-            playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude);
+                AudioManager.instance.Play(indicatorID + Random.Range(0,numberOfHitSounds).ToString());
+                playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude);
+            }           
+        }
+        else
+        {
+            HitWallSound();
         }
         if (enemyAI)
         {
             
             enemyAI.RemoveFromList(this);
         }
-        gameObject.SetActive(false);
+        Invoke(nameof(DisableGameObject), 1f);
     }
 }

@@ -18,7 +18,7 @@ public class AssassinAI : EnemyAI
     public bool isPatrolling;
     List<Bullet> bullets = new List<Bullet>();
     public bool isBoss = false;
-
+    [SerializeField] AudioSource shootSource;
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -100,7 +100,7 @@ public class AssassinAI : EnemyAI
     }
     public override void Attack()
     {
-        Debug.Log("Attack");
+        shootSource.Play();
         Bullet spawnedBullet = ObjectPooler.Instance.SpawnFromPool(sniperBulletTag, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();//Instantiate<GameObject>(sniperBullet, aimTransform.position, Quaternion.LookRotation(player.position - aimTransform.position)).GetComponent<Bullet>();
         bullets.Add(spawnedBullet);
         spawnedBullet.enemyAI = this;

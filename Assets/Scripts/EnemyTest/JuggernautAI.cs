@@ -14,6 +14,7 @@ public class JuggernautAI : EnemyAI
     bool fireRight = true;
     List<Bullet> bullets = new List<Bullet>();
     public string bulletTag;
+    [SerializeField] AudioSource shootingSource;
 
     private void Start()
     {
@@ -43,6 +44,7 @@ public class JuggernautAI : EnemyAI
     }
     public override void Attack()
     {
+        shootingSource.Play();
         int pointID = fireRight ? 0 : 1;
         //Play the muzzleflash
         Bullet spawnedBullet = ObjectPooler.Instance.SpawnFromPool(bulletTag, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();//Instantiate<GameObject>(enemyBullet, bulletPoints[pointID].position, Quaternion.LookRotation(player.position - bulletPoints[pointID].position)).GetComponent<Bullet>();

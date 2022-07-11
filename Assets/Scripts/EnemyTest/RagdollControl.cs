@@ -23,6 +23,10 @@ public class RagdollControl : MonoBehaviour,IPooledObject
     private Rigidbody[] rigidBodies;
     private Collider[] ragdollColliders;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip spawnAudio;
+    [SerializeField] AudioClip[] takeDamageClips;
+    [SerializeField] AudioClip deathClip;
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,6 +50,8 @@ public class RagdollControl : MonoBehaviour,IPooledObject
 
     public void ToggleRagdoll(bool state)
     {
+        audioSource.clip = deathClip;
+        audioSource.Play();
         animator.enabled = !state;
         foreach(Behaviour behaviour in behavioursToDisable)
         {
@@ -81,9 +87,10 @@ public class RagdollControl : MonoBehaviour,IPooledObject
     {
         ToggleRagdoll(false);
         enemyAI.ReenableNavMesh();
-        newMat.SetFloat("_Opacity", 1f);
+        newMat.SetFloat("_Opacity", 0f);
         newMat.color = originalColor;
         newMat.SetFloat("_Saturation", defaultSaturation);
+        StartCoroutine(FadeIn());
     }
     private void Destroy()
     {
@@ -97,7 +104,22 @@ public class RagdollControl : MonoBehaviour,IPooledObject
         GetComponent<AssassinAI>().ClearBullets();
         outline.enabled = false;
     }
-
+    IEnumerator FadeIn()
+    {
+        audioSource.clip = spawnAudio;
+        audioSource.Play();
+        enemyAI.enabled = false;
+        enemyHealth.isDead = true;
+        float i = 0f;
+        while (i < 1f)
+        {
+            i += Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        enemyAI.enabled = true;
+        enemyHealth.isDead = false;
+    }
     IEnumerator FadeOut()
     {
         float i = 1f;
@@ -112,6 +134,9 @@ public class RagdollControl : MonoBehaviour,IPooledObject
 
     IEnumerator Hurt()
     {
+        audioSource.Stop();
+        audioSource.clip = takeDamageClips[Random.Range(0, takeDamageClips.Length)];
+        audioSource.Play();
         newMat.color = Color.red;
         newMat.SetFloat("_Saturation", maxSaturation);
         float currentSat = maxSaturation;

@@ -62807,7 +62807,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.76666665
+  - time: 0.43333334
+    functionName: PlayHitSound
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6
     functionName: DisableHitbox
     data: 
     objectReferenceParameter: {fileID: 0}

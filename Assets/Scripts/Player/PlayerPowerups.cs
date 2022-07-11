@@ -24,17 +24,10 @@ public class PlayerPowerups : MonoBehaviour
     [SerializeField] float timeTillBlind;
     [SerializeField] string paranoiaWarningMessage;
 
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            StartCoroutine(ActivateInvincibility());
-        }
-    }
     //Invincibility
     public IEnumerator ActivateInvincibility()
     {
+        AudioManager.instance.Play("Invincibility");
         playerHealth.invincible = true;
         playerWeapon.ChangeFireRate(invincibilityFireRate);
         playerSetup.enemySpawner.EnableOutline();
@@ -42,6 +35,7 @@ public class PlayerPowerups : MonoBehaviour
         playerHealth.invincible = false;
         playerWeapon.ChangeFireRate(1f);
         playerSetup.enemySpawner.DisableOutline();
+        AudioManager.instance.Stop("Invincibility");
     }
     
     //Juggernaut Spawner
@@ -76,6 +70,7 @@ public class PlayerPowerups : MonoBehaviour
         playerHealth.ResetLives();
         playerWeapon.ChangeFireRate(1f);
         playerSetup.enemySpawner.DisableOutline();
+        AudioManager.instance.Stop("Invincibility");
         playerUI.StopAnimator();
     }
 }

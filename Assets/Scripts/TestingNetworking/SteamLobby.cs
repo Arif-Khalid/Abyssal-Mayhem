@@ -113,9 +113,9 @@ public class SteamLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
+        AudioManager.instance.StopAllSounds();
         if (NetworkServer.active && NetworkClient.isConnected)
         {
-            Debug.Log("quitting");
             manager.StopHost();
         }
         // stop client if client-only

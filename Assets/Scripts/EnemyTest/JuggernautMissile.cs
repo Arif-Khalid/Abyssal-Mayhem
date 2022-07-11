@@ -11,7 +11,8 @@ public class JuggernautMissile : MonoBehaviour
     List<Missile> missiles = new List<Missile>(); //Stores shot missiles
     [SerializeField]GameObject[] missileOrigins; //Assigned in inspector the stationary origin points on juggernaut
     [SerializeField] float timeBetweenMissiles;
-    bool missilesShot = false; //Tracks whether missiles are ready to be shot
+    public bool missilesShot = true; //Tracks whether missiles are ready to be shot
+    [SerializeField] AudioSource missileSource;
 
     private void Update()
     {
@@ -26,6 +27,7 @@ public class JuggernautMissile : MonoBehaviour
     {
         for(int i = 0;i < missileOrigins.Length; i++)
         {
+            missileSource.Play();
             missileOrigins[i].SetActive(false);
             Missile missile = ObjectPooler.Instance.SpawnFromPool(missileTag, missileOrigins[i].transform.position, Quaternion.identity).GetComponent<Missile>();//Instantiate<Missile>(missilePrefab, missileOrigins[i].transform.position, Quaternion.identity);//shoot missile
             missiles.Add(missile);
@@ -48,7 +50,6 @@ public class JuggernautMissile : MonoBehaviour
         {
             missileOrigins[i].SetActive(true);
         }
-        missilesShot = false;
     }
 
     public void StartShooting()

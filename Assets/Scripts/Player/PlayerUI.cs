@@ -148,6 +148,7 @@ public class PlayerUI : MonoBehaviour
     //Function to call by player movement when player is standing on prohibited area
     public void StartProhibitionTimer()
     {
+        AudioManager.instance.Play("Warning");
         count = 6;
         prohibitionText.SetActive(true);//enable the text
         StartCoroutine(Prohibition());
@@ -155,6 +156,7 @@ public class PlayerUI : MonoBehaviour
 
     public void StopProhibitionTimer()
     {
+        AudioManager.instance.Stop("Warning");
         //disable the text and stop coroutines
         StopAllCoroutines();
         prohibitionText.SetActive(false);
@@ -171,6 +173,7 @@ public class PlayerUI : MonoBehaviour
         }
 
         //Damage and push player up and off prohibited area
+        AudioManager.instance.Play("Prohibition");
         GetComponent<PlayerHealth>().TakeDamage(prohibitionDamage, prohibitionShakeDuration, prohibitionShakeMagnitude);
         if (GetComponent<PlayerHealth>().dead)
         {
@@ -189,20 +192,32 @@ public class PlayerUI : MonoBehaviour
     /*Code for powerups UI*/
     public void StartWarning(string message)
     {
+        if (message != "Extra Life Used") { AudioManager.instance.Play("Warning"); }
         warningText.text = "!" + message + "!";
         animator.Play("Warning", animator.GetLayerIndex("Warning Layer"), 0f);
     }
 
+    public void StopWarning()
+    {
+        AudioManager.instance.Stop("Warning");
+    }
     public void StartBlind()
     {
         //Play blind animation
+        AudioManager.instance.Play("Paranoia");
         animator.Play("Blind", animator.GetLayerIndex("Blind Layer"), 0f);
+    }
+
+    public void StopBlind()
+    {
+        AudioManager.instance.Stop("Paranoia");
     }
     public void StopAnimator()
     {
         animator.Play("Empty", animator.GetLayerIndex("Warning Layer"));
         //Stop blind animation as well
         animator.Play("Empty", animator.GetLayerIndex("Blind Layer"));
+        StopWarning();
     }
 
     public void UpdateExtraLives(int lives)

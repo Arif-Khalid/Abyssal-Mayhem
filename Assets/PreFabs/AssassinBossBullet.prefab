@@ -188,7 +188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 250
   snapDistance: 5
-  bulletDamage: 50
+  bulletDamage: 35
   bulletCollisionLayerMask:
     serializedVersion: 2
     m_Bits: 64

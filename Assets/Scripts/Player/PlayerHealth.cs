@@ -51,6 +51,7 @@ public class PlayerHealth : MonoBehaviour
         //Stop health regen and health regen countdown
         animator.SetBool("isRegen", false);
         StopAllCoroutines();
+        AudioManager.instance.Stop("Regen");
         countText.text = string.Empty;
         keyText.enabled = true;
         medkitImage.color = Color.white;
@@ -99,6 +100,7 @@ public class PlayerHealth : MonoBehaviour
             PlayerSetup.localPlayerSetup.enemySpawner.Respawn();
             playerUI.UpdateExtraLives(lives);
             playerUI.StartWarning("Extra Life Used");
+            AudioManager.instance.Play("ExtraLife");
         }
         
     }
@@ -129,6 +131,7 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator Regen()
     {
+        AudioManager.instance.Play("Regen");
         animator.SetBool("isRegen", true);
         int totalTicks = healthRestored;
         while(totalTicks > 0)
@@ -138,6 +141,7 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(timePerTick);
         }
         animator.SetBool("isRegen", false);
+        AudioManager.instance.Stop("Regen");
     }
     IEnumerator StartRegenCountdown()
     {

@@ -7,6 +7,7 @@ public class WalkerAI : EnemyAI
 {
     [SerializeField] Animator animator;
     [SerializeField] GameObject hitBox;
+    [SerializeField] AudioSource hitSoundSource;
     private void Start()
     {
     }
@@ -25,7 +26,7 @@ public class WalkerAI : EnemyAI
     }
     //Attack function for walker enemy
     public override void Attack()
-    {
+    {       
         animator.Play("Attack");
     }
 
@@ -39,6 +40,11 @@ public class WalkerAI : EnemyAI
     public void DisableHitbox()
     {
         hitBox.SetActive(false);
+    }
+
+    public void PlayHitSound()
+    {
+        hitSoundSource.Play();
     }
 
 }

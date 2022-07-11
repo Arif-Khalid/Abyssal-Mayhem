@@ -9,6 +9,7 @@ public class PowerupPickup : Interactable
     public PowerupPickup.powerupName pickupName;
     protected override void Interact()
     {
+        AudioManager.instance.Play("PowerupPickup");
         PlayerPowerups playerPowerups = PlayerSetup.localPlayerSetup.GetComponent<PlayerPowerups>();
         if (pickupName == powerupName.invincibility)
         {

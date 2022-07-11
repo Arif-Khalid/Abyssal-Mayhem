@@ -27,9 +27,12 @@ public class Missile : MonoBehaviour,IPooledObject
     //Variables for damage indicator
     [SerializeField] string indicatorID;
     [SerializeField] float strength;
+
+    [SerializeField] AudioSource audioSource;
     public void OnObjectSpawn()
     {
         StartCoroutine(MissileTravel());
+        audioSource.Play();
     }
     private void Update()
     {

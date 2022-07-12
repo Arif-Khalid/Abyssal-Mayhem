@@ -460,7 +460,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000012056979266, guid: 11c7b899afd215840aaee6a859bf154b, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1000012252708154, guid: 11c7b899afd215840aaee6a859bf154b, type: 3}
       propertyPath: m_Layer
@@ -1375,7 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cada0bc16403ee24ba7448b104ef4ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
+  maxHealth: 250
   slider: {fileID: 503602760}
   gradient:
     serializedVersion: 2
@@ -1413,6 +1413,7 @@ MonoBehaviour:
   monsterID: 3
   startingTransform: {fileID: 0}
   isAssassin: 0
+  isAssassinBoss: 0
   juggernautExplode: {fileID: 8219293752278952311}
   walkerDeath: {fileID: 0}
   ragdollControl: {fileID: 0}

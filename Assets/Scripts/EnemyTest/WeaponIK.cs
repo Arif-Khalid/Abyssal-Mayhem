@@ -125,7 +125,7 @@ public class WeaponIK : MonoBehaviour
         laserSight.SetPosition(0, laserSightOrigin.position);
         if (!assassinAI.isPatrolling)
         {
-            if (!assassinAI.alreadyAttacked && CanAssassinShoot() && isPlayerInSight)
+            if (!assassinAI.alreadyAttacked && CanAssassinShoot() && isPlayerInSight && assassinAI.enabled)
             {
                 assassinAI.Attack();
                 assassinAI.alreadyAttacked = true;

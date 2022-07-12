@@ -179,7 +179,7 @@ MonoBehaviour:
     m_Bits: 1
   enemies:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 131200
   aimPosition: {x: -0.393, y: 0.061, z: -0.163}
   aimDownSightSpeed: 8
   isAiming: 0

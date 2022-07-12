@@ -81,6 +81,7 @@ public class EnemySpawner : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
         {
+            //awayPlayerReadyUp(); //used to test the round start without connecting to another player
             AllowSpawns();
             localUI.UpdateWaitingPrompt();
         }
@@ -232,7 +233,24 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
-        private void ResetSpawner()
+
+    public void TeleportAssassin(Transform assassinSpawnPoint, GameObject assassin)
+    {
+        if(assassinSpawnPoints.Count == 0) { return; }
+        int spawnID = Random.Range(0, assassinSpawnPoints.Count);
+        UnityEngine.AI.NavMeshAgent agent = assassin.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.enabled = false;
+        Transform newSpawn = assassinSpawnPoints[spawnID];
+        assassinSpawnPoints.Remove(newSpawn);
+        AddtoAssassinSpawnPoints(assassinSpawnPoint);
+        EnemyHealth enemyHealth = assassin.GetComponent<EnemyHealth>();
+        enemyHealth.startingTransform = newSpawn;
+        enemyHealth.GetComponent<AssassinAI>().startingTransform = newSpawn;
+        assassin.transform.position = newSpawn.position;
+        assassin.transform.rotation = newSpawn.rotation;
+        enemyHealth.ragdollControl.OnObjectSpawn();    
+    }
+    private void ResetSpawner()
     {
         alreadySpawned = false;
     }

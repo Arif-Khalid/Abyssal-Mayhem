@@ -45,6 +45,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - clip: {fileID: 8300000, guid: 3474a83f42df6dd4eae4033c9acaec7a, type: 3}
+    name: Crit
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    description: Sound when starting round countdown
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b852e70f9af6ad64582860e69bca8c61, type: 3}
+    name: Countdown
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Sound when starting round countdown
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 1de0155d2a87a084f9456d7cf887f262, type: 3}
     name: Regen
     volume: 0.5

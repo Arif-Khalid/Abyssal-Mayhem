@@ -1581,6 +1581,7 @@ MonoBehaviour:
   monsterID: 4
   startingTransform: {fileID: 0}
   isAssassin: 1
+  isAssassinBoss: 1
   juggernautExplode: {fileID: 0}
   walkerDeath: {fileID: 0}
   ragdollControl: {fileID: 2770597462249236297}
@@ -1609,7 +1610,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   enemyRigidBody: {fileID: 9136703200622163236}
-  timeBetweenAttacks: 1.5
+  timeBetweenAttacks: 3
   alreadyAttacked: 0
   attackRange: 200
   playerInAttackRange: 0
@@ -2271,7 +2272,7 @@ GameObject:
   - component: {fileID: 8745332949159118228}
   - component: {fileID: 8927093273982771450}
   - component: {fileID: 7206847236628315857}
-  m_Layer: 7
+  m_Layer: 17
   m_Name: Bip001 Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -132,6 +132,7 @@ public class PlayerUI : MonoBehaviour
         roundStartCounter = 3;
         roundStartCount.text = roundStartCounter.ToString();
         animator.Play("RoundStartCount");
+        AudioManager.instance.Play("Countdown");
         //Play the animation
     }
 

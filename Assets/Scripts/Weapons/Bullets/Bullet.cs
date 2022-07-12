@@ -123,7 +123,15 @@ public class Bullet : MonoBehaviour, IPooledObject
         EnemyHealth enemyHealth = otherCollider.transform.root.GetComponent<EnemyHealth>(); //Check for health Script
         if (enemyHealth && !enemyHealth.isDead)
         {
-            enemyHealth.TakeDamage(bulletDamage);
+            if(otherCollider.gameObject.layer == LayerMask.NameToLayer("Crit"))
+            {
+                enemyHealth.Crit();
+                enemyHealth.TakeDamage(bulletDamage * 2);
+            }
+            else
+            {
+                enemyHealth.TakeDamage(bulletDamage);
+            }           
         }
         else
         {

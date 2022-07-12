@@ -70606,10 +70606,14 @@ MonoBehaviour:
   - tag: AddScoreUI
     prefab: {fileID: 8820906357504841636, guid: 769a4207a8eeafe4f9b834b96950a513,
       type: 3}
-    size: 300
+    size: 50
   - tag: Explosion
     prefab: {fileID: 575126032660801231, guid: cc09e2b5213222746ae0659d205617bd, type: 3}
     size: 150
+  - tag: CritUI
+    prefab: {fileID: 8820906357504841636, guid: 401ce66db790a4143a75bc10c2e7d9b1,
+      type: 3}
+    size: 50
 --- !u!4 &1471224188
 Transform:
   m_ObjectHideFlags: 0

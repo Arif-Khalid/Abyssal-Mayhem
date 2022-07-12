@@ -104,7 +104,7 @@ public class RagdollControl : MonoBehaviour,IPooledObject
         GetComponent<AssassinAI>().ClearBullets();
         outline.enabled = false;
     }
-    IEnumerator FadeIn()
+    public IEnumerator FadeIn()
     {
         audioSource.clip = spawnAudio;
         audioSource.Play();

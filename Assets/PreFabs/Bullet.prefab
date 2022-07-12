@@ -191,7 +191,7 @@ MonoBehaviour:
   bulletDamage: 10
   bulletCollisionLayerMask:
     serializedVersion: 2
-    m_Bits: 147
+    m_Bits: 131219
   lifeTime: 3
   bulletCollider: {fileID: 523895175790031311}
   hasBulletCollided: 0

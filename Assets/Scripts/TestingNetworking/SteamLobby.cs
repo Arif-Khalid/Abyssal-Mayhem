@@ -73,6 +73,14 @@ public class SteamLobby : MonoBehaviour
         {
             mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
         }
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            optionsVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            optionsMusicSlider.value = PlayerPrefs.GetFloat("Music");
+        }
         //manager = GetComponent<CustomNetworkManager>();
 
         LobbyCreated = Callback<LobbyCreated_t>.Create(OnLobbyCreated);

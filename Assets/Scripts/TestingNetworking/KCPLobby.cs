@@ -46,7 +46,7 @@ public class KCPLobby : MonoBehaviour
         {
             optionsMusicSlider.value = PlayerPrefs.GetFloat("Music");
             escapeMusicSlider.value = PlayerPrefs.GetFloat("Music");
-        }       
+        }
     }
     public void SetEasyInfSpawn()
     {

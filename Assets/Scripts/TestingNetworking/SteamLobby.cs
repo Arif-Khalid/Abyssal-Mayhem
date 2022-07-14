@@ -44,6 +44,10 @@ public class SteamLobby : MonoBehaviour
     [SerializeField] TextMeshProUGUI spawnFeedbackText;
     [SerializeField] Animator animator;
     [SerializeField] Slider mouseSensitivitySlider;
+    [SerializeField] Slider optionsVolumeSlider;
+    [SerializeField] Slider optionsMusicSlider;
+    [SerializeField] Slider escapeVolumeSlider;
+    [SerializeField] Slider escapeMusicSlider;
     public void SetEasyInfSpawn()
     {
         PlayerPrefs.SetInt("difficulty", easyID);
@@ -258,4 +262,35 @@ public class SteamLobby : MonoBehaviour
     {
         AudioManager.instance.Play("ButtonPress");
     }
+
+    //Function called when changing music slider in escape menu
+    public void ChangeEscapeMusicSlider()
+    {
+        PlayerPrefs.SetFloat("Music", escapeMusicSlider.value);
+        optionsMusicSlider.value = escapeMusicSlider.value;
+        //Change the music volume
+        AudioManager.instance.ChangeBackgroundVolume(escapeMusicSlider.value);
+    }
+
+    //Function called when changing volume slider in escape menu
+    public void ChangeEscapeVolumeSlider()
+    {
+        PlayerPrefs.SetFloat("Volume", escapeVolumeSlider.value);
+        optionsVolumeSlider.value = escapeVolumeSlider.value;
+        //Change the master volume
+        AudioListener.volume = escapeVolumeSlider.value;
+    }
+
+    //Function called when changing music slider in options menu
+    public void ChangeOptionsMusicSlider()
+    {
+        escapeMusicSlider.value = optionsMusicSlider.value;
+    }
+
+    //Function called when changing master volume slider in options menu
+    public void ChangeOptionsVolumeSlider()
+    {
+        escapeVolumeSlider.value = optionsVolumeSlider.value;
+    }
+
 }

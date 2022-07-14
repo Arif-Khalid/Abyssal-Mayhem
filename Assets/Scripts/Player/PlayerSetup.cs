@@ -14,6 +14,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] Behaviour[] componentsToDisable;
     [SerializeField] GameObject[] gameObjectsToDisable;
     [SerializeField] GameObject awayUI;
+    public AudioListener audioListener;
     Camera sceneCamera;
     PlayerUI playerUI;
     public PlayerWeapon playerWeapon;

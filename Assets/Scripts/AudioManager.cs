@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
     public static AudioManager instance;
+    Sound backgroundSound;
     private void Awake()
     {
         if(instance != null)
@@ -27,8 +28,9 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            if(s.name == "Background") { backgroundSound = s; }
         }
-
+        backgroundSound.source.Play();
     }
 
     public void Play(string name)
@@ -61,7 +63,12 @@ public class AudioManager : MonoBehaviour
     {
         foreach(Sound s in sounds)
         {
-            s.source.Stop();
+            if (s.name != "Background") { s.source.Stop(); }
         }
+    }
+
+    public void ChangeBackgroundVolume(float newVolume)
+    {
+        backgroundSound.source.volume = newVolume;
     }
 }

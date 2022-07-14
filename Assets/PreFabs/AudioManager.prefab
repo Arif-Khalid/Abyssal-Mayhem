@@ -45,6 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
+  - clip: {fileID: 8300000, guid: 455ab390ce56a0d4c8497d83eb2842a6, type: 3}
+    name: Background
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    description: Background music
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 3474a83f42df6dd4eae4033c9acaec7a, type: 3}
     name: Crit
     volume: 0.1

@@ -942,6 +942,7 @@ MonoBehaviour:
   - {fileID: 1698161259452351255}
   - {fileID: 868281582}
   awayUI: {fileID: 3982145923436985944}
+  audioListener: {fileID: 1698161261116011768}
   playerWeapon: {fileID: 0}
   difficultyID: 0
 --- !u!114 &8230614775318324065

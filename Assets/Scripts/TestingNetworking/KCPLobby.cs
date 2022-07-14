@@ -26,6 +26,10 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] TextMeshProUGUI spawnFeedbackText;
     [SerializeField] Animator animator;
     [SerializeField] Slider mouseSensitivitySlider;
+    [SerializeField] Slider optionsVolumeSlider;
+    [SerializeField] Slider optionsMusicSlider;
+    [SerializeField] Slider escapeVolumeSlider;
+    [SerializeField] Slider escapeMusicSlider;
 
     private void Start()
     {
@@ -33,6 +37,16 @@ public class KCPLobby : MonoBehaviour
         {
             mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
         }
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            optionsVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+            escapeVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            optionsMusicSlider.value = PlayerPrefs.GetFloat("Music");
+            escapeMusicSlider.value = PlayerPrefs.GetFloat("Music");
+        }       
     }
     public void SetEasyInfSpawn()
     {
@@ -202,6 +216,37 @@ public class KCPLobby : MonoBehaviour
         }
     }
 
+    //Function called when changing music slider in escape menu
+    public void ChangeEscapeMusicSlider()
+    {
+        PlayerPrefs.SetFloat("Music", escapeMusicSlider.value);
+        optionsMusicSlider.value = escapeMusicSlider.value;
+        //Change the music volume
+        AudioManager.instance.ChangeBackgroundVolume(escapeMusicSlider.value);
+    }
+
+    //Function called when changing volume slider in escape menu
+    public void ChangeEscapeVolumeSlider()
+    {
+        PlayerPrefs.SetFloat("Volume", escapeVolumeSlider.value);
+        optionsVolumeSlider.value = escapeVolumeSlider.value;
+        //Change the master volume
+        AudioListener.volume = escapeVolumeSlider.value;
+    }
+
+    //Function called when changing music slider in options menu
+    public void ChangeOptionsMusicSlider()
+    {
+        escapeMusicSlider.value = optionsMusicSlider.value;
+    }
+
+    //Function called when changing master volume slider in options menu
+    public void ChangeOptionsVolumeSlider()
+    {
+        escapeVolumeSlider.value = optionsVolumeSlider.value;
+    }
+
+    
     public static void ButtonAudio()
     {
         AudioManager.instance.Play("ButtonPress");

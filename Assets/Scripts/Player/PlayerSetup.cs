@@ -16,7 +16,7 @@ public class PlayerSetup : NetworkBehaviour
     [SerializeField] GameObject awayUI;
     public AudioListener audioListener;
     Camera sceneCamera;
-    PlayerUI playerUI;
+    public PlayerUI playerUI;
     public PlayerWeapon playerWeapon;
     private bool isInMenu = false;
     private bool isInEscapeMenu = false;
@@ -115,11 +115,13 @@ public class PlayerSetup : NetworkBehaviour
         {
             //Run CMD that sets difficulty rounds
             CmdSetDifficulty();
+            GetComponent<PlayerHealth>().SetDamageMultiplier(difficultyID);
             enemySpawner.SetDifficulty(difficultyID);
         }
         else
         {
             //Take difficulty from away player
+            enemySpawner.SetHostDamageMultiplier();
             enemySpawner.SetHostDifficulty();
         }
         sceneCamera = Camera.main;

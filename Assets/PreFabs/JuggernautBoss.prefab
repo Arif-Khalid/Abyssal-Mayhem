@@ -1514,7 +1514,7 @@ MonoBehaviour:
   - {fileID: 2918282256948648816}
   - {fileID: 2918282257966048570}
   - {fileID: 2918282258628948024}
-  timeBetweenMissiles: 10
+  timeBetweenMissiles: 20
   missilesShot: 1
   missileSource: {fileID: 3966829965181251660}
 --- !u!114 &7106811645185743688
@@ -1723,7 +1723,7 @@ MonoBehaviour:
   - {fileID: 1889445095}
   - {fileID: 1889445094}
   - {fileID: 548055714089131347}
-  timeBeforeDestroy: 10.57
+  timeBeforeDestroy: 5
   juggernautWeaponPickup: {fileID: 8977524194662640344}
   isBoss: 1
   enemyAI: {fileID: 1889445096}

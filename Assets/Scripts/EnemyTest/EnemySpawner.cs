@@ -542,4 +542,10 @@ public class EnemySpawner : MonoBehaviour
         }
         //Normal ID is how the game is by default
     }
+
+    //Function called when non-host connects to set difficulty in player Health of non host
+    public void SetHostDamageMultiplier()
+    {
+        PlayerSetup.localPlayerSetup.GetComponent<PlayerHealth>().SetDamageMultiplier(awayPlayer.difficultyID);
+    }
 }

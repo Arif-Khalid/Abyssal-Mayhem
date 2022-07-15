@@ -13702,8 +13702,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.21, y: 7, z: 2.15}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 9.56, y: 7, z: 2.15}
+  m_Center: {x: 0.09, y: 0, z: 0}
 --- !u!1 &395681939
 GameObject:
   m_ObjectHideFlags: 0
@@ -13792,8 +13792,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.8, y: 2.9, z: 1.5}
-  m_Center: {x: 18.52, y: 5.26, z: 0}
+  m_Size: {x: 16.8, y: 4.5, z: 2.5}
+  m_Center: {x: 18.52, y: 4.75, z: 0}
 --- !u!1 &399776112
 GameObject:
   m_ObjectHideFlags: 0
@@ -41484,8 +41484,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.8, y: 2.9, z: 1.5}
-  m_Center: {x: 18.52, y: 5.26, z: 0}
+  m_Size: {x: 16.8, y: 4.34, z: 2.5}
+  m_Center: {x: 18.52, y: 4.97, z: 0}
 --- !u!1 &933044639
 GameObject:
   m_ObjectHideFlags: 0
@@ -50177,6 +50177,10 @@ MonoBehaviour:
   spawnFeedbackText: {fileID: 0}
   animator: {fileID: 0}
   mouseSensitivitySlider: {fileID: 0}
+  optionsVolumeSlider: {fileID: 0}
+  optionsMusicSlider: {fileID: 0}
+  escapeVolumeSlider: {fileID: 0}
+  escapeMusicSlider: {fileID: 0}
 --- !u!114 &1052437112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85613,7 +85617,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 7, z: 1.8}
+  m_Size: {x: 9, y: 7, z: 2.18}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1669700085
 GameObject:

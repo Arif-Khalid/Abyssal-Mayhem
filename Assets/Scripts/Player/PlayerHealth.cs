@@ -21,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
     public bool dead = false;
     public bool invincible = false;
     public int lives = 0;
+    private float damageMultiplier = 1f;
+    [Header("Difficulty Multipliers")]
+    [SerializeField] float easyMultiplier;
+    [SerializeField] float normalMultiplier;
+    [SerializeField] float hardMultiplier;
 
     [SerializeField] PlayerUI playerUI;
     // Start is called before the first frame update
@@ -67,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
+        damage = (int)(damage * damageMultiplier);
         CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(duration, magnitude));
         playerUI.HurtUI(); //Getting hurt UI
         currentHealth -= damage;
@@ -157,5 +163,21 @@ public class PlayerHealth : MonoBehaviour
         countText.text = string.Empty;
         keyText.enabled = true;
         medkitImage.color = Color.white;
+    }
+
+    public void SetDamageMultiplier(int difficultyID)
+    {
+        if(difficultyID == 0)
+        {
+            damageMultiplier = easyMultiplier;
+        }
+        else if(difficultyID == 1)
+        {
+            damageMultiplier = normalMultiplier;
+        }
+        else
+        {
+            damageMultiplier = hardMultiplier;
+        }
     }
 }

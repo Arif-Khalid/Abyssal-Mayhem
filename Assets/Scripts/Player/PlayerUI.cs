@@ -19,13 +19,14 @@ public class PlayerUI : MonoBehaviour
     private int roundStartCounter = 3;
     [SerializeField] TextMeshProUGUI warningText;
     [SerializeField] TextMeshProUGUI extraLifeText;
+    [SerializeField] Image crossHair;
     
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
     [SerializeField] GameObject winUI;
 
     [SerializeField] Animator animator;
-    
+
     [Header("Prohibition")]
     private int count = 6;
     [SerializeField] GameObject prohibitionText;
@@ -34,10 +35,6 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] int prohibitionForce;
     [SerializeField] float prohibitionShakeDuration = 0.15f;
     [SerializeField] float prohibitionShakeMagnitude = 0.4f;
-
-    [SerializeField] float strength;
-    [SerializeField] string indicatorID;
-
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
     {
@@ -231,5 +228,10 @@ public class PlayerUI : MonoBehaviour
         {
             extraLifeText.text = string.Empty;
         }
+    }
+
+    public void SetCrosshairColor(Color color)
+    {
+        crossHair.color = color;
     }
 }

@@ -1463,6 +1463,7 @@ MonoBehaviour:
   monsterID: 0
   startingTransform: {fileID: 0}
   isAssassin: 0
+  isAssassinBoss: 0
   juggernautExplode: {fileID: 0}
   walkerDeath: {fileID: 3810445776870250186}
   ragdollControl: {fileID: 0}
@@ -1830,7 +1831,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.95
+      value: 0.9
       inSlope: 0
       outSlope: 0
       tangentMode: 0

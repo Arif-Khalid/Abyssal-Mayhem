@@ -10,20 +10,20 @@ public class JuggernautBullet : Bullet
     [SerializeField] float strength;
     public int numberOfHitSounds;
     
-    public override void HitSomething(Collider other)
+
+    public override void DealDamage(Collider other)
     {
-        bulletCollider.enabled = false;
-        rigidBody.velocity = Vector3.zero;
+        damageDealt = true;
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth)
         {
-            if (!playerHealth.dead) 
+            if (!playerHealth.dead)
             {
                 if (enemyAI) { IndicatorProManager.Activate(indicatorID, enemyAI.transform.position, strength); }
                 else { IndicatorProManager.Activate(indicatorID, shooterPosition, strength); }
-                AudioManager.instance.Play(indicatorID + Random.Range(0,numberOfHitSounds).ToString());
+                AudioManager.instance.Play(indicatorID + Random.Range(0, numberOfHitSounds).ToString());
                 playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude);
-            }           
+            }
         }
         else
         {
@@ -31,7 +31,7 @@ public class JuggernautBullet : Bullet
         }
         if (enemyAI)
         {
-            
+
             enemyAI.RemoveFromList(this);
         }
         Invoke(nameof(DisableGameObject), 1f);

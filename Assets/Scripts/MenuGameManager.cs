@@ -19,9 +19,9 @@ public class MenuGameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && guide.enabled)
+        if (Input.GetKeyDown(KeyCode.Escape) && !mainMenu.enabled)
         {
-            DisableGuide();
+            BackToMainMenu();
         }
     }
 
@@ -78,5 +78,15 @@ public class MenuGameManager : MonoBehaviour
     {
         SteamLobby.ButtonAudio();
         Application.Quit();
+    }
+
+    private void BackToMainMenu()
+    {
+        SteamLobby.BackAudio();
+        mainMenu.enabled = true;
+        guide.enabled = false;
+        guideScrollBar.value = 1;
+        difficultyMenu.enabled = false;
+        optionsMenu.enabled = false;
     }
 }

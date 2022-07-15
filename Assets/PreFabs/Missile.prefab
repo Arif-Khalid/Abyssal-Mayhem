@@ -54,7 +54,7 @@ MonoBehaviour:
   scalingFactor: 0.5
   upTime: 2
   snapDistance: 2
-  missileDamage: 10
+  missileDamage: 5
   missileShakeDuration: 0.15
   missileShakeMagnitude: 0.3
   lifeTime: 10

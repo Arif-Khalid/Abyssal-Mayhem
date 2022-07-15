@@ -266,9 +266,16 @@ public class SteamLobby : MonoBehaviour
         }
     }
 
+    //Function that plays button being pressed sound
     public static void ButtonAudio()
     {
         AudioManager.instance.Play("ButtonPress");
+    }
+
+    //Function that plays UI reverting to previous menu sound
+    public static void BackAudio()
+    {
+        AudioManager.instance.Play("UIBack");
     }
 
     //Function called when changing music slider in escape menu

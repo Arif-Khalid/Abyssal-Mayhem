@@ -798,7 +798,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1698161260317292030}
-  speed: 12
+  speed: 10
   gravity: -18
   jumpHeight: 1.5
   weaponSlotAnimator: {fileID: 1496212362739494471}
@@ -868,6 +868,9 @@ MonoBehaviour:
   dead: 0
   invincible: 0
   lives: 0
+  easyMultiplier: 0.5
+  normalMultiplier: 1
+  hardMultiplier: 1.2
   playerUI: {fileID: 8230614775318324065}
 --- !u!114 &1698161260317292004
 MonoBehaviour:
@@ -978,8 +981,6 @@ MonoBehaviour:
   prohibitionForce: 100
   prohibitionShakeDuration: 0.15
   prohibitionShakeMagnitude: 1
-  strength: 0
-  indicatorID: 
 --- !u!114 &8768125842735476599
 MonoBehaviour:
   m_ObjectHideFlags: 0

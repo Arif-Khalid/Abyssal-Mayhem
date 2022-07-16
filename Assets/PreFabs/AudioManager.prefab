@@ -59,6 +59,13 @@ MonoBehaviour:
     loop: 0
     description: Sound for UI when going back to previous menu
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 84057f1e80d924eb6a5d471d6fb37083, type: 3}
+    name: ButtonPress2
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Different sound for pressing UI button
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 3474a83f42df6dd4eae4033c9acaec7a, type: 3}
     name: Crit
     volume: 0.1

@@ -946,6 +946,7 @@ MonoBehaviour:
   - {fileID: 868281582}
   awayUI: {fileID: 3982145923436985944}
   audioListener: {fileID: 1698161261116011768}
+  playerUI: {fileID: 0}
   playerWeapon: {fileID: 0}
   difficultyID: 0
 --- !u!114 &8230614775318324065
@@ -971,6 +972,9 @@ MonoBehaviour:
   roundStartCount: {fileID: 7506887632156146952}
   warningText: {fileID: 5396952616647811839}
   extraLifeText: {fileID: 6706536632038169461}
+  crossHairLines: {fileID: 3084836228388381330}
+  crossHairDot: {fileID: 4879593892002372675}
+  crosshairTransform: {fileID: 1896261422063243056}
   localUI: {fileID: 868281582}
   deathUI: {fileID: 5683568952164879891}
   winUI: {fileID: 2384991484590162997}
@@ -3813,7 +3817,7 @@ RectTransform:
   m_GameObject: {fileID: 5909328718820934176}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3661785, y: 0.3661785, z: 0.3661785}
+  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 20162353401950096}

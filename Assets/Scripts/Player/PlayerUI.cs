@@ -19,7 +19,9 @@ public class PlayerUI : MonoBehaviour
     private int roundStartCounter = 3;
     [SerializeField] TextMeshProUGUI warningText;
     [SerializeField] TextMeshProUGUI extraLifeText;
-    [SerializeField] Image crossHair;
+    [SerializeField] Image crossHairLines;
+    [SerializeField] Image crossHairDot;
+    [SerializeField] RectTransform crosshairTransform;
     
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
@@ -27,6 +29,7 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    CrosshairSettings crosshairSettings;
     [Header("Prohibition")]
     private int count = 6;
     [SerializeField] GameObject prohibitionText;
@@ -35,6 +38,12 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] int prohibitionForce;
     [SerializeField] float prohibitionShakeDuration = 0.15f;
     [SerializeField] float prohibitionShakeMagnitude = 0.4f;
+
+    private void Awake()
+    {
+        crosshairSettings = CrosshairSettings.instance;
+    }
+
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
     {
@@ -230,8 +239,20 @@ public class PlayerUI : MonoBehaviour
         }
     }
 
-    public void SetCrosshairColor(Color color)
+    public void UpdateCrosshair()
     {
-        crossHair.color = color;
+        if (crosshairSettings.crosshairEnabled)
+        {
+            crossHairLines.enabled = crosshairSettings.outerLinesEnabled;
+            crossHairDot.enabled = crosshairSettings.dotEnabled;
+            crossHairLines.color = crosshairSettings.color;
+            crossHairDot.color = crosshairSettings.color;
+            crosshairTransform.localScale = new Vector3(crosshairSettings.crosshairSize, crosshairSettings.crosshairSize, crosshairSettings.crosshairSize);
+        }
+        else
+        {
+            crossHairLines.enabled = false;
+            crossHairDot.enabled = false;
+        }
     }
 }

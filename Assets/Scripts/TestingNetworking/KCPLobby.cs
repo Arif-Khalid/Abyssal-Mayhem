@@ -30,11 +30,6 @@ public class KCPLobby : MonoBehaviour
     [SerializeField] Slider optionsMusicSlider;
     [SerializeField] Slider escapeVolumeSlider;
     [SerializeField] Slider escapeMusicSlider;
-    [SerializeField] Color greenColor;
-    [SerializeField] Color blueColor;
-    [SerializeField] Color whiteColor;
-    [SerializeField] Color pinkColor;
-    [SerializeField] Color yellowColor;
 
     private void Start()
     {
@@ -255,35 +250,5 @@ public class KCPLobby : MonoBehaviour
     public static void ButtonAudio()
     {
         AudioManager.instance.Play("ButtonPress");
-    }
-
-    public void SetCrosshairColor(string colorName)
-    {
-        Color color;
-        if(colorName == "Green")
-        {
-            color = greenColor;
-        }else if(colorName == "Blue")
-        {
-            color = blueColor;
-        }else if(colorName == "White")
-        {
-            color = whiteColor;
-        }else if(colorName == "Pink")
-        {
-            color = pinkColor;
-        }else if(colorName == "Yellow")
-        {
-            color = yellowColor;
-        }
-        else
-        {
-            Debug.LogWarning("Color with name <" + colorName + "> not implemented");
-            return;
-        }
-        if (PlayerSetup.localPlayerSetup)
-        {
-            PlayerSetup.localPlayerSetup.playerUI.SetCrosshairColor(color);
-        }
     }
 }

@@ -133,6 +133,7 @@ public class PlayerSetup : NetworkBehaviour
         {
             mouseLook.mouseSensitivity = PlayerPrefs.GetFloat("Sensitivity");
         }
+        playerUI.UpdateCrosshair();
         cameraShake.SetStatic();
         enemySpawner.localPlayer = transform;
         enemySpawner.cameraTransform = GetComponentInChildren<Camera>().transform;

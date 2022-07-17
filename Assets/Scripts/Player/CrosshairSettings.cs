@@ -89,6 +89,10 @@ public class CrosshairSettings : MonoBehaviour
             crosshairSizeSlider.value = PlayerPrefs.GetFloat("CrosshairSize");
             ChangeCrosshairSize();
         }
+        else
+        {
+            crosshairSize = 0.35f;
+        }
     }
 
     public void ChangeCrosshairColor(int colorID)

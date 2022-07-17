@@ -680,8 +680,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.38
-  m_Height: 1.55
+  m_Radius: 0.68
+  m_Height: 1.92
   m_Direction: 0
   m_Center: {x: 0.12, y: 0, z: 0}
 --- !u!1 &1473202670574548431
@@ -1537,7 +1537,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &2531828486647217725
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3055,7 +3055,7 @@ GameObject:
   - component: {fileID: 1830331073758235702}
   - component: {fileID: 265292798187000835}
   - component: {fileID: 8361599803272551367}
-  m_Layer: 7
+  m_Layer: 18
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

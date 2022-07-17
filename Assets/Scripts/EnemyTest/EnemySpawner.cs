@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
-    public int maxRounds = 15;
+    private int maxRounds = 15;
     private float healthMultiplier = 1f;
     
     //Variables for local player

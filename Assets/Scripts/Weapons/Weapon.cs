@@ -33,10 +33,14 @@ public class Weapon : MonoBehaviour
     }
 
     private void OnEnable()
+    {       
+        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+    }
+
+    public void NewWeaponEquip()
     {
         maxAmmo = defaultMaxAmmo;
         currentAmmo = clipSize;
-        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
     }
     //Start function to be overwriten by children should anything be needed to be added to start
     protected virtual void ChildStart()
@@ -65,12 +69,13 @@ public class Weapon : MonoBehaviour
     //Start reloading weapon
     public virtual void Reload()
     {
-        if(isFiring || reloading)
+        if(isFiring || reloading || currentAmmo == clipSize)
         {
             return;
         }
-        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left or nothing to reload
+        if(maxAmmo == 0) //cant reload if no ammo left or nothing to reload
         {
+            if(currentAmmo == 0) { OutOfAmmo(); }
             return;
         }
         if(maxAmmo < -1) //should never reach this point but just in case
@@ -139,8 +144,7 @@ public class Weapon : MonoBehaviour
     }
     protected virtual void OutOfAmmo()
     {
-        //To be overriden in inherited class
-        //Function to call when no more ammo in clip or reserves and trying to shoot
+        playerWeapon.DeactivateCurrentWeapon();
     }
     protected virtual void CloseToWall()
     {       

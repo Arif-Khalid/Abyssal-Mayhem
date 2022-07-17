@@ -54,6 +54,7 @@ MonoBehaviour:
   maxAmmo: 10
   clipSize: 1
   defaultMaxAmmo: 10
+  playerUI: {fileID: 0}
   animator: {fileID: 3846407901215376343}
   muzzleAnimator: {fileID: 2956103890722335291}
   dir: {x: 0, y: 0, z: 0}
@@ -64,10 +65,10 @@ MonoBehaviour:
   isLaser: 0
   isRocket: 1
   isFiring: 0
-  rocketObject: {fileID: 3082550296209489129}
   weaponName: Rocket
   isInUI: 0
   spawnTag: Rocket
+  rocketBulletMesh: {fileID: 3082550296209489129}
 --- !u!95 &3846407901215376343
 Animator:
   serializedVersion: 4

@@ -62,7 +62,7 @@ public class PlayerHealth : MonoBehaviour
         medkitImage.color = Color.white;
         dead = false;
     }
-    public void TakeDamage(int damage, float duration, float magnitude)
+    public void TakeDamage(int damage, float duration, float magnitude, string deathByName)
     {
         if (invincible)
         {
@@ -80,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
         if(currentHealth <= 0)
         {
-            Death();           
+            Death(deathByName);           
         }
     }
 
@@ -92,13 +92,13 @@ public class PlayerHealth : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void Death()
+    public void Death(string deathByName)
     {
         dead = true;
         lives -= 1;
         if(lives < 0)
         {
-            GetComponent<PlayerSetup>().LocalDeath();
+            GetComponent<PlayerSetup>().LocalDeath(deathByName);
             dead = true;           
         }
         else

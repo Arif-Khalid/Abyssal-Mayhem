@@ -44,7 +44,7 @@ public class PlayerSetup : NetworkBehaviour
     //Function called by enemyspawner when a new game starts or when both players are ready to reset weapon to default
     public void ResetWeapons()
     {
-        playerWeapon.Equip(playerWeapon.defaultWeapon);
+        playerWeapon.ResetWeapons();
     }
     //Functions only called on the local player using static variable to lock and unlock the local mouse and shooting on entering and exiting UI and escape menu
     public void EnterUIMenu()
@@ -229,9 +229,9 @@ public class PlayerSetup : NetworkBehaviour
     }
 
     [Command]
-    private void NetworkLocalDeath()
+    private void NetworkLocalDeath(string deathByName)
     {
-        PlayerDied();
+        PlayerDied(deathByName);
     }
 
     [Command]
@@ -286,10 +286,16 @@ public class PlayerSetup : NetworkBehaviour
     }
 
     [ClientRpc]
-    private void PlayerDied()
+    private void PlayerDied(string deathByName)
     {
         if (!isLocalPlayer)
         {
+            PlayerSetup.localPlayerSetup.EnterUIMenu();
+            PlayerSetup.localPlayerSetup.playerUI.EnableWinUI(deathByName);
+            for (int i = 0; i < componentsToDisable.Length; i++)
+            {
+                componentsToDisable[i].enabled = false;
+            }
             enemySpawner.LocalWin();
         }
     }
@@ -312,6 +318,12 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (isLocalPlayer)
         {
+            for (int i = 0; i < componentsToDisable.Length; i++)
+            {
+                componentsToDisable[i].enabled = false;
+            }
+            EnterUIMenu();
+            playerUI.EnableWinBySpeedUI();
             enemySpawner.LocalWin();
         }
         else
@@ -358,6 +370,8 @@ public class PlayerSetup : NetworkBehaviour
     //Function called by away player when other player wins
     public void LocalLoss()
     {
+        PlayerSetup.localPlayerSetup.EnterUIMenu();
+        PlayerSetup.localPlayerSetup.playerUI.EnableLossUI();
         enemySpawner.LocalLoss();
         for (int i = 0; i < componentsToDisable.Length; i++)
         {
@@ -366,14 +380,16 @@ public class PlayerSetup : NetworkBehaviour
     }
     [Client]
     //Function running on client when local client dies
-    public void LocalDeath()
+    public void LocalDeath(string deathByName)
     {
+        EnterUIMenu();
+        playerUI.EnableDeathUI(deathByName);
         enemySpawner.LocalDeath();
         for (int i = 0; i < componentsToDisable.Length; i++)
         {
             componentsToDisable[i].enabled = false;
         }
         //mouseLook.StopRotation();
-        NetworkLocalDeath();
+        NetworkLocalDeath(deathByName);
     }
 }

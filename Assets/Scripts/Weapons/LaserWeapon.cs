@@ -178,11 +178,6 @@ public class LaserWeapon : Weapon
         base.NotCloseToWall();
     }
 
-    protected override void OutOfAmmo()
-    {
-        playerWeapon.Equip(playerWeapon.defaultWeapon);
-    }
-
 
     public void Aimed()
     {

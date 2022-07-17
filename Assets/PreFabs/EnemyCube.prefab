@@ -444,6 +444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cada0bc16403ee24ba7448b104ef4ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   slider: {fileID: 1765942775302672577}
   gradient:
     serializedVersion: 2
@@ -478,6 +479,18 @@ MonoBehaviour:
   fill: {fileID: 1765942775766090505}
   cameraTransform: {fileID: 0}
   enemySpawner: {fileID: 0}
+  monsterID: 0
+  startingTransform: {fileID: 0}
+  isAssassin: 0
+  isAssassinBoss: 0
+  juggernautExplode: {fileID: 0}
+  walkerDeath: {fileID: 0}
+  ragdollControl: {fileID: 0}
+  isDead: 0
+  score: 0
+  addScoreUI: {fileID: 0}
+  addScoreUITag: AddScoreUI
+  offset: {x: 0, y: 0, z: 0}
 --- !u!54 &1765942776488734408
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -534,16 +547,15 @@ MonoBehaviour:
   whatIsPlayer:
     serializedVersion: 2
     m_Bits: 64
-  whatIsSelf:
-    serializedVersion: 2
-    m_Bits: 0
   enemyRigidBody: {fileID: 1765942776488734408}
   timeBetweenAttacks: 1
+  alreadyAttacked: 0
   attackRange: 2
   playerInAttackRange: 0
   isNavMeshAgentEnabled: 1
   animator: {fileID: 0}
   hitBox: {fileID: 2744631266643234196}
+  hitSoundSource: {fileID: 0}
 --- !u!95 &8747028059271382885
 Animator:
   serializedVersion: 4
@@ -823,6 +835,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meeleeDamage: 10
+  meeleeShakeDuration: 0.15
+  meeleeShakeMagnitude: 0.4
+  indicatorID: BluntForce
+  strength: 0.5
+  deathByName: Walker slap
 --- !u!1 &4530320275692818199
 GameObject:
   m_ObjectHideFlags: 0

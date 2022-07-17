@@ -18,12 +18,6 @@ public class ShotgunWeapon : Weapon
         animator.SetFloat("Speed", -10f);
         base.NotCloseToWall();
     }
-
-    protected override void OutOfAmmo()
-    {
-        playerWeapon.Equip(playerWeapon.defaultWeapon);
-    }
-
     protected override void FireBullet()
     {
 

@@ -23,6 +23,7 @@ public class Missile : MonoBehaviour,IPooledObject
     public string explosionTag;
     public float explosionForce;
     public float explosionRange;
+    [SerializeField] string deathByName = "Juggernaut Boss Missile";
 
     //Variables for damage indicator
     [SerializeField] string indicatorID;
@@ -103,7 +104,7 @@ public class Missile : MonoBehaviour,IPooledObject
             Vector3 dir = players[0].transform.position - transform.position;
             playerMovement.AddImpact(dir, explosionForce * 10);
             if (!playerHealth.dead) { IndicatorProManager.Activate(indicatorID, transform.position, strength); }
-            playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude);
+            playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude, deathByName);
             //CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(missileShakeDuration, missileShakeMagnitude));
         }
 

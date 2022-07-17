@@ -60,12 +60,6 @@ public class JuggernautWeapon : Weapon
     {
         //Do nothing here since this weapon does not reload
     }
-
-    protected override void OutOfAmmo()
-    {
-        playerWeapon.Equip(playerWeapon.defaultWeapon);
-    }
-
     //Function called my empty anim since using same empty as laser
     public void NotAimed()
     {

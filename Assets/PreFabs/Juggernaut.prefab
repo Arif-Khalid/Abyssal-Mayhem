@@ -1250,6 +1250,7 @@ MonoBehaviour:
   muzzleRightAnimator: {fileID: 292045983377941447}
   bulletTag: JuggernautBullet
   shootingSource: {fileID: 4792387978854595101}
+  bulletDeathByName: Juggernaut's Bullet
 --- !u!114 &7106811645185743688
 MonoBehaviour:
   m_ObjectHideFlags: 0

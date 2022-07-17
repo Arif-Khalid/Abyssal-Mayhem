@@ -429,8 +429,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player dies
     public void LocalDeath()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableDeathUI();
         if (!isSinglePlayer) { localPlayerReady = false; } //Only unready local player if local player isnt in single player mode
         isSinglePlayer = false; //Disable single player mode to stop spawning
         awayPlayerReady = false;
@@ -439,8 +437,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player wins
     public void LocalWin()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableWinUI();
         localPlayerReady = false;
         awayPlayerReady = false;
         KillAll();
@@ -449,8 +445,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when other player survives all rounds
     public void LocalLoss()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableDeathUI(); //To be replaced with different UI for loss and not death
         localPlayerReady = false;
         awayPlayerReady = false;
         KillAll();
@@ -459,9 +453,7 @@ public class EnemySpawner : MonoBehaviour
     //Function that hard resets the game for local player
     public void LocalPlayAgain()
     {
-        PlayerSetup.localPlayerSetup.ExitUIMenu();
-        localUI.DisableWinUI();
-        localUI.DisableDeathUI();
+        DisablePlayerUI();
         localUI.ResetWaitingPrompt();
         if (awayUI)
         {
@@ -478,6 +470,7 @@ public class EnemySpawner : MonoBehaviour
         PlayerSetup.localPlayerSetup.ExitUIMenu();
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
+        localUI.DisableLossUI();
     }
     
     //Resets the player to starting position

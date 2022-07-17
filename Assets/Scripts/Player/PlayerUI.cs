@@ -25,7 +25,10 @@ public class PlayerUI : MonoBehaviour
     
     [SerializeField] GameObject localUI;
     [SerializeField] GameObject deathUI;
+    [SerializeField] TextMeshProUGUI deathByText;
     [SerializeField] GameObject winUI;
+    [SerializeField] TextMeshProUGUI winUIDeathByText;
+    [SerializeField] GameObject lossUI;
 
     [SerializeField] Animator animator;
 
@@ -38,7 +41,10 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] int prohibitionForce;
     [SerializeField] float prohibitionShakeDuration = 0.15f;
     [SerializeField] float prohibitionShakeMagnitude = 0.4f;
+    [SerializeField] string prohibitionDeathByName = "their own curiosity";
 
+    [Header("GunUI")]
+    [SerializeField] WeaponUI[] weaponUIs;
     private void Awake()
     {
         crosshairSettings = CrosshairSettings.instance;
@@ -82,8 +88,9 @@ public class PlayerUI : MonoBehaviour
         quotaText.text = null;
     }
 
-    public void EnableDeathUI()
+    public void EnableDeathUI(string deathByName)
     {
+        deathByText.text = "You were killed by " + deathByName;
         deathUI.SetActive(true);
     }
 
@@ -92,14 +99,30 @@ public class PlayerUI : MonoBehaviour
         deathUI.SetActive(false);
     }
 
-    public void EnableWinUI()
+    public void EnableWinBySpeedUI()
     {
+        winUIDeathByText.text = "You won by reaching the final quota first";
+        winUI.SetActive(true);
+    }
+    public void EnableWinUI(string deathByName)
+    {
+        winUIDeathByText.text = "Your opponent was killed by " + deathByName;
         winUI.SetActive(true);
     }
 
     public void DisableWinUI()
     {
         winUI.SetActive(false);
+    }
+
+    public void EnableLossUI()
+    {
+        lossUI.SetActive(true);
+    }
+
+    public void DisableLossUI()
+    {
+        lossUI.SetActive(false);
     }
 
     public void UpdateWaitingPrompt()
@@ -181,7 +204,7 @@ public class PlayerUI : MonoBehaviour
 
         //Damage and push player up and off prohibited area
         AudioManager.instance.Play("Prohibition");
-        GetComponent<PlayerHealth>().TakeDamage(prohibitionDamage, prohibitionShakeDuration, prohibitionShakeMagnitude);
+        GetComponent<PlayerHealth>().TakeDamage(prohibitionDamage, prohibitionShakeDuration, prohibitionShakeMagnitude, prohibitionDeathByName);
         if (GetComponent<PlayerHealth>().dead)
         {
             yield break;
@@ -254,5 +277,24 @@ public class PlayerUI : MonoBehaviour
             crossHairLines.enabled = false;
             crossHairDot.enabled = false;
         }
+    }
+
+    public void SetActiveWeaponUI(int ID)
+    {
+        for(int i = 0; i < weaponUIs.Length; i++)
+        {
+            if(i != ID) { weaponUIs[i].DeactivateWeaponUI(); }
+            else { weaponUIs[i].ActivateWeaponUI(); }
+        }
+    }
+
+    public void EnableWeaponUI(int ID)
+    {
+        weaponUIs[ID].gameObject.SetActive(true);
+    }
+
+    public void DisableWeaponUI(int ID)
+    {
+        weaponUIs[ID].gameObject.SetActive(false);
     }
 }

@@ -9,6 +9,7 @@ public class JuggernautBullet : Bullet
     [SerializeField] string indicatorID;
     [SerializeField] float strength;
     public int numberOfHitSounds;
+    [SerializeField] public string deathByName = "Juggernaut's Bullet";
     
 
     public override void DealDamage(Collider other)
@@ -22,7 +23,7 @@ public class JuggernautBullet : Bullet
                 if (enemyAI) { IndicatorProManager.Activate(indicatorID, enemyAI.transform.position, strength); }
                 else { IndicatorProManager.Activate(indicatorID, shooterPosition, strength); }
                 AudioManager.instance.Play(indicatorID + Random.Range(0, numberOfHitSounds).ToString());
-                playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude);
+                playerHealth.TakeDamage(bulletDamage, bulletShakeDuration, bulletShakeMagnitude, deathByName);
             }
         }
         else

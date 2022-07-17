@@ -3107,3 +3107,4 @@ MonoBehaviour:
   meeleeShakeMagnitude: 0.5
   indicatorID: BluntForce
   strength: 0.25
+  deathByName: Walker's Slap

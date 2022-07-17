@@ -214,6 +214,7 @@ MonoBehaviour:
   indicatorID: SniperShot
   strength: 0.25
   numberOfHitSounds: 6
+  deathByName: Assassin's Bullet
 --- !u!82 &-7889988598343802190
 AudioSource:
   m_ObjectHideFlags: 0

@@ -90,8 +90,9 @@ public class PlayerUI : MonoBehaviour
 
     public void EnableDeathUI(string deathByName)
     {
-        deathByText.text = "You were killed by " + deathByName;
         deathUI.SetActive(true);
+        animator.Play("PlayerDie", animator.GetLayerIndex("EOG Layer"));
+        deathByText.text = "You were killed by " + deathByName;
     }
 
     public void DisableDeathUI()
@@ -101,14 +102,18 @@ public class PlayerUI : MonoBehaviour
 
     public void EnableWinBySpeedUI()
     {
-        winUIDeathByText.text = "You won by reaching the final quota first";
         winUI.SetActive(true);
+        animator.Play("PlayerWin", animator.GetLayerIndex("EOG Layer"));
+        winUIDeathByText.text = "You won by reaching the final quota first";
+        
     }
     public void EnableWinUI(string deathByName)
     {
-        winUIDeathByText.text = "Your opponent was killed by " + deathByName;
         winUI.SetActive(true);
+        animator.Play("PlayerWin", animator.GetLayerIndex("EOG Layer"));
+        winUIDeathByText.text = "Your opponent was killed by " + deathByName; 
     }
+
 
     public void DisableWinUI()
     {
@@ -118,6 +123,7 @@ public class PlayerUI : MonoBehaviour
     public void EnableLossUI()
     {
         lossUI.SetActive(true);
+        animator.Play("PlayerLose", animator.GetLayerIndex("EOG Layer"));
     }
 
     public void DisableLossUI()
@@ -244,9 +250,12 @@ public class PlayerUI : MonoBehaviour
     }
     public void StopAnimator()
     {
+        //Stop warning animation
         animator.Play("Empty", animator.GetLayerIndex("Warning Layer"));
         //Stop blind animation as well
         animator.Play("Empty", animator.GetLayerIndex("Blind Layer"));
+        //Stop death animation
+        animator.Play("Empty", animator.GetLayerIndex("EOG Layer"));
         StopWarning();
     }
 

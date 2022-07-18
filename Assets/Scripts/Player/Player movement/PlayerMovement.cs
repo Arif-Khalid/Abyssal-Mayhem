@@ -148,6 +148,7 @@ public class PlayerMovement : MonoBehaviour
         dir.Normalize();
         if (dir.y < 0) dir.y = -dir.y; //reflect down force on ground
         impact += dir.normalized * force / mass;
+        velocity.y = -2f; //Resets current downward velocity
     }
 
     private void CheckProhibition()
@@ -177,7 +178,8 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         move = Vector3.zero;
-        impact = Vector3.zero;    
+        impact = Vector3.zero;
+        AudioManager.instance.Stop("Footsteps");
     }
 
     public void ResetImpact()

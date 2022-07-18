@@ -37,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled)
+        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
         {
             StartRegen();
         }

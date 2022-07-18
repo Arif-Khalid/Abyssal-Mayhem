@@ -79,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
+        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
         {
             //awayPlayerReadyUp(); //used to test the round start without connecting to another player
             AllowSpawns();

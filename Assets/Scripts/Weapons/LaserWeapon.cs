@@ -205,4 +205,9 @@ public class LaserWeapon : Weapon
     {
         laserLine.enabled = false;
     }
+
+    public void EquipSound2()
+    {
+        AudioManager.instance.Play(weaponName + "Equip2");
+    }
 }

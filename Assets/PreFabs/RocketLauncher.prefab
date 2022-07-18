@@ -53,7 +53,7 @@ MonoBehaviour:
   bullet: {fileID: 5534813618486378921, guid: d181e84a514193f418a2c62d4198e15d, type: 3}
   maxAmmo: 10
   clipSize: 1
-  defaultMaxAmmo: 10
+  defaultMaxAmmo: 3
   playerUI: {fileID: 0}
   animator: {fileID: 3846407901215376343}
   muzzleAnimator: {fileID: 2956103890722335291}

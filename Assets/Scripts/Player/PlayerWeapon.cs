@@ -158,10 +158,6 @@ public class PlayerWeapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            Equip(PlayerWeapons.Rocket);
-        }
         if(Input.mouseScrollDelta.y > 0)
         {
             ActivateUpperWeapon(currentWeaponID + 1);
@@ -176,7 +172,7 @@ public class PlayerWeapon : MonoBehaviour
             {
                 weapon.Fire();
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.R) && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
             {
                 weapon.Reload();
             }

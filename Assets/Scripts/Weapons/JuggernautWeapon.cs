@@ -64,4 +64,9 @@ public class JuggernautWeapon : Weapon
     public void NotAimed()
     {
     }
+
+    public void EquipSound2()
+    {
+        AudioManager.instance.Play(weaponName + "Equip2");
+    }
 }

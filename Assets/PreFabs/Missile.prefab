@@ -54,7 +54,7 @@ MonoBehaviour:
   scalingFactor: 0.5
   upTime: 2
   snapDistance: 2
-  missileDamage: 5
+  missileDamage: 10
   missileShakeDuration: 0.15
   missileShakeMagnitude: 0.3
   lifeTime: 10
@@ -70,6 +70,7 @@ MonoBehaviour:
   explosionTag: Explosion
   explosionForce: 3
   explosionRange: 3
+  deathByName: Juggernaut Boss Missile
   indicatorID: FireBall
   strength: 0.25
   audioSource: {fileID: 6279953528078049831}

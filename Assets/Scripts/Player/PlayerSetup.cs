@@ -12,11 +12,13 @@ public class PlayerSetup : NetworkBehaviour
 
     //Objects and behaviours to disable
     [SerializeField] Behaviour[] componentsToDisable;
+    [SerializeField] Collider playerCollider;
     [SerializeField] GameObject[] gameObjectsToDisable;
     [SerializeField] GameObject awayUI;
     public AudioListener audioListener;
     Camera sceneCamera;
     public PlayerUI playerUI;
+    public ChatUI chatUI;
     public PlayerWeapon playerWeapon;
     private bool isInMenu = false;
     private bool isInEscapeMenu = false;
@@ -152,7 +154,8 @@ public class PlayerSetup : NetworkBehaviour
         for (int i = 0; i < gameObjectsToDisable.Length; i++)
         {
             gameObjectsToDisable[i].SetActive(false);
-        }       
+        }
+        playerCollider.enabled = false;
         this.gameObject.layer = 0;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CharacterController>().enabled = false;

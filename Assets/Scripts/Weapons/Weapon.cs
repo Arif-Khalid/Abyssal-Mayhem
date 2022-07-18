@@ -88,25 +88,31 @@ public class Weapon : MonoBehaviour
         animator.Play(weaponName +"Reload");
     }
 
-    //Called at the end of the reload animation
-    public void ReloadFinish()
+    //Called in the middle of reload animation to signal when ammo is reloaded like when clip enters the gun
+    public void RestoreAmmo() 
     {
-        if(maxAmmo >= clipSize) //if enough ammo to reload full clip
+        int ammoToReload = clipSize - currentAmmo;
+        if (maxAmmo >= ammoToReload) //if enough ammo to reload full clip
         {
-            maxAmmo -= clipSize;
+            maxAmmo -= ammoToReload;
             currentAmmo = clipSize;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-        }else if(maxAmmo > 0) //if enough ammo to reload partial clip
+        }
+        else if (maxAmmo > 0) //if enough ammo to reload partial clip
         {
             currentAmmo += maxAmmo;
             maxAmmo = 0;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
         }
-        else if(maxAmmo == -1) //if max ammo is set to infinity
+        else if (maxAmmo == -1) //if max ammo is set to infinity
         {
             currentAmmo = clipSize;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
         }
+    }
+    //Called at the end of the reload animation
+    public void ReloadFinish()
+    {
         reloading = false;
     }
     //Fire a bullet

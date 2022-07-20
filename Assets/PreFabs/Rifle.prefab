@@ -170,6 +170,8 @@ MonoBehaviour:
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
   maxAmmo: -1
   clipSize: 25
+  defaultMaxAmmo: -1
+  playerUI: {fileID: 0}
   animator: {fileID: 6601266765669384673}
   muzzleAnimator: {fileID: 8951438823144230218}
   dir: {x: 0, y: 0, z: 0}
@@ -180,9 +182,11 @@ MonoBehaviour:
   isLaser: 0
   isRocket: 0
   isFiring: 0
-  rocketObject: {fileID: 0}
   weaponName: Rifle
   isInUI: 0
+  ammoImage:
+    imageScale: 0.5
+    ammoSprite: {fileID: 21300000, guid: a339206174d98ce489f0de411007667d, type: 3}
   spawnTag: Bullet
 --- !u!114 &8050673778747248622
 MonoBehaviour:

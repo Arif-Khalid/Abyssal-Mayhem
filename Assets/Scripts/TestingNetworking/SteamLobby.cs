@@ -125,7 +125,6 @@ public class SteamLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
-        AudioManager.instance.StopAllSounds();
         if (NetworkServer.active && NetworkClient.isConnected)
         {
             manager.StopHost();

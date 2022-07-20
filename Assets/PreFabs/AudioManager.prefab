@@ -44,13 +44,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef016ffceb7df04c92a32a69217e1c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsForDrum: 2
   sounds:
   - clip: {fileID: 8300000, guid: 455ab390ce56a0d4c8497d83eb2842a6, type: 3}
     name: Background
     volume: 0.1
     pitch: 1
     loop: 1
-    description: Background music
+    description: Background music for infinite spawn
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bf9310fd84781e948aa35a577560caff, type: 3}
+    name: MenuBackground
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    description: Background music for main menu
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f150db5f509a4bf4bb5c8a2dfb52d0f8, type: 3}
+    name: Drum
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    description: Drum beat to signal end of menu background
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: effbca96846d6794a8f97cf64e9463c8, type: 3}
     name: UIBack
@@ -138,7 +153,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - clip: {fileID: 8300000, guid: 0174ef91f20e54e9283ea94e619f46f6, type: 3}
     name: ButtonPress
-    volume: 0.5
+    volume: 0.2
     pitch: 1
     loop: 0
     description: Pressing UI buttons in main menu

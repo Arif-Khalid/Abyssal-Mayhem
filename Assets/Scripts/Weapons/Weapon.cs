@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     public bool isFiring = false;
     public string weaponName;
     public bool isInUI = false;
+    [SerializeField] AmmoImage ammoImage;
 
     public string spawnTag;
     // Start is called before the first frame update
@@ -35,6 +36,7 @@ public class Weapon : MonoBehaviour
     private void OnEnable()
     {       
         playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        playerUI.UpdateAmmoSprite(ammoImage);
     }
 
     public void NewWeaponEquip()

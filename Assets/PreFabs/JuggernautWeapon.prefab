@@ -130,6 +130,9 @@ MonoBehaviour:
   isFiring: 0
   weaponName: JuggernautWeapon
   isInUI: 0
+  ammoImage:
+    imageScale: 0.5
+    ammoSprite: {fileID: 21300000, guid: a339206174d98ce489f0de411007667d, type: 3}
   spawnTag: Bullet
   bulletPoints:
   - {fileID: 3692003583339007050}

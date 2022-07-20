@@ -15,6 +15,8 @@ public class PlayerUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI waitingPrompt;
     [SerializeField] TextMeshProUGUI interactPrompt;
     [SerializeField] TextMeshProUGUI ammoText;
+    [SerializeField] Image ammoImage;
+    [SerializeField] RectTransform ammoImageTransform;
     [SerializeField] TextMeshProUGUI roundStartCount;
     private int roundStartCounter = 3;
     [SerializeField] TextMeshProUGUI warningText;
@@ -160,6 +162,12 @@ public class PlayerUI : MonoBehaviour
         {
             ammoText.text = currentAmmo.ToString() + "/" + maxAmmo.ToString();
         }
+    }
+
+    public void UpdateAmmoSprite(AmmoImage ammo)
+    {
+        ammoImage.sprite = ammo.ammoSprite;
+        ammoImageTransform.localScale = new Vector3(ammo.imageScale, ammo.imageScale, ammo.imageScale);
     }
 
     public void StartNewRoundCount()

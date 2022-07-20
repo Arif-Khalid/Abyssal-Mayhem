@@ -168,6 +168,9 @@ MonoBehaviour:
   isFiring: 0
   weaponName: Laser
   isInUI: 0
+  ammoImage:
+    imageScale: 0.4
+    ammoSprite: {fileID: 21300000, guid: aacd2d10f09ce7d499bfa5a848ee856a, type: 3}
   spawnTag: 
   laserOrigin: {fileID: 7027317254155538495}
   gunRange: 200

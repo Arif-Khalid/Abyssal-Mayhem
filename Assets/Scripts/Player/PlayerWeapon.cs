@@ -29,6 +29,7 @@ public class PlayerWeapon : MonoBehaviour
     [SerializeField] GameObject rocket;
     [SerializeField] GameObject juggernautWeapon;
     GameObject[] availableWeapons = new GameObject[5];
+    Sprite defaultAmmoSprite;
     public enum PlayerWeapons { Rifle, Shotgun, Laser, Rocket, JuggernautWeapon, None }
 
     // Start is called before the first frame update

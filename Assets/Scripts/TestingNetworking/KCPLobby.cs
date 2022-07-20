@@ -116,7 +116,6 @@ public class KCPLobby : MonoBehaviour
     }
     public void QuitToMenu()
     {
-        AudioManager.instance.StopAllSounds();
         ButtonAudio();
         if (NetworkServer.active && NetworkClient.isConnected)
         {

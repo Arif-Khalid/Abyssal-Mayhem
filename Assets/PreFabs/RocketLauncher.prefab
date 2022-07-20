@@ -67,6 +67,9 @@ MonoBehaviour:
   isFiring: 0
   weaponName: Rocket
   isInUI: 0
+  ammoImage:
+    imageScale: 0.6
+    ammoSprite: {fileID: 21300000, guid: 8c6bd1ec02415eb49bf4d9039d310281, type: 3}
   spawnTag: Rocket
   rocketBulletMesh: {fileID: 3082550296209489129}
 --- !u!95 &3846407901215376343

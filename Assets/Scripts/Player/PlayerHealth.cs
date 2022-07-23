@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             StartRegen();
         }
 
-        //UpdateHealthUI();
+        UpdateHealthUI();
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {

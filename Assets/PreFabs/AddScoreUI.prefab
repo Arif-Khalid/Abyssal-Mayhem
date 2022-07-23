@@ -221,7 +221,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &8820906357504841637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -253,6 +253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 8820906357504841639}
   scoreText: {fileID: 8820906357467891156}
+  defaultFontSize: 40
 --- !u!95 &8820906357504841633
 Animator:
   serializedVersion: 4

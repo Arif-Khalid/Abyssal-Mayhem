@@ -1729,7 +1729,7 @@ MonoBehaviour:
   isBoss: 1
   enemyAI: {fileID: 1889445096}
   outline: {fileID: 7106811645185743688}
-  fadeScale: 1
+  fadeScale: 2
   hurtFadeScale: 0.5
   enemyHealth: {fileID: 1889445094}
   audioSource: {fileID: 1581441888322317915}

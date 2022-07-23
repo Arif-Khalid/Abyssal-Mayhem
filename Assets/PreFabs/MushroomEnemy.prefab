@@ -1574,7 +1574,7 @@ MonoBehaviour:
   mushroomMesh: {fileID: 1473202670563212919}
   hornMesh: {fileID: 1473202670576694511}
   hurtFadeScale: 0.5
-  fadeScale: 1
+  fadeScale: 2
   enemyHealth: {fileID: 1727867469796606460}
   audioSource: {fileID: 2974808393663762522}
   spawnAudio: {fileID: 8300000, guid: b71edef5d6eb84fe0b6837f05a411bd4, type: 3}

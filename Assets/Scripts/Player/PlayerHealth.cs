@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             StartRegen();
         }
 
-        UpdateHealthUI();
+        //UpdateHealthUI();
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
@@ -113,6 +113,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth >= maxHealth) { currentHealth = maxHealth; }
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        backHealthBar.fillAmount = (currentHealth * 1.0f) / (maxHealth * 1.0f);
     }
 
     public void Death(string deathByName)

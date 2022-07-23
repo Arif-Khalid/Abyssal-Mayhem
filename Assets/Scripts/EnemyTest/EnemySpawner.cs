@@ -25,7 +25,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float timeBetweenSpawn;
     [SerializeField] float timeBetweenRounds;
     private bool alreadySpawned;
-    public int maxRounds = 15;
+    private int maxRounds = 15;
     private float healthMultiplier = 1f;
     
     //Variables for local player
@@ -79,8 +79,9 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady)
+        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
         {
+            //awayPlayerReadyUp(); //used to test the round start without connecting to another player
             AllowSpawns();
             localUI.UpdateWaitingPrompt();
         }
@@ -232,7 +233,24 @@ public class EnemySpawner : MonoBehaviour
         }
         
     }
-        private void ResetSpawner()
+
+    public void TeleportAssassin(Transform assassinSpawnPoint, GameObject assassin)
+    {
+        if(assassinSpawnPoints.Count == 0) { return; }
+        int spawnID = Random.Range(0, assassinSpawnPoints.Count);
+        UnityEngine.AI.NavMeshAgent agent = assassin.GetComponent<UnityEngine.AI.NavMeshAgent>();
+        agent.enabled = false;
+        Transform newSpawn = assassinSpawnPoints[spawnID];
+        assassinSpawnPoints.Remove(newSpawn);
+        AddtoAssassinSpawnPoints(assassinSpawnPoint);
+        EnemyHealth enemyHealth = assassin.GetComponent<EnemyHealth>();
+        enemyHealth.startingTransform = newSpawn;
+        enemyHealth.GetComponent<AssassinAI>().startingTransform = newSpawn;
+        assassin.transform.position = newSpawn.position;
+        assassin.transform.rotation = newSpawn.rotation;
+        enemyHealth.ragdollControl.OnObjectSpawn();    
+    }
+    private void ResetSpawner()
     {
         alreadySpawned = false;
     }
@@ -411,8 +429,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player dies
     public void LocalDeath()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableDeathUI();
         if (!isSinglePlayer) { localPlayerReady = false; } //Only unready local player if local player isnt in single player mode
         isSinglePlayer = false; //Disable single player mode to stop spawning
         awayPlayerReady = false;
@@ -421,8 +437,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when a player wins
     public void LocalWin()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableWinUI();
         localPlayerReady = false;
         awayPlayerReady = false;
         KillAll();
@@ -431,8 +445,6 @@ public class EnemySpawner : MonoBehaviour
     //Called when other player survives all rounds
     public void LocalLoss()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        localUI.EnableDeathUI(); //To be replaced with different UI for loss and not death
         localPlayerReady = false;
         awayPlayerReady = false;
         KillAll();
@@ -441,9 +453,7 @@ public class EnemySpawner : MonoBehaviour
     //Function that hard resets the game for local player
     public void LocalPlayAgain()
     {
-        PlayerSetup.localPlayerSetup.ExitUIMenu();
-        localUI.DisableWinUI();
-        localUI.DisableDeathUI();
+        DisablePlayerUI();
         localUI.ResetWaitingPrompt();
         if (awayUI)
         {
@@ -460,6 +470,7 @@ public class EnemySpawner : MonoBehaviour
         PlayerSetup.localPlayerSetup.ExitUIMenu();
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
+        localUI.DisableLossUI();
     }
     
     //Resets the player to starting position
@@ -523,5 +534,11 @@ public class EnemySpawner : MonoBehaviour
             healthMultiplier = 1.5f;
         }
         //Normal ID is how the game is by default
+    }
+
+    //Function called when non-host connects to set difficulty in player Health of non host
+    public void SetHostDamageMultiplier()
+    {
+        PlayerSetup.localPlayerSetup.GetComponent<PlayerHealth>().SetDamageMultiplier(awayPlayer.difficultyID);
     }
 }

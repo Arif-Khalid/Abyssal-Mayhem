@@ -53,7 +53,8 @@ MonoBehaviour:
   bullet: {fileID: 5534813618486378921, guid: d181e84a514193f418a2c62d4198e15d, type: 3}
   maxAmmo: 10
   clipSize: 1
-  defaultMaxAmmo: 10
+  defaultMaxAmmo: 3
+  playerUI: {fileID: 0}
   animator: {fileID: 3846407901215376343}
   muzzleAnimator: {fileID: 2956103890722335291}
   dir: {x: 0, y: 0, z: 0}
@@ -64,10 +65,13 @@ MonoBehaviour:
   isLaser: 0
   isRocket: 1
   isFiring: 0
-  rocketObject: {fileID: 3082550296209489129}
   weaponName: Rocket
   isInUI: 0
+  ammoImage:
+    imageScale: 0.6
+    ammoSprite: {fileID: 21300000, guid: 8c6bd1ec02415eb49bf4d9039d310281, type: 3}
   spawnTag: Rocket
+  rocketBulletMesh: {fileID: 3082550296209489129}
 --- !u!95 &3846407901215376343
 Animator:
   serializedVersion: 4

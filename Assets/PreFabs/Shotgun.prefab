@@ -815,6 +815,7 @@ MonoBehaviour:
   maxAmmo: 32
   clipSize: 8
   defaultMaxAmmo: 32
+  playerUI: {fileID: 0}
   animator: {fileID: 6864049596179632965}
   muzzleAnimator: {fileID: 3362885800809391267}
   dir: {x: 0, y: 0, z: 0}
@@ -825,9 +826,11 @@ MonoBehaviour:
   isLaser: 0
   isRocket: 0
   isFiring: 0
-  rocketObject: {fileID: 0}
   weaponName: Shotgun
   isInUI: 0
+  ammoImage:
+    imageScale: 0.4
+    ammoSprite: {fileID: 21300000, guid: ceb1533c9502bc64b857ee9844dd92f0, type: 3}
   spawnTag: Bullet
   spread: 0.025
   numberOfBullets: 5

@@ -1,0 +1,13 @@
+
+Get Full Package Character SFX:
+
+-->  https://assetstore.unity.com/packages/audio/sound-fx/character-sound-fx-185912
+
+__GIFT__
+- Fall damage
+- Falling into the water
+- Fisting
+- Heal up
+- Jumping
+- Running
+- Walking

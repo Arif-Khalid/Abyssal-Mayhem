@@ -22,6 +22,10 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
     Material newMat;
     Color originalColor;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioSource gruntSource;
+    [SerializeField] AudioClip spawnAudio;
+    [SerializeField] AudioClip[] takeDamageClips;
     private void Awake()
     {
         juggernautMeshes = GetComponentsInChildren<MeshRenderer>();
@@ -36,6 +40,8 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
 
     public void ExplodeOnDeath()
     {
+        gruntSource.Stop();
+        ObjectPooler.Instance.SpawnFromPool("Explosion", transform.position, Quaternion.identity);
         if (juggernautMissile)
         {
             juggernautMissile.StopAllCoroutines();
@@ -72,8 +78,10 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
         {
             rigidBody.isKinematic = true;
         }
-        newMat.SetFloat("_Opacity", 1f);
+        newMat.SetFloat("_Opacity", 0f);
         newMat.color = originalColor;
+        if (juggernautMissile) { juggernautMissile.missilesShot = true; }
+        StartCoroutine(FadeIn());
     }
     private void OnDisable()
     {
@@ -87,6 +95,30 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
     {
         StopAllCoroutines();
         StartCoroutine(Hurt());
+    }
+
+    private void MonsterSound()
+    {
+        gruntSource.Play();
+    }
+
+    IEnumerator FadeIn()
+    {
+        audioSource.clip = spawnAudio;
+        audioSource.Play();
+        enemyAI.enabled = false;
+        enemyHealth.isDead = true;
+        float i = 0f;
+        while (i < 1f)
+        {
+            i += Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        enemyAI.enabled = true;
+        MonsterSound();
+        enemyHealth.isDead = false;
+        if (juggernautMissile) { juggernautMissile.missilesShot = false; }
     }
 
     IEnumerator FadeOut()
@@ -103,6 +135,9 @@ public class JuggernautExplode : MonoBehaviour, IPooledObject
 
     IEnumerator Hurt()
     {
+        audioSource.Stop();
+        audioSource.clip = takeDamageClips[Random.Range(0, takeDamageClips.Length)];
+        audioSource.Play();
         newMat.color = Color.red;
         while (newMat.color != originalColor)
         {

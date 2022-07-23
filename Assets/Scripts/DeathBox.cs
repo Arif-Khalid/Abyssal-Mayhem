@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeathBox : MonoBehaviour
 {
+    [SerializeField] string deathByName = "falling to their death";
     private void OnTriggerEnter(Collider other)
     {
         EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
@@ -15,7 +16,7 @@ public class DeathBox : MonoBehaviour
         PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
         if (playerHealth)
         {
-            playerHealth.Death();
+            playerHealth.Death(deathByName);
             return;
         }
     }

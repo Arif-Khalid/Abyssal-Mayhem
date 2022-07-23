@@ -23,13 +23,17 @@ public class Missile : MonoBehaviour,IPooledObject
     public string explosionTag;
     public float explosionForce;
     public float explosionRange;
+    [SerializeField] string deathByName = "Juggernaut Boss Missile";
 
     //Variables for damage indicator
     [SerializeField] string indicatorID;
     [SerializeField] float strength;
+
+    [SerializeField] AudioSource audioSource;
     public void OnObjectSpawn()
     {
         StartCoroutine(MissileTravel());
+        audioSource.Play();
     }
     private void Update()
     {
@@ -93,18 +97,15 @@ public class Missile : MonoBehaviour,IPooledObject
 
         //Check for player
         Collider[] players = Physics.OverlapSphere(transform.position, explosionRange, whatIsPlayer);
-        if (players != null)
+        if (players.Length > 0)
         {
-            for (int i = 0; i < players.Length; i++)
-            {
-                PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
-                PlayerHealth playerHealth = players[i].GetComponent<PlayerHealth>();
-                Vector3 dir = players[i].transform.position - transform.position;
-                playerMovement.AddImpact(dir, explosionForce * 10);
-                if (!playerHealth.dead) { IndicatorProManager.Activate(indicatorID, transform.position, strength); }
-                playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude);
-                //CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(missileShakeDuration, missileShakeMagnitude));
-            }
+            PlayerMovement playerMovement = players[0].GetComponent<PlayerMovement>();
+            PlayerHealth playerHealth = players[0].GetComponent<PlayerHealth>();
+            Vector3 dir = players[0].transform.position - transform.position;
+            playerMovement.AddImpact(dir, explosionForce * 10);
+            if (!playerHealth.dead) { IndicatorProManager.Activate(indicatorID, transform.position, strength); }
+            playerHealth.TakeDamage(missileDamage, missileShakeDuration, missileShakeMagnitude, deathByName);
+            //CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(missileShakeDuration, missileShakeMagnitude));
         }
 
         Invoke(nameof(Delay), 0.05f);

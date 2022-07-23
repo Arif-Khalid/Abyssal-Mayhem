@@ -116,7 +116,7 @@ MonoBehaviour:
   bullet: {fileID: 6014419872463244055, guid: f45e0c1d2fd46e74f9803404c69f3cc6, type: 3}
   maxAmmo: 0
   clipSize: 300
-  defaultMaxAmmo: -1
+  defaultMaxAmmo: 0
   playerUI: {fileID: 0}
   animator: {fileID: 1495178171140964340}
   muzzleAnimator: {fileID: 0}
@@ -130,6 +130,9 @@ MonoBehaviour:
   isFiring: 0
   weaponName: JuggernautWeapon
   isInUI: 0
+  ammoImage:
+    imageScale: 0.5
+    ammoSprite: {fileID: 21300000, guid: a339206174d98ce489f0de411007667d, type: 3}
   spawnTag: Bullet
   bulletPoints:
   - {fileID: 3692003583339007050}

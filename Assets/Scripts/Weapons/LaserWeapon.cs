@@ -85,17 +85,33 @@ public class LaserWeapon : Weapon
                 if (hitInfos != null)
                 {
                     List<EnemyHealth> enemyHealths = new List<EnemyHealth>();
+                    List<EnemyHealth> critEnemyHealths = new List<EnemyHealth>();
                     foreach (RaycastHit hitInfo in hitInfos)
                     {
                         EnemyHealth enemyHealth = hitInfo.transform.root.GetComponent<EnemyHealth>();
-                        if (!enemyHealths.Contains(enemyHealth))
+                        if (hitInfo.collider.gameObject.layer == LayerMask.NameToLayer("Crit"))
                         {
-                            enemyHealths.Add(enemyHealth);
+                            if (!critEnemyHealths.Contains(enemyHealth))
+                            {
+                                critEnemyHealths.Add(enemyHealth);
+                            }
                         }
+                        else
+                        {
+                            if (!enemyHealths.Contains(enemyHealth))
+                            {
+                                enemyHealths.Add(enemyHealth);
+                            }
+                        }                                               
                     }
                     foreach (EnemyHealth enemyHealth in enemyHealths)
                     {
-                        DealDamage(enemyHealth);
+                        DealDamage(enemyHealth, laserDamage);
+                    }
+                    foreach (EnemyHealth enemyHealth in critEnemyHealths)
+                    {
+                        DealDamage(enemyHealth, laserDamage * 2);
+                        enemyHealth.Crit();
                     }
                 }
             }
@@ -110,11 +126,11 @@ public class LaserWeapon : Weapon
         }
     }
     
-    public virtual void DealDamage(EnemyHealth enemyHealth)
+    public virtual void DealDamage(EnemyHealth enemyHealth, int damage)
     {
         if (enemyHealth)
         {
-            enemyHealth.TakeDamage(laserDamage);
+            enemyHealth.TakeDamage(damage);
         }
         //Destroy(other.gameObject);
     }
@@ -162,11 +178,6 @@ public class LaserWeapon : Weapon
         base.NotCloseToWall();
     }
 
-    protected override void OutOfAmmo()
-    {
-        playerWeapon.Equip(playerWeapon.defaultWeapon);
-    }
-
 
     public void Aimed()
     {
@@ -193,5 +204,10 @@ public class LaserWeapon : Weapon
     override protected void ChildOnDisable()
     {
         laserLine.enabled = false;
+    }
+
+    public void EquipSound2()
+    {
+        AudioManager.instance.Play(weaponName + "Equip2");
     }
 }

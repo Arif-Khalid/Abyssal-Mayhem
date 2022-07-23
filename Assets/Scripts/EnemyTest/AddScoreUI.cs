@@ -7,6 +7,7 @@ public class AddScoreUI : MonoBehaviour,IPooledObject
 {
     [SerializeField] Canvas canvas;
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] float defaultFontSize = 40f;
     private void LateUpdate()
     {
         canvas.transform.LookAt(transform.position + Camera.main.transform.forward);
@@ -26,6 +27,7 @@ public class AddScoreUI : MonoBehaviour,IPooledObject
     public void OnObjectSpawn()
     {
         scoreText.text = string.Empty;
+        scoreText.fontSize = defaultFontSize;
     }
 }
 

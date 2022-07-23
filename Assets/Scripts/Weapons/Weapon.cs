@@ -24,6 +24,7 @@ public class Weapon : MonoBehaviour
     public bool isFiring = false;
     public string weaponName;
     public bool isInUI = false;
+    [SerializeField] AmmoImage ammoImage;
 
     public string spawnTag;
     // Start is called before the first frame update
@@ -33,10 +34,15 @@ public class Weapon : MonoBehaviour
     }
 
     private void OnEnable()
+    {       
+        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
+        playerUI.UpdateAmmoSprite(ammoImage);
+    }
+
+    public void NewWeaponEquip()
     {
         maxAmmo = defaultMaxAmmo;
         currentAmmo = clipSize;
-        playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
     }
     //Start function to be overwriten by children should anything be needed to be added to start
     protected virtual void ChildStart()
@@ -65,12 +71,13 @@ public class Weapon : MonoBehaviour
     //Start reloading weapon
     public virtual void Reload()
     {
-        if(isFiring || reloading)
+        if(isFiring || reloading || currentAmmo == clipSize)
         {
             return;
         }
-        if(maxAmmo == 0 || currentAmmo == clipSize) //cant reload if no ammo left or nothing to reload
+        if(maxAmmo == 0) //cant reload if no ammo left or nothing to reload
         {
+            if(currentAmmo == 0) { OutOfAmmo(); }
             return;
         }
         if(maxAmmo < -1) //should never reach this point but just in case
@@ -83,25 +90,31 @@ public class Weapon : MonoBehaviour
         animator.Play(weaponName +"Reload");
     }
 
-    //Called at the end of the reload animation
-    public void ReloadFinish()
+    //Called in the middle of reload animation to signal when ammo is reloaded like when clip enters the gun
+    public void RestoreAmmo() 
     {
-        if(maxAmmo >= clipSize) //if enough ammo to reload full clip
+        int ammoToReload = clipSize - currentAmmo;
+        if (maxAmmo >= ammoToReload) //if enough ammo to reload full clip
         {
-            maxAmmo -= clipSize;
+            maxAmmo -= ammoToReload;
             currentAmmo = clipSize;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
-        }else if(maxAmmo > 0) //if enough ammo to reload partial clip
+        }
+        else if (maxAmmo > 0) //if enough ammo to reload partial clip
         {
             currentAmmo += maxAmmo;
             maxAmmo = 0;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
         }
-        else if(maxAmmo == -1) //if max ammo is set to infinity
+        else if (maxAmmo == -1) //if max ammo is set to infinity
         {
             currentAmmo = clipSize;
             playerUI.UpdateAmmoText(currentAmmo, maxAmmo);
         }
+    }
+    //Called at the end of the reload animation
+    public void ReloadFinish()
+    {
         reloading = false;
     }
     //Fire a bullet
@@ -139,8 +152,7 @@ public class Weapon : MonoBehaviour
     }
     protected virtual void OutOfAmmo()
     {
-        //To be overriden in inherited class
-        //Function to call when no more ammo in clip or reserves and trying to shoot
+        playerWeapon.DeactivateCurrentWeapon();
     }
     protected virtual void CloseToWall()
     {       
@@ -206,5 +218,26 @@ public class Weapon : MonoBehaviour
     protected virtual void ChildOnDisable()
     {
         //TO be overriden
+    }
+
+    //Plays specific weapon sound called in animation
+    public virtual void FiringSound()
+    {
+        AudioManager.instance.Play(weaponName + "Fire");
+    }
+
+    public virtual void RemoveClipSound()
+    {
+        AudioManager.instance.Play(weaponName + "RemoveClip");
+    }
+
+    public virtual void InsertClipSound()
+    {
+        AudioManager.instance.Play(weaponName + "InsertClip");
+    }
+
+    public virtual void EquipSound()
+    {
+        AudioManager.instance.Play(weaponName + "Equip");
     }
 }

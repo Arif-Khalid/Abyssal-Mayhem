@@ -21,6 +21,11 @@ public class PlayerHealth : MonoBehaviour
     public bool dead = false;
     public bool invincible = false;
     public int lives = 0;
+    private float damageMultiplier = 1f;
+    [Header("Difficulty Multipliers")]
+    [SerializeField] float easyMultiplier;
+    [SerializeField] float normalMultiplier;
+    [SerializeField] float hardMultiplier;
 
     [SerializeField] PlayerUI playerUI;
     // Start is called before the first frame update
@@ -32,7 +37,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled)
+        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
         {
             StartRegen();
         }
@@ -51,12 +56,13 @@ public class PlayerHealth : MonoBehaviour
         //Stop health regen and health regen countdown
         animator.SetBool("isRegen", false);
         StopAllCoroutines();
+        AudioManager.instance.Stop("Regen");
         countText.text = string.Empty;
         keyText.enabled = true;
         medkitImage.color = Color.white;
         dead = false;
     }
-    public void TakeDamage(int damage, float duration, float magnitude)
+    public void TakeDamage(int damage, float duration, float magnitude, string deathByName)
     {
         if (invincible)
         {
@@ -66,6 +72,7 @@ public class PlayerHealth : MonoBehaviour
         {
             return;
         }
+        damage = (int)(damage * damageMultiplier);
         CameraShake.cameraShake.StartCoroutine(CameraShake.cameraShake.Shake(duration, magnitude));
         playerUI.HurtUI(); //Getting hurt UI
         currentHealth -= damage;
@@ -73,7 +80,7 @@ public class PlayerHealth : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
         if(currentHealth <= 0)
         {
-            Death();           
+            Death(deathByName);           
         }
     }
 
@@ -85,13 +92,13 @@ public class PlayerHealth : MonoBehaviour
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
 
-    public void Death()
+    public void Death(string deathByName)
     {
         dead = true;
         lives -= 1;
         if(lives < 0)
         {
-            GetComponent<PlayerSetup>().LocalDeath();
+            GetComponent<PlayerSetup>().LocalDeath(deathByName);
             dead = true;           
         }
         else
@@ -99,6 +106,7 @@ public class PlayerHealth : MonoBehaviour
             PlayerSetup.localPlayerSetup.enemySpawner.Respawn();
             playerUI.UpdateExtraLives(lives);
             playerUI.StartWarning("Extra Life Used");
+            AudioManager.instance.Play("ExtraLife");
         }
         
     }
@@ -129,6 +137,7 @@ public class PlayerHealth : MonoBehaviour
 
     IEnumerator Regen()
     {
+        AudioManager.instance.Play("Regen");
         animator.SetBool("isRegen", true);
         int totalTicks = healthRestored;
         while(totalTicks > 0)
@@ -138,6 +147,7 @@ public class PlayerHealth : MonoBehaviour
             yield return new WaitForSeconds(timePerTick);
         }
         animator.SetBool("isRegen", false);
+        AudioManager.instance.Stop("Regen");
     }
     IEnumerator StartRegenCountdown()
     {
@@ -153,5 +163,21 @@ public class PlayerHealth : MonoBehaviour
         countText.text = string.Empty;
         keyText.enabled = true;
         medkitImage.color = Color.white;
+    }
+
+    public void SetDamageMultiplier(int difficultyID)
+    {
+        if(difficultyID == 0)
+        {
+            damageMultiplier = easyMultiplier;
+        }
+        else if(difficultyID == 1)
+        {
+            damageMultiplier = normalMultiplier;
+        }
+        else
+        {
+            damageMultiplier = hardMultiplier;
+        }
     }
 }

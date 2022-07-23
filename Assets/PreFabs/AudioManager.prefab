@@ -1,0 +1,384 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8494750880735620226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8494750880735620252}
+  - component: {fileID: 8494750880735620253}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8494750880735620252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494750880735620226}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -25.159407, y: 36.393578, z: -91.7203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8494750880735620253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8494750880735620226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef016ffceb7df04c92a32a69217e1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsForDrum: 2
+  sounds:
+  - clip: {fileID: 8300000, guid: 455ab390ce56a0d4c8497d83eb2842a6, type: 3}
+    name: Background
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    description: Background music for infinite spawn
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bf9310fd84781e948aa35a577560caff, type: 3}
+    name: MenuBackground
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    description: Background music for main menu
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f150db5f509a4bf4bb5c8a2dfb52d0f8, type: 3}
+    name: Drum
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    description: Drum beat to signal end of menu background
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: effbca96846d6794a8f97cf64e9463c8, type: 3}
+    name: UIBack
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Sound for UI when going back to previous menu
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 84057f1e80d924eb6a5d471d6fb37083, type: 3}
+    name: ButtonPress2
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Different sound for pressing UI button
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3474a83f42df6dd4eae4033c9acaec7a, type: 3}
+    name: Crit
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    description: Sound when starting round countdown
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b852e70f9af6ad64582860e69bca8c61, type: 3}
+    name: Countdown
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Sound when starting round countdown
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1de0155d2a87a084f9456d7cf887f262, type: 3}
+    name: Regen
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    description: Sound when using regen
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: c5cd61d175e6d0b4d86153693ad3f388, type: 3}
+    name: ExtraLife
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Sound when used extra life
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bdf01013dfd8ce04ab574645367c8256, type: 3}
+    name: PowerupPickup
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Sound when picking up powerup
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e0a96bc667d63384c8ab8f20d30488b4, type: 3}
+    name: WeaponPickup
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Sound when picking up weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 6a97574b999754ab88af555cfbc0d8f4, type: 3}
+    name: Prohibition
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Sound when hit by prohibition
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 663cc152601ae634dadffaa2ee633bad, type: 3}
+    name: Invincibility
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    description: Sound during invincibility
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ec8385887bb6b4314bafca94c477199e, type: 3}
+    name: Paranoia
+    volume: 0.5
+    pitch: 1
+    loop: 1
+    description: Sound during paranoia
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: fc9d3a0d9db377b49960d46fa7ea5941, type: 3}
+    name: Warning
+    volume: 1
+    pitch: 0.5
+    loop: 1
+    description: Warning sound for powerups
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0174ef91f20e54e9283ea94e619f46f6, type: 3}
+    name: ButtonPress
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    description: Pressing UI buttons in main menu
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d29bfbcccac3e9a4f93f19f647ac24b1, type: 3}
+    name: Footsteps
+    volume: 0.2
+    pitch: 1
+    loop: 1
+    description: Player walking sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 8fc22ec7040e742448ba999d24ed5ad2, type: 3}
+    name: JumpUp
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Player jump sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: b8f2b526ba206f24089c4be60046653a, type: 3}
+    name: JumpDown
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    description: Player jump sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 0d5dab2d9e8a04cb8a1b06c583193e55, type: 3}
+    name: BluntForce
+    volume: 0.5
+    pitch: 0.8
+    loop: 0
+    description: Walker player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 1b4fe7571bed58744a72f346d6a75a79, type: 3}
+    name: Shot0
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Juggernaut bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 127341ead1fa77d41a74f53e39f9a03e, type: 3}
+    name: Shot1
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Juggernaut bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 4cac786c046883f42888772988c62013, type: 3}
+    name: SniperShot0
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: bbed8bf12901499419b0cbfa204b9578, type: 3}
+    name: SniperShot1
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 20092bc34e2c81b479056aee8f5e9f27, type: 3}
+    name: SniperShot2
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 78e2275ff9a22f94b87305b3ef51ff21, type: 3}
+    name: SniperShot3
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 60ac739e6ddf8304a878d8e4c24682ae, type: 3}
+    name: SniperShot4
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eaa81ba81539b2041a9bae575c5e0795, type: 3}
+    name: SniperShot5
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    description: Assassin bullets player hitsound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 34504377372fa4748af42c9953ae11e2, type: 3}
+    name: RifleEquip
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    description: Equipping Rifle
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: d3a0a57d6fee83246a78bb82f49764ba, type: 3}
+    name: RifleFire
+    volume: 0.2
+    pitch: 0.8
+    loop: 0
+    description: Assault rifle firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f72de6bbb96d9df4bb16e248b84dc6a8, type: 3}
+    name: RifleRemoveClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Assault rifle removing clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: e7d3ca7028008f7468316e66cb75627c, type: 3}
+    name: RifleInsertClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Assault rifle inserting clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 3db344b9418ef394eb0af13bcd7c42ba, type: 3}
+    name: ShotgunEquip
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Equipping Shotgun
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 175ea3b9e84d69a4e9bfcab3b8c97654, type: 3}
+    name: ShotgunFire
+    volume: 0.5
+    pitch: 1.2
+    loop: 0
+    description: Shotgun firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 270e84d37dc0c4999977a731e70cba50, type: 3}
+    name: ShotgunRemoveClip
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    description: Removing clip of shotgun
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 552e1ee9826bb42fe83505a9defb673d, type: 3}
+    name: ShotgunInsertClip
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    description: Shotgun inserting clip
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: ba9a6b81b10521c478c9898a320effea, type: 3}
+    name: LaserEquip
+    volume: 1
+    pitch: 0.98
+    loop: 0
+    description: Equip sound of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 74fca37ab0afa264b96f3aee5f4a4805, type: 3}
+    name: LaserEquip2
+    volume: 1
+    pitch: 0.98
+    loop: 0
+    description: Equip sound of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 16c25250151e04a37b489a3f056c8314, type: 3}
+    name: LaserFire
+    volume: 0.2
+    pitch: 0.8
+    loop: 0
+    description: Laser Firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f46d4420909b56f44822491d427c3498, type: 3}
+    name: LaserInsertClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Inserting clip of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 2eedb62936b4e0c4aa750c7a241f70c9, type: 3}
+    name: LaserRemoveClip
+    volume: 1
+    pitch: 1
+    loop: 0
+    description: Removing clip of laser weapon
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f24ae325df90b4042a2f200f5058486b, type: 3}
+    name: RocketEquip
+    volume: 0.3
+    pitch: 1.2
+    loop: 0
+    description: Equipping Rocket Launcher
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: f7ff0a8160d0b334081c49de43ae847a, type: 3}
+    name: RocketFire
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Rocket launcher firing
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 7df1c6483bcf7bc4d977804ea2b773a6, type: 3}
+    name: RocketInsertClip
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Inserting Rocket into Rocket Launcher
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 959db31b5bff25f458f97f65124e34cf, type: 3}
+    name: RocketRemoveClip
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Starting Rocket reload animation
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 74b135cea86034141a79f5087b488122, type: 3}
+    name: JuggernautWeaponEquip
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Equipping Juggernaut Weapon scaling down sound
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eb8e6bed257dc4942aded1b525a8acb1, type: 3}
+    name: JuggernautWeaponEquip2
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Equipping Juggernaut Weapon Metal Clang
+    source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: 627ceb3310183844cb74ae44f535b642, type: 3}
+    name: JuggernautWeaponFire
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Firing JuggernautWeapon
+    source: {fileID: 0}

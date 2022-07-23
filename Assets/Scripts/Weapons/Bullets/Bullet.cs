@@ -16,13 +16,15 @@ public class Bullet : MonoBehaviour, IPooledObject
     //Variables for destroying stray bullets
     private float timeAlive = 0f; //Variable to track time the bullet stays alive
     [SerializeField] float lifeTime = 2f; //Time of existence before bullet expires
-    [SerializeField] private Collider bulletCollider;
+    public Collider bulletCollider;
     private Collider otherCollider;
     public bool hasBulletCollided = false;
     protected bool damageDealt = false;
     public int counter = 0; //remove this
     public EnemyAI enemyAI; //enemy that spawns bullets
     public Vector3 shooterPosition; //Stores position for damage indicator should enemy die before damage indicator triggered
+    public AudioSource audioSource;
+    public AudioClip[] clips;
 
     void Start()
     {
@@ -108,6 +110,7 @@ public class Bullet : MonoBehaviour, IPooledObject
     //Called when collider triggered
     public virtual void HitSomething(Collider other)
     {
+        rigidBody.velocity = Vector3.zero;
         bulletCollider.enabled = false;
         hasBulletCollided = true;
         otherCollider = other;
@@ -120,8 +123,29 @@ public class Bullet : MonoBehaviour, IPooledObject
         EnemyHealth enemyHealth = otherCollider.transform.root.GetComponent<EnemyHealth>(); //Check for health Script
         if (enemyHealth && !enemyHealth.isDead)
         {
-            enemyHealth.TakeDamage(bulletDamage);
+            if(otherCollider.gameObject.layer == LayerMask.NameToLayer("Crit"))
+            {
+                enemyHealth.Crit();
+                enemyHealth.TakeDamage(bulletDamage * 2);
+            }
+            else
+            {
+                enemyHealth.TakeDamage(bulletDamage);
+            }           
         }
+        else
+        {
+            HitWallSound();
+        }        
+        Invoke(nameof(DisableGameObject), 1f);
+    }
+
+    public void HitWallSound()
+    {
+        if (audioSource) { audioSource.clip = clips[Random.Range(0, clips.Length)]; audioSource.Play(); }
+    }
+    public void DisableGameObject()
+    {
         gameObject.SetActive(false);
     }
 

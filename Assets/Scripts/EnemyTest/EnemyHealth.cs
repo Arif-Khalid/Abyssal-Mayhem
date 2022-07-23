@@ -23,9 +23,10 @@ public class EnemyHealth : MonoBehaviour
     public Transform startingTransform; //assigned when spawned to know which spawnpoint already has assassin
 
     [SerializeField] bool isAssassin = false;
+    [SerializeField] bool isAssassinBoss = false;
     [SerializeField] JuggernautExplode juggernautExplode;
     [SerializeField] WalkerDeath walkerDeath;
-    [SerializeField] RagdollControl ragdollControl;
+    [SerializeField] public RagdollControl ragdollControl;
     public bool isDead = false;
     private delegate void OnTakeDamage();
     OnTakeDamage onTakeDamage;
@@ -77,9 +78,20 @@ public class EnemyHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             DeathByPlayer();
+        }else if (isAssassinBoss)
+        {
+            Debug.Log("Teleporting");
+            enemySpawner.TeleportAssassin(startingTransform, gameObject);
+            //Play teleport sound and teleport
         }
+        
     }
 
+    public void Crit()
+    {
+        AudioManager.instance.Play("Crit");
+        ObjectPooler.Instance.SpawnFromPool("CritUI", transform.position + offset, Quaternion.LookRotation(Camera.main.transform.forward));
+    }
     public void DeathByPlayer() //called when an enemy dies by a player
     {
         playerSetup.killedAnEnemy(transform.position, monsterID);
@@ -129,7 +141,7 @@ public class EnemyHealth : MonoBehaviour
     private void OnDisable()
     {
         canvas.enabled = false;
-        if (isAssassin && enemySpawner) { enemySpawner.AddtoAssassinSpawnPoints(startingTransform); }
+        if (isAssassin && enemySpawner && currentHealth > 0) { enemySpawner.AddtoAssassinSpawnPoints(startingTransform); }
     }
     // public void FireLaser(Ray incomingRay)
     // {

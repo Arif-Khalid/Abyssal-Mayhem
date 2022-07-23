@@ -11,9 +11,10 @@ public class ChatUI : NetworkBehaviour
 
 {
     [SerializeField] TMP_Text chatText = null;
-    [SerializeField] TMP_InputField inputField = null;
+    [SerializeField] public TMP_InputField inputField = null;
     [SerializeField] Image inputBackground = null;
-
+    [SerializeField] Scrollbar scrollBar;
+    [SerializeField] GameObject scrollView;
     [SerializeField] float chatLifeTime = 5f;
     float currentLifeTime = 0;
     bool typing = false;
@@ -77,12 +78,15 @@ public class ChatUI : NetworkBehaviour
 
     private void EnableChatText()
     {
-        chatText.enabled = true;
+        //chatText.enabled = true;
+        scrollView.SetActive(true);
+        scrollBar.value = 0;
     }
 
     private void DisableChatText()
     {
-        chatText.enabled = false;
+        //chatText.enabled = false;
+        scrollView.SetActive(false);
     }
 
     public override void OnStartAuthority()

@@ -47,7 +47,7 @@ public class RocketBullet : Bullet
 
     public override void EndOfExistence()
     {
-        if (!hasBulletCollided) { Explode(); }
+        if (!hasBulletCollided) {hasBulletCollided = true; damageDealt = true; Explode();  }
     }
     private void Explode()
     {

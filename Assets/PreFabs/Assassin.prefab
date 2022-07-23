@@ -1015,6 +1015,7 @@ MonoBehaviour:
   distanceLimit: 1.5
   idleAfterSeeingPlayer: 2
   idleTimer: 0
+  laserSight: {fileID: 0}
   laserSightOrigin: {fileID: 6359180859048254530}
   playerAndObstacles:
     serializedVersion: 2
@@ -1069,10 +1070,15 @@ MonoBehaviour:
   monsterID: 2
   startingTransform: {fileID: 0}
   isAssassin: 0
+  isAssassinBoss: 0
   juggernautExplode: {fileID: 0}
   walkerDeath: {fileID: 0}
   ragdollControl: {fileID: 0}
   isDead: 0
+  score: 0
+  addScoreUI: {fileID: 0}
+  addScoreUITag: AddScoreUI
+  offset: {x: 0, y: 0, z: 0}
 --- !u!114 &3542629617376762223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,14 +1105,18 @@ MonoBehaviour:
   isNavMeshAgentEnabled: 1
   sniperBullet: {fileID: 6014419872463244055, guid: e540bcb7f2a9f714d827ef70ebf9603f,
     type: 3}
+  sniperBulletTag: 
   aimTransform: {fileID: 1813530063337704103}
   headTransform: {fileID: 1813530063119710138}
   playerAndObstacles:
     serializedVersion: 2
     m_Bits: 81
   startingTransform: {fileID: 0}
+  laserSight: {fileID: 0}
   laserSightOrigin: {fileID: 6359180859048254530}
   isPatrolling: 0
+  isBoss: 0
+  shootSource: {fileID: 0}
 --- !u!195 &664516491471061315
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1256,7 +1266,7 @@ Rigidbody:
   m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!1 &3542629617369377456
 GameObject:
   m_ObjectHideFlags: 0

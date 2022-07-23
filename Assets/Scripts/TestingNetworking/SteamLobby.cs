@@ -44,6 +44,10 @@ public class SteamLobby : MonoBehaviour
     [SerializeField] TextMeshProUGUI spawnFeedbackText;
     [SerializeField] Animator animator;
     [SerializeField] Slider mouseSensitivitySlider;
+    [SerializeField] Slider optionsVolumeSlider;
+    [SerializeField] Slider optionsMusicSlider;
+    [SerializeField] Slider escapeVolumeSlider;
+    [SerializeField] Slider escapeMusicSlider;
     public void SetEasyInfSpawn()
     {
         PlayerPrefs.SetInt("difficulty", easyID);
@@ -68,6 +72,14 @@ public class SteamLobby : MonoBehaviour
         if (PlayerPrefs.HasKey("Sensitivity"))
         {
             mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+        }
+        if (PlayerPrefs.HasKey("Volume"))
+        {
+            optionsVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+        }
+        if (PlayerPrefs.HasKey("Music"))
+        {
+            optionsMusicSlider.value = PlayerPrefs.GetFloat("Music");
         }
         //manager = GetComponent<CustomNetworkManager>();
 
@@ -115,7 +127,6 @@ public class SteamLobby : MonoBehaviour
     {
         if (NetworkServer.active && NetworkClient.isConnected)
         {
-            Debug.Log("quitting");
             manager.StopHost();
         }
         // stop client if client-only
@@ -253,4 +264,52 @@ public class SteamLobby : MonoBehaviour
             PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }
+
+    //Function that plays button being pressed sound
+    public static void ButtonAudio()
+    {
+        AudioManager.instance.Play("ButtonPress");
+    }
+
+    //Function that plays a different button being pressed sound
+    public static void ButtonAudio2()
+    {
+        AudioManager.instance.Play("ButtonPress2");
+    }
+    //Function that plays UI reverting to previous menu sound
+    public static void BackAudio()
+    {
+        AudioManager.instance.Play("UIBack");
+    }
+
+    //Function called when changing music slider in escape menu
+    public void ChangeEscapeMusicSlider()
+    {
+        PlayerPrefs.SetFloat("Music", escapeMusicSlider.value);
+        optionsMusicSlider.value = escapeMusicSlider.value;
+        //Change the music volume
+        AudioManager.instance.ChangeBackgroundVolume(escapeMusicSlider.value);
+    }
+
+    //Function called when changing volume slider in escape menu
+    public void ChangeEscapeVolumeSlider()
+    {
+        PlayerPrefs.SetFloat("Volume", escapeVolumeSlider.value);
+        optionsVolumeSlider.value = escapeVolumeSlider.value;
+        //Change the master volume
+        AudioListener.volume = escapeVolumeSlider.value;
+    }
+
+    //Function called when changing music slider in options menu
+    public void ChangeOptionsMusicSlider()
+    {
+        escapeMusicSlider.value = optionsMusicSlider.value;
+    }
+
+    //Function called when changing master volume slider in options menu
+    public void ChangeOptionsVolumeSlider()
+    {
+        escapeVolumeSlider.value = optionsVolumeSlider.value;
+    }
+
 }

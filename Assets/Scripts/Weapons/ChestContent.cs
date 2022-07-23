@@ -9,6 +9,9 @@ public class ChestContent : MonoBehaviour
     public Animator animator;
     public EnemySpawner enemySpawner;
     public Interactable chestInteract;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip openClip;
+    [SerializeField] AudioClip closeClip;
 
     [Header("Weapons")]
     [SerializeField] WeaponPickup[] weaponPickups;
@@ -24,6 +27,7 @@ public class ChestContent : MonoBehaviour
     //Function called by enemySpawner to reset contents of chest
     public void ResetContent(bool spawnWeapon)
     {
+        PlayCloseClip();
         if (spawnWeapon)
         {
             int spawnID = Random.Range(0, weaponPickups.Length);
@@ -65,5 +69,17 @@ public class ChestContent : MonoBehaviour
         }
         animator.SetBool("openChest", true);
         chestInteract.interactMessage = string.Empty;
+    }
+
+    private void PlayCloseClip()
+    {
+        audioSource.clip = closeClip;
+        audioSource.Play();
+    }
+
+    public void PlayOpenClip()
+    {
+        audioSource.clip = openClip;
+        audioSource.Play();
     }
 }

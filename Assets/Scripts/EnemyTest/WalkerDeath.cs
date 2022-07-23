@@ -18,6 +18,11 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
     [SerializeField] float fadeScale; //Higher fade scale means a slower fade to dissappearing on death
 
     [SerializeField] EnemyHealth enemyHealth;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip spawnAudio;
+    [SerializeField] float timeBetweenSound;
+    [SerializeField] AudioClip[] gruntClips;
+    [SerializeField] AudioClip[] takeDamageClips;
 
     private void Awake()
     {
@@ -50,8 +55,9 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
             behaviour.enabled = true;
         }
         hitBox.SetActive(false);
-        newMat.SetFloat("_Opacity", 1);
+        newMat.SetFloat("_Opacity", 0);
         newMat.color = originalColor;
+        StartCoroutine(FadeIn());
     }
 
     public void OnTakeDamage()
@@ -65,7 +71,35 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
         StopAllCoroutines();
         outline.enabled = false;
     }
-
+    
+    IEnumerator MonsterSound()
+    {
+        while (true)
+        {
+            //Assign clip to a random clip and play
+            audioSource.Stop();
+            audioSource.clip = gruntClips[UnityEngine.Random.Range(0, gruntClips.Length)];
+            audioSource.Play();
+            yield return new WaitForSeconds(timeBetweenSound);
+        }       
+    }
+    IEnumerator FadeIn()
+    {
+        audioSource.clip = spawnAudio;
+        audioSource.Play();
+        enemyAI.enabled = false;
+        enemyHealth.isDead = true;
+        float i = 0f;
+        while (i < 1f)
+        {
+            i += Time.deltaTime / fadeScale;
+            newMat.SetFloat("_Opacity", i);
+            yield return null;
+        }
+        enemyAI.enabled = true;
+        enemyHealth.isDead = false;
+        StartCoroutine(MonsterSound());
+    }
     IEnumerator FadeOut()
     {
         float i = 1f;
@@ -80,12 +114,16 @@ public class WalkerDeath : MonoBehaviour,IPooledObject
 
     IEnumerator Hurt()
     {
+        audioSource.Stop();
+        audioSource.clip = takeDamageClips[UnityEngine.Random.Range(0, takeDamageClips.Length)];
+        audioSource.Play();
         newMat.color = Color.red;
         while (newMat.color != originalColor)
         {
             newMat.color = Color.Lerp(newMat.color, originalColor, Time.deltaTime/hurtFadeScale);
             yield return null;
         }
+        StartCoroutine(MonsterSound());
     }
 
     private void OnDestroy()

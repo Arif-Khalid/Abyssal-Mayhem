@@ -27,6 +27,12 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] float normalMultiplier;
     [SerializeField] float hardMultiplier;
 
+    //variables for sliding healthbar
+    public float chipSpeed = 1f;
+    private float lerpTimer;
+    public Image backHealthBar;
+
+
     [SerializeField] PlayerUI playerUI;
     // Start is called before the first frame update
     void Start()
@@ -41,6 +47,8 @@ public class PlayerHealth : MonoBehaviour
         {
             StartRegen();
         }
+
+        //UpdateHealthUI();
     }
     public void SetMaxHealth(int value) //Set max health to a new value and restore current health
     {
@@ -61,6 +69,20 @@ public class PlayerHealth : MonoBehaviour
         keyText.enabled = true;
         medkitImage.color = Color.white;
         dead = false;
+        backHealthBar.fillAmount = 1f;
+    }
+    public void UpdateHealthUI()
+    {
+        float fillB = backHealthBar.fillAmount;
+        float hFraction = (currentHealth * 1.0f) / (maxHealth * 1.0f);
+        if (fillB > hFraction)
+        {
+            backHealthBar.color = Color.red;
+            lerpTimer += Time.deltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            percentComplete = percentComplete * percentComplete;
+            backHealthBar.fillAmount = Mathf.Lerp(fillB, hFraction, percentComplete);
+        }
     }
     public void TakeDamage(int damage, float duration, float magnitude, string deathByName)
     {
@@ -78,7 +100,8 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= damage;
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
-        if(currentHealth <= 0)
+        lerpTimer = 0f;
+        if (currentHealth <= 0)
         {
             Death(deathByName);           
         }
@@ -90,6 +113,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth >= maxHealth) { currentHealth = maxHealth; }
         slider.value = currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
+        backHealthBar.fillAmount = (currentHealth * 1.0f) / (maxHealth * 1.0f);
     }
 
     public void Death(string deathByName)

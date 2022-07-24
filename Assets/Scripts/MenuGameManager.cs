@@ -10,12 +10,16 @@ public class MenuGameManager : MonoBehaviour
     [SerializeField] Canvas optionsMenu;
     [SerializeField] Canvas difficultyMenu;
     [SerializeField] Canvas guide;
-    [SerializeField] Scrollbar guideScrollBar;
+    [SerializeField] GameObject[] slides;
+    [SerializeField] Button nextButton;
+    [SerializeField] Button prevButton;
+    int currentSlide = 0;
 
 
     private void OnEnable()
     {
-        guideScrollBar.value = 1;
+        currentSlide = 0;
+        SetCurrentSlide();
     }
     private void Update()
     {
@@ -64,16 +68,6 @@ public class MenuGameManager : MonoBehaviour
         mainMenu.enabled = false;
         guide.enabled = true;
     }
-
-    public void DisableGuide()
-    {
-        SteamLobby.ButtonAudio();
-        //Disable guide and enabled main menu
-        mainMenu.enabled = true;
-        guide.enabled = false;
-        guideScrollBar.value = 1;
-    }
-
     public void QuitGame()
     {
         SteamLobby.ButtonAudio();
@@ -85,8 +79,39 @@ public class MenuGameManager : MonoBehaviour
         SteamLobby.BackAudio();
         mainMenu.enabled = true;
         guide.enabled = false;
-        guideScrollBar.value = 1;
+        currentSlide = 0;
+        SetCurrentSlide();
         difficultyMenu.enabled = false;
         optionsMenu.enabled = false;
+    }
+
+    public void SetCurrentSlide()
+    {
+        foreach(GameObject slide in slides)
+        {
+            slide.SetActive(false);
+        }
+        slides[currentSlide].SetActive(true);
+        if(currentSlide == 0)
+        {
+            prevButton.interactable = false;
+            nextButton.interactable = true;
+        }else if(currentSlide == slides.Length - 1)
+        {
+            nextButton.interactable = false;
+            prevButton.interactable = true;
+        }
+        else
+        {
+            nextButton.interactable = true;
+            prevButton.interactable = true;
+        }
+    }
+
+    public void MoveSlide(int moveNumber)
+    {
+        SteamLobby.ButtonAudio();
+        currentSlide += moveNumber;
+        SetCurrentSlide();
     }
 }

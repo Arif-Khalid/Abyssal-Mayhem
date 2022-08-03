@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] PlayerUI playerUI;
     [SerializeField] float footStepsHeight;
     [SerializeField] LayerMask whatIsFloor;
+    
+    [Header("Dash")]
+    [SerializeField] float dashForce;
+    [SerializeField] int dashCooldown;
+    [SerializeField] TMPro.TextMeshProUGUI dashKeyText;
+    [SerializeField] TMPro.TextMeshProUGUI dashCountText;
+    [SerializeField] Image dashBackgroundImage;
+    [SerializeField] Color disabledColor;
+    [SerializeField] Color enabledColor;
 
     bool prohibitionStarted = false;
     bool playingFootsteps = false;
@@ -31,7 +41,8 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         HorizontalMovement();
-        VerticalMovement();
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashKeyText.enabled && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled) { Dash(transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")); }
+        VerticalMovement();    
         if (impact.magnitude > 0.2) move += impact; //apply the impact force
         controller.Move(move * Time.deltaTime);
         weaponSlotAnimator.SetFloat("WalkSpeed", controller.velocity.magnitude / speed ); //Set speed of walking animation
@@ -180,11 +191,39 @@ public class PlayerMovement : MonoBehaviour
         move = Vector3.zero;
         impact = Vector3.zero;
         AudioManager.instance.Stop("Footsteps");
+        dashBackgroundImage.color = enabledColor;
+        dashCountText.text = string.Empty;
+        dashKeyText.enabled = true;
+        StopAllCoroutines();
     }
 
     public void ResetImpact()
     {
         move = Vector3.zero;
         impact = Vector3.zero;
+    }
+
+    private void Dash(Vector3 currentMovementDir)
+    {
+        if(currentMovementDir == Vector3.zero) { currentMovementDir = transform.forward; }
+        AddImpact(currentMovementDir, dashForce);
+        StartCoroutine(DashCountdown());
+        AudioManager.instance.Play("Dash");
+    }
+
+    IEnumerator DashCountdown()
+    {
+        int count = dashCooldown;
+        dashBackgroundImage.color = disabledColor;
+        dashKeyText.enabled = false;
+        while(count > 0)
+        {
+            dashCountText.text = count.ToString();
+            --count;
+            yield return new WaitForSeconds(1);
+        }
+        dashCountText.text = string.Empty;
+        dashBackgroundImage.color = enabledColor;
+        dashKeyText.enabled = true;
     }
 }

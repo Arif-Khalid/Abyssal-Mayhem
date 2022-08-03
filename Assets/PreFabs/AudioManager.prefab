@@ -102,6 +102,13 @@ MonoBehaviour:
     loop: 1
     description: Sound when using regen
     source: {fileID: 0}
+  - clip: {fileID: 8300000, guid: eb26fc8b7c955da4e812c8a960840355, type: 3}
+    name: Dash
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    description: Sound when dashing
+    source: {fileID: 0}
   - clip: {fileID: 8300000, guid: c5cd61d175e6d0b4d86153693ad3f388, type: 3}
     name: ExtraLife
     volume: 0.3

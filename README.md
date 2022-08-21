@@ -74,8 +74,8 @@ This is a 2-player game, thus you would need a friend and both players would nee
 *More detailed instructions can be found in the readme located in the link for the latest build*
 
 ## Contact
-Arif-[arifkhalid99@gmail.com](arifkhalid99@gmail.com)\
-Phone
+Arif - [arifkhalid99@gmail.com](arifkhalid99@gmail.com)\
+Phone - [aung_phone_naing@s2013.sst.edu.sg](aung_phone_naing@s2013.sst.edu.sg)
 
 ## Acknowledgements
 **Unity Asset Store Assets**

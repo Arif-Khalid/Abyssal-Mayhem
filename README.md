@@ -1,7 +1,8 @@
 # Abyssal-Mayhem
 ## About The Project
 Abyssal Mayhem is a game made by 2 university students for Orbital 2022\
-It is a 2-player versus game with a twist where you do not directly interact with your opponent
+It is a 2-player versus game with a twist where you do not directly interact with your opponent\
+Checkout the game on [itch.io!](https://winnysonny.itch.io/abyssal-mayhem)
 
 ![Screenshot1](https://user-images.githubusercontent.com/88131400/185785627-ed2024eb-05cd-487b-b000-4c099b24def3.png)\
 ![Screenshot2](https://user-images.githubusercontent.com/88131400/185785631-17a43b5f-55fc-4425-8d5e-c25eb648af37.png)\

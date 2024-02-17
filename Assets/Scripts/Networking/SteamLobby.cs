@@ -32,9 +32,9 @@ public class SteamLobby : MonoBehaviour
     [Scene] public string SnipeToWinScene;
     [Scene] public string MainMenuScene;
 
-    [SerializeField] int easyID;
-    [SerializeField] int mediumID;
-    [SerializeField] int hardID;
+    public int easyID;
+    public int mediumID;
+    public int hardID;
 
     //Variables for spawning special monsters
     [SerializeField] TextMeshProUGUI spawnJuggernautText;
@@ -140,7 +140,7 @@ public class SteamLobby : MonoBehaviour
             manager.StopServer();
         }
     }
-        public void HostInfiniteSpawnLobby()
+    public void HostInfiniteSpawnLobby()
     {
         manager.onlineScene = InfiniteSpawnScene;
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, manager.maxConnections);
@@ -311,5 +311,4 @@ public class SteamLobby : MonoBehaviour
     {
         escapeVolumeSlider.value = optionsVolumeSlider.value;
     }
-
 }

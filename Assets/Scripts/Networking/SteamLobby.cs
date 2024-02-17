@@ -50,36 +50,36 @@ public class SteamLobby : MonoBehaviour
     [SerializeField] Slider escapeMusicSlider;
     public void SetEasyInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", easyID);
+        PlayerPrefs.SetInt(Constants.DIFFICULTY_PREF_KEY, easyID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetMediumInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", mediumID);
+        PlayerPrefs.SetInt(Constants.DIFFICULTY_PREF_KEY, mediumID);
         HostInfiniteSpawnLobby();
     }
 
     public void SetHardInfSpawn()
     {
-        PlayerPrefs.SetInt("difficulty", hardID);
+        PlayerPrefs.SetInt(Constants.DIFFICULTY_PREF_KEY, hardID);
         HostInfiniteSpawnLobby();
     }
     private void Start()
     {
         if (!SteamManager.Initialized) { return; }
 
-        if (PlayerPrefs.HasKey("Sensitivity"))
+        if (PlayerPrefs.HasKey(Constants.SENSITIVITY_PREF_KEY))
         {
-            mouseSensitivitySlider.value = PlayerPrefs.GetFloat("Sensitivity");
+            mouseSensitivitySlider.value = PlayerPrefs.GetFloat(Constants.SENSITIVITY_PREF_KEY);
         }
-        if (PlayerPrefs.HasKey("Volume"))
+        if (PlayerPrefs.HasKey(Constants.VOLUME_PREF_KEY))
         {
-            optionsVolumeSlider.value = PlayerPrefs.GetFloat("Volume");
+            optionsVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
         }
-        if (PlayerPrefs.HasKey("Music"))
+        if (PlayerPrefs.HasKey(Constants.MUSIC_PREF_KEY))
         {
-            optionsMusicSlider.value = PlayerPrefs.GetFloat("Music");
+            optionsMusicSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
         }
         //manager = GetComponent<CustomNetworkManager>();
 
@@ -89,9 +89,7 @@ public class SteamLobby : MonoBehaviour
     }
     private void Update()
     {
-        //REPLACE MAIN MENU STEAM WITH MAIN MENU NAME IF CHANGED MAIN MENU SCENE NAME
-        //USING MAIN MENU SCENE VARIABLE DOES NOT WORK
-        if (SceneManager.GetActiveScene().name != "MainMenuSteam" && Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != Constants.MAIN_MENU_SCENE_NAME)
         {
             if (isEscapeMenuActive)
             {
@@ -194,8 +192,8 @@ public class SteamLobby : MonoBehaviour
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
             spawnFeedbackText.color = spawnJuggernautText.color;
-            spawnFeedbackText.text = "juggernaut spawned";
-            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+            spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_FEEDBACK;
+            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
         }
         else
         {
@@ -209,8 +207,8 @@ public class SteamLobby : MonoBehaviour
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
             spawnFeedbackText.color = spawnJuggernautBossText.color;
-            spawnFeedbackText.text = "juggernaut boss spawned";
-            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+            spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_BOSS_FEEDBACK;
+            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
         }
         else
         {
@@ -224,8 +222,8 @@ public class SteamLobby : MonoBehaviour
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
             spawnFeedbackText.color = spawnAssassinText.color;
-            spawnFeedbackText.text = "assassin spawned";
-            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+            spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_FEEDBACK;
+            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
         }
         else
         {
@@ -239,8 +237,8 @@ public class SteamLobby : MonoBehaviour
         {
             PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
             spawnFeedbackText.color = spawnAssassinBossText.color;
-            spawnFeedbackText.text = "assassin boss spawned";
-            animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+            spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_BOSS_FEEDBACK;
+            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
         }
         else
         {
@@ -251,8 +249,8 @@ public class SteamLobby : MonoBehaviour
     private void SpawnDisabledUI()
     {
         spawnFeedbackText.color = Color.white;
-        spawnFeedbackText.text = "spawning disabled";
-        animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
+        spawnFeedbackText.text = Constants.SPAWN_DISABLED_FEEDBACK;
+        animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
     }
 
     //Function called in escape menu mouse sensitivity slider
@@ -260,7 +258,7 @@ public class SteamLobby : MonoBehaviour
     {
         if (PlayerSetup.localPlayerSetup)
         {
-            PlayerPrefs.SetFloat("Sensitivity", mouseSensitivitySlider.value);
+            PlayerPrefs.SetFloat(Constants.SENSITIVITY_PREF_KEY, mouseSensitivitySlider.value);
             PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }
@@ -285,7 +283,7 @@ public class SteamLobby : MonoBehaviour
     //Function called when changing music slider in escape menu
     public void ChangeEscapeMusicSlider()
     {
-        PlayerPrefs.SetFloat("Music", escapeMusicSlider.value);
+        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, escapeMusicSlider.value);
         optionsMusicSlider.value = escapeMusicSlider.value;
         //Change the music volume
         AudioManager.instance.ChangeBackgroundVolume(escapeMusicSlider.value);
@@ -294,7 +292,7 @@ public class SteamLobby : MonoBehaviour
     //Function called when changing volume slider in escape menu
     public void ChangeEscapeVolumeSlider()
     {
-        PlayerPrefs.SetFloat("Volume", escapeVolumeSlider.value);
+        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, escapeVolumeSlider.value);
         optionsVolumeSlider.value = escapeVolumeSlider.value;
         //Change the master volume
         AudioListener.volume = escapeVolumeSlider.value;

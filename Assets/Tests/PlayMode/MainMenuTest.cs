@@ -11,17 +11,21 @@ using System.Linq;
 
 public class MainMenuTest
 {
+    const string MAIN_MENU_OBJECT_NAME = "MainMenu";
+    const string OPTIONS_MENU_OBJECT_NAME = "OptionsMenu";
+    const string DIFFICULTY_SELECT_OBJECT_NAME = "DifficultySelect";
+    const string GUIDE_DISPLAY_OBJECT_NAME = "GuideDisplay";
 
 
     [UnityTest]
     public IEnumerator MainMenuScene_InitialState_HasAllCanvases() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        Canvas optionsMenuCanvas = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
-        Canvas difficultySelectCanvas = GameObject.Find("DifficultySelect").GetComponent<Canvas>();
-        Canvas guideDisplayCanvas = GameObject.Find("GuideDisplay").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas optionsMenuCanvas = GameObject.Find(OPTIONS_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas difficultySelectCanvas = GameObject.Find(DIFFICULTY_SELECT_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas guideDisplayCanvas = GameObject.Find(GUIDE_DISPLAY_OBJECT_NAME).GetComponent<Canvas>();
 
         Assert.True(mainMenuCanvas);
         Assert.True(optionsMenuCanvas);
@@ -37,10 +41,10 @@ public class MainMenuTest
 
     [UnityTest]
     public IEnumerator MainMenu_InitialState_HasTitle() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
         Transform titleTransform = mainMenuCanvas.transform.Find("Title");
         Assert.AreEqual("Abyssal Mayhem", titleTransform.GetComponentInChildren<TextMeshProUGUI>().text);
         yield return null;
@@ -48,10 +52,10 @@ public class MainMenuTest
 
     [UnityTest]
     public IEnumerator MainMenu_InitialState_HasAllButtons() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
         Button[] mainMenuButtons = mainMenuCanvas.GetComponentsInChildren<Button>();
         Assert.AreEqual(5, mainMenuButtons.Length);
 
@@ -65,13 +69,13 @@ public class MainMenuTest
 
     [UnityTest]
     public IEnumerator MainMenu_EnableAndDisableOptions_ShouldToggleOptionsMenu() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        Canvas optionsMenuCanvas = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
-        Canvas difficultySelectCanvas = GameObject.Find("DifficultySelect").GetComponent<Canvas>();
-        Canvas guideDisplayCanvas = GameObject.Find("GuideDisplay").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas optionsMenuCanvas = GameObject.Find(OPTIONS_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas difficultySelectCanvas = GameObject.Find(DIFFICULTY_SELECT_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas guideDisplayCanvas = GameObject.Find(GUIDE_DISPLAY_OBJECT_NAME).GetComponent<Canvas>();
         MenuGameManager menuGameManager = Object.FindObjectOfType<MenuGameManager>();
 
         menuGameManager.EnableOptions();
@@ -94,13 +98,13 @@ public class MainMenuTest
     [UnityTest]
     public IEnumerator MainMenu_EnableAndDisableDifficultySelect_ShouldToggleDifficultySelect() 
     {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        Canvas optionsMenuCanvas = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
-        Canvas difficultySelectCanvas = GameObject.Find("DifficultySelect").GetComponent<Canvas>();
-        Canvas guideDisplayCanvas = GameObject.Find("GuideDisplay").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas optionsMenuCanvas = GameObject.Find(OPTIONS_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas difficultySelectCanvas = GameObject.Find(DIFFICULTY_SELECT_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas guideDisplayCanvas = GameObject.Find(GUIDE_DISPLAY_OBJECT_NAME).GetComponent<Canvas>();
         MenuGameManager menuGameManager = Object.FindObjectOfType<MenuGameManager>();
 
         menuGameManager.EnableDifficultySelect();
@@ -123,13 +127,13 @@ public class MainMenuTest
     [UnityTest]
     public IEnumerator MainMenu_EnableGuide_ShouldEnableGuideCanvas() 
     {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        Canvas optionsMenuCanvas = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
-        Canvas difficultySelectCanvas = GameObject.Find("DifficultySelect").GetComponent<Canvas>();
-        Canvas guideDisplayCanvas = GameObject.Find("GuideDisplay").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas optionsMenuCanvas = GameObject.Find(OPTIONS_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas difficultySelectCanvas = GameObject.Find(DIFFICULTY_SELECT_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas guideDisplayCanvas = GameObject.Find(GUIDE_DISPLAY_OBJECT_NAME).GetComponent<Canvas>();
         MenuGameManager menuGameManager = Object.FindObjectOfType<MenuGameManager>();
 
         menuGameManager.EnableGuide();
@@ -144,13 +148,13 @@ public class MainMenuTest
     [UnityTest]
     public IEnumerator MainMenu_BackToMainMenuCalled_ShouldResetToOnlyMainMenuEnabled() 
     {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
-        Canvas mainMenuCanvas = GameObject.Find("MainMenu").GetComponent<Canvas>();
-        Canvas optionsMenuCanvas = GameObject.Find("OptionsMenu").GetComponent<Canvas>();
-        Canvas difficultySelectCanvas = GameObject.Find("DifficultySelect").GetComponent<Canvas>();
-        Canvas guideDisplayCanvas = GameObject.Find("GuideDisplay").GetComponent<Canvas>();
+        Canvas mainMenuCanvas = GameObject.Find(MAIN_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas optionsMenuCanvas = GameObject.Find(OPTIONS_MENU_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas difficultySelectCanvas = GameObject.Find(DIFFICULTY_SELECT_OBJECT_NAME).GetComponent<Canvas>();
+        Canvas guideDisplayCanvas = GameObject.Find(GUIDE_DISPLAY_OBJECT_NAME).GetComponent<Canvas>();
         MenuGameManager menuGameManager = Object.FindObjectOfType<MenuGameManager>();
 
         optionsMenuCanvas.enabled = true;
@@ -184,7 +188,7 @@ public class MainMenuTest
     [UnityTest]
     public IEnumerator DifficultySelect_SelectEasyDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn()
     {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
         SteamLobby steamLobby = Object.FindObjectOfType<SteamLobby>();
@@ -197,7 +201,7 @@ public class MainMenuTest
 
     [UnityTest]
     public IEnumerator DifficultySelect_SelectMediumDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
         SteamLobby steamLobby = Object.FindObjectOfType<SteamLobby>();
@@ -210,7 +214,7 @@ public class MainMenuTest
 
     [UnityTest]
     public IEnumerator DifficultySelect_SelectHardDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn() {
-        SceneManager.LoadScene("MainMenuSteam");
+        SceneManager.LoadScene(Constants.MAIN_MENU_SCENE_NAME);
         yield return null;
 
         SteamLobby steamLobby = Object.FindObjectOfType<SteamLobby>();

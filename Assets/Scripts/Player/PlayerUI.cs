@@ -34,7 +34,6 @@ public class PlayerUI : MonoBehaviour
 
     [SerializeField] Animator animator;
 
-    CrosshairSettings crosshairSettings;
     [Header("Prohibition")]
     private int count = 6;
     [SerializeField] GameObject prohibitionText;
@@ -47,10 +46,6 @@ public class PlayerUI : MonoBehaviour
 
     [Header("GunUI")]
     [SerializeField] WeaponUI[] weaponUIs;
-    private void Awake()
-    {
-        crosshairSettings = CrosshairSettings.instance;
-    }
 
     /*Updates local and away score UI on clients*/
     public void UpdateLocalScore(int newLocalScore)
@@ -281,13 +276,14 @@ public class PlayerUI : MonoBehaviour
 
     public void UpdateCrosshair()
     {
-        if (crosshairSettings.crosshairEnabled)
+        if (CrosshairSettings.instance.crosshairEnabled)
         {
-            crossHairLines.enabled = crosshairSettings.outerLinesEnabled;
-            crossHairDot.enabled = crosshairSettings.dotEnabled;
-            crossHairLines.color = crosshairSettings.color;
-            crossHairDot.color = crosshairSettings.color;
-            crosshairTransform.localScale = new Vector3(crosshairSettings.crosshairSize, crosshairSettings.crosshairSize, crosshairSettings.crosshairSize);
+            crossHairLines.enabled = CrosshairSettings.instance.outerLinesEnabled;
+            crossHairDot.enabled = CrosshairSettings.instance.dotEnabled;
+            crossHairLines.color = CrosshairSettings.instance.color;
+            crossHairDot.color = CrosshairSettings.instance.color;
+            crosshairTransform.localScale = new Vector3(CrosshairSettings.instance.crosshairSize,
+                CrosshairSettings.instance.crosshairSize, CrosshairSettings.instance.crosshairSize);
         }
         else
         {

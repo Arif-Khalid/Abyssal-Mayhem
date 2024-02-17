@@ -40,7 +40,7 @@ public class CrosshairSettings : MonoBehaviour
     [HideInInspector]
     public float crosshairSize = 0.35f;
     private void Awake()
-    {       
+    {
         if (instance != null) { Destroy(this.gameObject); return; }
         instance = this;
         colors.Add(greenColor);
@@ -106,7 +106,7 @@ public class CrosshairSettings : MonoBehaviour
         //Set the crosshair color
         if (PlayerSetup.localPlayerSetup)
         {
-            SteamLobby.ButtonAudio2();
+            AudioManager.instance.Play("ButtonPress2");
             PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
         }
     }
@@ -119,7 +119,7 @@ public class CrosshairSettings : MonoBehaviour
             crosshairEnabled = false;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("CrosshairEnable", 0);
@@ -131,7 +131,7 @@ public class CrosshairSettings : MonoBehaviour
             crosshairEnabled = true;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("CrosshairEnable", 1);
@@ -147,7 +147,7 @@ public class CrosshairSettings : MonoBehaviour
             dotEnabled = false;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("DotEnable", 0);
@@ -159,7 +159,7 @@ public class CrosshairSettings : MonoBehaviour
             dotEnabled = true;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("DotEnable", 1);
@@ -175,7 +175,7 @@ public class CrosshairSettings : MonoBehaviour
             outerLinesEnabled = false;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("OuterLinesEnable", 0);
@@ -187,7 +187,7 @@ public class CrosshairSettings : MonoBehaviour
             outerLinesEnabled = true;
             if (PlayerSetup.localPlayerSetup)
             {
-                SteamLobby.ButtonAudio2();
+                AudioManager.instance.Play("ButtonPress2");
                 PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("OuterLinesEnable", 1);

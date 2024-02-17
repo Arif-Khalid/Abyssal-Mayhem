@@ -19,8 +19,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 30
-    width: 1902
-    height: 850
+    width: 1920
+    height: 939
   m_MinSize: {x: 400, y: 100}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
@@ -46,10 +46,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2519.6665
-    y: 307
-    width: 741
-    height: 437
+    x: 2447.6665
+    y: 273
+    width: 574
+    height: 556
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -102,23 +102,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 741
-      height: 416
-    m_Scale: {x: 0.38518518, y: 0.38518518}
-    m_Translation: {x: 370.5, y: 208}
+      width: 574
+      height: 535
+    m_Scale: {x: 0.29895833, y: 0.29895833}
+    m_Translation: {x: 287, y: 267.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -961.875
-      y: -540
-      width: 1923.75
-      height: 1080
+      x: -960
+      y: -894.7735
+      width: 1920
+      height: 1789.547
     m_MinimalGUI: 1
-  m_defaultScale: 0.38518518
-  m_LastWindowPixelSize: {x: 741, y: 437}
+  m_defaultScale: 0.29895833
+  m_LastWindowPixelSize: {x: 574, y: 556}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 00000000000000000000
@@ -143,8 +143,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1533
-    height: 850
+    width: 1317
+    height: 939
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
@@ -169,8 +169,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 1533
-    height: 458
+    width: 1317
+    height: 577
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
@@ -192,10 +192,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 401
-    height: 458
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+    width: 310
+    height: 577
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
   m_Panes:
   - {fileID: 6}
@@ -222,10 +222,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1729.6666
-    y: 307
-    width: 400
-    height: 437
+    x: 1706.6666
+    y: 273
+    width: 309
+    height: 556
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 5ad2dbff92c0f4ff96c0f4ff9ac0f4ffa6c0f4ff02c1f4ff94c1f4ffeac1f4ff04c2f4ff0ac2f4ff1ec2f4ff24c2f4ff28c2f4ff4ac2f4ff4c50f6ff7ea9fefff4e7ffff
+      m_ExpandedIDs: fc7cabff1a99abffa09cb0ffe084bfff88c3faffb215feff308dfeff36a8fefffaf1fefff0f2feffe41b0100a461010062620100d06201005272010040770100ec820100049d0100269d0100
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -280,12 +280,12 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 401
+    x: 310
     y: 0
-    width: 389
-    height: 458
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+    width: 431
+    height: 577
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 8}
   m_Panes:
   - {fileID: 8}
@@ -312,10 +312,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2130.6665
-    y: 307
-    width: 387
-    height: 437
+    x: 2016.6666
+    y: 273
+    width: 429
+    height: 556
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
       collapsed: 0
       displayed: 1
       snapOffset: {x: -156, y: -26.666656}
-      snapOffsetDelta: {x: 0, y: 0}
+      snapOffsetDelta: {x: 0, y: 0.000030517578}
       snapCorner: 3
       id: Tool Settings
       index: 0
@@ -395,7 +395,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 67.5, y: 86}
+      snapOffset: {x: 1, y: 86}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: Orientation
@@ -603,9 +603,9 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: -229, y: -376}
+      snapOffset: {x: 0, y: 180}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 3
+      snapCorner: 0
       id: AINavigationOverlay
       index: 11
       layout: 4
@@ -676,6 +676,19 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
+    - dockPosition: 1
+      containerId: overlay-container--right
+      floating: 0
+      collapsed: 0
+      displayed: 1
+      snapOffset: {x: 48, y: 48}
+      snapOffsetDelta: {x: 0, y: 0}
+      snapCorner: 0
+      id: UnityEditor.SceneViewCameraOverlay (0)
+      index: 16
+      layout: 4
+      size: {x: 0, y: 0}
+      sizeOverriden: 0
     m_OverlaysVisible: 1
   m_WindowGUID: cc27987af1a868c49b0894db9c0f5429
   m_Gizmos: 1
@@ -687,9 +700,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 17.587408, y: -48.138237, z: 228.5539}
+    m_Target: {x: 967.88434, y: 941.3495, z: 108.92841}
     speed: 2
-    m_Value: {x: 17.587408, y: -48.138237, z: 228.5539}
+    m_Value: {x: 967.88434, y: 941.3495, z: 108.92841}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -735,13 +748,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.11948295, y: 0.18063188, z: -0.022109421, w: 0.9760473}
+    m_Target: {x: -0.43955985, y: 0.54466045, z: -0.40878415, w: -0.58573765}
     speed: 2
-    m_Value: {x: 0.119479306, y: 0.18062636, z: -0.022108747, w: 0.9760175}
+    m_Value: {x: -0.4395465, y: 0.5446439, z: -0.40877172, w: -0.5857198}
   m_Size:
-    m_Target: 117.12486
+    m_Target: 76.18942
     speed: 2
-    m_Value: 117.12486
+    m_Value: 76.18942
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -781,10 +794,10 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 790
+    x: 741
     y: 0
-    width: 743
-    height: 458
+    width: 576
+    height: 577
   m_MinSize: {x: 102, y: 121}
   m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 2}
@@ -794,7 +807,7 @@ MonoBehaviour:
   - {fileID: 12}
   - {fileID: 2}
   m_Selected: 3
-  m_LastSelected: 3
+  m_LastSelected: 2
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -816,10 +829,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 649.60004
-    y: 73.6
-    width: 394.80005
-    height: 341.4
+    x: 2447.6665
+    y: 273
+    width: 574
+    height: 556
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -833,10 +846,10 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 157
+    m_CachedPref: -157
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 37692
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -899,10 +912,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 676
-    y: 73.6
-    width: 368.40002
-    height: 341.4
+    x: 2447.6665
+    y: 273
+    width: 574
+    height: 556
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1037,14 +1050,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.24783507
+    - e00: 0.49878028
       e01: 0
       e02: 0
-      e03: 7.564949
+      e03: -45.000656
       e10: 0
-      e11: 0.24783507
+      e11: 0.49878028
       e12: 0
-      e13: 66.371124
+      e13: 198.41489
       e20: 0
       e21: 0
       e22: 1
@@ -1245,14 +1258,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1
+    - e00: 0.614125
       e01: 0
       e02: 0
-      e03: 0
+      e03: -17.634888
       e10: 0
-      e11: 1
+      e11: 0.614125
       e12: 0
-      e13: 0
+      e13: 156.75224
       e20: 0
       e21: 0
       e22: 1
@@ -1369,24 +1382,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ProjectBrowser
+  m_Name: ConsoleWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 458
-    width: 1533
-    height: 392
-  m_MinSize: {x: 231, y: 271}
-  m_MaxSize: {x: 10001, y: 10021}
-  m_ActualView: {fileID: 14}
+    y: 577
+    width: 1317
+    height: 362
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 14}
   - {fileID: 15}
   - {fileID: 16}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -1408,10 +1421,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1729.6666
-    y: 765
-    width: 1532
-    height: 371
+    x: 1706.6666
+    y: 850
+    width: 1316
+    height: 341
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1433,7 +1446,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/PreFabs
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -1441,30 +1454,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/PreFabs
+  - Assets/Scenes
   m_LastFoldersGridSize: 96
   m_LastProjectPath: C:\UnityProjects\Abyssal-Mayhem
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 660}
-    m_SelectedIDs: aab90000
-    m_LastClickedID: 47530
-    m_ExpandedIDs: 000000009eb90000a0b90000a2b90000a4b90000a6b90000a8b90000aab90000acb90000aeb90000b0b90000b2b90000b4b90000b6b90000b8b90000bab90000bcb90000beb90000c0b90000ccb900000aba0000b6de0000b8de000076e80000041a0100101a010000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 259}
+    m_SelectedIDs: e8920000
+    m_LastClickedID: 37608
+    m_ExpandedIDs: 000000008c9200008e92000090920000929200009492000096920000989200009a9200009c9200009e920000a0920000a2920000a4920000a6920000a8920000aa920000ac920000ae920000b0920000b2920000b4920000b6920000b8920000ba920000bc920000be920000c0920000c2920000ce92000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: echoLogin
-      m_OriginalName: echoLogin
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 47564
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 13}
     m_SearchString: 
@@ -1478,7 +1491,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000009eb90000a0b90000a2b90000a4b90000a6b90000a8b90000aab90000acb90000aeb90000b0b90000b2b90000b4b90000b6b90000b8b90000bab90000bcb90000beb90000c0b90000
+    m_ExpandedIDs: 000000008c9200008e92000090920000929200009492000096920000989200009a9200009c9200009e920000a0920000a2920000a4920000a6920000a8920000aa920000ac920000ae920000b0920000b2920000b4920000b6920000b8920000ba920000bc920000be920000c0920000c2920000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1503,8 +1516,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 3c930000
+    m_LastClickedInstanceID: 37692
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c62300009e9f00001ec500007ca6000020a500006ca600006ed502006ad50200963e0300a4cf0000ee8a00007cca0000a0b404001eb704008ad40000f4dc0000421501008cd40000644a0000b687000000000000
     m_RenameOverlay:
@@ -1555,10 +1568,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1883.6666
-    y: 798
-    width: 1532
-    height: 371
+    x: 1706.6666
+    y: 850
+    width: 1316
+    height: 341
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1591,9 +1604,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 1706.6666
-    y: 780
-    width: 1401
-    height: 411
+    y: 850
+    width: 1316
+    height: 341
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1606,8 +1619,33 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 74764
+  m_LastSelectedObjectID: 121448
 --- !u!114 &17
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12010, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Children:
+  - {fileID: 18}
+  - {fileID: 22}
+  m_Position:
+    serializedVersion: 2
+    x: 1317
+    y: 0
+    width: 603
+    height: 939
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 8096, y: 16192}
+  vertical: 1
+  controlID: 132
+--- !u!114 &18
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1622,20 +1660,20 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 1533
+    x: 0
     y: 0
-    width: 369
-    height: 850
+    width: 603
+    height: 604
   m_MinSize: {x: 276, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 20}
+  m_ActualView: {fileID: 21}
   m_Panes:
-  - {fileID: 18}
   - {fileID: 19}
   - {fileID: 20}
+  - {fileID: 21}
   m_Selected: 2
   m_LastSelected: 0
---- !u!114 &18
+--- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1670,7 +1708,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
     m_OverlaysVisible: 1
---- !u!114 &19
+--- !u!114 &20
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1707,8 +1745,8 @@ MonoBehaviour:
     m_OverlaysVisible: 1
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 74764
---- !u!114 &20
+  m_LastSelectedObjectID: 121448
+--- !u!114 &21
 MonoBehaviour:
   m_ObjectHideFlags: 52
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1729,10 +1767,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 3262.6665
-    y: 307
-    width: 368
-    height: 829
+    x: 3023.6665
+    y: 273
+    width: 602
+    height: 583
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1746,13 +1784,516 @@ MonoBehaviour:
   m_ObjectsLockedBeforeSerialization: []
   m_InstanceIDsLockedBeforeSerialization: 
   m_PreviewResizer:
-    m_CachedPref: 356
+    m_CachedPref: -151
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 4192
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewWindow: {fileID: 0}
+--- !u!114 &22
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: TestRunnerWindow
+  m_EditorClassIdentifier: 
+  m_Children: []
+  m_Position:
+    serializedVersion: 2
+    x: 0
+    y: 604
+    width: 603
+    height: 335
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_ActualView: {fileID: 23}
+  m_Panes:
+  - {fileID: 23}
+  m_Selected: 0
+  m_LastSelected: 0
+--- !u!114 &23
+MonoBehaviour:
+  m_ObjectHideFlags: 52
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 13401, guid: 0000000000000000e000000000000000, type: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
+  m_TitleContent:
+    m_Text: Test Runner
+    m_Image: {fileID: 0}
+    m_Tooltip: 
+  m_Pos:
+    serializedVersion: 2
+    x: 3023.6665
+    y: 877
+    width: 602
+    height: 314
+  m_SerializedDataModeController:
+    m_DataMode: 0
+    m_PreferredDataMode: 0
+    m_SupportedDataModes: 
+    isAutomatic: 1
+  m_ViewDataDictionary: {fileID: 0}
+  m_OverlayCanvas:
+    m_LastAppliedPresetName: Default
+    m_SaveData: []
+    m_OverlaysVisible: 1
+  m_Spl:
+    ID: 169
+    splitterInitialOffset: 232
+    currentActiveSplitter: -1
+    realSizes:
+    - 116
+    - 128
+    relativeSizes:
+    - 0.47368422
+    - 0.5263158
+    minSizes:
+    - 32
+    - 32
+    maxSizes:
+    - 0
+    - 0
+    lastTotalSize: 244
+    splitSize: 6
+    xOffset: 0
+    m_Version: 1
+    oldRealSizes: 
+    oldMinSizes: 
+    oldMaxSizes: 
+    oldSplitSize: 0
+  m_TestTypeToolbarIndex: 0
+  m_PlayModeTestListGUI:
+    m_Window: {fileID: 23}
+    m_NewResultList:
+    - id: 1008
+      uniqueId: '[Abyssal Mayhem][suite]'
+      name: Abyssal Mayhem
+      fullName: Abyssal Mayhem
+      resultStatus: 1
+      duration: 5.345008
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1004
+      uniqueId: '[PlayMode][C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/PlayMode.dll][suite]'
+      name: PlayMode.dll
+      fullName: C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/PlayMode.dll
+      resultStatus: 1
+      duration: 5.3346148
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Abyssal Mayhem][suite]'
+    - id: 1001
+      uniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+      name: MainMenuTest
+      fullName: MainMenuTest
+      resultStatus: 1
+      duration: 5.327462
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: '[PlayMode][C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/PlayMode.dll][suite]'
+    - id: 1009
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.DifficultySelect_SelectEasyDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn]
+      name: DifficultySelect_SelectEasyDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      fullName: MainMenuTest.DifficultySelect_SelectEasyDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      resultStatus: 1
+      duration: 0.5927547
+      messages: 
+      output: 'Mirror | mirror-networking.com | discord.gg/N9QVxbM
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1011
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.DifficultySelect_SelectHardDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn]
+      name: DifficultySelect_SelectHardDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      fullName: MainMenuTest.DifficultySelect_SelectHardDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      resultStatus: 1
+      duration: 1.8652313
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+        Lobby
+        created succesfully
+
+        Starting server [SteamSockets].
+
+        Transport
+        shut down - was server.
+
+        Lobby created succesfully
+
+        Server
+        or Client already started.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1010
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.DifficultySelect_SelectMediumDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn]
+      name: DifficultySelect_SelectMediumDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      fullName: MainMenuTest.DifficultySelect_SelectMediumDifficulty_ShouldSetDifficultyAndLoadInfiniteSpawn
+      resultStatus: 1
+      duration: 1.225054
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1008
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_BackToMainMenuCalled_ShouldResetToOnlyMainMenuEnabled]
+      name: MainMenu_BackToMainMenuCalled_ShouldResetToOnlyMainMenuEnabled
+      fullName: MainMenuTest.MainMenu_BackToMainMenuCalled_ShouldResetToOnlyMainMenuEnabled
+      resultStatus: 1
+      duration: 0.2625278
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+        Lobby
+        created succesfully
+
+        Server or Client already started.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1006
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_EnableAndDisableDifficultySelect_ShouldToggleDifficultySelect]
+      name: MainMenu_EnableAndDisableDifficultySelect_ShouldToggleDifficultySelect
+      fullName: MainMenuTest.MainMenu_EnableAndDisableDifficultySelect_ShouldToggleDifficultySelect
+      resultStatus: 1
+      duration: 0.2120618
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1005
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_EnableAndDisableOptions_ShouldToggleOptionsMenu]
+      name: MainMenu_EnableAndDisableOptions_ShouldToggleOptionsMenu
+      fullName: MainMenuTest.MainMenu_EnableAndDisableOptions_ShouldToggleOptionsMenu
+      resultStatus: 1
+      duration: 0.2285562
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1007
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_EnableGuide_ShouldEnableGuideCanvas]
+      name: MainMenu_EnableGuide_ShouldEnableGuideCanvas
+      fullName: MainMenuTest.MainMenu_EnableGuide_ShouldEnableGuideCanvas
+      resultStatus: 1
+      duration: 0.2312494
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1004
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_InitialState_HasAllButtons]
+      name: MainMenu_InitialState_HasAllButtons
+      fullName: MainMenuTest.MainMenu_InitialState_HasAllButtons
+      resultStatus: 1
+      duration: 0.2454742
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1003
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenu_InitialState_HasTitle]
+      name: MainMenu_InitialState_HasTitle
+      fullName: MainMenuTest.MainMenu_InitialState_HasTitle
+      resultStatus: 1
+      duration: 0.2219848
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    - id: 1002
+      uniqueId: PlayMode.dll/MainMenuTest/[PlayMode][MainMenuTest.MainMenuScene_InitialState_HasAllCanvases]
+      name: MainMenuScene_InitialState_HasAllCanvases
+      fullName: MainMenuTest.MainMenuScene_InitialState_HasAllCanvases
+      resultStatus: 1
+      duration: 0.2212843
+      messages: 
+      output: 'Multiple NetworkManagers detected in the scene. Only one NetworkManager
+        can exist at a time. The duplicate NetworkManager will be destroyed.
+
+'
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: PlayMode.dll/[PlayMode][MainMenuTest][suite]
+    m_ResultText: MainMenuTest (5.327s)
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 58}
+      m_SelectedIDs: 6bdea30f
+      m_LastClickedID: 262397547
+      m_ExpandedIDs: 3acb6efd6bdea30f62cfb021ffffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized
+    m_SelectedOption: 0
+  m_EditModeTestListGUI:
+    m_Window: {fileID: 23}
+    m_NewResultList:
+    - id: 1000
+      uniqueId: '[Abyssal Mayhem][suite]'
+      name: Abyssal Mayhem
+      fullName: Abyssal Mayhem
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 
+      parentUniqueId: 
+    - id: 1004
+      uniqueId: '[EditMode][C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/EditMode.dll][suite]'
+      name: EditMode.dll
+      fullName: C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/EditMode.dll
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1000
+      parentUniqueId: '[Abyssal Mayhem][suite]'
+    - id: 1001
+      uniqueId: EditMode.dll/[EditMode][MyFirstTest][suite]
+      name: MyFirstTest
+      fullName: MyFirstTest
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 1
+      categories: []
+      parentId: 1004
+      parentUniqueId: '[EditMode][C:/UnityProjects/Abyssal-Mayhem/Library/ScriptAssemblies/EditMode.dll][suite]'
+    - id: 1002
+      uniqueId: EditMode.dll/MyFirstTest/[EditMode][MyFirstTest.MyFirstTestSimplePasses]
+      name: MyFirstTestSimplePasses
+      fullName: MyFirstTest.MyFirstTestSimplePasses
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: EditMode.dll/[EditMode][MyFirstTest][suite]
+    - id: 1003
+      uniqueId: EditMode.dll/MyFirstTest/[EditMode][MyFirstTest.MyFirstTestWithEnumeratorPasses]
+      name: MyFirstTestWithEnumeratorPasses
+      fullName: MyFirstTest.MyFirstTestWithEnumeratorPasses
+      resultStatus: 0
+      duration: 0
+      messages: 
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: EditMode.dll/[EditMode][MyFirstTest][suite]
+    m_ResultText: 
+    m_ResultStacktrace: 
+    m_TestListState:
+      scrollPos: {x: 0, y: 0}
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 62cfb021fa44084a2578746effffff7f
+      m_RenameOverlay:
+        m_UserAcceptedRename: 0
+        m_Name: 
+        m_OriginalName: 
+        m_EditFieldRect:
+          serializedVersion: 2
+          x: 0
+          y: 0
+          width: 0
+          height: 0
+        m_UserData: 0
+        m_IsWaitingForDelay: 0
+        m_IsRenaming: 0
+        m_OriginalEventType: 11
+        m_IsRenamingFilename: 0
+        m_ClientGUIView: {fileID: 0}
+      m_SearchString: 
+    m_TestRunnerUIFilter:
+      PassedHidden: 0
+      FailedHidden: 0
+      NotRunHidden: 0
+      m_SearchString: 
+      selectedCategoryMask: 0
+      availableCategories:
+      - Uncategorized

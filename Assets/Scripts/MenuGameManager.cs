@@ -13,14 +13,23 @@ public class MenuGameManager : MonoBehaviour
     [SerializeField] GameObject[] slides;
     [SerializeField] Button nextButton;
     [SerializeField] Button prevButton;
+    [SerializeField] Slider masterVolumeSlider;
+    [SerializeField] Slider musicVolumeSlider;
     int currentSlide = 0;
 
 
-    private void OnEnable()
+    public void Start()
     {
         currentSlide = 0;
         SetCurrentSlide();
+        if (PlayerPrefs.HasKey(Constants.VOLUME_PREF_KEY)) {
+            masterVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
+        }
+        if (PlayerPrefs.HasKey(Constants.MUSIC_PREF_KEY)) {
+            musicVolumeSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
+        }
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !mainMenu.enabled)
@@ -31,47 +40,47 @@ public class MenuGameManager : MonoBehaviour
 
     public void EnableOptions()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         mainMenu.enabled = false;
         optionsMenu.enabled = true;
     }
 
     public void DisableOptions()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         mainMenu.enabled = true;
         optionsMenu.enabled = false;
     }
 
     public void EnableDifficultySelect()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         mainMenu.enabled = false;
         difficultyMenu.enabled = true;
     }
 
     public void DisableDifficultySelect()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         mainMenu.enabled = true;
         difficultyMenu.enabled = false; 
     }
 
     public void EnableGuide()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         mainMenu.enabled = false;
         guide.enabled = true;
     }
     public void QuitGame()
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         Application.Quit();
     }
 
     public void BackToMainMenu()
     {
-        SteamLobby.BackAudio();
+        AudioManager.instance.Play("UIBack");
         mainMenu.enabled = true;
         guide.enabled = false;
         difficultyMenu.enabled = false;
@@ -106,8 +115,18 @@ public class MenuGameManager : MonoBehaviour
 
     public void MoveSlide(int moveNumber)
     {
-        SteamLobby.ButtonAudio();
+        AudioManager.instance.Play("ButtonPress");
         currentSlide += moveNumber;
         SetCurrentSlide();
+    }
+
+    public void OnMasterVolumeChange() {
+        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, masterVolumeSlider.value);
+        AudioListener.volume = masterVolumeSlider.value;
+    }
+
+    public void OnMusicVolumeChange() {
+        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, musicVolumeSlider.value);
+        AudioManager.instance.ChangeBackgroundVolume(musicVolumeSlider.value);
     }
 }

@@ -4524,11 +4524,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 133d25443dd5bde4195cfd1c120020ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainMenu: {fileID: 519583775}
-  optionsMenu: {fileID: 805365349}
-  difficultyMenu: {fileID: 546957870}
-  guide: {fileID: 1182846992}
-  slides:
+  _mainMenu: {fileID: 519583775}
+  _optionsMenu: {fileID: 805365349}
+  _difficultyMenu: {fileID: 546957870}
+  _guide: {fileID: 1182846992}
+  _slides:
   - {fileID: 2026924070}
   - {fileID: 1278771796}
   - {fileID: 392718179}
@@ -4536,10 +4536,10 @@ MonoBehaviour:
   - {fileID: 681819041}
   - {fileID: 1155695029}
   - {fileID: 508747895}
-  nextButton: {fileID: 772237046}
-  prevButton: {fileID: 1592523529}
-  masterVolumeSlider: {fileID: 1573262622}
-  musicVolumeSlider: {fileID: 125288457}
+  _nextButton: {fileID: 772237046}
+  _prevButton: {fileID: 1592523529}
+  _masterVolumeSlider: {fileID: 1573262622}
+  _musicVolumeSlider: {fileID: 125288457}
 --- !u!4 &764448466
 Transform:
   m_ObjectHideFlags: 0

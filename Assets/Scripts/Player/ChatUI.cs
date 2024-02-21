@@ -58,7 +58,7 @@ public class ChatUI : NetworkBehaviour
         EnableChatText();
         typing = true;
         inputField.ActivateInputField();
-        PlayerSetup.localPlayerSetup.GetComponent<PlayerMovement>().DisableMovement();
+        PlayerManager.localPlayerSetup.GetComponent<PlayerMovement>().DisableMovement();
     }
 
     public void DisableInputField()
@@ -69,7 +69,7 @@ public class ChatUI : NetworkBehaviour
         inputField.enabled = false;
         inputBackground.enabled = false;
         inputField.DeactivateInputField();
-        PlayerSetup.localPlayerSetup.GetComponent<PlayerMovement>().EnableMovement();
+        PlayerManager.localPlayerSetup.GetComponent<PlayerMovement>().EnableMovement();
     }
     private void ResetTimer()
     {

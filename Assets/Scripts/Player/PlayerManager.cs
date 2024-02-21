@@ -2,7 +2,7 @@ using UnityEngine;
 using Mirror;
 using UnityEngine.SceneManagement;
 
-public class PlayerSetup : NetworkBehaviour
+public class PlayerManager : NetworkBehaviour
 {
     //References
     public EnemySpawner enemySpawner;
@@ -23,7 +23,7 @@ public class PlayerSetup : NetworkBehaviour
     private bool isInMenu = false;
     private bool isInEscapeMenu = false;
 
-    public static PlayerSetup localPlayerSetup;
+    public static PlayerManager localPlayerSetup;
     //Score to be kept track of on server
     [SyncVar(hook = nameof(scoreChange))] int myScore = 0;
     //Max number of rounds to be set by host
@@ -293,8 +293,8 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            PlayerSetup.localPlayerSetup.EnterUIMenu();
-            PlayerSetup.localPlayerSetup.playerUI.EnableWinUI(deathByName);
+            PlayerManager.localPlayerSetup.EnterUIMenu();
+            PlayerManager.localPlayerSetup.playerUI.EnableWinUI(deathByName);
             for (int i = 0; i < componentsToDisable.Length; i++)
             {
                 componentsToDisable[i].enabled = false;
@@ -342,7 +342,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            PlayerSetup.localPlayerSetup.playerPowerups.StartCoroutine(PlayerSetup.localPlayerSetup.playerPowerups.ActivateJuggernautSpawn());
+            PlayerManager.localPlayerSetup.playerPowerups.StartCoroutine(PlayerManager.localPlayerSetup.playerPowerups.ActivateJuggernautSpawn());
         }
     }
 
@@ -352,7 +352,7 @@ public class PlayerSetup : NetworkBehaviour
     {
         if (!isLocalPlayer)
         {
-            PlayerSetup.localPlayerSetup.playerPowerups.StartCoroutine(PlayerSetup.localPlayerSetup.playerPowerups.ActivateParanoia());
+            PlayerManager.localPlayerSetup.playerPowerups.StartCoroutine(PlayerManager.localPlayerSetup.playerPowerups.ActivateParanoia());
         }
     }
     //Code called on change of score on server to update local and away score for clients
@@ -373,8 +373,8 @@ public class PlayerSetup : NetworkBehaviour
     //Function called by away player when other player wins
     public void LocalLoss()
     {
-        PlayerSetup.localPlayerSetup.EnterUIMenu();
-        PlayerSetup.localPlayerSetup.playerUI.EnableLossUI();
+        PlayerManager.localPlayerSetup.EnterUIMenu();
+        PlayerManager.localPlayerSetup.playerUI.EnableLossUI();
         enemySpawner.LocalLoss();
         for (int i = 0; i < componentsToDisable.Length; i++)
         {

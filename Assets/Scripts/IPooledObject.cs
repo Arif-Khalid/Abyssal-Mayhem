@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+/**
+ * Responsible for allowing implementation of a function
+ * on spawn for pooled objects
+ */
 public interface IPooledObject
 {
     void OnObjectSpawn();

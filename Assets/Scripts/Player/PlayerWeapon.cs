@@ -173,7 +173,7 @@ public class PlayerWeapon : MonoBehaviour
             {
                 weapon.Fire();
             }
-            if (Input.GetKeyDown(KeyCode.R) && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
+            if (Input.GetKeyDown(KeyCode.R) && !PlayerManager.localPlayerSetup.chatUI.inputField.enabled)
             {
                 weapon.Reload();
             }

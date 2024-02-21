@@ -1,132 +1,117 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MenuGameManager : MonoBehaviour
 {
-    [SerializeField] Canvas mainMenu;
-    [SerializeField] Canvas optionsMenu;
-    [SerializeField] Canvas difficultyMenu;
-    [SerializeField] Canvas guide;
-    [SerializeField] GameObject[] slides;
-    [SerializeField] Button nextButton;
-    [SerializeField] Button prevButton;
-    [SerializeField] Slider masterVolumeSlider;
-    [SerializeField] Slider musicVolumeSlider;
-    int currentSlide = 0;
+    [SerializeField] private Canvas _mainMenu;
+    [SerializeField] private Canvas _optionsMenu;
+    [SerializeField] private Canvas _difficultyMenu;
+    [SerializeField] private Canvas _guide;
+
+    [Header("Under guide display")]
+    [SerializeField] private GameObject[] _slides;
+    [SerializeField] private Button _nextButton;
+    [SerializeField] private Button _prevButton;
+    private int _currentSlide = 0;                          // The current slide of the guide display
+
+    [Header("Under options menu")]
+    [SerializeField] private Slider _masterVolumeSlider;
+    [SerializeField] private Slider _musicVolumeSlider;
 
 
-    public void Start()
-    {
-        currentSlide = 0;
+    public void Start() {
+        _currentSlide = 0;
         SetCurrentSlide();
         if (PlayerPrefs.HasKey(Constants.VOLUME_PREF_KEY)) {
-            masterVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
+            _masterVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
         }
         if (PlayerPrefs.HasKey(Constants.MUSIC_PREF_KEY)) {
-            musicVolumeSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
+            _musicVolumeSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !mainMenu.enabled)
-        {
+    private void Update() {
+        if (Input.GetKeyDown(KeyCode.Escape) && !_mainMenu.enabled) {
             BackToMainMenu();
         }
     }
 
-    public void EnableOptions()
-    {
+    public void EnableOptions() {
         AudioManager.instance.Play("ButtonPress");
-        mainMenu.enabled = false;
-        optionsMenu.enabled = true;
+        _mainMenu.enabled = false;
+        _optionsMenu.enabled = true;
     }
 
-    public void DisableOptions()
-    {
+    public void DisableOptions() {
         AudioManager.instance.Play("ButtonPress");
-        mainMenu.enabled = true;
-        optionsMenu.enabled = false;
+        _mainMenu.enabled = true;
+        _optionsMenu.enabled = false;
     }
 
-    public void EnableDifficultySelect()
-    {
+    public void EnableDifficultySelect() {
         AudioManager.instance.Play("ButtonPress");
-        mainMenu.enabled = false;
-        difficultyMenu.enabled = true;
+        _mainMenu.enabled = false;
+        _difficultyMenu.enabled = true;
     }
 
-    public void DisableDifficultySelect()
-    {
+    public void DisableDifficultySelect() {
         AudioManager.instance.Play("ButtonPress");
-        mainMenu.enabled = true;
-        difficultyMenu.enabled = false; 
+        _mainMenu.enabled = true;
+        _difficultyMenu.enabled = false;
     }
 
-    public void EnableGuide()
-    {
+    public void EnableGuide() {
         AudioManager.instance.Play("ButtonPress");
-        mainMenu.enabled = false;
-        guide.enabled = true;
+        _mainMenu.enabled = false;
+        _guide.enabled = true;
     }
-    public void QuitGame()
-    {
+    public void QuitGame() {
         AudioManager.instance.Play("ButtonPress");
         Application.Quit();
     }
 
-    public void BackToMainMenu()
-    {
+    public void BackToMainMenu() {
         AudioManager.instance.Play("UIBack");
-        mainMenu.enabled = true;
-        guide.enabled = false;
-        difficultyMenu.enabled = false;
-        optionsMenu.enabled = false;
-        currentSlide = 0;
+        _mainMenu.enabled = true;
+        _guide.enabled = false;
+        _difficultyMenu.enabled = false;
+        _optionsMenu.enabled = false;
+        _currentSlide = 0;
         SetCurrentSlide();
     }
 
-    public void SetCurrentSlide()
-    {
-        foreach(GameObject slide in slides)
-        {
+    public void SetCurrentSlide() {
+        foreach (GameObject slide in _slides) {
             slide.SetActive(false);
         }
-        slides[currentSlide].SetActive(true);
-        if(currentSlide == 0)
-        {
-            prevButton.interactable = false;
-            nextButton.interactable = true;
+        _slides[_currentSlide].SetActive(true);
+        if (_currentSlide == 0) {
+            _prevButton.interactable = false;
+            _nextButton.interactable = true;
         }
-        else if(currentSlide == slides.Length - 1)
-        {
-            nextButton.interactable = false;
-            prevButton.interactable = true;
+        else if (_currentSlide == _slides.Length - 1) {
+            _nextButton.interactable = false;
+            _prevButton.interactable = true;
         }
-        else
-        {
-            nextButton.interactable = true;
-            prevButton.interactable = true;
+        else {
+            _nextButton.interactable = true;
+            _prevButton.interactable = true;
         }
     }
 
-    public void MoveSlide(int moveNumber)
-    {
+    public void MoveSlide(int moveNumber) {
         AudioManager.instance.Play("ButtonPress");
-        currentSlide += moveNumber;
+        _currentSlide += moveNumber;
         SetCurrentSlide();
     }
 
     public void OnMasterVolumeChange() {
-        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, masterVolumeSlider.value);
-        AudioListener.volume = masterVolumeSlider.value;
+        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, _masterVolumeSlider.value);
+        AudioListener.volume = _masterVolumeSlider.value;
     }
 
     public void OnMusicVolumeChange() {
-        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, musicVolumeSlider.value);
-        AudioManager.instance.ChangeBackgroundVolume(musicVolumeSlider.value);
+        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, _musicVolumeSlider.value);
+        AudioManager.instance.ChangeBackgroundVolume(_musicVolumeSlider.value);
     }
 }

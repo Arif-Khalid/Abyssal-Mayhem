@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         HorizontalMovement();
-        if (Input.GetKeyDown(KeyCode.LeftShift) && dashKeyText.enabled && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled) { Dash(transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")); }
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashKeyText.enabled && !PlayerManager.localPlayerSetup.chatUI.inputField.enabled) { Dash(transform.right * Input.GetAxisRaw("Horizontal") + transform.forward * Input.GetAxisRaw("Vertical")); }
         VerticalMovement();    
         if (impact.magnitude > 0.2) move += impact; //apply the impact force
         controller.Move(move * Time.deltaTime);

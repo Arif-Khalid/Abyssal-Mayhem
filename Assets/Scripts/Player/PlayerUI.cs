@@ -182,7 +182,7 @@ public class PlayerUI : MonoBehaviour
 
     public void StartNextRound()
     {
-        PlayerSetup.localPlayerSetup.enemySpawner.StartNextRound();
+        PlayerManager.localPlayerSetup.enemySpawner.StartNextRound();
     }
     //Function to call by player movement when player is standing on prohibited area
     public void StartProhibitionTimer()

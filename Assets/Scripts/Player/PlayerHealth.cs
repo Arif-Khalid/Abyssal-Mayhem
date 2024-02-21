@@ -43,7 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
+        if (Input.GetKeyDown(KeyCode.C) && keyText.enabled && !PlayerManager.localPlayerSetup.chatUI.inputField.enabled)
         {
             StartRegen();
         }
@@ -122,12 +122,12 @@ public class PlayerHealth : MonoBehaviour
         lives -= 1;
         if(lives < 0)
         {
-            GetComponent<PlayerSetup>().LocalDeath(deathByName);
+            GetComponent<PlayerManager>().LocalDeath(deathByName);
             dead = true;           
         }
         else
         {
-            PlayerSetup.localPlayerSetup.enemySpawner.Respawn();
+            PlayerManager.localPlayerSetup.enemySpawner.Respawn();
             playerUI.UpdateExtraLives(lives);
             playerUI.StartWarning("Extra Life Used");
             AudioManager.instance.Play("ExtraLife");

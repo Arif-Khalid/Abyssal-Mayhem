@@ -36,7 +36,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private AddScoreUI addScoreUI;
     [SerializeField] private string addScoreUITag = "AddScoreUI";
     [SerializeField] private Vector3 offset = Vector3.zero;
-    PlayerSetup playerSetup;
+    PlayerManager playerSetup;
     // //Variables used to shoot laser through enemies
     // LineRenderer laserRay;
     // public float rayRange;
@@ -46,7 +46,7 @@ public class EnemyHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSetup = PlayerSetup.localPlayerSetup;
+        playerSetup = PlayerManager.localPlayerSetup;
     }
 
     private void LateUpdate()

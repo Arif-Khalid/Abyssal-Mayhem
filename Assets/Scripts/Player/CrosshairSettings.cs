@@ -104,10 +104,10 @@ public class CrosshairSettings : MonoBehaviour
         PlayerPrefs.SetInt("CrosshairColors", colorID);
         color = colors[PlayerPrefs.GetInt("CrosshairColors")];
         //Set the crosshair color
-        if (PlayerSetup.localPlayerSetup)
+        if (PlayerManager.localPlayerSetup)
         {
             AudioManager.instance.Play("ButtonPress2");
-            PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+            PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
         }
     }
 
@@ -117,10 +117,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Disable crosshair
             crosshairEnabled = false;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("CrosshairEnable", 0);
             crosshairEnabledTickImage.enabled = false;
@@ -129,10 +129,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Enable crosshair
             crosshairEnabled = true;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("CrosshairEnable", 1);
             crosshairEnabledTickImage.enabled = true;
@@ -145,10 +145,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Disable crosshair            
             dotEnabled = false;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("DotEnable", 0);
             dotEnabledTickImage.enabled = false;
@@ -157,10 +157,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Enable crosshair            
             dotEnabled = true;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("DotEnable", 1);
             dotEnabledTickImage.enabled = true;
@@ -173,10 +173,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Disable crosshair            
             outerLinesEnabled = false;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("OuterLinesEnable", 0);
             outerLinesEnabledTickImage.enabled = false;
@@ -185,10 +185,10 @@ public class CrosshairSettings : MonoBehaviour
         {
             //Enable crosshair            
             outerLinesEnabled = true;
-            if (PlayerSetup.localPlayerSetup)
+            if (PlayerManager.localPlayerSetup)
             {
                 AudioManager.instance.Play("ButtonPress2");
-                PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+                PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
             }
             PlayerPrefs.SetInt("OuterLinesEnable", 1);
             outerLinesEnabledTickImage.enabled = true;
@@ -198,9 +198,9 @@ public class CrosshairSettings : MonoBehaviour
     public void ChangeCrosshairSize()
     {
         crosshairSize = crosshairSizeSlider.value;
-        if (PlayerSetup.localPlayerSetup)
+        if (PlayerManager.localPlayerSetup)
         {
-            PlayerSetup.localPlayerSetup.playerUI.UpdateCrosshair();
+            PlayerManager.localPlayerSetup.playerUI.UpdateCrosshair();
         }
         PlayerPrefs.SetFloat("CrosshairSize", crosshairSize);
     }

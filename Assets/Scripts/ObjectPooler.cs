@@ -1,9 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Responsible for pooling objects for optimisation
+ * over instantiation and deletion
+ */
 public class ObjectPooler : MonoBehaviour
 {
+    /**
+     * Representing a pool we can draw from
+     */
     [System.Serializable]
     public class Pool
     {
@@ -12,48 +18,37 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
-    #region Singleton
-
     public static ObjectPooler Instance;
+    public List<Pool> Pools;
+    private Dictionary<string, Queue<GameObject>> _poolDictionary;
 
-    private void Awake()
-    {
+    private void Awake() {
         Instance = this;
     }
 
-    #endregion
-
-    public List<Pool> pools;
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-    // Start is called before the first frame update
-    void Start()
-    {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+    void Start() {
+        _poolDictionary = new Dictionary<string, Queue<GameObject>>();
 
 
-        foreach (Pool pool in pools)
-        {
+        foreach (Pool pool in Pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
-            for (int i = 0; i < pool.size; i++)
-            {
+            for (int i = 0; i < pool.size; i++) {
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
-            poolDictionary.Add(pool.tag, objectPool);
+            _poolDictionary.Add(pool.tag, objectPool);
         }
     }
 
-    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation)
-    {
-        if (!poolDictionary.ContainsKey(tag))
-        {
+    public GameObject SpawnFromPool(string tag, Vector3 position, Quaternion rotation) {
+        if (!_poolDictionary.ContainsKey(tag)) {
             Debug.LogWarning("Pool with tag " + tag + " doesn't exist");
             return null;
         }
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        GameObject objectToSpawn = _poolDictionary[tag].Dequeue();
 
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
@@ -62,8 +57,8 @@ public class ObjectPooler : MonoBehaviour
         IPooledObject pooledObject = objectToSpawn.GetComponent<IPooledObject>();
         if (pooledObject != null) { pooledObject.OnObjectSpawn(); }
 
-        poolDictionary[tag].Enqueue(objectToSpawn);
-        
+        _poolDictionary[tag].Enqueue(objectToSpawn);
+
         return objectToSpawn;
     }
 }

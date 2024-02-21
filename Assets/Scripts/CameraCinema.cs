@@ -1,38 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/**
+ * Helper class to control animations while taking videos
+ * Not used in production, only for marketing purposes
+ */
 public class CameraCinema : MonoBehaviour
 {
-    Animator animator;
-    private bool rotating;
     public AssassinCinematic assassinCinematic;
-    // Start is called before the first frame update
-    void Start()
-    {
-        animator = GetComponent<Animator>();
+
+    private Animator _animator;
+    private bool _rotating;
+
+    void Start() {
+        _animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            if (rotating)
-            {
-                animator.SetBool("Rotate", false);
-                rotating = false;
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+            if (_rotating) {
+                _animator.SetBool("Rotate", false);
+                _rotating = false;
             }
-            else
-            {
-                animator.SetBool("Rotate", true);
-                rotating = true;
-            }   
+            else {
+                _animator.SetBool("Rotate", true);
+                _rotating = true;
+            }
         }
     }
 
-    public void ToggleADS()
-    {
+    public void ToggleADS() {
         assassinCinematic.ToggleAimAnim();
     }
 }

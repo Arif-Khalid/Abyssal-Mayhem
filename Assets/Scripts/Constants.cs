@@ -2,6 +2,10 @@ using Codice.Client.BaseCommands;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
 
+/**
+ * Responsible for keeping constants
+ * Constants are re-used in multiple components
+ */
 public class Constants
 {
     // Scene names

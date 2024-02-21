@@ -97,9 +97,9 @@ public class KCPLobby : MonoBehaviour
     }
     public void EnableEscapeMenu()
     {
-        if (PlayerSetup.localPlayerSetup)
+        if (PlayerManager.localPlayerSetup)
         {
-            PlayerSetup.localPlayerSetup.EnterEscapeMenu();
+            PlayerManager.localPlayerSetup.EnterEscapeMenu();
         }
         escapeMenu.SetActive(true);
         isEscapeMenuActive = true;
@@ -107,9 +107,9 @@ public class KCPLobby : MonoBehaviour
 
     public void DisableEscapeMenu()
     {
-        if (PlayerSetup.localPlayerSetup)
+        if (PlayerManager.localPlayerSetup)
         {
-            PlayerSetup.localPlayerSetup.ExitEscapeMenu();
+            PlayerManager.localPlayerSetup.ExitEscapeMenu();
         }
         escapeMenu.SetActive(false);
         isEscapeMenuActive = false;
@@ -137,9 +137,9 @@ public class KCPLobby : MonoBehaviour
     public void SpawnJuggernaut()
     {
         ButtonAudio();
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
             spawnFeedbackText.color = spawnJuggernautText.color;
             spawnFeedbackText.text = "juggernaut spawned";
             animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
@@ -153,9 +153,9 @@ public class KCPLobby : MonoBehaviour
     public void SpawnJuggernautBoss()
     {
         ButtonAudio();
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
             spawnFeedbackText.color = spawnJuggernautBossText.color;
             spawnFeedbackText.text = "juggernaut boss spawned";
             animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
@@ -169,9 +169,9 @@ public class KCPLobby : MonoBehaviour
     public void SpawnAssassin()
     {
         ButtonAudio();
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
             spawnFeedbackText.color = spawnAssassinText.color;
             spawnFeedbackText.text = "assassin spawned";
             animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
@@ -185,9 +185,9 @@ public class KCPLobby : MonoBehaviour
     public void SpawnAssassinBoss()
     {
         ButtonAudio();
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady)
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady)
         {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
             spawnFeedbackText.color = spawnAssassinBossText.color;
             spawnFeedbackText.text = "assassin boss spawned";
             animator.Play("SpawnFeedback", animator.GetLayerIndex("Base Layer"), 0);
@@ -208,10 +208,10 @@ public class KCPLobby : MonoBehaviour
     //Function called to change mouse sensitivity called in escape menu slider
     public void ChangeMouseSensitivity()
     {
-        if (PlayerSetup.localPlayerSetup)
+        if (PlayerManager.localPlayerSetup)
         {
             PlayerPrefs.SetFloat("Sensitivity", mouseSensitivitySlider.value);
-            PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
+            PlayerManager.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
         }
     }
 

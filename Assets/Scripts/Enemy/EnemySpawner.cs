@@ -7,17 +7,12 @@ public class EnemySpawner : MonoBehaviour
     //Variables for spawning monsters
     [SerializeField] Transform[] spawnPoints;
     [SerializeField] string walkerTag;
-    [SerializeField] GameObject walker;
     [SerializeField] string juggernautTag;
-    [SerializeField] GameObject juggernaut;
     [SerializeField] int[] juggernautSpawns;
-    [SerializeField] GameObject juggernautBoss;
     [SerializeField] string juggernautBossTag;
     [SerializeField] int[] juggernautBossSpawns;
-    [SerializeField] GameObject assassin;
     [SerializeField] string assassinTag;
     [SerializeField] int[] assassinSpawns;
-    [SerializeField] GameObject assassinBoss;
     [SerializeField] string assassinBossTag;
     [SerializeField] int[] assassinBossSpawns;
     public List<Transform> assassinSpawnPoints = new List<Transform>();
@@ -37,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
     public PlayerUI localUI;
 
     //Variables for away player
-    public PlayerSetup awayPlayer;
+    public PlayerManager awayPlayer;
     public bool awayPlayerReady = false;
     public PlayerUI awayUI;
     private bool metAwayQuota;
@@ -79,7 +74,7 @@ public class EnemySpawner : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady && !PlayerSetup.localPlayerSetup.chatUI.inputField.enabled)
+        if (Input.GetKeyDown(KeyCode.X) && !awayPlayerReady && !PlayerManager.localPlayerSetup.chatUI.inputField.enabled)
         {
             //awayPlayerReadyUp(); //used to test the round start without connecting to another player
             AllowSpawns();
@@ -262,7 +257,7 @@ public class EnemySpawner : MonoBehaviour
         if (awayPlayerReady)
         {
             isSinglePlayer = false;
-            PlayerSetup.localPlayerSetup.SetComponents(true);
+            PlayerManager.localPlayerSetup.SetComponents(true);
             DisablePlayerUI();
             round = 0; //Ensure round is 0
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
@@ -282,7 +277,7 @@ public class EnemySpawner : MonoBehaviour
         if (localPlayerReady)
         {
             isSinglePlayer = false;
-            PlayerSetup.localPlayerSetup.SetComponents(true);
+            PlayerManager.localPlayerSetup.SetComponents(true);
             DisablePlayerUI();
             round = 0;
             localPlayer.GetComponent<PlayerHealth>().SetMaxHealth(0);
@@ -313,7 +308,7 @@ public class EnemySpawner : MonoBehaviour
         
         localUI.UpdateRoundText(round, Quotas[round]);
         metLocalQuota = false;
-        localPlayer.GetComponent<PlayerSetup>().ResetScore(); //Resets scores
+        localPlayer.GetComponent<PlayerManager>().ResetScore(); //Resets scores
         newRoundStarted = false; //allows new round to be started
         SpawnSpecial();
         alreadySpawned = false;
@@ -355,7 +350,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 if(round == maxRounds)
                 {
-                    localPlayer.GetComponent<PlayerSetup>().Survived();
+                    localPlayer.GetComponent<PlayerManager>().Survived();
                 }                
             }           
         }
@@ -467,7 +462,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void DisablePlayerUI()
     {
-        PlayerSetup.localPlayerSetup.ExitUIMenu();
+        PlayerManager.localPlayerSetup.ExitUIMenu();
         localUI.DisableWinUI();
         localUI.DisableDeathUI();
         localUI.DisableLossUI();
@@ -476,11 +471,11 @@ public class EnemySpawner : MonoBehaviour
     //Resets the player to starting position
     private void ResetPlayerPosition()
     {
-        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = false;
-        PlayerSetup.localPlayerSetup.transform.SetPositionAndRotation(PlayerSpawn.playerSpawn.position, PlayerSpawn.playerSpawn.rotation);
-        PlayerSetup.localPlayerSetup.ResetWeapons();
-        PlayerSetup.localPlayerSetup.GetComponent<CharacterController>().enabled = true;
-        PlayerSetup.localPlayerSetup.GetComponent<PlayerMovement>().ResetImpact();
+        PlayerManager.localPlayerSetup.GetComponent<CharacterController>().enabled = false;
+        PlayerManager.localPlayerSetup.transform.SetPositionAndRotation(PlayerSpawn.playerSpawn.position, PlayerSpawn.playerSpawn.rotation);
+        PlayerManager.localPlayerSetup.ResetWeapons();
+        PlayerManager.localPlayerSetup.GetComponent<CharacterController>().enabled = true;
+        PlayerManager.localPlayerSetup.GetComponent<PlayerMovement>().ResetImpact();
     }
 
     /*Invincibility powerups code*/
@@ -539,6 +534,6 @@ public class EnemySpawner : MonoBehaviour
     //Function called when non-host connects to set difficulty in player Health of non host
     public void SetHostDamageMultiplier()
     {
-        PlayerSetup.localPlayerSetup.GetComponent<PlayerHealth>().SetDamageMultiplier(awayPlayer.difficultyID);
+        PlayerManager.localPlayerSetup.GetComponent<PlayerHealth>().SetDamageMultiplier(awayPlayer.difficultyID);
     }
 }

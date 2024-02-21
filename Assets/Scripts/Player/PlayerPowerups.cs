@@ -7,7 +7,7 @@ public class PlayerPowerups : MonoBehaviour
     //References
     [SerializeField] PlayerHealth playerHealth;
     [SerializeField] PlayerWeapon playerWeapon;
-    [SerializeField] PlayerSetup playerSetup;
+    [SerializeField] PlayerManager playerSetup;
     [SerializeField] PlayerUI playerUI;
 
 

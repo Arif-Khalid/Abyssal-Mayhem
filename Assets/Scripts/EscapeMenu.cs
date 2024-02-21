@@ -4,43 +4,47 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/**
+ * Responsible for containing logic related to the escape menu
+ */
 public class EscapeMenu : MonoBehaviour
 {
-    private CustomNetworkManager manager;
-    private bool isEscapeMenuActive = false;
-    private Canvas escapeMenuCanvas;
+    private CustomNetworkManager _manager;
+    private bool _isEscapeMenuActive = false;
+    private Canvas _escapeMenuCanvas;
 
     //Variables for spawning special monsters
-    [SerializeField] TextMeshProUGUI spawnJuggernautText;
-    [SerializeField] TextMeshProUGUI spawnJuggernautBossText;
-    [SerializeField] TextMeshProUGUI spawnAssassinText;
-    [SerializeField] TextMeshProUGUI spawnAssassinBossText;
-    [SerializeField] TextMeshProUGUI spawnFeedbackText;
-    [SerializeField] Animator animator;
-    [SerializeField] Slider mouseSensitivitySlider;
-    [SerializeField] Slider escapeVolumeSlider;
-    [SerializeField] Slider escapeMusicSlider;
+    [SerializeField] private TextMeshProUGUI _spawnJuggernautText;
+    [SerializeField] private TextMeshProUGUI _spawnJuggernautBossText;
+    [SerializeField] private TextMeshProUGUI _spawnAssassinText;
+    [SerializeField] private TextMeshProUGUI _spawnAssassinBossText;
+    [SerializeField] private TextMeshProUGUI _spawnFeedbackText;
+    [SerializeField] private Slider _mouseSensitivitySlider;
+    [SerializeField] private Slider _escapeVolumeSlider;
+    [SerializeField] private Slider _escapeMusicSlider;
+    [SerializeField] private Animator _animator;
+
     private void Start() {
-        manager = GameObject.FindFirstObjectByType<CustomNetworkManager>();
-        escapeMenuCanvas = GetComponent<Canvas>();
-        if (!manager) {
+        _manager = GameObject.FindFirstObjectByType<CustomNetworkManager>();
+        _escapeMenuCanvas = GetComponent<Canvas>();
+        if (!_manager) {
             Debug.LogWarning("Network manager cannot be found");
         }
 
         if (PlayerPrefs.HasKey(Constants.SENSITIVITY_PREF_KEY)) {
-            mouseSensitivitySlider.value = PlayerPrefs.GetFloat(Constants.SENSITIVITY_PREF_KEY);
+            _mouseSensitivitySlider.value = PlayerPrefs.GetFloat(Constants.SENSITIVITY_PREF_KEY);
         }
         if (PlayerPrefs.HasKey(Constants.VOLUME_PREF_KEY)) {
-            escapeVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
+            _escapeVolumeSlider.value = PlayerPrefs.GetFloat(Constants.VOLUME_PREF_KEY);
         }
         if (PlayerPrefs.HasKey(Constants.MUSIC_PREF_KEY)) {
-            escapeMusicSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
+            _escapeMusicSlider.value = PlayerPrefs.GetFloat(Constants.MUSIC_PREF_KEY);
         }
     }
-    // Update is called once per frame
+
     private void Update() {
         if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().name != Constants.MAIN_MENU_SCENE_NAME) {
-            if (isEscapeMenuActive) {
+            if (_isEscapeMenuActive) {
                 DisableEscapeMenu();
             }
             else {
@@ -50,42 +54,42 @@ public class EscapeMenu : MonoBehaviour
     }
 
     public void EnableEscapeMenu() {
-        if (PlayerSetup.localPlayerSetup) {
-            PlayerSetup.localPlayerSetup.EnterEscapeMenu();
+        if (PlayerManager.localPlayerSetup) {
+            PlayerManager.localPlayerSetup.EnterEscapeMenu();
         }
-        escapeMenuCanvas.enabled = true;
-        isEscapeMenuActive = true;
+        _escapeMenuCanvas.enabled = true;
+        _isEscapeMenuActive = true;
     }
 
     public void DisableEscapeMenu() {
-        if (PlayerSetup.localPlayerSetup) {
-            PlayerSetup.localPlayerSetup.ExitEscapeMenu();
+        if (PlayerManager.localPlayerSetup) {
+            PlayerManager.localPlayerSetup.ExitEscapeMenu();
         }
-        escapeMenuCanvas.enabled = false;
-        isEscapeMenuActive = false;
+        _escapeMenuCanvas.enabled = false;
+        _isEscapeMenuActive = false;
     }
 
     public void QuitToMenu() {
         if (NetworkServer.active && NetworkClient.isConnected) {
-            manager.StopHost();
+            _manager.StopHost();
         }
         // stop client if client-only
         else if (NetworkClient.isConnected) {
-            manager.StopClient();
+            _manager.StopClient();
         }
         // stop server if server-only
         else if (NetworkServer.active) {
-            manager.StopServer();
+            _manager.StopServer();
         }
     }
 
-    /*Functions for spawning monsters in single player*/
+    /* Functions for spawning monsters in single player */
     public void SpawnJuggernaut() {
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady) {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
-            spawnFeedbackText.color = spawnJuggernautText.color;
-            spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_FEEDBACK;
-            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady) {
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernaut);
+            _spawnFeedbackText.color = _spawnJuggernautText.color;
+            _spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_FEEDBACK;
+            _animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, _animator.GetLayerIndex("Base Layer"), 0);
         }
         else {
             SpawnDisabledUI();
@@ -93,11 +97,11 @@ public class EscapeMenu : MonoBehaviour
     }
 
     public void SpawnJuggernautBoss() {
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady) {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
-            spawnFeedbackText.color = spawnJuggernautBossText.color;
-            spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_BOSS_FEEDBACK;
-            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady) {
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.juggernautBoss);
+            _spawnFeedbackText.color = _spawnJuggernautBossText.color;
+            _spawnFeedbackText.text = Constants.SPAWN_JUGGERNAUT_BOSS_FEEDBACK;
+            _animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, _animator.GetLayerIndex("Base Layer"), 0);
         }
         else {
             SpawnDisabledUI();
@@ -105,11 +109,11 @@ public class EscapeMenu : MonoBehaviour
     }
 
     public void SpawnAssassin() {
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady) {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
-            spawnFeedbackText.color = spawnAssassinText.color;
-            spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_FEEDBACK;
-            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady) {
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassin);
+            _spawnFeedbackText.color = _spawnAssassinText.color;
+            _spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_FEEDBACK;
+            _animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, _animator.GetLayerIndex("Base Layer"), 0);
         }
         else {
             SpawnDisabledUI();
@@ -117,11 +121,11 @@ public class EscapeMenu : MonoBehaviour
     }
 
     public void SpawnAssassinBoss() {
-        if (PlayerSetup.localPlayerSetup && !PlayerSetup.localPlayerSetup.enemySpawner.awayPlayerReady) {
-            PlayerSetup.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
-            spawnFeedbackText.color = spawnAssassinBossText.color;
-            spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_BOSS_FEEDBACK;
-            animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
+        if (PlayerManager.localPlayerSetup && !PlayerManager.localPlayerSetup.enemySpawner.awayPlayerReady) {
+            PlayerManager.localPlayerSetup.enemySpawner.SpawnMonsterAtPoint(Vector3.zero, EnemySpawner.MonsterID.assassinBoss);
+            _spawnFeedbackText.color = _spawnAssassinBossText.color;
+            _spawnFeedbackText.text = Constants.SPAWN_ASSASSIN_BOSS_FEEDBACK;
+            _animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, _animator.GetLayerIndex("Base Layer"), 0);
         }
         else {
             SpawnDisabledUI();
@@ -129,42 +133,38 @@ public class EscapeMenu : MonoBehaviour
     }
 
     private void SpawnDisabledUI() {
-        spawnFeedbackText.color = Color.white;
-        spawnFeedbackText.text = Constants.SPAWN_DISABLED_FEEDBACK;
-        animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, animator.GetLayerIndex("Base Layer"), 0);
+        _spawnFeedbackText.color = Color.white;
+        _spawnFeedbackText.text = Constants.SPAWN_DISABLED_FEEDBACK;
+        _animator.Play(Constants.SPAWN_FEEDBACK_ANIM_NAME, _animator.GetLayerIndex("Base Layer"), 0);
     }
 
-    //Function called in escape menu mouse sensitivity slider
-    public void OnMouseSensitivityChange() {
-        if (PlayerSetup.localPlayerSetup) {
-            PlayerPrefs.SetFloat(Constants.SENSITIVITY_PREF_KEY, mouseSensitivitySlider.value);
-            PlayerSetup.localPlayerSetup.mouseLook.mouseSensitivity = mouseSensitivitySlider.value;
-        }
-    }
-
-    //Function that plays button being pressed sound
+    /* Functions called by the escape menu */
     public static void ButtonAudio() {
         AudioManager.instance.Play("ButtonPress");
     }
 
-    //Function that plays a different button being pressed sound
     public static void ButtonAudio2() {
         AudioManager.instance.Play("ButtonPress2");
     }
-    //Function that plays UI reverting to previous menu sound
+
     public static void BackAudio() {
         AudioManager.instance.Play("UIBack");
     }
 
-    //Function called when changing volume slider in escape menu
     public void OnMasterVolumeChange() {
-        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, escapeVolumeSlider.value);
-        AudioListener.volume = escapeVolumeSlider.value;
-    }
-    //Function called when changing music slider in escape menu
-    public void OnMusicVolumeChange() {
-        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, escapeMusicSlider.value);
-        AudioManager.instance.ChangeBackgroundVolume(escapeMusicSlider.value);
+        PlayerPrefs.SetFloat(Constants.VOLUME_PREF_KEY, _escapeVolumeSlider.value);
+        AudioListener.volume = _escapeVolumeSlider.value;
     }
 
+    public void OnMusicVolumeChange() {
+        PlayerPrefs.SetFloat(Constants.MUSIC_PREF_KEY, _escapeMusicSlider.value);
+        AudioManager.instance.ChangeBackgroundVolume(_escapeMusicSlider.value);
+    }
+
+    public void OnMouseSensitivityChange() {
+        if (PlayerManager.localPlayerSetup) {
+            PlayerPrefs.SetFloat(Constants.SENSITIVITY_PREF_KEY, _mouseSensitivitySlider.value);
+            PlayerManager.localPlayerSetup.mouseLook.mouseSensitivity = _mouseSensitivitySlider.value;
+        }
+    }
 }

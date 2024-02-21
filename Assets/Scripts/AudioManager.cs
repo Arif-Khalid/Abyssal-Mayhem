@@ -30,58 +30,58 @@ public class AudioManager : MonoBehaviour
         }
         DontDestroyOnLoad(this.gameObject);
         foreach (Sound s in sounds) {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.loop = s.loop;
-            if (s.name == "MenuBackground") { menuBackgroundSound = s; }
-            else if (s.name == "Background") { backgroundSound = s; }
+            s.Source = gameObject.AddComponent<AudioSource>();
+            s.Source.clip = s.Clip;
+            s.Source.volume = s.Volume;
+            s.Source.pitch = s.Pitch;
+            s.Source.loop = s.Loop;
+            if (s.Name == "MenuBackground") { menuBackgroundSound = s; }
+            else if (s.Name == "Background") { backgroundSound = s; }
         }
-        menuBackgroundSound.source.Play();
+        menuBackgroundSound.Source.Play();
     }
 
     public void Play(string name) {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(sounds, sound => sound.Name == name);
         if (s == null) {
             Debug.LogWarning("Sound with name: <" + name + "> does not exist");
         }
         else {
-            s.source.Play();
+            s.Source.Play();
         }
     }
 
     public void Stop(string name) {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
+        Sound s = Array.Find(sounds, sound => sound.Name == name);
         if (s == null) {
             Debug.LogWarning("Sound with name: <" + name + "> does not exist");
         }
         else {
-            s.source.Stop();
+            s.Source.Stop();
         }
     }
 
     public void StopAllSounds() {
         StopAllCoroutines();
         foreach (Sound s in sounds) {
-            s.source.Stop();
+            s.Source.Stop();
         }
     }
 
     public void ChangeBackgroundVolume(float newVolume) {
-        menuBackgroundSound.source.volume = newVolume;
-        backgroundSound.source.volume = newVolume;
+        menuBackgroundSound.Source.volume = newVolume;
+        backgroundSound.Source.volume = newVolume;
     }
 
     public IEnumerator StartGameAudio() {
-        menuBackgroundSound.source.Stop();
+        menuBackgroundSound.Source.Stop();
         Play("Drum");
         yield return new WaitForSeconds(secondsForDrum);
-        backgroundSound.source.Play();
+        backgroundSound.Source.Play();
     }
 
     public void StopGameAudio() {
         StopAllSounds();
-        menuBackgroundSound.source.Play();
+        menuBackgroundSound.Source.Play();
     }
 }

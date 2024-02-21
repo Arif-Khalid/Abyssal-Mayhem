@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 /**
  * Responsible for pooling objects for optimisation
@@ -13,9 +14,9 @@ public class ObjectPooler : MonoBehaviour
     [System.Serializable]
     public class Pool
     {
-        public string tag;
-        public GameObject prefab;
-        public int size;
+        public string Tag;
+        public GameObject Prefab;
+        public int Size;
     }
 
     public static ObjectPooler Instance;
@@ -33,13 +34,13 @@ public class ObjectPooler : MonoBehaviour
         foreach (Pool pool in Pools) {
             Queue<GameObject> objectPool = new Queue<GameObject>();
 
-            for (int i = 0; i < pool.size; i++) {
-                GameObject obj = Instantiate(pool.prefab);
+            for (int i = 0; i < pool.Size; i++) {
+                GameObject obj = Instantiate(pool.Prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
             }
 
-            _poolDictionary.Add(pool.tag, objectPool);
+            _poolDictionary.Add(pool.Tag, objectPool);
         }
     }
 

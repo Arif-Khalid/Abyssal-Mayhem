@@ -1,20 +1,25 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Serialization;
 
+/**
+ * Responsible for representing a sound
+ * along with how it should be played
+ */
 [System.Serializable]
 public class Sound
 {
-    public AudioClip clip;
+    [FormerlySerializedAs("clip")] public AudioClip Clip;
 
-    public string name;
+    [FormerlySerializedAs("name")] public string Name;
     [Range(0f,1f)]
-    public float volume;
+    [FormerlySerializedAs("volume")] public float Volume;
     [Range(0f,2f)]
-    public float pitch;
-    public bool loop;
+    [FormerlySerializedAs("pitch")] public float Pitch;
+    [FormerlySerializedAs("loop")] public bool Loop;
 
-    public string description;
+    [FormerlySerializedAs("description")] public string Description;
     [HideInInspector]
-    public AudioSource source;
+    [FormerlySerializedAs("source")] public AudioSource Source;
 
 }
